@@ -1,0 +1,17 @@
+#+TITLE: BrainDump: Anurag Peshne
+#+OPTIONS: toc:nil num:nil creator:t author:nil
+
+* Hello
+  My name is Anurag Peshne. I'm interested in Programing Languages, Operating
+  Systems and Text Editors (particularly Vim and Emacs), Lisp and Functional
+  Programing.
+
+  I studied Computer Science at [[http://vnit.ac.in/][VNIT]] and have experience working with server teams
+  at multinational corporation as well as a startup.
+
+  Besides CS, I'm interested in cycling and [[https://www.flickr.com/photos/anuragpeshne/][photography]]. Moon and time lapsed
+  photography are my favourites.
+
+* Contact
+  Feel free to drop me a mail at [[mailto:anurag.peshne@gmail.com][anurag.peshne@gmail.com]].
+  You can find more about my projects at my [[https://github.com/anuragpeshne][repo]].
