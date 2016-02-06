@@ -1,0 +1,18 @@
+body a {
+    color: #4295e6;
+    text-decoration: none;
+}
+
+body a:visited {
+    color: #81b6ea;
+    text-decoration:none;
+}
+
+body a:hover {
+    color: #285e93;
+}
+
+#content {
+    max-width: 800px;
+    margin: 0 auto;
+}

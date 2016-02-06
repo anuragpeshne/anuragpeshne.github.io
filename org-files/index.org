@@ -1,5 +1,6 @@
 #+TITLE: BrainDump: Anurag Peshne
 #+OPTIONS: toc:nil num:nil creator:t author:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/style.css" />
 
 * Hello
   My name is Anurag Peshne. I'm interested in Programing Languages, Operating
@@ -12,6 +13,24 @@
   Besides CS, I'm interested in cycling and [[https://www.flickr.com/photos/anuragpeshne/][photography]]. Moon and time lapsed
   photography are my favourites.
 
+* Projects
+  Here are some of my somewhat working projects:
+  - [[https://github.com/anuragpeshne/vKeyboard][vKeyboard]]
+   Share keyboard accoss computers over the network.
+  - [[https://github.com/anuragpeshne/austerity][austerity]]
+   Bunch of shell scripts to restrict access to time /wasting/ websites.
+  - [[https://github.com/font8x8][font8X8]]
+   Language agnostic monochrome bitmap font for rendering.
+  - [[https://github.com/anuragpeshne/airLift][airLift]]
+   Automated file sharing over network.
+  - [[https://github.com/anuragpeshne/funJmp][funJmp]]
+   Jump to function definition in Vim using Regex.
+  - [[https://github.com/anuragpeshne][github.com/anuragpeshne]]
+   Rest of the projects can be found at my github repo.
+
+* Essays
+  - [[/essays/asychronous.html][Asychronous]]
+  - [[/essays/y-combinator.html][Y Combinator]]
+
 * Contact
   Feel free to drop me a mail at [[mailto:anurag.peshne@gmail.com][anurag.peshne@gmail.com]].
-  You can find more about my projects at my [[https://github.com/anuragpeshne][repo]].
