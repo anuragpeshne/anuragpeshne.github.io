@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Asynchronous Programing</title>
-<!-- 2016-02-07 Sun 14:06 -->
+<!-- 2016-02-07 Sun 18:13 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Anurag Peshne" />
@@ -192,8 +192,10 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-2-1-1">2.1.1. Anatomy</a></li>
 <li><a href="#sec-2-1-2">2.1.2. The infinite space between words</a></li>
+<li><a href="#sec-2-1-3">2.1.3. Blocking IO</a></li>
 </ul>
 </li>
+<li><a href="#sec-2-2">2.2. The Asynchronous way</a></li>
 </ul>
 </li>
 </ul>
@@ -237,17 +239,17 @@ is a vowel. If it is a vowel then it calculates \(\sqrt[3]{2}\) else it calculat
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #DFAF8F;">f</span> = <span style="color: #DCDCCC; font-weight: bold;">open</span>(<span style="color: #CC9393;">'/home/user/rndFile.txt'</span>, <span style="color: #CC9393;">'r'</span>)
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0;">open</span>(<span style="color: #008000;">'/home/user/rndFile.txt'</span>, <span style="color: #008000;">'r'</span>)
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span><span style="color: #DFAF8F;">first_line</span> = f.readline()
-<span class="linenr"> 4: </span><span style="color: #DFAF8F;">first_char</span> = first_line[0]
+<span class="linenr"> 3: </span><span style="color: #BA36A5;">first_line</span> = f.readline()
+<span class="linenr"> 4: </span><span style="color: #BA36A5;">first_char</span> = first_line[0]
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #F0DFAF; font-weight: bold;">if</span> first_char <span style="color: #F0DFAF; font-weight: bold;">in</span> [<span style="color: #CC9393;">'a'</span>, <span style="color: #CC9393;">'e'</span>, <span style="color: #CC9393;">'i'</span>, <span style="color: #CC9393;">'o'</span>, <span style="color: #CC9393;">'u'</span>]:
-<span class="linenr"> 7: </span>    <span style="color: #DFAF8F;">result1</span> = 2 ** (1/3.0)
-<span class="linenr"> 8: </span><span style="color: #F0DFAF; font-weight: bold;">else</span>:
-<span class="linenr"> 9: </span>    <span style="color: #DFAF8F;">result1</span> = 2 ** (1/2.0)
+<span class="linenr"> 6: </span><span style="color: #0000FF;">if</span> first_char <span style="color: #0000FF;">in</span> [<span style="color: #008000;">'a'</span>, <span style="color: #008000;">'e'</span>, <span style="color: #008000;">'i'</span>, <span style="color: #008000;">'o'</span>, <span style="color: #008000;">'u'</span>]:
+<span class="linenr"> 7: </span>    <span style="color: #BA36A5;">result1</span> = 2 ** (1/3.0)
+<span class="linenr"> 8: </span><span style="color: #0000FF;">else</span>:
+<span class="linenr"> 9: </span>    <span style="color: #BA36A5;">result1</span> = 2 ** (1/2.0)
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #DFAF8F;">result2</span> = 3 ** 2
+<span class="linenr">11: </span><span style="color: #BA36A5;">result2</span> = 3 ** 2
 </pre>
 </div>
 <p>
@@ -281,7 +283,7 @@ and see what is going on behind the scenes.
 <p>
 Reading files, making network calls and doing CPU intensive work is
 indiscriminately interwoven into each other. But the time required to execute
-each is dramatically distinct. Here's a table of approximate timing<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup> for
+each differs dramatically. Here's a table of approximate timing<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup> for
 various operations and computer time translated to arbitary seconds:
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -356,6 +358,71 @@ various operations and computer time translated to arbitary seconds:
 </tr>
 </tbody>
 </table>
+
+<p>
+Now with this perspective, let's revisit our earlier example.
+</p>
+<ul class="org-ul">
+<li>Line 1 and 3 will consume few hendred μ seconds because of the disk IO.
+</li>
+<li>Line 4 and 6 which deals with Main memory will require few hundreds of nano seconds.
+</li>
+<li>And finally lines 7, 9 and 11 require few CPU cycles and thus will be done in less than a nano second.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> Blocking IO</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+Since we have seen in the reference frame of processor, IO takes forever to
+return data; what does the processor during that period? It simply idles <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+</p>
+
+<div class="figure">
+<p><img src="../assets/asynchronous/wolf.gif" alt="wolf.gif" />
+</p>
+<p><span class="figure-number">Figure 1:</span> what should I kill next?</p>
+</div>
+
+<p>
+Note the instruction on line 11. It doesn't depend upon the data read from the
+file, yet its computation is blocked due to sequencial execution of intructions.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> The Asynchronous way</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Instead of waiting for the IO, we can proceed with the computation by providing
+<i>callbacks</i> which are executed whenever the IO succeeds.
+</p>
+
+<p>
+These callbacks are usually provided as anonymous functions (or &lambda;). Thus
+if the following code earlier seemed magical to you, it should make complete
+sense now.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">$.ajax({
+    url: <span style="color: #008000;">'test.html'</span>,
+    <span style="color: #006699;">beforeSend</span>: <span style="color: #0000FF;">function</span>() {
+        $(<span style="color: #008000;">'#result'</span>).html(<span style="color: #008000;">'Loading...'</span>);
+    },
+    <span style="color: #006699;">success</span>: <span style="color: #0000FF;">function</span>(<span style="color: #BA36A5;">data</span>) {
+        $(<span style="color: #008000;">'#result'</span>).html(data);
+    },
+    <span style="color: #006699;">error</span>: <span style="color: #0000FF;">function</span>(<span style="color: #BA36A5;">err</span>) {
+        $(<span style="color: #008000;">'#result'</span>).html(<span style="color: #008000;">'Error occured, try again'</span>);
+    }
+})
+</pre>
 </div>
 </div>
 </div>
@@ -368,13 +435,18 @@ various operations and computer time translated to arbitary seconds:
 : <a href="http://blog.codinghorror.com/the-infinite-space-between-words/">blog.codinghorror.com/the-infinite-space-between-words</a>
 </p></div>
 
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+: Of course, the processor doesn't actually idle; The OS scheduler puts the
+thread in <a href="https://en.wikipedia.org/wiki/Process_state#Blocked"><i>blocked</i></a> state and schedules another process.
+</p></div>
+
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-02-07</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2016-02-07 Sun 14:06</p>
+<p class="date">Created: 2016-02-07 Sun 18:13</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

@@ -49,17 +49,56 @@ result2 = 3 ** 2
 *** The infinite space between words[fn:1]
     Reading files, making network calls and doing CPU intensive work is
     indiscriminately interwoven into each other. But the time required to execute
-    each is dramatically distinct. Here's a table of approximate timing[fn:1] for
+    each differs dramatically. Here's a table of approximate timing[fn:1] for
     various operations and computer time translated to arbitary seconds:
-| 1 CPU cycle               | 0.3 ns    | 1s          |
-| Level 1 cache access      | 0.9 ns    | 3s          |
-| Level 2 cache access      | 2.8 ns    | 9 s         |
-| Level 3 cache access      | 12.9 ns   | 43 s        |
-| Main memory access        | 120 ns    | 6 min       |
-| Solid-state disk I/O      | 50-150 μs | 2-6 days    |
-| Rotational disk I/O       | 1-10 ms   | 1-12 months |
-| Internet: SF to NYC       | 40 ms     | 4 years     |
-| Internet: SF to UK        | 81 ms     | 8 years     |
-| Internet: SF to Australia | 183 ms    | 19 years    |
+    | 1 CPU cycle               | 0.3 ns    | 1s          |
+    | Level 1 cache access      | 0.9 ns    | 3s          |
+    | Level 2 cache access      | 2.8 ns    | 9 s         |
+    | Level 3 cache access      | 12.9 ns   | 43 s        |
+    | Main memory access        | 120 ns    | 6 min       |
+    | Solid-state disk I/O      | 50-150 μs | 2-6 days    |
+    | Rotational disk I/O       | 1-10 ms   | 1-12 months |
+    | Internet: SF to NYC       | 40 ms     | 4 years     |
+    | Internet: SF to UK        | 81 ms     | 8 years     |
+    | Internet: SF to Australia | 183 ms    | 19 years    |
+
+    Now with this perspective, let's revisit our earlier example.
+    - Line 1 and 3 will consume few hendred μ seconds because of the disk IO.
+    - Line 4 and 6 which deals with Main memory will require few hundreds of nano seconds.
+    - And finally lines 7, 9 and 11 require few CPU cycles and thus will be done in less than a nano second.
+
+*** Blocking IO
+    Since we have seen in the reference frame of processor, IO takes forever to
+    return data; what does the processor during that period? It simply idles [fn:2].
+    #+CAPTION: what should I kill next?
+    [[file:../assets/asynchronous/wolf.gif]]
+
+    Note the instruction on line 11. It doesn't depend upon the data read from the
+    file, yet its computation is blocked due to sequencial execution of intructions.
+
+** The Asynchronous way
+   Instead of waiting for the IO, we can proceed with the computation by providing
+   /callbacks/ which are executed whenever the IO succeeds.
+
+   These callbacks are usually provided as anonymous functions (or \lambda). Thus
+   if the following code earlier seemed arcane to you, it should make complete
+   sense now.
+#+BEGIN_SRC javascript
+$.ajax({
+    url: 'test.html',
+    beforeSend: function() {
+        $('#result').html('Loading...');
+    },
+    success: function(data) {
+        $('#result').html(data);
+    },
+    error: function(err) {
+        $('#result').html('Error occured, try again');
+    }
+})
+#+END_SRC
+
 
 [fn:1]: [[http://blog.codinghorror.com/the-infinite-space-between-words/][blog.codinghorror.com/the-infinite-space-between-words]]
+[fn:2]: Of course, the processor doesn't actually idle; The OS scheduler puts the
+   thread in [[https://en.wikipedia.org/wiki/Process_state#Blocked][/blocked/]] state and schedules another process.
