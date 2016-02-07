@@ -1,5 +1,5 @@
 body a {
-    color: #4295e6;
+    color: #4078c0;
     text-decoration: none;
 }
 
@@ -9,10 +9,20 @@ body a:visited {
 }
 
 body a:hover {
-    color: #285e93;
+    text-decoration: underline;
 }
 
 #content {
     max-width: 800px;
     margin: 0 auto;
+}
+
+#draftTag {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    color:red;
+    padding: 6px;
+    border-radius: 6px;
+    border:2px solid red;
 }

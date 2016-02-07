@@ -1,0 +1,65 @@
+#+TITLE: Asynchronous Programing
+#+DATE: 2016-02-07
+#+OPTIONS: toc:t num:t creator:t author:t tex:t
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+#+FILETAGS:  :asynchronous:python:
+
+#+HTML: <div id="draftTag">DRAFT</div>
+
+* Motivation
+  I have stumbled upon [[https://www.quora.com/My-code-works-as-intended-on-Online-HTML-Editor-but-not-exactly-on-github-pages-or-jsfiddle-What-can-I-do][several]] [[https://www.quora.com/How-would-you-explain-the-concept-of-asynchronous-programming-to-a-10-year-old][instances]] while answering on quora/SO, where someone
+  is having trouble in their code due to incorrect understanding of asynchronous
+  code flow. Sometimes the OP simply doesn't understand the mystical ritual of passing
+  functions as parameters (as callbacks), while sometimes there is racing issue
+  which makes the code work on local machines and fail miserably on production server.
+
+  In this post, I'll try to explain what asynchronous programing is, how control flows
+  and later we'll try to implement a very crude framework which facilitates asynchronous
+  callbacks.
+
+* What
+  Let's start with what we already know and what this post is not about:
+** The synchronous way
+   Here's a contrived example, which opens up a file and checks if first character
+   is a vowel. If it is a vowel then it calculates \(\sqrt[3]{2}\) else it calculates
+   \(\sqrt{2}\). And finally it calculates result 3^{2}
+#+BEGIN_SRC python -n
+f = open('/home/user/rndFile.txt', 'r')
+
+first_line = f.readline()
+first_char = first_line[0]
+
+if first_char in ['a', 'e', 'i', 'o', 'u']:
+    result1 = 2 ** (1/3.0)
+else:
+    result1 = 2 ** (1/2.0)
+
+result2 = 3 ** 2
+#+END_SRC
+   We can easily guess what code is doing by looking at it. It goes over each line
+   *sequencially* after executing the previous one. Let's dive deeper in this example
+   and see what is going on behind the scenes.
+*** Anatomy
+    - ~f = open('/home/user/rndFile.txt', 'r')~: requests Operating System to lookup a file using specified path in /read-only/ mode.
+    - ~first_line = f.readline()~: requests OS again to read the file into memory.
+    - ~first_char = first_line[0]~: copies some content of memory location pointed by ~first_line~ into memory location pointed by ~first_char~
+    - ~if first_char in ['a', 'e', 'i', 'o', 'u']:~ requires the CPU to compare several memory location and then choose a branch based on that.
+    - ~result1 = 2 ** (1/3.0)~ and ~result1 = 2 ** (1/2.0)~ involves processing to be done by computation circuitary such as ALU or FPU.
+    - ~result2 = 3 ** 2~: same as above.
+*** The infinite space between words[fn:1]
+    Reading files, making network calls and doing CPU intensive work is
+    indiscriminately interwoven into each other. But the time required to execute
+    each is dramatically distinct. Here's a table of approximate timing[fn:1] for
+    various operations and computer time translated to arbitary seconds:
+| 1 CPU cycle               | 0.3 ns    | 1s          |
+| Level 1 cache access      | 0.9 ns    | 3s          |
+| Level 2 cache access      | 2.8 ns    | 9 s         |
+| Level 3 cache access      | 12.9 ns   | 43 s        |
+| Main memory access        | 120 ns    | 6 min       |
+| Solid-state disk I/O      | 50-150 μs | 2-6 days    |
+| Rotational disk I/O       | 1-10 ms   | 1-12 months |
+| Internet: SF to NYC       | 40 ms     | 4 years     |
+| Internet: SF to UK        | 81 ms     | 8 years     |
+| Internet: SF to Australia | 183 ms    | 19 years    |
+
+[fn:1]: [[http://blog.codinghorror.com/the-infinite-space-between-words/][blog.codinghorror.com/the-infinite-space-between-words]]

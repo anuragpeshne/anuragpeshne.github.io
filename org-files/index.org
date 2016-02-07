@@ -29,8 +29,9 @@
    Rest of the projects can be found at my github repo.
 
 * Essays
-  - [[/essays/asychronous.html][Asychronous]]
-  - [[/essays/y-combinator.html][Y Combinator]]
+  - [[file:./essays/asynchronous.org][Asynchronous]]
+  - [[file:./essays/y-combinator.org][Y Combinator]]
+  - [[file:./essays/index.org][/essays]] Rest of the essays
 
 * Contact
   Feel free to drop me a mail at [[mailto:anurag.peshne@gmail.com][anurag.peshne@gmail.com]].
