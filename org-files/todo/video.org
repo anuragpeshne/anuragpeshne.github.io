@@ -1,0 +1,2 @@
+* Talks/Shows/Videos - ToDo
+** TODO [[https://vimeo.com/49718712][Concurrency Is Not Parallelism]]
