@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Asynchronous Programing</title>
-<!-- 2016-02-07 Sun 18:13 -->
+<!-- 2016-02-08 Mon 19:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Anurag Peshne" />
@@ -195,7 +195,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-1-3">2.1.3. Blocking IO</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-2">2.2. The Asynchronous way</a></li>
+<li><a href="#sec-2-2">2.2. The Asynchronous way</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. Callbacks</a></li>
+<li><a href="#sec-2-2-2">2.2.2. Async-effect</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -239,7 +244,7 @@ is a vowel. If it is a vowel then it calculates \(\sqrt[3]{2}\) else it calculat
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0;">open</span>(<span style="color: #008000;">'/home/user/rndFile.txt'</span>, <span style="color: #008000;">'r'</span>)
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0; font-weight: bold;">open</span>(<span style="color: #008000;">'/home/user/rndFile.txt'</span>, <span style="color: #008000;">'r'</span>)
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #BA36A5;">first_line</span> = f.readline()
 <span class="linenr"> 4: </span><span style="color: #BA36A5;">first_char</span> = first_line[0]
@@ -378,7 +383,7 @@ Now with this perspective, let's revisit our earlier example.
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 Since we have seen in the reference frame of processor, IO takes forever to
-return data; what does the processor during that period? It simply idles <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+return data; what does the processor do during that period? It simply idles <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
 </p>
 
 <div class="figure">
@@ -399,14 +404,65 @@ file, yet its computation is blocked due to sequencial execution of intructions.
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> The Asynchronous way</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-Instead of waiting for the IO, we can proceed with the computation by providing
-<i>callbacks</i> which are executed whenever the IO succeeds.
+Instead of waiting for the blocking operation, we can proceed with the computation
+by specificing what we intend to do after the blocking operation. We can specify
+this by providing a <i>callback</i> which is executed whenever the operation succeeds.
+</p>
+</div>
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Callbacks</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+These callbacks can be provided as anonymous functions (&lambda;) or named functions.
+Let's rewrite our earlier example pretending <code>open</code> and <code>readline</code> to be asynchronous
+operations.
 </p>
 
+<div class="org-src-container">
+
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #0000FF;">def</span> <span style="color: #006699;">calculateResult1</span>(first_char):
+<span class="linenr"> 2: </span>    <span style="color: #0000FF;">if</span> first_char <span style="color: #0000FF;">in</span> [<span style="color: #008000;">'a'</span>, <span style="color: #008000;">'e'</span>, <span style="color: #008000;">'i'</span>, <span style="color: #008000;">'o'</span>, <span style="color: #008000;">'u'</span>]:
+<span class="linenr"> 3: </span>        <span style="color: #BA36A5;">result1</span> = 2 ** (1/3.0)
+<span class="linenr"> 4: </span>    <span style="color: #0000FF;">else</span>:
+<span class="linenr"> 5: </span>        <span style="color: #BA36A5;">result1</span> = 2 ** (1/2.0)
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0; font-weight: bold;">open</span>(<span style="color: #008000;">'/home/user/rndFile.txt'</span>,
+<span class="linenr"> 8: </span>         <span style="color: #008000;">'r'</span>,
+<span class="linenr"> 9: </span>         <span style="color: #0000FF;">lambda</span> f: f.readline(<span style="color: #0000FF;">lambda</span> first_line: calculateResult1(first_line[0])))
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #BA36A5;">result2</span> = 3 ** 2
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Note: this is not a valid Python code, 'open' is not asynchronous in Python.</span>
+<span class="linenr">14: </span><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Do Not Try this at home.</span>
+</pre>
+</div>
+
 <p>
-These callbacks are usually provided as anonymous functions (or &lambda;). Thus
-if the following code earlier seemed magical to you, it should make complete
-sense now.
+Here's the <i>diff</i> between the two examples in English:
+</p>
+<ol class="org-ol">
+<li>We have moved the code which processes the data read from the file into a named function <code>calculateResult1</code>.
+</li>
+<li>Additionally there are 2 more lambdas<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup> (anonymous functions) which handles reading a line and invoking <code>calculateResult1</code> using first character of the line.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Async-effect</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Now instead of blocking on <code>open</code> call, our execution proceeds to execute line 11
+after registering a callback with the <code>open</code> and <code>readline</code> operation.
+</p>
+
+
+<p>
+Thus
+   if the following code earlier seemed arcane to you, it should make complete
+   sense now.
 </p>
 <div class="org-src-container">
 
@@ -427,6 +483,7 @@ sense now.
 </div>
 </div>
 </div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
@@ -440,14 +497,19 @@ sense now.
 thread in <a href="https://en.wikipedia.org/wiki/Process_state#Blocked"><i>blocked</i></a> state and schedules another process.
 </p></div>
 
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+: <code>calculateResult1</code> could have also been a lambda but <a href="https://docs.python.org/2/tutorial/controlflow.html#lambda-expressions">Python Lambdas</a> are
+syntactically restricted to a single expressions.
+</p></div>
+
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-02-07</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2016-02-07 Sun 18:13</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-02-08 Mon 19:39</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

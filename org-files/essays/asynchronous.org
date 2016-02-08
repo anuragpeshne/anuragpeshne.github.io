@@ -69,7 +69,7 @@ result2 = 3 ** 2
 
 *** Blocking IO
     Since we have seen in the reference frame of processor, IO takes forever to
-    return data; what does the processor during that period? It simply idles [fn:2].
+    return data; what does the processor do during that period? It simply idles [fn:2].
     #+CAPTION: what should I kill next?
     [[file:../assets/asynchronous/wolf.gif]]
 
@@ -77,10 +77,42 @@ result2 = 3 ** 2
     file, yet its computation is blocked due to sequencial execution of intructions.
 
 ** The Asynchronous way
-   Instead of waiting for the IO, we can proceed with the computation by providing
-   /callbacks/ which are executed whenever the IO succeeds.
+   Instead of waiting for the blocking operation, we can proceed with the computation
+   by specificing what we intend to do after the blocking operation. We can specify
+   this by providing a /callback/ which is executed whenever the operation succeeds.
 
-   These callbacks are usually provided as anonymous functions (or \lambda). Thus
+*** Callbacks
+   These callbacks can be provided as anonymous functions (\lambda) or named functions.
+   Let's rewrite our earlier example pretending ~open~ and ~readline~ to be asynchronous
+   operations.
+
+#+BEGIN_SRC python -n
+def calculateResult1(first_char):
+    if first_char in ['a', 'e', 'i', 'o', 'u']:
+        result1 = 2 ** (1/3.0)
+    else:
+        result1 = 2 ** (1/2.0)
+
+f = open('/home/user/rndFile.txt',
+         'r',
+         lambda f: f.readline(lambda first_line: calculateResult1(first_line[0])))
+
+result2 = 3 ** 2
+
+# Note: this is not a valid Python code, 'open' is not asynchronous in Python.
+# Do Not Try this at home.
+#+END_SRC
+
+   Here's the /diff/ between the two examples in English:
+   1. We have moved the code which processes the data read from the file into a named function ~calculateResult1~.
+   1. Additionally there are 2 more lambdas[fn:3] (anonymous functions) which handles reading a line and invoking ~calculateResult1~ using first character of the line.
+
+*** Async-effect
+    Now instead of blocking on ~open~ call, our execution proceeds to execute line 11
+    after registering a callback with the ~open~ and ~readline~ operation.
+
+
+Thus
    if the following code earlier seemed arcane to you, it should make complete
    sense now.
 #+BEGIN_SRC javascript
@@ -102,3 +134,5 @@ $.ajax({
 [fn:1]: [[http://blog.codinghorror.com/the-infinite-space-between-words/][blog.codinghorror.com/the-infinite-space-between-words]]
 [fn:2]: Of course, the processor doesn't actually idle; The OS scheduler puts the
    thread in [[https://en.wikipedia.org/wiki/Process_state#Blocked][/blocked/]] state and schedules another process.
+[fn:3]: ~calculateResult1~ could have also been a lambda but [[https://docs.python.org/2/tutorial/controlflow.html#lambda-expressions][Python Lambdas]] are
+   syntactically restricted to a single expressions.
