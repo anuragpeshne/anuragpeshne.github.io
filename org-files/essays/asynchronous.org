@@ -111,28 +111,56 @@ result2 = 3 ** 2
     Now instead of blocking on ~open~ call, our execution proceeds to execute line 11
     after registering a callback with the ~open~ and ~readline~ operation.
 
+    To conclude our journey in understanding asynchronous programing, let's have
+    example which can be fiddled with. Fireup your JavaScript console[fn:4] and
+    paste the following code.
 
-Thus
-   if the following code earlier seemed arcane to you, it should make complete
-   sense now.
 #+BEGIN_SRC javascript
-$.ajax({
-    url: 'test.html',
-    beforeSend: function() {
-        $('#result').html('Loading...');
-    },
-    success: function(data) {
-        $('#result').html(data);
-    },
-    error: function(err) {
-        $('#result').html('Error occured, try again');
+var request = new XMLHttpRequest();
+request.open('GET', 'https://anuragpeshne.github.io/essays/index.html', true)
+
+request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+        console.log("Success! " + request.responseText.length + " characters received");
+    } else {
+        console.log("Server returned error " + request.status);
     }
-})
+}
+
+request.onerror = function() {
+    console.log("Connection Error");
+}
+
+console.log("before making the call");
+request.send();
+console.log("after making the call");
 #+END_SRC
 
+    Here ~request.send()~ is indeed asynchronous. It is network version of ~open~
+    call that we saw in previous examples. We have registered two callbacks here,
+    one ~onload~ and other ~onerror~.
+
+    Note that the execution order of last three lines is indeterministic. If request
+    is successful, order may be:
+#+BEGIN_SRC
+before making the call
+After making the call
+Success! xxx characters received
+#+END_SRC
+
+    *DIY*: try changing url to google.com[fn:5], or disconnect from internet and
+    try network request.
+
+* How
+  And now we can turn our attention to how asynchronous callbacks are implemented.
+  This can be really useful in getting deep knowledge about asynchronous programming.
 
 [fn:1]: [[http://blog.codinghorror.com/the-infinite-space-between-words/][blog.codinghorror.com/the-infinite-space-between-words]]
 [fn:2]: Of course, the processor doesn't actually idle; The OS scheduler puts the
    thread in [[https://en.wikipedia.org/wiki/Process_state#Blocked][/blocked/]] state and schedules another process.
 [fn:3]: ~calculateResult1~ could have also been a lambda but [[https://docs.python.org/2/tutorial/controlflow.html#lambda-expressions][Python Lambdas]] are
    syntactically restricted to a single expressions.
+[fn:4]: if you are on Chrome or Firefox right click over any whitespace in this
+   page and click 'Inspect'. Now head over the 'console' tab.
+[fn:5]: changing to other origin should result in an error because of the
+   [[https://en.wikipedia.org/wiki/Same-origin_policy][Same origin policy]] enforced by the browsers.

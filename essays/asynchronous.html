@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Asynchronous Programing</title>
-<!-- 2016-02-08 Mon 19:39 -->
+<!-- 2016-02-09 Tue 19:20 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Anurag Peshne" />
@@ -203,6 +203,7 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
+<li><a href="#sec-3">3. How</a></li>
 </ul>
 </div>
 </div>
@@ -458,30 +459,67 @@ Now instead of blocking on <code>open</code> call, our execution proceeds to exe
 after registering a callback with the <code>open</code> and <code>readline</code> operation.
 </p>
 
-
 <p>
-Thus
-   if the following code earlier seemed arcane to you, it should make complete
-   sense now.
+To conclude our journey in understanding asynchronous programing, let's have
+example which can be fiddled with. Fireup your JavaScript console<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup> and
+paste the following code.
 </p>
+
 <div class="org-src-container">
 
-<pre class="src src-javascript">$.ajax({
-    url: <span style="color: #008000;">'test.html'</span>,
-    <span style="color: #006699;">beforeSend</span>: <span style="color: #0000FF;">function</span>() {
-        $(<span style="color: #008000;">'#result'</span>).html(<span style="color: #008000;">'Loading...'</span>);
-    },
-    <span style="color: #006699;">success</span>: <span style="color: #0000FF;">function</span>(<span style="color: #BA36A5;">data</span>) {
-        $(<span style="color: #008000;">'#result'</span>).html(data);
-    },
-    <span style="color: #006699;">error</span>: <span style="color: #0000FF;">function</span>(<span style="color: #BA36A5;">err</span>) {
-        $(<span style="color: #008000;">'#result'</span>).html(<span style="color: #008000;">'Error occured, try again'</span>);
+<pre class="src src-javascript"><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">request</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">XMLHttpRequest</span>();
+request.open(<span style="color: #008000;">'GET'</span>, <span style="color: #008000;">'https://anuragpeshne.github.io/essays/index.html'</span>, <span style="color: #D0372D;">true</span>)
+
+request.onload = <span style="color: #0000FF;">function</span>() {
+    <span style="color: #0000FF;">if</span> (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
+        console.log(<span style="color: #008000;">"Success! "</span> + request.responseText.length + <span style="color: #008000;">" characters received"</span>);
+    } <span style="color: #0000FF;">else</span> {
+        console.log(<span style="color: #008000;">"Server returned error "</span> + request.status);
     }
-})
+}
+
+request.onerror = <span style="color: #0000FF;">function</span>() {
+    console.log(<span style="color: #008000;">"Connection Error"</span>);
+}
+
+console.log(<span style="color: #008000;">"before making the call"</span>);
+request.send();
+console.log(<span style="color: #008000;">"after making the call"</span>);
 </pre>
 </div>
+
+<p>
+Here <code>request.send()</code> is indeed asynchronous. It is network version of <code>open</code>
+call that we saw in previous examples. We have registered two callbacks here,
+one <code>onload</code> and other <code>onerror</code>.
+</p>
+
+<p>
+Note that the execution order of last three lines is indeterministic. If request
+is successful, order may be:
+</p>
+<pre class="example">
+before making the call
+After making the call
+Success! xxx characters received
+</pre>
+
+<p>
+<b>DIY</b>: try changing url to google.com<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup>, or disconnect from internet and
+try network request.
+</p>
 </div>
 </div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> How</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+And now we can turn our attention to how asynchronous callbacks are implemented.
+This can be really useful in getting deep knowledge about asynchronous programming.
+</p>
 </div>
 </div>
 <div id="footnotes">
@@ -502,13 +540,23 @@ thread in <a href="https://en.wikipedia.org/wiki/Process_state#Blocked"><i>block
 syntactically restricted to a single expressions.
 </p></div>
 
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+: if you are on Chrome or Firefox right click over any whitespace in this
+page and click 'Inspect'. Now head over the 'console' tab.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
+: changing to other origin should result in an error because of the
+<a href="https://en.wikipedia.org/wiki/Same-origin_policy">Same origin policy</a> enforced by the browsers.
+</p></div>
+
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-02-07</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2016-02-08 Mon 19:39</p>
+<p class="date">Created: 2016-02-09 Tue 19:20</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
