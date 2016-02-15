@@ -2,6 +2,7 @@
 #+DATE: 2016-02-07
 #+OPTIONS: toc:t num:t creator:t author:t tex:t
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 #+FILETAGS:  :asynchronous:python:
 
 #+HTML: <div id="draftTag">DRAFT</div>
@@ -148,8 +149,8 @@ After making the call
 Success! xxx characters received
 #+END_SRC
 
-    *DIY*: try changing url to google.com[fn:5], or disconnect from internet and
-    try network request.
+    What would happen if url is changed to google.com[fn:5], or browser is disconnected
+    from internet. This is something you should definitely try at home.
 
 * How
   And now we can turn our attention to how asynchronous callbacks are implemented.
@@ -161,6 +162,6 @@ Success! xxx characters received
 [fn:3]: ~calculateResult1~ could have also been a lambda but [[https://docs.python.org/2/tutorial/controlflow.html#lambda-expressions][Python Lambdas]] are
    syntactically restricted to a single expressions.
 [fn:4]: if you are on Chrome or Firefox right click over any whitespace in this
-   page and click 'Inspect'. Now head over the 'console' tab.
+   page and click 'Inspect [Element]'. Now head over the 'Console' tab.
 [fn:5]: changing to other origin should result in an error because of the
    [[https://en.wikipedia.org/wiki/Same-origin_policy][Same origin policy]] enforced by the browsers.
