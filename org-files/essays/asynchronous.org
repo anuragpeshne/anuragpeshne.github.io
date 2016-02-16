@@ -64,7 +64,7 @@ result2 = 3 ** 2
     | Internet: SF to Australia | 183 ms    | 19 years    |
 
     Now with this perspective, let's revisit our earlier example.
-    - Line 1 and 3 will consume few hendred μ seconds because of the disk IO.
+    - Line 1 and 3 will consume few hundred μ seconds because of the disk IO.
     - Line 4 and 6 which deals with Main memory will require few hundreds of nano seconds.
     - And finally lines 7, 9 and 11 require few CPU cycles and thus will be done in less than a nano second.
 
@@ -153,7 +153,7 @@ Success! xxx characters received
     from internet. This is something you should definitely try at home.
 
 * How
-  And now we can turn our attention to how asynchronous callbacks are implemented.
+  And now we can turn our attention to how asynchronous callbacks can be implemented.
   This can be really useful in getting deep knowledge about asynchronous programming.
 
 [fn:1]: [[http://blog.codinghorror.com/the-infinite-space-between-words/][blog.codinghorror.com/the-infinite-space-between-words]]
