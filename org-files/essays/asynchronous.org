@@ -5,6 +5,7 @@
 #+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 #+FILETAGS:  :asynchronous:python:
 
+#+INCLUDE: "../../assets/ga.org"
 #+HTML: <div id="draftTag">DRAFT</div>
 
 * Motivation
@@ -155,6 +156,13 @@ Success! xxx characters received
 * How
   And now we can turn our attention to how asynchronous callbacks can be implemented.
   This can be really useful in getting deep knowledge about asynchronous programming.
+** TODO Read more about Event Loop
+** TODO Read about multi threading/thread pool in Python
+** TODO Non Blocking system calls:
+*** TODO ~select~
+*** TODO ~poll~
+** TODO [[http://stackoverflow.com/questions/21607692/understanding-the-event-loop][SO question]]
+** TODO [[http://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html][Talk]]
 
 [fn:1]: [[http://blog.codinghorror.com/the-infinite-space-between-words/][blog.codinghorror.com/the-infinite-space-between-words]]
 [fn:2]: Of course, the processor doesn't actually idle; The OS scheduler puts the
