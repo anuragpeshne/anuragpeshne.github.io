@@ -6,7 +6,7 @@
 
 * Hello
   My name is Anurag Peshne. I'm interested in Programing Languages, Operating
-  Systems and Text Editors (particularly Vim and Emacs), Lisp and Functional
+  Systems, Text Editors (particularly Vim and Emacs), Lisp and Functional
   Programing.
 
   I studied Computer Science at [[http://vnit.ac.in/][VNIT]] and have experience working with server teams
@@ -14,6 +14,8 @@
 
   Besides CS, I'm interested in cycling and [[https://www.flickr.com/photos/anuragpeshne/][photography]]. Moon and time lapsed
   photography are my favourites.
+
+  Here's my [[./now.org][/now]] page: the things I'm upto these days.
 
 * Projects
   Here are some of my somewhat working projects:
@@ -32,7 +34,7 @@
 
 * Essays
   - [[file:./essays/asynchronous.org][Asynchronous]]
-  - [[file:./essays/y-combinator.org][Y Combinator]]
+  - [[https://github.com/anuragpeshne/Y-Combinator/blob/master/Ycombinator.org][Y Combinator]]
   - [[file:./essays/index.org][/essays]] Rest of the essays
 
 * Contact
