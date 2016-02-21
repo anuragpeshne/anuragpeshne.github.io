@@ -1,0 +1,48 @@
+#+TITLE: Quotes
+#+OPTIONS: toc:t num:nil creator:nil author:nil timestamp:nil postamble:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+HTML_HEAD: <style> .verse{ padding: 50px 0 250px 0; } </style>
+
+*** The Most Important Thing.
+#+BEGIN_VERSE
+You literally ought to ask yourself, what is the most import thing in the world that I should be working on and if you are not working on that, why aren't you?
+
+- Aaron Swartz
+#+END_VERSE
+
+*** Invent Your Own Meaning.
+#+BEGIN_VERSE
+Creating a life that reflects your values and satisfies your soul is a rare achievement.
+In a culture that relentlessly promotes avarice and excess as the good life, a person happy doing his own work is usually considered an eccentric, if not a subversive.
+Ambition is only understood if it's to rise to the top of some imaginary ladder of success.
+Someone who takes an undemanding job because it affords him the time to pursue other interests and activities is considered a flake.
+A person who abandons a career in order to stay home and raise children is considered not to be living up to his potential.
+As if a job title and salary are the sole measure of human worth.
+You'll be told in hundred ways, some subtle and some not, to keep climbing and never be satisfied with where you are, who you are and what you're doing.
+There are a million ways to sell yourself out and I gurantee you'll hear about them.
+To invent your own life's meaning is not easy but it's still allowed and I think you'll be happier for the trouble.
+
+- Bill Watterson
+#+END_VERSE
+
+*** Fun In Computing.
+#+BEGIN_VERSE
+I think that it's extraordinarily important that we in computer science keep fun in computing.
+When it started out, it was an awful lot of fun. Of course, the paying customers got shafted every now and then, and after a while we began to take their complaints seriously.
+We began to feel as if we really were responsible for the successful, error-free perfect use of these machines. I don't think we are.
+I think we're responsible for stretching them, setting them off in new directions, and keeping fun in the house.
+I hope the field of computer science never loses its sense of fun. Above all, I hope we don't become missionaries.
+Don't feel as if you're Bible salesmen. The world has too many of those already. What you know about computing other people will learn.
+Don't feel as if the key to successful computing is only in your hands.
+What's in your hands, I think and hope, is intelligence: the ability to see the machine as more than when you were first led up to it, that you can make it more.
+
+- Alan J. Perlis
+#+END_VERSE
+
+*** Hot Shit.
+#+BEGIN_VERSE
+Nobody is hot shit.
+
+- Ryan Dahl
+#+END_VERSE
