@@ -6,7 +6,7 @@
 
 *** The Most Important Thing.
 #+BEGIN_VERSE
-You literally ought to ask yourself, what is the most import thing in the world that I should be working on and if you are not working on that, why aren't you?
+You literally ought to ask yourself, what is the most important thing in the world that I should be working on and if you are not working on that, why aren't you?
 
 - Aaron Swartz
 #+END_VERSE
