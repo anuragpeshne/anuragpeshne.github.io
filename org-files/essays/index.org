@@ -9,5 +9,7 @@ argument—but the definition is vague, overlapping with those of an article, a
 pamphlet, and a short story.
 -- [[https://en.wikipedia.org/wiki/Essay][Wiki]]
 #+END_VERSE
-
-| 2016-02-07 | [[file:asynchronous.org][Asyncrhonous]]  |
+|       Date | Essay             |
+|------------+-------------------|
+| 2016-02-07 | [[file:asynchronous.org][Asyncrhonous]]      |
+| 2016-03-19 | [[file:emacsSpeed.org][Speeding Up Emacs]] |

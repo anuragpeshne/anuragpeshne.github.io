@@ -60,7 +60,7 @@ See also `gc-cons-percentage'.
    not sure which all files are purged).
 
 *** GC Caveats
-    As noted by /RobThorpe/ on the thread,
+    As noted by /RobThorpe/ on the same thread,
 #+BEGIN_VERSE
 Be aware that the GC pause gets longer as you raise the cons-threshold.
 If you raise it a lot it may become irritatingly long and you'll begin to notice it while editing.
@@ -71,8 +71,73 @@ If you raise it a lot it may become irritatingly long and you'll begin to notice
    and consequently taking more time to clean up. I don't know, maybe I can visit
    this solution again after implementing ~use-package~.
 
-* TODO ~use-package~
-  There are two main motivation for me to try ~use-package~:
-  1. It cleans up ~init.el~: it groups configuration for each mode into blocks.
-  2. It gives option to delay package's loading until it is needed.
-* TODO ~emacs --daemon~
+** ~use-package~[fn:1]
+   There are two main motivation for me to try ~use-package~:
+   1. It cleans up ~init.el~: it groups configuration for each mode into blocks.
+   2. It gives option to delay package's loading until it is needed.
+
+   After following ~use-package~ [[https://github.com/jwiegley/use-package][documentation]] and Sacha Chua's [[http://pages.sachachua.com/.emacs.d/Sacha.html][dotemacs]], I restructured
+   my [[https://github.com/anuragpeshne/dot_files/blob/master/.emacs.d/init.el][~init.el~]]. If you are new to ~use-package~, here's a quick crash course:
+
+   - Instead of 'requiring' package, you declare it as ~(use-package foo)~.
+   - You can toggle several switches which affects how the package is loaded:
+     - ~:init~ execute code before package is loaded.
+     - ~:config~ execute code after package is loaded.
+     - ~:bind~ bind keystrokes to function.
+     - ~:command~ creates autoload for those commands.
+     - ~:ensure~ installs package if not found on system. Great way to setup environment.
+     - ~:defer~ defers loading of the package until needed. You can pass integer
+       which loads the package after N seconds of idle time. Eg: ~:defer 4~.
+     - and many more. Read about them here [[https://github.com/jwiegley/use-package/blob/master/README.md][README]].
+
+   After refactoring my ~init.el~ for couple of hours, I could defer loading of
+   most of the packages (with the exception being 'evil' mode and 'zenburn' theme).
+   My startup time reduced to *3.5 seconds* and *2.1 seconds* on Mac with SSD :D
+#+CAPTION: ~(emacs-init-time)~ after using ~use-package~ module.
+[[file:../assets/emacsSpeed/initTimeUsePackage.png]]
+
+   Here's a snippet from my ~init.el~:
+#+BEGIN_SRC lisp
+(use-package evil
+             :ensure t
+             :demand
+             :init
+             (progn
+               (setq evil-want-C-u-scroll t)
+               ;; Change cursor color depending on mode
+               (setq evil-emacs-state-cursor '("red" box)
+                     evil-normal-state-cursor '("green" box)
+                     evil-visual-state-cursor '("orange" box)
+                     evil-insert-state-cursor '("red" bar)
+                     evil-replace-state-cursor '("red" bar)
+                     evil-operator-state-cursor '("red" hollow))
+               (evil-mode 1)))
+
+(use-package magit :ensure t :defer 5)
+
+;; highlight changes
+(use-package git-gutter-fringe
+  :ensure t
+  :diminish git-gutter-mode
+  :config (global-git-gutter-mode))
+
+#+END_SRC
+** TODO ~emacs --daemon~
+
+[fn:1]: [[https://github.com/jwiegley/use-package][jwiegley/use-package]]
+
+* Conclusion
+
+** Macbook Pro (Late 2013 Model) SSD with 8GB Ram
+| Tweak               | ~(emacs-init-time)~ (sec) |
+|---------------------+---------------------------|
+| No Tweak            |                       4.8 |
+| ~gc-cons-threshold~ |                       3.7 |
+| ~use-package~       |                       2.1 |
+
+** Macbook Pro (Early 2013 Model) HDD with 10GB Ram
+| Tweak               | ~(emacs-init-time)~ (sec) |
+|---------------------+---------------------------|
+| No Tweak            |                       9.1 |
+| ~gc-cons-threshold~ |                       8.7 |
+| ~use-package~       |                       x.x |

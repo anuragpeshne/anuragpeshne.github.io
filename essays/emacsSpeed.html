@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-19 Sat 23:47 -->
+<!-- 2016-03-20 Sun 22:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Speeding Up Emacs</title>
@@ -151,17 +151,23 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Motivation</a></li>
-<li><a href="#orgheadline4">2. Attempts</a>
+<li><a href="#orgheadline6">2. Attempts</a>
 <ul>
 <li><a href="#orgheadline3">2.1. Garbage Collection Threshold (<code>gc-cons-threshold</code>)</a>
 <ul>
 <li><a href="#orgheadline2">2.1.1. GC Caveats</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline4">2.2. <code>use-package</code></a></li>
+<li><a href="#orgheadline5">2.3. <span class="todo TODO">TODO</span> <code>emacs --daemon</code></a></li>
 </ul>
 </li>
-<li><a href="#orgheadline5">3. <span class="todo nilTODO">TODO</span> <code>use-package</code></a></li>
-<li><a href="#orgheadline6">4. <span class="todo nilTODO">TODO</span> <code>emacs --daemon</code></a></li>
+<li><a href="#orgheadline9">3. Conclusion</a>
+<ul>
+<li><a href="#orgheadline7">3.1. Macbook Pro (Late 2013 Model) SSD with 8GB Ram</a></li>
+<li><a href="#orgheadline8">3.2. Macbook Pro (Early 2013 Model) HDD with 10GB Ram</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -187,8 +193,8 @@ crawled on the Mac at work, having rotating hard drive, taking whooping
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">2</span> Attempts</h2>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> Attempts</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 I found several solutions to speed up Emacs start on the web. Since I'm fairly
@@ -198,7 +204,7 @@ improving startup time. To benchmark that, I'm using inbuilt function <code>emac
 
 <div class="org-src-container">
 
-<pre class="src src-lisp">emacs-init-time is an interactive autoloaded compiled Lisp function in `<span style="color: #BFEBBF;">time.el</span>'.
+<pre class="src src-lisp">emacs-init-time is an interactive autoloaded compiled Lisp function in `<span style="color: #D0372D;">time.el</span>'.
 
 (emacs-init-time)
 
@@ -230,11 +236,11 @@ Number of bytes of consing between garbage collections.
 Garbage collection can happen automatically once this many bytes have been
 allocated since the last garbage collection.  All data types count.
 
-Garbage collection happens automatically only when `<span style="color: #BFEBBF;">eval</span>' is called.
+Garbage collection happens automatically only when `<span style="color: #D0372D;">eval</span>' is called.
 
 By binding this temporarily to a large number, you can effectively
 prevent garbage collection during a part of the program.
-See also `<span style="color: #BFEBBF;">gc-cons-percentage</span>'.
+See also `<span style="color: #D0372D;">gc-cons-percentage</span>'.
 </pre>
 </div>
 
@@ -251,7 +257,7 @@ not sure which all files are purged).
 <h4 id="orgheadline2"><span class="section-number-4">2.1.1</span> GC Caveats</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
-As noted by <i>RobThorpe</i> on the thread,
+As noted by <i>RobThorpe</i> on the same thread,
 </p>
 <p class="verse">
 Be aware that the GC pause gets longer as you raise the cons-threshold.<br  />
@@ -267,11 +273,10 @@ this solution again after implementing <code>use-package</code>.
 </div>
 </div>
 </div>
-</div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> <code>use-package</code></h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.2</span> <code>use-package</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 There are two main motivation for me to try <code>use-package</code>:
 </p>
@@ -279,17 +284,170 @@ There are two main motivation for me to try <code>use-package</code>:
 <li>It cleans up <code>init.el</code>: it groups configuration for each mode into blocks.</li>
 <li>It gives option to delay package's loading until it is needed.</li>
 </ol>
+
+<p>
+After following <code>use-package</code> <a href="https://github.com/jwiegley/use-package">documentation</a> and Sacha Chua's <a href="http://pages.sachachua.com/.emacs.d/Sacha.html">dotemacs</a>, I restructured
+my <a href="https://github.com/anuragpeshne/dot_files/blob/master/.emacs.d/init.el"><code>init.el</code></a>. If you are new to <code>use-package</code>, here's a quick crash course:
+</p>
+
+<ul class="org-ul">
+<li>Instead of 'requiring' package, you declare it as <code>(use-package foo)</code>.</li>
+<li>You can toggle several switches which affects how the package is loaded:
+<ul class="org-ul">
+<li><code>:init</code> execute code before package is loaded.</li>
+<li><code>:config</code> execute code after package is loaded.</li>
+<li><code>:bind</code> bind keystrokes to function.</li>
+<li><code>:command</code> creates autoload for those commands.</li>
+<li><code>:ensure</code> installs package if not found on system. Great way to setup environment.</li>
+<li><code>:defer</code> defers loading of the package until needed. You can pass integer
+which loads the package after N seconds of idle time. Eg: <code>:defer 4</code>.</li>
+<li>and many more. Read about them here <a href="https://github.com/jwiegley/use-package/blob/master/README.md">README</a>.</li>
+</ul></li>
+</ul>
+
+<p>
+After refactoring my <code>init.el</code> for couple of hours, I could defer loading of
+most of the packages (with the exception being 'evil' mode and 'zenburn' theme).
+My startup time reduced to <b>3.5 seconds</b> and <b>2.1 seconds</b> on Mac with SSD :D
+</p>
+
+<div class="figure">
+<p><img src="../assets/emacsSpeed/initTimeUsePackage.png" alt="initTimeUsePackage.png" />
+</p>
+<p><span class="figure-number">Figure 2:</span> <code>(emacs-init-time)</code> after using <code>use-package</code> module.</p>
+</div>
+
+<p>
+Here's a snippet from my <code>init.el</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(use-package evil
+             <span style="color: #006FE0; font-weight: bold;">:ensure</span> t
+             <span style="color: #006FE0; font-weight: bold;">:demand</span>
+             <span style="color: #006FE0; font-weight: bold;">:init</span>
+             (<span style="color: #0000FF;">progn</span>
+               (setq evil-want-C-u-scroll t)
+               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Change cursor color depending on mode</span>
+               (setq evil-emacs-state-cursor '(<span style="color: #008000;">"red"</span> box)
+                     evil-normal-state-cursor '(<span style="color: #008000;">"green"</span> box)
+                     evil-visual-state-cursor '(<span style="color: #008000;">"orange"</span> box)
+                     evil-insert-state-cursor '(<span style="color: #008000;">"red"</span> bar)
+                     evil-replace-state-cursor '(<span style="color: #008000;">"red"</span> bar)
+                     evil-operator-state-cursor '(<span style="color: #008000;">"red"</span> hollow))
+               (evil-mode 1)))
+
+(use-package magit <span style="color: #006FE0; font-weight: bold;">:ensure</span> t <span style="color: #006FE0; font-weight: bold;">:defer</span> 5)
+
+<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">highlight changes</span>
+(use-package git-gutter-fringe
+  <span style="color: #006FE0; font-weight: bold;">:ensure</span> t
+  <span style="color: #006FE0; font-weight: bold;">:diminish</span> git-gutter-mode
+  <span style="color: #006FE0; font-weight: bold;">:config</span> (global-git-gutter-mode))
+</pre>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> <code>emacs --daemon</code></h2>
+</div>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> <code>emacs --daemon</code></h3>
+<div class="outline-text-3" id="text-2-3">
 </div>
 </div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">3</span> Conclusion</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Macbook Pro (Late 2013 Model) SSD with 8GB Ram</h3>
+<div class="outline-text-3" id="text-3-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Tweak</th>
+<th scope="col" class="org-right"><code>(emacs-init-time)</code> (sec)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">No Tweak</td>
+<td class="org-right">4.8</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>gc-cons-threshold</code></td>
+<td class="org-right">3.7</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>use-package</code></td>
+<td class="org-right">2.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Macbook Pro (Early 2013 Model) HDD with 10GB Ram</h3>
+<div class="outline-text-3" id="text-3-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Tweak</th>
+<th scope="col" class="org-right"><code>(emacs-init-time)</code> (sec)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">No Tweak</td>
+<td class="org-right">9.1</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>gc-cons-threshold</code></td>
+<td class="org-right">8.7</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>use-package</code></td>
+<td class="org-right">x.x</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+: <a href="https://github.com/jwiegley/use-package">jwiegley/use-package</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-19</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2016-03-19 Sat 23:47</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.3)</p>
+<p class="date">Created: 2016-03-20 Sun 22:25</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

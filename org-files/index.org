@@ -33,6 +33,7 @@
    Rest of the projects can be found at my github repo.
 
 * Essays
+  - [[file:./essays/emacsSpeed.org][Speeding Up Emacs]]
   - [[file:./essays/asynchronous.org][Asynchronous]]
   - [[https://github.com/anuragpeshne/Y-Combinator/blob/master/Ycombinator.org][Y Combinator]]
   - [[file:./essays/index.org][/essays]] Rest of the essays
