@@ -128,16 +128,16 @@ If you raise it a lot it may become irritatingly long and you'll begin to notice
 
 * Conclusion
 
-** Macbook Pro (Late 2013 Model) SSD with 8GB Ram
+** Macbook Pro (Late 2013 Model) SSD with 8GB Memory
 | Tweak               | ~(emacs-init-time)~ (sec) |
 |---------------------+---------------------------|
 | No Tweak            |                       4.8 |
 | ~gc-cons-threshold~ |                       3.7 |
 | ~use-package~       |                       2.1 |
 
-** Macbook Pro (Early 2013 Model) HDD with 10GB Ram
+** Macbook Pro (Mid 2012 Model) HDD with 10GB Memory
 | Tweak               | ~(emacs-init-time)~ (sec) |
 |---------------------+---------------------------|
 | No Tweak            |                       9.1 |
 | ~gc-cons-threshold~ |                       8.7 |
-| ~use-package~       |                       x.x |
+| ~use-package~       |                       6.7 |

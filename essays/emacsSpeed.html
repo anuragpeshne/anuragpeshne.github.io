@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-20 Sun 22:25 -->
+<!-- 2016-03-22 Tue 12:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Speeding Up Emacs</title>
@@ -164,8 +164,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgheadline9">3. Conclusion</a>
 <ul>
-<li><a href="#orgheadline7">3.1. Macbook Pro (Late 2013 Model) SSD with 8GB Ram</a></li>
-<li><a href="#orgheadline8">3.2. Macbook Pro (Early 2013 Model) HDD with 10GB Ram</a></li>
+<li><a href="#orgheadline7">3.1. Macbook Pro (Late 2013 Model) SSD with 8GB Memory</a></li>
+<li><a href="#orgheadline8">3.2. Macbook Pro (Mid 2012 Model) HDD with 10GB Memory</a></li>
 </ul>
 </li>
 </ul>
@@ -204,7 +204,7 @@ improving startup time. To benchmark that, I'm using inbuilt function <code>emac
 
 <div class="org-src-container">
 
-<pre class="src src-lisp">emacs-init-time is an interactive autoloaded compiled Lisp function in `<span style="color: #D0372D;">time.el</span>'.
+<pre class="src src-lisp">emacs-init-time is an interactive autoloaded compiled Lisp function in `<span style="color: #BFEBBF;">time.el</span>'.
 
 (emacs-init-time)
 
@@ -236,11 +236,11 @@ Number of bytes of consing between garbage collections.
 Garbage collection can happen automatically once this many bytes have been
 allocated since the last garbage collection.  All data types count.
 
-Garbage collection happens automatically only when `<span style="color: #D0372D;">eval</span>' is called.
+Garbage collection happens automatically only when `<span style="color: #BFEBBF;">eval</span>' is called.
 
 By binding this temporarily to a large number, you can effectively
 prevent garbage collection during a part of the program.
-See also `<span style="color: #D0372D;">gc-cons-percentage</span>'.
+See also `<span style="color: #BFEBBF;">gc-cons-percentage</span>'.
 </pre>
 </div>
 
@@ -323,27 +323,27 @@ Here's a snippet from my <code>init.el</code>:
 <div class="org-src-container">
 
 <pre class="src src-lisp">(use-package evil
-             <span style="color: #006FE0; font-weight: bold;">:ensure</span> t
-             <span style="color: #006FE0; font-weight: bold;">:demand</span>
-             <span style="color: #006FE0; font-weight: bold;">:init</span>
-             (<span style="color: #0000FF;">progn</span>
+             <span style="color: #DCDCCC; font-weight: bold;">:ensure</span> t
+             <span style="color: #DCDCCC; font-weight: bold;">:demand</span>
+             <span style="color: #DCDCCC; font-weight: bold;">:init</span>
+             (<span style="color: #F0DFAF; font-weight: bold;">progn</span>
                (setq evil-want-C-u-scroll t)
-               <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Change cursor color depending on mode</span>
-               (setq evil-emacs-state-cursor '(<span style="color: #008000;">"red"</span> box)
-                     evil-normal-state-cursor '(<span style="color: #008000;">"green"</span> box)
-                     evil-visual-state-cursor '(<span style="color: #008000;">"orange"</span> box)
-                     evil-insert-state-cursor '(<span style="color: #008000;">"red"</span> bar)
-                     evil-replace-state-cursor '(<span style="color: #008000;">"red"</span> bar)
-                     evil-operator-state-cursor '(<span style="color: #008000;">"red"</span> hollow))
+               <span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">Change cursor color depending on mode</span>
+               (setq evil-emacs-state-cursor '(<span style="color: #CC9393;">"red"</span> box)
+                     evil-normal-state-cursor '(<span style="color: #CC9393;">"green"</span> box)
+                     evil-visual-state-cursor '(<span style="color: #CC9393;">"orange"</span> box)
+                     evil-insert-state-cursor '(<span style="color: #CC9393;">"red"</span> bar)
+                     evil-replace-state-cursor '(<span style="color: #CC9393;">"red"</span> bar)
+                     evil-operator-state-cursor '(<span style="color: #CC9393;">"red"</span> hollow))
                (evil-mode 1)))
 
-(use-package magit <span style="color: #006FE0; font-weight: bold;">:ensure</span> t <span style="color: #006FE0; font-weight: bold;">:defer</span> 5)
+(use-package magit <span style="color: #DCDCCC; font-weight: bold;">:ensure</span> t <span style="color: #DCDCCC; font-weight: bold;">:defer</span> 5)
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">highlight changes</span>
+<span style="color: #5F7F5F;">;; </span><span style="color: #7F9F7F;">highlight changes</span>
 (use-package git-gutter-fringe
-  <span style="color: #006FE0; font-weight: bold;">:ensure</span> t
-  <span style="color: #006FE0; font-weight: bold;">:diminish</span> git-gutter-mode
-  <span style="color: #006FE0; font-weight: bold;">:config</span> (global-git-gutter-mode))
+  <span style="color: #DCDCCC; font-weight: bold;">:ensure</span> t
+  <span style="color: #DCDCCC; font-weight: bold;">:diminish</span> git-gutter-mode
+  <span style="color: #DCDCCC; font-weight: bold;">:config</span> (global-git-gutter-mode))
 </pre>
 </div>
 </div>
@@ -359,7 +359,7 @@ Here's a snippet from my <code>init.el</code>:
 <h2 id="orgheadline9"><span class="section-number-2">3</span> Conclusion</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Macbook Pro (Late 2013 Model) SSD with 8GB Ram</h3>
+<h3 id="orgheadline7"><span class="section-number-3">3.1</span> Macbook Pro (Late 2013 Model) SSD with 8GB Memory</h3>
 <div class="outline-text-3" id="text-3-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -396,7 +396,7 @@ Here's a snippet from my <code>init.el</code>:
 </div>
 
 <div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Macbook Pro (Early 2013 Model) HDD with 10GB Ram</h3>
+<h3 id="orgheadline8"><span class="section-number-3">3.2</span> Macbook Pro (Mid 2012 Model) HDD with 10GB Memory</h3>
 <div class="outline-text-3" id="text-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -425,7 +425,7 @@ Here's a snippet from my <code>init.el</code>:
 
 <tr>
 <td class="org-left"><code>use-package</code></td>
-<td class="org-right">x.x</td>
+<td class="org-right">6.7</td>
 </tr>
 </tbody>
 </table>
@@ -446,7 +446,7 @@ Here's a snippet from my <code>init.el</code>:
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-19</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2016-03-20 Sun 22:25</p>
+<p class="date">Created: 2016-03-22 Tue 12:28</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.4)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
