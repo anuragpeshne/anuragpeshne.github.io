@@ -1,0 +1,4 @@
+* Books
+  - [[http://sdmeta.gforge.inria.fr/FreeBooks/ByExample/][SmallTalk by Example]]
+  - Blue Book (SmallTalk 80: The language and it's implementation)
+  - [[http://files.pharo.org/books/][Pharo Books]]
