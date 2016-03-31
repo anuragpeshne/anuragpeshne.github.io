@@ -96,6 +96,7 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="/js/keywords/drawGraph.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -150,14 +151,14 @@ for the JavaScript code in this tag.
 <div id="draftTag">DRAFT</div>
 
 <p>
-Recently while browsing through 'answer' list <a href="https://quora.com/">quora.com</a>, I stumbled upon a
+Recently while browsing through 'answer' list on quora.com, I stumbled upon a
 <a href="https://www.quora.com/About-how-many-keywords-do-most-programming-languages-contain">question</a>:
 </p>
 <p class="verse">
 About how many keywords do most programming languages contain?<br  />
 </p>
 <p>
-While at first it seemed uninteresting and dry, after giving it a thought,
+While at first the question seemed uninteresting and dry, after giving it a thought,
 the idea of finding number of keywords in languages seemed fun to me. And so began
 my mini adventure of determining arithmetic mean of number of keywords in programming
 languages.
@@ -167,32 +168,135 @@ languages.
 <h2 id="orgheadline1">Word Count</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-The first thought that came to my mind was to get a file of keywords and pass
-it to `wc -w` and get the word count. And to get such a file, all I needed was
-to get the syntax highlighting scripts for any of the text editor.
+The first thought that came to my mind was to get a file containing all the keywords
+in a language and pass it to <code>wc -w</code> to get the word count. And to procure such
+files, all I needed was to get my hands on the syntax highlighting scripts for
+any one of the text editors. After exploring mode files for Emacs<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> and
+Vim scripts<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, it was clear that I was better off searching for scripts for a
+editor which doesn't place much logic into its syntax files or which are easily
+parsable. Fortunately I found a source of such files easily on the web &#x2013;
+<a href="https://github.com/IDMComputerSolutions/wordfiles">IDMComputerSolutions/wordfiles</a>
 </p>
 </div>
 <div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="todo TODO">TODO</span> UltraEdit repo</h3>
+<h3 id="orgheadline2">Parsing Wordfiles</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+The wordfiles from UltraEdit project are of the format:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">/C&lt;d - 1&gt;"other stuff"
+...
+/C&lt;d&gt;"keyword"
+Keyword1
+Keyword2
+...
+/C&lt;d + 1&gt;"other stuff"
+...
+</pre>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="todo TODO">TODO</span> Cleaning files</h3>
-<div class="outline-text-3" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3"><span class="todo TODO">TODO</span> using `sed`</h4>
+<p>
+I was interested in capturing only the section starting with "keyword", "reserved
+word" or "command". <code>sed</code> appeared to be the perfect tool for this job, it
+just had to pipe the lines to <code>wc</code> starting with such phrases until the next
+section. Here are the <code>sed</code> commands used:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">sed -n -e <span style="color: #CC9393;">"/[Kk][Ee][Yy][Ww][Oo][Rr][Dd]/, /\/C[0-9]/p"</span> <span style="color: #CC9393;">\</span>
+       -e <span style="color: #CC9393;">"/[Rr][Ee][Ss][Ee][Rr][Vv][Ee][Dd]/, /\/C[0-9]/p"</span> <span style="color: #CC9393;">\</span>
+       -e <span style="color: #CC9393;">"/[Cc][Oo][Mm][Mm][Aa][Nn][Dd]/, /\/C[0-9]/p"</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">unfortunately sed on OS X does not recognize Ignorecase flag, hence the ugly [Cc]</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">workaround</span>
+</pre>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4"><span class="todo TODO">TODO</span> using `python`</h4>
+<p>
+Unfortunately, there was one small problem- using <code>sed</code> I was unable to do a
+<b>non greedy</b> match for the ending pattern. I wrote a small <code>Python</code> script <a href="https://github.com/anuragpeshne/keywords/blob/master/capture.py"><code>capture.py</code></a> to
+do the job and a <code>awk</code> <a href="https://github.com/anuragpeshne/keywords/blob/master/avg.sh">one liner</a> to calculate the arithmetic mean.
+</p>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">One last thing</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<p>
+The complete repository of wordfiles contains over 600 files which contains
+several esoteric languages/DSL which have abnormally high number of reserved
+keywords and some which contains no reserved words. Some of the languages are
+obsolete and some are of very little interest to general public. Including every
+language in calculations severely disturbed the mean, taking it to a very high
+number. Hence I picked around 60 well known languages and calculated the mean.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/bin/</span><span style="color: #F0DFAF; font-weight: bold;">bash</span>
+
+<span style="color: #DFAF8F;">interestingFiles</span>=(<span style="color: #CC9393;">'JSON'</span> <span style="color: #CC9393;">'acl'</span> <span style="color: #CC9393;">'actionscript'</span> <span style="color: #CC9393;">'ada95'</span> <span style="color: #CC9393;">'c'</span> <span style="color: #CC9393;">'c-winapi'</span>
+                  <span style="color: #CC9393;">'c-os2'</span> <span style="color: #CC9393;">'csharp'</span> <span style="color: #CC9393;">'e'</span> <span style="color: #CC9393;">'eiffel'</span> <span style="color: #CC9393;">'escript'</span> <span style="color: #CC9393;">'euphoria'</span> <span style="color: #CC9393;">'falcon'</span>
+                  <span style="color: #CC9393;">'fortran'</span> <span style="color: #CC9393;">'fortran90'</span> <span style="color: #CC9393;">'fortran95'</span> <span style="color: #CC9393;">'go'</span> <span style="color: #CC9393;">'groovy'</span> <span style="color: #CC9393;">'hugo'</span>
+                  <span style="color: #CC9393;">'java122'</span> <span style="color: #CC9393;">'java13'</span> <span style="color: #CC9393;">'java14'</span> <span style="color: #CC9393;">'java14jsp'</span> <span style="color: #CC9393;">'javascript'</span> <span style="color: #CC9393;">'js20'</span>
+                  <span style="color: #CC9393;">'jscript'</span> <span style="color: #CC9393;">'jsp'</span> <span style="color: #CC9393;">'lua'</span> <span style="color: #CC9393;">'lull'</span> <span style="color: #CC9393;">'maple'</span> <span style="color: #CC9393;">'modula'</span> <span style="color: #CC9393;">'modula2'</span> <span style="color: #CC9393;">'oracle11g'</span>
+                  <span style="color: #CC9393;">'pascal'</span> <span style="color: #CC9393;">'perl'</span> <span style="color: #CC9393;">'php5'</span> <span style="color: #CC9393;">'pl1'</span> <span style="color: #CC9393;">'plsql'</span> <span style="color: #CC9393;">'python26'</span> <span style="color: #CC9393;">'python35'</span>
+                  <span style="color: #CC9393;">'qbasic'</span> <span style="color: #CC9393;">'ruby'</span> <span style="color: #CC9393;">'rust'</span> <span style="color: #CC9393;">'sap'</span> <span style="color: #CC9393;">'schema'</span> <span style="color: #CC9393;">'scheme'</span> <span style="color: #CC9393;">'small'</span> <span style="color: #CC9393;">'sql'</span>
+                  <span style="color: #CC9393;">'swift'</span> <span style="color: #CC9393;">'symbian'</span> <span style="color: #CC9393;">'tcl-tk'</span> <span style="color: #CC9393;">'turboc'</span> <span style="color: #CC9393;">'uniscript'</span> <span style="color: #CC9393;">'vb'</span> <span style="color: #CC9393;">'vbdotnet'</span>
+                  <span style="color: #CC9393;">'vbscript'</span> <span style="color: #CC9393;">'verilog2001'</span> <span style="color: #CC9393;">'vhdl93'</span> <span style="color: #CC9393;">'yaml'</span> <span style="color: #CC9393;">'zillions'</span>)
+
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">for filename in ./wordfiles/*.uew; do</span>
+<span style="color: #F0DFAF; font-weight: bold;">for</span> filename<span style="color: #F0DFAF; font-weight: bold;"> in</span> ${<span style="color: #DFAF8F;">interestingFiles</span>[@]}; <span style="color: #F0DFAF; font-weight: bold;">do</span>
+    <span style="color: #DCDCCC; font-weight: bold;">echo</span> -n <span style="color: #CC9393;">"$filename"</span>
+    ./capture.py ./wordfiles/<span style="color: #CC9393;">"$filename"</span>.uew | wc -w
+<span style="color: #F0DFAF; font-weight: bold;">done</span>
+</pre>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"><span class="todo TODO">TODO</span> Calculating the mean</h3>
-</div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7"><span class="todo TODO">TODO</span> Result</h3>
 </div>
 </div>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="todo TODO">TODO</span> Result</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+Piping everything together, the average number of keywords in 60 languages came
+out to be:
+</p>
+<div class="org-center">
+<p>
+<b>66.5333</b>
+</p>
 </div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">Charts</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<canvas id="keywordChart" width="800" height="600"></canvas>
+<script> drawGraph(); </script>
+
+<p>
+View the graph in bigger size <a href="./keywords-chart.html">here</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+in case you are curious to see one, they are located under <code>progmodes</code> directory inside Emacs
+folder, which would be <code>/Applications/Emacs.app/Contents/Resources/lisp/progmodes</code>
+if you are on a Mac.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+located under <code>/Applications/MacVim.app/Contents/Resources/vim/runtime/syntax</code>
+</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-30</p>
 <p class="author">Author: Anurag Peshne</p>
