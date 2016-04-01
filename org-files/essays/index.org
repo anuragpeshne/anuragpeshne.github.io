@@ -11,5 +11,6 @@ pamphlet, and a short story.
 #+END_VERSE
 |       Date | Essay             |
 |------------+-------------------|
-| 2016-02-07 | [[file:asynchronous.org][Asyncrhonous]]      |
+| 2016-03-30 | [[file:./keywords.org][Keywords]]          |
 | 2016-03-19 | [[file:emacsSpeed.org][Speeding Up Emacs]] |
+| 2016-02-07 | [[file:asynchronous.org][Asyncrhonous]]      |
