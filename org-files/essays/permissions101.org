@@ -1,0 +1,40 @@
+#+TITLE: Unix Permissions 101
+#+DATE: 2016-05-19
+#+OPTIONS: toc:t num:t creator:t author:t tex:t date:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :unix:permission:sudo:
+
+#+INCLUDE: "../../assets/ga.org"
+#+HTML: <div id="draftTag">DRAFT</div>
+
+* Motivation
+  Couple of days ago we discovered a monstrous bug in one of our systems. Before
+  getting to the bug let me explain the setup very briefly:
+  #+BEGIN_SRC text
+  We have a master node which wakes up several AWS instances, delegate series of
+  jobs from a queue to them and then after the work is done, switches them off.
+  Each slave node, after completing a job, stores the result in a common database.
+
+  Each of the incident is logged in the same common database.
+  #+END_SRC
+  The system was working as expected until we found that the results calculated
+  by the slave nodes are being stored in a development database and not in the
+  production database.
+  Initially it looked like we forgot to switch the configuration file which of
+  course wasn't the case. I checked the code which talked to the database to see
+  if someone hard coded the Dev DB configuration and later forgot to revert. Nothing
+  helped.
+
+  I even considered the possibility of multiple configuration files and
+  tried grepping the whole repository for Dev DB credential. Nothing was
+  mentioned anywhere about the Dev DB.
+
+** TODO Debugging
+   The master node packs the Python scripts, configuration files and other data
+   files nicely in an egg (zip file) and deploys to the slave nodes. I sshed into
+   one of the slave and to my horror saw that the job did have configuration of
+   the Dev DB!
+
+   My job was now a bit easier, I just needed to figure out how the unwanted
+   configuration slipped into the egg.
