@@ -8,33 +8,89 @@
 #+INCLUDE: "../../assets/ga.org"
 #+HTML: <div id="draftTag">DRAFT</div>
 
-* Motivation
+* Multiple servers, multiple configs
   Couple of days ago we discovered a monstrous bug in one of our systems. Before
   getting to the bug let me explain the setup very briefly:
-  #+BEGIN_SRC text
-  We have a master node which wakes up several AWS instances, delegate series of
-  jobs from a queue to them and then after the work is done, switches them off.
-  Each slave node, after completing a job, stores the result in a common database.
+  #+BEGIN_VERSE
+  We have a master node which wakes up several AWS instances, delegates series of
+  jobs, from a queue, to them and after all of the jobs are completed switches
+  them off. Each slave node, after completing a job, stores the result in a common
+  database.
 
-  Each of the incident is logged in the same common database.
-  #+END_SRC
+  Each of the event is logged in the same common database.
+  #+END_VERSE
   The system was working as expected until we found that the results calculated
   by the slave nodes are being stored in a development database and not in the
   production database.
-  Initially it looked like we forgot to switch the configuration file which of
-  course wasn't the case. I checked the code which talked to the database to see
-  if someone hard coded the Dev DB configuration and later forgot to revert. Nothing
+  Initially it looked like we plugged in wrong configuration file, which of course
+  wasn't the case. I checked the code that talked to the database to see if
+  someone hard coded the Dev DB configuration and later forgot to revert. Nothing
   helped.
 
   I even considered the possibility of multiple configuration files and
   tried grepping the whole repository for Dev DB credential. Nothing was
   mentioned anywhere about the Dev DB.
 
-** TODO Debugging
+** Debugging
    The master node packs the Python scripts, configuration files and other data
-   files nicely in an egg (zip file) and deploys to the slave nodes. I sshed into
-   one of the slave and to my horror saw that the job did have configuration of
-   the Dev DB!
+   files nicely in an egg (zip file) and deploys it to the slave nodes. I sshed
+   into one of the slaves and to my horror saw that the job did have configuration
+   of the Dev DB! This was surprising since while the master node didn't have a
+   trace of the incorrect configuration, the egg contained it.
 
    My job was now a bit easier, I just needed to figure out how the unwanted
-   configuration slipped into the egg.
+   configuration slipped into the egg. I went over the code and double checked the
+   path of configuration declared for making the egg. Ultimately, I manually executed
+   the script that does the zipping of code and deployment. I found that the zipping
+   operation failed due to insufficient permissions. ~ls -l~ revealed that the
+   ~build~ folder was owned by the ~root~ and was *readonly* for others. The script
+   couldn't clean the temporary files and failed. Since this operation was done
+   using Python ~subprocess~ and the exception was handled in a way that didn't
+   stop the script, the script went on failing to deploy to each slave.
+
+   When the slaves were ordered to execute the job, they executed the last available
+   version of the job, which happened to be a job which was being tested on development
+   server and thus contained development configuration.
+
+** Analysis
+   After the file permissions were fixed, it was time for examining what went wrong.
+   And what could have been done so that finding the cause would have been easier.
+   The fatal mistake was to handle the ~subprocess~ exception and not stop. This
+   is exactly opposite of the Unix Philosophy[fn:1]:
+   #+BEGIN_QUOTE
+   Rule of Repair: Repair what you can — but when you must fail, fail noisily and as soon as possible.
+   #+END_QUOTE
+   Instead of silently consuming the exception, the script should have failed and
+   log it. Still this isn't the root cause of the bug. The root cause is setting
+   up of incorrect file permissions.
+
+* ~sudo~
+** ~sudo~ justExecuteThis
+   The main problem is not technical but, like most of the other problems in software
+   development, a social one. We want to get things working, fast. Unable to save
+   a file? - use ~sudo~. Unable to install package? - use ~sudo~. I can bet most of
+   the engineer would repeat the last command, if it failed, prefixing it with ~sudo~
+   without giving it a thought. For most of us, ~sudo~ means:
+   #+BEGIN_VERSE
+   I don't really understand (or want to know) why you failed but I don't want you to fail.
+   Here, I give you the power of ~sudo~
+   #+END_VERSE
+   Again, the problem is not technical. Fixing the permission is not very difficult.
+   But why would one get into the trouble of actually reading up the commands and
+   doing it the right way, when one can just ~sudo~.
+
+** ~sudo~ mode
+   After one has successfully executed couple of commands using ~sudo~, which were
+   failing earlier, it is very tempting to get into *sudo mode* -- ~su~. Switch
+   to superuser and one never have to type in ~sudo~ again.
+
+   Using ~su~ (login as superuser) we can go anywhere and do anything we wish,
+   there is no one to stop us. But whenever we create a new file, other ordinary
+   users may only be able to read it and not write it.
+
+   Most of the code we write is executed by ordinary users.
+
+* TODO Unix 101
+
+
+[fn:1]: [[http://www.catb.org/esr/writings/taoup/html/ch01s06.html][Rule of Repair]]

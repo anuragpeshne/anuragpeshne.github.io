@@ -149,40 +149,47 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">1. Motivation</a>
+<li><a href="#orgheadline3">1. Multiple servers, multiple configs</a>
 <ul>
-<li><a href="#orgheadline1">1.1. <span class="todo TODO">TODO</span> Debugging</a></li>
+<li><a href="#orgheadline1">1.1. Debugging</a></li>
+<li><a href="#orgheadline2">1.2. Analysis</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline6">2. <code>sudo</code></a>
+<ul>
+<li><a href="#orgheadline4">2.1. <code>sudo</code> justExecuteThis</a></li>
+<li><a href="#orgheadline5">2.2. <code>sudo</code> mode</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline7">3. <span class="todo TODO">TODO</span> Unix 101</a></li>
 </ul>
 </div>
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 <div id="draftTag">DRAFT</div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">1</span> Motivation</h2>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> Multiple servers, multiple configs</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Couple of days ago we discovered a monstrous bug in one of our systems. Before
 getting to the bug let me explain the setup very briefly:
 </p>
-<div class="org-src-container">
-
-<pre class="src src-text">We have a master node which wakes up several AWS instances, delegate series of
-jobs from a queue to them and then after the work is done, switches them off.
-Each slave node, after completing a job, stores the result in a common database.
-
-Each of the incident is logged in the same common database.
-</pre>
-</div>
+<p class="verse">
+We have a master node which wakes up several AWS instances, delegates series of<br  />
+jobs, from a queue, to them and after all of the jobs are completed switches<br  />
+them off. Each slave node, after completing a job, stores the result in a common<br  />
+database.<br  />
+<br  />
+Each of the event is logged in the same common database.<br  />
+</p>
 <p>
 The system was working as expected until we found that the results calculated
 by the slave nodes are being stored in a development database and not in the
 production database.
-Initially it looked like we forgot to switch the configuration file which of
-course wasn't the case. I checked the code which talked to the database to see
-if someone hard coded the Dev DB configuration and later forgot to revert. Nothing
+Initially it looked like we plugged in wrong configuration file, which of course
+wasn't the case. I checked the code that talked to the database to see if
+someone hard coded the Dev DB configuration and later forgot to revert. Nothing
 helped.
 </p>
 
@@ -194,23 +201,122 @@ mentioned anywhere about the Dev DB.
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Debugging</h3>
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Debugging</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The master node packs the Python scripts, configuration files and other data
-files nicely in an egg (zip file) and deploys to the slave nodes. I sshed into
-one of the slave and to my horror saw that the job did have configuration of
-the Dev DB!
+files nicely in an egg (zip file) and deploys it to the slave nodes. I sshed
+into one of the slaves and to my horror saw that the job did have configuration
+of the Dev DB! This was surprising since while the master node didn't have a
+trace of the incorrect configuration, the egg contained it.
 </p>
 
 <p>
 My job was now a bit easier, I just needed to figure out how the unwanted
-configuration slipped into the egg.
+configuration slipped into the egg. I went over the code and double checked the
+path of configuration declared for making the egg. Ultimately, I manually executed
+the script that does the zipping of code and deployment. I found that the zipping
+operation failed due to insufficient permissions. <code>ls -l</code> revealed that the
+<code>build</code> folder was owned by the <code>root</code> and was <b>readonly</b> for others. The script
+couldn't clean the temporary files and failed. Since this operation was done
+using Python <code>subprocess</code> and the exception was handled in a way that didn't
+stop the script, the script went on failing to deploy to each slave.
+</p>
+
+<p>
+When the slaves were ordered to execute the job, they executed the last available
+version of the job, which happened to be a job which was being tested on development
+server and thus contained development configuration.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Analysis</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+After the file permissions were fixed, it was time for examining what went wrong.
+And what could have been done so that finding the cause would have been easier.
+The fatal mistake was to handle the <code>subprocess</code> exception and not stop. This
+is exactly opposite of the Unix Philosophy<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>:
+</p>
+<blockquote>
+<p>
+Rule of Repair: Repair what you can — but when you must fail, fail noisily and as soon as possible.
+</p>
+</blockquote>
+<p>
+Instead of silently consuming the exception, the script should have failed and
+log it. Still this isn't the root cause of the bug. The root cause is setting
+up of incorrect file permissions.
 </p>
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> <code>sudo</code></h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.1</span> <code>sudo</code> justExecuteThis</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The main problem is not technical but, like most of the other problems in software
+development, a social one. We want to get things working, fast. Unable to save
+a file? - use <code>sudo</code>. Unable to install package? - use <code>sudo</code>. I can bet most of
+the engineer would repeat the last command, if it failed, prefixing it with <code>sudo</code>
+without giving it a thought. For most of us, <code>sudo</code> means:
+</p>
+<p class="verse">
+I don't really understand (or want to know) why you failed but I don't want you to fail.<br  />
+Here, I give you the power of <code>sudo</code><br  />
+</p>
+<p>
+Again, the problem is not technical. Fixing the permission is not very difficult.
+But why would one get into the trouble of actually reading up the commands and
+doing it the right way, when one can just <code>sudo</code>.
+</p>
 </div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.2</span> <code>sudo</code> mode</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+After one has successfully executed couple of commands using <code>sudo</code>, which were
+failing earlier, it is very tempting to get into <b>sudo mode</b> &#x2013; <code>su</code>. Switch
+to superuser and one never have to type in <code>sudo</code> again.
+</p>
+
+<p>
+Using <code>su</code> (login as superuser) we can go anywhere and do anything we wish,
+there is no one to stop us. But whenever we create a new file, other ordinary
+users may only be able to read it and not write it.
+</p>
+
+<p>
+Most of the code we write is executed by ordinary users.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Unix 101</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+: <a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html">Rule of Repair</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-05-19</p>
 <p class="author">Author: Anurag Peshne</p>
