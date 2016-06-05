@@ -33,6 +33,7 @@
    Rest of the projects can be found at my github repo.
 
 * Essays
+  - [[file:./essays/permissions101.org][Unix Permissions 101]]
   - [[file:./essays/keywords.org][Keywords]]
   - [[file:./essays/emacsSpeed.org][Speeding Up Emacs]]
   - [[file:./essays/asynchronous.org][Asynchronous]]
