@@ -161,7 +161,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline5">2.2. <code>sudo</code> mode</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline7">3. <span class="todo TODO">TODO</span> Unix 101</a></li>
+<li><a href="#orgheadline7">3. Unix Permissions 101</a></li>
 </ul>
 </div>
 </div>
@@ -172,14 +172,11 @@ for the JavaScript code in this tag.
 <h2 id="orgheadline3"><span class="section-number-2">1</span> Multiple servers, multiple configs</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Couple of days ago we discovered a monstrous bug in one of our systems. Before
+Couple of days ago we discovered a nasty bug in one of our systems. Before
 getting to the bug let me explain the setup very briefly:
 </p>
 <p class="verse">
-We have a master node which wakes up several AWS instances, delegates series of<br  />
-jobs, from a queue, to them and after all of the jobs are completed switches<br  />
-them off. Each slave node, after completing a job, stores the result in a common<br  />
-database.<br  />
+We have a master node which wakes up several AWS instances, delegates series of jobs, from a queue, to them and after all of the jobs are completed switches them off. Each slave node, after completing a job, stores the result in a common database.<br  />
 <br  />
 Each of the event is logged in the same common database.<br  />
 </p>
@@ -225,7 +222,7 @@ stop the script, the script went on failing to deploy to each slave.
 
 <p>
 When the slaves were ordered to execute the job, they executed the last available
-version of the job, which happened to be a job which was being tested on development
+version of the egg, which happened to be a job which was being tested on development
 server and thus contained development configuration.
 </p>
 </div>
@@ -295,15 +292,121 @@ users may only be able to read it and not write it.
 </p>
 
 <p>
-Most of the code we write is executed by ordinary users.
+Most of the code we write is executed by non privileged users.
 </p>
 </div>
 </div>
 </div>
 
 <div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Unix 101</h2>
+<h2 id="orgheadline7"><span class="section-number-2">3</span> Unix Permissions 101</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+There are just 3 commands one needs to know to avoid 90% of the unnecessary
+use of <code>sudo</code>.
+</p>
+<ol class="org-ol">
+<li><p>
+<code>ls -l</code> (list directory with a long listing format<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>):
+</p>
+
+<p>
+This is the usual <code>ls</code> with <code>-l</code> flag which outputs extra information about
+the files in the directory.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">-rw-r--r--  1 anuragpeshne  staff  1080 Feb  2 20:52 LICENSE
+-rw-r--r--  1 anuragpeshne  staff    51 Feb  2 20:52 README.md
+drwxr-xr-x  7 anuragpeshne  staff   238 May  1 20:57 assets
+drwxr-xr-x  3 anuragpeshne  staff   102 May 21 16:15 css
+drwxr-xr-x  9 anuragpeshne  staff   306 Jun  5 13:45 essays
+-rw-r--r--@ 1 anuragpeshne  staff    53 Feb 28 20:41 googleb7e54271b39d6266.html
+-rw-r--r--  1 anuragpeshne  staff  8556 Apr  2 00:11 index.html
+drwxr-xr-x  3 anuragpeshne  staff   102 Apr  1 22:32 js
+-rw-r--r--  1 anuragpeshne  staff  6565 Feb 20 23:08 now.html
+drwxr-xr-x  8 anuragpeshne  staff   272 Apr  2 00:11 org-files
+drwxr-xr-x  4 anuragpeshne  staff   136 Feb 21 23:02 quotes
+drwxr-xr-x  3 anuragpeshne  staff   102 Feb 16 20:09 todo
+</pre>
+</div>
+<p>
+The first 10 characters denote file permissions. The first character denotes
+whether the file is regular file or directory<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. 3 Sets of 3 characters
+follow that. Each character in the set denotes whether it is [w]ritable,
+e[x]ecutable or [r]eadble. The sets represents permission of Owner, Group and
+Other. The third, fourth column gives the information about owner and group.
+</p>
+
+<p>
+Thus in the above example, only <code>anuragpeshne</code> can write to file <code>README.md</code>
+while users in group <code>staff</code> and others can just read it.
+</p></li>
+<li><p>
+<code>chown</code> (change owner<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>):
+</p>
+
+<p>
+If you are working in some folder above your home folder, most probably it
+won't be owned by you; It will be owned by <code>root</code>. If you are editing files
+in your repository and going to edit those many times in a day, it would be
+a good idea to own the repository folder.
+</p>
+
+<p>
+<code>sudo chown -R $(whoami) ./</code>
+</p></li>
+<li><p>
+<code>chmod</code> (change mode<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>):
+</p>
+
+<p>
+There are couple of ways to change file permissions, but I'm going to mention
+just one way. <code>chmod ugo file</code>, where <code>ugo</code> are octal values representing permission
+for <code>user</code>, <code>group</code> and <code>others</code>. For calculating these octal value, just add
+up the number corresponding to the permission you want to give.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">read</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-left">write</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">execute</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<p>
+Examples:
+</p>
+<ul class="org-ul">
+<li><code>chmod 600 d.txt</code> will give permission to read and write only to the user
+(owner).</li>
+<li><code>chmod 755 app</code> will give permission to read and execute to everyone but only
+the user can write to it.</li>
+</ul></li>
+</ol>
+
+<p>
+And that's it! From now on whenever you are tempted to use <code>sudo</code>, give yourself
+a moment to think if you are going to edit the file often, if so, change the
+ownership to you or add yourself to the owner group.
+</p>
 </div>
 </div>
 <div id="footnotes">
@@ -312,6 +415,22 @@ Most of the code we write is executed by ordinary users.
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 : <a href="http://www.catb.org/esr/writings/taoup/html/ch01s06.html">Rule of Repair</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+: <a href="http://ss64.com/bash/ls.html">ls</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+: The first character can denote much more than directories, symlinks, regular files, but that's out of scope of this article.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+: <a href="http://ss64.com/bash/chown.html">chown</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+: <a href="http://ss64.com/bash/chmod.html">chmod</a>
 </p></div></div>
 
 

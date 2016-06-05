@@ -9,13 +9,10 @@
 #+HTML: <div id="draftTag">DRAFT</div>
 
 * Multiple servers, multiple configs
-  Couple of days ago we discovered a monstrous bug in one of our systems. Before
+  Couple of days ago we discovered a nasty bug in one of our systems. Before
   getting to the bug let me explain the setup very briefly:
   #+BEGIN_VERSE
-  We have a master node which wakes up several AWS instances, delegates series of
-  jobs, from a queue, to them and after all of the jobs are completed switches
-  them off. Each slave node, after completing a job, stores the result in a common
-  database.
+  We have a master node which wakes up several AWS instances, delegates series of jobs, from a queue, to them and after all of the jobs are completed switches them off. Each slave node, after completing a job, stores the result in a common database.
 
   Each of the event is logged in the same common database.
   #+END_VERSE
@@ -49,7 +46,7 @@
    stop the script, the script went on failing to deploy to each slave.
 
    When the slaves were ordered to execute the job, they executed the last available
-   version of the job, which happened to be a job which was being tested on development
+   version of the egg, which happened to be a job which was being tested on development
    server and thus contained development configuration.
 
 ** Analysis
@@ -88,9 +85,69 @@
    there is no one to stop us. But whenever we create a new file, other ordinary
    users may only be able to read it and not write it.
 
-   Most of the code we write is executed by ordinary users.
+   Most of the code we write is executed by non privileged users.
 
-* TODO Unix 101
+* Unix Permissions 101
+  There are just 3 commands one needs to know to avoid 90% of the unnecessary
+  use of ~sudo~.
+  1. ~ls -l~ (list directory with a long listing format[fn:2]):
+
+     This is the usual ~ls~ with ~-l~ flag which outputs extra information about
+     the files in the directory.
+     #+BEGIN_SRC bash
+     -rw-r--r--  1 anuragpeshne  staff  1080 Feb  2 20:52 LICENSE
+     -rw-r--r--  1 anuragpeshne  staff    51 Feb  2 20:52 README.md
+     drwxr-xr-x  7 anuragpeshne  staff   238 May  1 20:57 assets
+     drwxr-xr-x  3 anuragpeshne  staff   102 May 21 16:15 css
+     drwxr-xr-x  9 anuragpeshne  staff   306 Jun  5 13:45 essays
+     -rw-r--r--@ 1 anuragpeshne  staff    53 Feb 28 20:41 googleb7e54271b39d6266.html
+     -rw-r--r--  1 anuragpeshne  staff  8556 Apr  2 00:11 index.html
+     drwxr-xr-x  3 anuragpeshne  staff   102 Apr  1 22:32 js
+     -rw-r--r--  1 anuragpeshne  staff  6565 Feb 20 23:08 now.html
+     drwxr-xr-x  8 anuragpeshne  staff   272 Apr  2 00:11 org-files
+     drwxr-xr-x  4 anuragpeshne  staff   136 Feb 21 23:02 quotes
+     drwxr-xr-x  3 anuragpeshne  staff   102 Feb 16 20:09 todo
+     #+END_SRC
+     The first 10 characters denote file permissions. The first character denotes
+     whether the file is regular file or directory[fn:3]. 3 Sets of 3 characters
+     follow that. Each character in the set denotes whether it is [w]ritable,
+     e[x]ecutable or [r]eadble. The sets represents permission of Owner, Group and
+     Other. The third, fourth column gives the information about owner and group.
+
+     Thus in the above example, only ~anuragpeshne~ can write to file ~README.md~
+     while users in group ~staff~ and others can just read it.
+  1. ~chown~ (change owner[fn:4]):
+
+     If you are working in some folder above your home folder, most probably it
+     won't be owned by you; It will be owned by ~root~. If you are editing files
+     in your repository and going to edit those many times in a day, it would be
+     a good idea to own the repository folder.
+
+     ~sudo chown -R $(whoami) ./~
+  1. ~chmod~ (change mode[fn:5]):
+
+     There are couple of ways to change file permissions, but I'm going to mention
+     just one way. ~chmod ugo file~, where ~ugo~ are octal values representing permission
+     for ~user~, ~group~ and ~others~. For calculating these octal value, just add
+     up the number corresponding to the permission you want to give.
+     |---------+---|
+     | read    | 4 |
+     | write   | 2 |
+     | execute | 1 |
+     |---------+---|
+     Examples:
+     - ~chmod 600 d.txt~ will give permission to read and write only to the user
+       (owner).
+     - ~chmod 755 app~ will give permission to read and execute to everyone but only
+       the user can write to it.
+
+  And that's it! From now on whenever you are tempted to use ~sudo~, give yourself
+  a moment to think if you are going to edit the file often, if so, change the
+  ownership to you or add yourself to the owner group.
 
 
 [fn:1]: [[http://www.catb.org/esr/writings/taoup/html/ch01s06.html][Rule of Repair]]
+[fn:2]: [[http://ss64.com/bash/ls.html][ls]]
+[fn:3]: The first character can denote much more than directories, symlinks, regular files, but that's out of scope of this article.
+[fn:4]: [[http://ss64.com/bash/chown.html][chown]]
+[fn:5]: [[http://ss64.com/bash/chmod.html][chmod]]
