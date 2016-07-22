@@ -1,50 +1,3 @@
-#+TITLE: BrainDump: Anurag Peshne
-#+OPTIONS: toc:nil num:nil creator:t author:nil
-#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/style.css" />
-#+INCLUDE: "../assets/ga.org"
-
-* Hello
-  My name is Anurag Peshne. I'm interested in Programing Languages, Operating
-  Systems, Text Editors (particularly Vim and Emacs), Lisp and Functional
-  Programing.
-
-  I studied Computer Science at [[http://vnit.ac.in/][VNIT]] and have experience working with server teams
-  at multinational corporation as well as a startup.
-
-  Besides CS, I'm interested in cycling and [[https://www.flickr.com/photos/anuragpeshne/][photography]]. Moon and time lapsed
-  photography are my favourites.
-
-  Here's my [[./now.org][/now]] page: the things I'm upto these days.
-
-* Projects
-  Here are some of my somewhat working projects:
-  - [[https://github.com/anuragpeshne/vKeyboard][vKeyboard]]
-   Share keyboard accoss computers over the network.
-  - [[https://github.com/anuragpeshne/austerity][austerity]]
-   Bunch of shell scripts to restrict access to time /wasting/ websites.
-  - [[https://github.com/font8x8][font8X8]]
-   Language agnostic monochrome bitmap font for rendering.
-  - [[https://github.com/anuragpeshne/airLift][airLift]]
-   Automated file sharing over network.
-  - [[https://github.com/anuragpeshne/funJmp][funJmp]]
-   Jump to function definition in Vim using Regex.
-  - [[https://github.com/anuragpeshne][github.com/anuragpeshne]]
-   Rest of the projects can be found at my github repo.
-
-* Essays
-  - [[file:./essays/permissions101.org][Unix Permissions 101]]
-  - [[file:./essays/keywords.org][Keywords]]
-  - [[file:./essays/emacsSpeed.org][Speeding Up Emacs]]
-  - [[file:./essays/asynchronous.org][Asynchronous]]
-  - [[https://github.com/anuragpeshne/Y-Combinator/blob/master/Ycombinator.org][Y Combinator]]
-  - [[file:./essays/index.org][/essays]] Rest of the essays
-
-* Contact
-  Feel free to drop me a mail at [[mailto:anurag.peshne@gmail.com][anurag.peshne@gmail.com]].
-
-  [[file:./anurag.pub][Here's]] my public PGP
-#+BEGIN_SRC PGP_key
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Comment: GPGTools - https://gpgtools.org
 
@@ -97,4 +50,3 @@ bIWlRsb22y/dHbZEWs9/rIrC6AJm2ma/v0e/zs4IstpuByq+O17rhf5bkC8oDlIu
 Z4yerHvxdjJGqsEFkIgIEgQ=
 =GQ9m
 -----END PGP PUBLIC KEY BLOCK-----
-#+END_SRC
