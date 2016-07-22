@@ -143,6 +143,7 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/keywords.html" />
 </head>
 <body>
 <div id="content">
@@ -209,11 +210,11 @@ section. Here are the <code>sed</code> commands used:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash">sed -n -e <span style="color: #008000;">"/[Kk][Ee][Yy][Ww][Oo][Rr][Dd]/, /\/C[0-9]/p"</span> <span style="color: #008000;">\</span>
-       -e <span style="color: #008000;">"/[Rr][Ee][Ss][Ee][Rr][Vv][Ee][Dd]/, /\/C[0-9]/p"</span> <span style="color: #008000;">\</span>
-       -e <span style="color: #008000;">"/[Cc][Oo][Mm][Mm][Aa][Nn][Dd]/, /\/C[0-9]/p"</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">unfortunately sed on OS X does not recognize Ignorecase flag, hence the ugly [Cc]</span>
-<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">workaround</span>
+<pre class="src src-bash">sed -n -e <span style="color: #CC9393;">"/[Kk][Ee][Yy][Ww][Oo][Rr][Dd]/, /\/C[0-9]/p"</span> <span style="color: #CC9393;">\</span>
+       -e <span style="color: #CC9393;">"/[Rr][Ee][Ss][Ee][Rr][Vv][Ee][Dd]/, /\/C[0-9]/p"</span> <span style="color: #CC9393;">\</span>
+       -e <span style="color: #CC9393;">"/[Cc][Oo][Mm][Mm][Aa][Nn][Dd]/, /\/C[0-9]/p"</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">unfortunately sed on OS X does not recognize Ignorecase flag, hence the ugly [Cc]</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">workaround</span>
 </pre>
 </div>
 <p>
@@ -236,23 +237,23 @@ number. Hence I picked around 60 well known languages and calculated the mean.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-bash"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/</span><span style="color: #0000FF;">bash</span>
+<pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/bin/</span><span style="color: #F0DFAF; font-weight: bold;">bash</span>
 
-<span style="color: #BA36A5;">interestingFiles</span>=(<span style="color: #008000;">'JSON'</span> <span style="color: #008000;">'acl'</span> <span style="color: #008000;">'actionscript'</span> <span style="color: #008000;">'ada95'</span> <span style="color: #008000;">'c'</span> <span style="color: #008000;">'c-winapi'</span>
-                  <span style="color: #008000;">'c-os2'</span> <span style="color: #008000;">'csharp'</span> <span style="color: #008000;">'e'</span> <span style="color: #008000;">'eiffel'</span> <span style="color: #008000;">'escript'</span> <span style="color: #008000;">'euphoria'</span> <span style="color: #008000;">'falcon'</span>
-                  <span style="color: #008000;">'fortran'</span> <span style="color: #008000;">'fortran90'</span> <span style="color: #008000;">'fortran95'</span> <span style="color: #008000;">'go'</span> <span style="color: #008000;">'groovy'</span> <span style="color: #008000;">'hugo'</span>
-                  <span style="color: #008000;">'java122'</span> <span style="color: #008000;">'java13'</span> <span style="color: #008000;">'java14'</span> <span style="color: #008000;">'java14jsp'</span> <span style="color: #008000;">'javascript'</span> <span style="color: #008000;">'js20'</span>
-                  <span style="color: #008000;">'jscript'</span> <span style="color: #008000;">'jsp'</span> <span style="color: #008000;">'lua'</span> <span style="color: #008000;">'lull'</span> <span style="color: #008000;">'maple'</span> <span style="color: #008000;">'modula'</span> <span style="color: #008000;">'modula2'</span> <span style="color: #008000;">'oracle11g'</span>
-                  <span style="color: #008000;">'pascal'</span> <span style="color: #008000;">'perl'</span> <span style="color: #008000;">'php5'</span> <span style="color: #008000;">'pl1'</span> <span style="color: #008000;">'plsql'</span> <span style="color: #008000;">'python26'</span> <span style="color: #008000;">'python35'</span>
-                  <span style="color: #008000;">'qbasic'</span> <span style="color: #008000;">'ruby'</span> <span style="color: #008000;">'rust'</span> <span style="color: #008000;">'sap'</span> <span style="color: #008000;">'schema'</span> <span style="color: #008000;">'scheme'</span> <span style="color: #008000;">'small'</span> <span style="color: #008000;">'sql'</span>
-                  <span style="color: #008000;">'swift'</span> <span style="color: #008000;">'symbian'</span> <span style="color: #008000;">'tcl-tk'</span> <span style="color: #008000;">'turboc'</span> <span style="color: #008000;">'uniscript'</span> <span style="color: #008000;">'vb'</span> <span style="color: #008000;">'vbdotnet'</span>
-                  <span style="color: #008000;">'vbscript'</span> <span style="color: #008000;">'verilog2001'</span> <span style="color: #008000;">'vhdl93'</span> <span style="color: #008000;">'yaml'</span> <span style="color: #008000;">'zillions'</span>)
+<span style="color: #DFAF8F;">interestingFiles</span>=(<span style="color: #CC9393;">'JSON'</span> <span style="color: #CC9393;">'acl'</span> <span style="color: #CC9393;">'actionscript'</span> <span style="color: #CC9393;">'ada95'</span> <span style="color: #CC9393;">'c'</span> <span style="color: #CC9393;">'c-winapi'</span>
+                  <span style="color: #CC9393;">'c-os2'</span> <span style="color: #CC9393;">'csharp'</span> <span style="color: #CC9393;">'e'</span> <span style="color: #CC9393;">'eiffel'</span> <span style="color: #CC9393;">'escript'</span> <span style="color: #CC9393;">'euphoria'</span> <span style="color: #CC9393;">'falcon'</span>
+                  <span style="color: #CC9393;">'fortran'</span> <span style="color: #CC9393;">'fortran90'</span> <span style="color: #CC9393;">'fortran95'</span> <span style="color: #CC9393;">'go'</span> <span style="color: #CC9393;">'groovy'</span> <span style="color: #CC9393;">'hugo'</span>
+                  <span style="color: #CC9393;">'java122'</span> <span style="color: #CC9393;">'java13'</span> <span style="color: #CC9393;">'java14'</span> <span style="color: #CC9393;">'java14jsp'</span> <span style="color: #CC9393;">'javascript'</span> <span style="color: #CC9393;">'js20'</span>
+                  <span style="color: #CC9393;">'jscript'</span> <span style="color: #CC9393;">'jsp'</span> <span style="color: #CC9393;">'lua'</span> <span style="color: #CC9393;">'lull'</span> <span style="color: #CC9393;">'maple'</span> <span style="color: #CC9393;">'modula'</span> <span style="color: #CC9393;">'modula2'</span> <span style="color: #CC9393;">'oracle11g'</span>
+                  <span style="color: #CC9393;">'pascal'</span> <span style="color: #CC9393;">'perl'</span> <span style="color: #CC9393;">'php5'</span> <span style="color: #CC9393;">'pl1'</span> <span style="color: #CC9393;">'plsql'</span> <span style="color: #CC9393;">'python26'</span> <span style="color: #CC9393;">'python35'</span>
+                  <span style="color: #CC9393;">'qbasic'</span> <span style="color: #CC9393;">'ruby'</span> <span style="color: #CC9393;">'rust'</span> <span style="color: #CC9393;">'sap'</span> <span style="color: #CC9393;">'schema'</span> <span style="color: #CC9393;">'scheme'</span> <span style="color: #CC9393;">'small'</span> <span style="color: #CC9393;">'sql'</span>
+                  <span style="color: #CC9393;">'swift'</span> <span style="color: #CC9393;">'symbian'</span> <span style="color: #CC9393;">'tcl-tk'</span> <span style="color: #CC9393;">'turboc'</span> <span style="color: #CC9393;">'uniscript'</span> <span style="color: #CC9393;">'vb'</span> <span style="color: #CC9393;">'vbdotnet'</span>
+                  <span style="color: #CC9393;">'vbscript'</span> <span style="color: #CC9393;">'verilog2001'</span> <span style="color: #CC9393;">'vhdl93'</span> <span style="color: #CC9393;">'yaml'</span> <span style="color: #CC9393;">'zillions'</span>)
 
-<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">for filename in ./wordfiles/*.uew; do</span>
-<span style="color: #0000FF;">for</span> filename<span style="color: #0000FF;"> in</span> ${<span style="color: #BA36A5;">interestingFiles</span>[@]}; <span style="color: #0000FF;">do</span>
-    <span style="color: #006FE0; font-weight: bold;">echo</span> -n <span style="color: #008000;">"$filename"</span>
-    ./capture.py ./wordfiles/<span style="color: #008000;">"$filename"</span>.uew | wc -w
-<span style="color: #0000FF;">done</span>
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">for filename in ./wordfiles/*.uew; do</span>
+<span style="color: #F0DFAF; font-weight: bold;">for</span> filename<span style="color: #F0DFAF; font-weight: bold;"> in</span> ${<span style="color: #DFAF8F;">interestingFiles</span>[@]}; <span style="color: #F0DFAF; font-weight: bold;">do</span>
+    <span style="color: #DCDCCC; font-weight: bold;">echo</span> -n <span style="color: #CC9393;">"$filename"</span>
+    ./capture.py ./wordfiles/<span style="color: #CC9393;">"$filename"</span>.uew | wc -w
+<span style="color: #F0DFAF; font-weight: bold;">done</span>
 </pre>
 </div>
 </div>
@@ -315,7 +316,22 @@ located under <code>/Applications/MacVim.app/Contents/Resources/vim/runtime/synt
 
 
 </div>
-</div></div>
+</div><div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/keywords.html";
+this.page.identifier = "/essays/keywords.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-30</p>
 <p class="author">Author: Anurag Peshne</p>

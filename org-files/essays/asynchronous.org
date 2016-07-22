@@ -144,7 +144,7 @@ console.log("after making the call");
 
     Note that the execution order of last three lines is indeterministic. If request
     is successful, order may be:
-#+BEGIN_SRC
+#+BEGIN_SRC text
 before making the call
 After making the call
 Success! xxx characters received
