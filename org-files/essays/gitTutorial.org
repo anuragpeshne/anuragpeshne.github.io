@@ -1,0 +1,25 @@
+#+TITLE: Intro to Git
+#+SUBTITLE: A non comprehensive guide to `git`
+#+DATE: 2016-07-22
+#+OPTIONS: toc:t num:t creator:t author:t tex:t date:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :git:git-internals:unix:
+
+#+INCLUDE: "../../assets/ga.org"
+#+HTML: <div id="draftTag">DRAFT</div>
+
+* Preface
+  This essay is based upon a presentation I gave to the new recruits at my
+  (former?) employer [[https://coupondunia.in][CouponDunia]]. While preparing the presentation I went through
+  some of the finest Git tutorials[fn:1] which gave me good insight on Git
+  internals. Though the knowledge of internal working of Git isn't essential for
+  working with it, knowing the stuff under the hood can help to grok Git and help
+  solve some of the common problems.
+
+  Since this presentation was made for folks without any prior professional
+  experience, it starts with the very basics of version control system. If you find
+  it trivial, feel free to jump to the topic [[#advanced-commands][advanced commands]].
+
+* VCS
+[fn:1]: [[https://www.youtube.com/watch?v=ZDR433b0HJY][Introduction to Git by Scott Chacon]], [[http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html][Git Magic]]
