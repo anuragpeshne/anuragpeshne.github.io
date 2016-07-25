@@ -1,7 +1,7 @@
 #+TITLE: Intro to Git
 #+SUBTITLE: A non comprehensive guide to `git`
 #+DATE: 2016-07-22
-#+OPTIONS: toc:t num:t creator:t author:t tex:t date:t timestamp:nil
+#+OPTIONS: toc:t num:nil creator:t author:t tex:t date:t timestamp:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
 #+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 #+FILETAGS:  :git:git-internals:unix:
@@ -14,12 +14,55 @@
   (former?) employer [[https://coupondunia.in][CouponDunia]]. While preparing the presentation I went through
   some of the finest Git tutorials[fn:1] which gave me good insight on Git
   internals. Though the knowledge of internal working of Git isn't essential for
-  working with it, knowing the stuff under the hood can help to grok Git and help
-  solve some of the common problems.
+  working with it, knowing the stuff under the hood can help to grok Git and solve
+  some of the common problems.
 
-  Since this presentation was made for folks without any prior professional
-  experience, it starts with the very basics of version control system. If you find
-  it trivial, feel free to jump to the topic [[#advanced-commands][advanced commands]].
+  Since this presentation was made for folks without any prior experience of working
+  with version control system, it starts with the very basics. If you find it too
+  trivial, feel free to jump to the topic [[Not So Basic Commands][advanced commands]]. Folks with limited or
+  no prior knowledge of VCS may find the topics at the end a bit heavy to digest
+  in a single read. Nevertheless, I recommend reading till the end so that when
+  any non trivial problem arise, you know what to google for.
 
 * VCS
+** Video Games
+   The foremost question to be answered is what is a version control system and
+   what is the need of using it. Think of writing your code or document as playing
+   a game. Periodically you need to save your progress, so that you can continue
+   your game later from the same point or in case of unexpected events, such as power
+   failure, you have your state saved. Typically this is done by instructing your
+   text editor to save in a file by pressing ~cntrl + s~[fn:2]
+
+   But saving a file this way is like saving the game in just one slot. Since the
+   new save overwrites the previous one, there is no way of going back to previous
+   version. So, if you reach an un-winnable state or changed the code which crashes
+   the system, there is no way of going back to the previous sane state.
+
+** Save As
+   Using /save as/, we can have multiple copies of the code for the multiple versions
+   and even better in folders tagged by timestamps. This gives us an ability of
+   visiting code at a specific date and time. Problem, however, is when the number
+   of files to be managed is large. Even for a small sized project, it's not uncommon
+   to have hundreds of files.
+
+   [[file:../assets/gitTutorial/cuteThings.png]]
+
+   Version control systems does this and a lot more. It stores multiple versions
+   of multiple files, provides a convenient interface to manage different version
+   and compresses file to save storage space. It also helps multiple developers
+   work on same part of the code. Git is one of such Version Control Systems.
+
+** Distributed VCS
+   While reading about git, you will come across this term a lot of times. What
+   it basically means it that when you clone a git repository, you have an exact
+   and equal copy of the original repository. There is no central holy official
+   or canonical repository. When you want to work on a file, there is no need of
+   checking it out or putting a lock on it. The way DVCS works it, you clone the
+   repository, edit the file and then merge with other's repository. Due to this
+   natural almost all commands[fn:3] in git can be executed offline.
+
 [fn:1]: [[https://www.youtube.com/watch?v=ZDR433b0HJY][Introduction to Git by Scott Chacon]], [[http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html][Git Magic]]
+[fn:2]: Or ~:w~ if you are cool.
+[fn:3]: Except few commands like ~git pull~ and ~git push~
+
+* Not So Basic Commands
