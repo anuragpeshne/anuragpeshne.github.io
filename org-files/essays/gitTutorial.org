@@ -11,7 +11,7 @@
 
 * Preface
   This essay is based upon a presentation I gave to the new recruits at my
-  (former?) employer [[https://coupondunia.in][CouponDunia]]. While preparing the presentation I went through
+  (/former/) employer [[https://coupondunia.in][CouponDunia]]. While preparing the presentation I went through
   some of the finest Git tutorials[fn:1] which gave me good insight on Git
   internals. Though the knowledge of internal working of Git isn't essential for
   working with it, knowing the stuff under the hood can help to grok Git and solve
@@ -55,14 +55,43 @@
 ** Distributed VCS
    While reading about git, you will come across this term a lot of times. What
    it basically means it that when you clone a git repository, you have an exact
-   and equal copy of the original repository. There is no central holy official
+   and equal copy of the original repository. There is no central, holy, official
    or canonical repository. When you want to work on a file, there is no need of
    checking it out or putting a lock on it. The way DVCS works it, you clone the
    repository, edit the file and then merge with other's repository. Due to this
-   natural almost all commands[fn:3] in git can be executed offline.
+   nature almost all commands[fn:3] in git can be executed offline.
+
+* Git
+** Linus, Linux and Git
+   Git was created by Linus Torvalds in a short duration of time[fn:4]. It was designed
+   keeping in mind Linux project (large number of contributers). Some of the goals
+   of the system are:
+   - Speed
+   - Simple Design
+   - Support for non-linear development (thousands of parallel branches)
+   - Fully Distributed
+   - Able to handle large projects like the Linux efficiently
+** Basics
+*** Snapshots, not Differences
+    Some of the VCS store \Delta (delta) or the difference of the contents.
+    #+NAME: Content A
+    #+BEGIN_SRC diff
+    #include <stdio.h>
+    #include <sys.h>
+    #include <time.h>
+    ...
+    #+END_SRC
+    #+NAME: Content B
+    #+BEGIN_SRC diff
+    #include <stdio.h>
+    #include <sys.h>
+    #include <math.h> <-- line inserted
+    #include <time.h>
+    ...
+    #+END_SRC
+* Not So Basic Commands
 
 [fn:1]: [[https://www.youtube.com/watch?v=ZDR433b0HJY][Introduction to Git by Scott Chacon]], [[http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html][Git Magic]]
 [fn:2]: Or ~:w~ if you are cool.
 [fn:3]: Except few commands like ~git pull~ and ~git push~
-
-* Not So Basic Commands
+[fn:4]: git was self hosting within 2 days. [[https://en.wikipedia.org/wiki/Git_(software)#cite_ref-selfhost_19-0][Source]]
