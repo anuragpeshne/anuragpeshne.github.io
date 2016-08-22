@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intro to Git</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Intro to Git
+<br>
+<span class="subtitle">A non comprehensive guide to `git`</span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline2">Preface</a></li>
+<li><a href="#orgheadline6">VCS</a>
+<ul>
+<li><a href="#orgheadline3">Video Games</a></li>
+<li><a href="#orgheadline4">Save As</a></li>
+<li><a href="#orgheadline5">Distributed VCS</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">Git</a>
+<ul>
+<li><a href="#orgheadline7">Linus, Linux and Git</a></li>
+<li><a href="#orgheadline8">Basics</a></li>
+<li><a href="#orgheadline9">The three states</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline1">Not So Basic Commands</a></li>
+</ul>
+</div>
+</div>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+<div id="draftTag">DRAFT</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Preface</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+This essay is based upon a presentation I gave to the new recruits at my
+(<i>former</i>) employer <a href="https://coupondunia.in/">CouponDunia</a>. While preparing this presentation I went through
+some of the finest Git tutorials<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Though the knowledge of internal working
+of Git isn't essential for working with it, knowing the stuff under the hood can
+help to grok Git and solve some of the common problems.
+</p>
+
+<p>
+Since this presentation was made for folks without any prior experience of working
+with version control system, it starts with the very basics. If you find it too
+trivial, feel free to jump to the topic <a href="#orgheadline1">advanced commands</a>. Folks with limited or
+no prior knowledge of VCS may find the topics at the end a bit heavy to digest
+in a single read. Nevertheless, I recommend reading till the end so that when
+any non trivial problem arise, you know what to google for.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">VCS</h2>
+<div class="outline-text-2" id="text-orgheadline6">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Video Games</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<p>
+The very first question to be answered is what is a version control system and
+what is the need of using it. Think of writing your code or document as playing
+a game. Periodically you need to save your progress, so that you can continue
+your game later from the same point or in case of unexpected events, such as power
+failure, you have your state saved. Typically this is done by instructing your
+text editor to save in a file by pressing <code>cntrl + s</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+</p>
+
+<p>
+But saving a file this way is like saving the game in just one slot. Since the
+new save overwrites the previous one, there is no way of going back to previous
+version. So, if you reach an un-winnable state or changed the code in a way which
+crashes the system, there is no way of going back to the previous sane state.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Save As</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+Using <i>save as</i>, we can have multiple copies of our work which is similar to
+saving the game progress in multiple slots. Even better we can organize these
+multiple versions in folders tagged by timestamps. This gives us an ability to
+checkout code at a specific date and time. Problem, however, is when the number
+of files to be managed is large. Even for a small sized project, it's not uncommon
+to have hundreds of files.
+</p>
+
+
+<div class="figure">
+<p><img src="../assets/gitTutorial/cuteThings.png" alt="cuteThings.png" />
+</p>
+</div>
+
+<p>
+Version control systems does this and a lot more. It stores multiple versions
+of multiple files, provides a convenient interface to manage different version
+and compresses file to save storage space. It also helps multiple developers
+work on same part of the code. Git is one of such Version Control Systems.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Distributed VCS</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+When you clone a git repository, you have an exact copy of the original repository.
+There is no central or canonical repository. When you want to work on a file,
+there is no need of checking it out or putting a lock on it. The way DVCS works
+it, you clone the repository, edit the file and then merge with other's repository.
+Due to this nature most of the commands<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> in git can be executed offline.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">Git</h2>
+<div class="outline-text-2" id="text-orgheadline10">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">Linus, Linux and Git</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+<p>
+Git was created out of need to manage Linux kernel project by Linus Torvalds<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>.
+It was designed keeping in mind the complexities of the Linux project (large
+number of contributers). Some of the goals of the system are:
+</p>
+<ul class="org-ul">
+<li>Speed</li>
+<li>Simple Design</li>
+<li>Support for non-linear development (thousands of parallel branches)</li>
+<li>Fully Distributed</li>
+<li>Able to handle large projects like the Linux efficiently</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">Basics</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+<ul class="org-ul">
+<li><p>
+Snapshots, not Differences
+</p>
+
+<p>
+Some version control systems store the delta or the difference between different
+versions. So suppose the original content was:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;stdio.h&gt;</span>
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;sys.h&gt;</span>
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;time.h&gt;</span>
+...
+</pre>
+</div>
+<p>
+And you added a line to include <code>math.h</code>, the modified content would be:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;stdio.h&gt;</span>
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;sys.h&gt;</span>
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;math.h&gt; &lt;-- line inserted</span>
+<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;time.h&gt;</span>
+...
+</pre>
+</div>
+<p>
+To save space, the VCS will calculate the lines modified and store only the
+difference.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell">2a3
+&gt; <span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;math.h&gt; &lt;-- line inserted</span>
+</pre>
+</div>
+<p>
+Modified content can be constructed using Original Content and the delta.
+</p>
+
+<p>
+Git doesn't do this. It stores whole file at each version as a snapshot of that
+file at that time.
+</p></li>
+<li><p>
+Nearly everything is local
+</p>
+
+<p>
+There is no need of network access to edit or commit. Network access is required
+only to synchronize repositories over the network.
+</p></li>
+<li><p>
+Git has integrity
+</p>
+
+<p>
+Everything is hashed before storing in repository. These hashes are used to
+refer the snapshots. Thus, data can't get corrupt without git knowing it.
+</p></li>
+<li>No central authority or canonical repository</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">The three states</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<p>
+Everything that is tracked using git is in one of these 3 states:
+</p>
+<ul class="org-ul">
+<li><b>Modified</b>: You have changed the file but have not yet committed the modified
+file.</li>
+<li><b>Staged</b>: You have marked a modified file to go to next commit.</li>
+<li><b>Committed</b>: The files which are committed are safely stored in local database.</li>
+</ul>
+
+<p>
+And corresponding to these states, there are 3 areas where these files will be
+stored:
+</p>
+<ul class="org-ul">
+<li><b>Working Directory</b>: This is where you edit your content. And this is the only
+state where you can manipulate files directly.</li>
+<li><b>Repository</b>: This is where versions of each file are stored. Git manages this
+state and there will be almost never a reason for you to fiddle with it directly.
+Once a file is saved in repository, any of its versions can be visited easily.</li>
+<li><b>Staging Area</b></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Not So Basic Commands</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+: <a href="https://www.youtube.com/watch?v=ZDR433b0HJY">Introduction to Git by Scott Chacon</a>, <a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html">Git Magic</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+: Or <code>:w</code> if you are cool.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+: Except few commands like <code>git pull</code> and <code>git push</code>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+: git was created within a short duration of time; it was self hosting within 2 days. <a href="https://en.wikipedia.org/wiki/Git_(software)#cite_ref-selfhost_19-0">Source</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2016-07-22</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.3.5)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
