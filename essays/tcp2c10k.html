@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>tcp to c10k</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/tcp2c10k.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">tcp to c10k</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">Brief Background</a>
+<ul>
+<li><a href="#orgheadline2">Why Clojure</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline3">About</a></li>
+<li><a href="#orgheadline6">Getting Started</a>
+<ul>
+<li><a href="#orgheadline4">Echo Server</a></li>
+<li><a href="#orgheadline5">Concurrent Connections</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+<div id="draftTag">DRAFT</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Brief Background</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+To become a wise software engineer, one must implement at least 3 of the following
+from scratch:
+</p>
+<ul class="org-ul">
+<li>A Compiler</li>
+<li>A Web Server</li>
+<li>A Text Editor</li>
+<li>Something that runs on bare metal; (maybe an OS)</li>
+</ul>
+
+<p>
+This is my attempt to take on the 2<sup>nd</sup> item in the list.
+</p>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">Why Clojure</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+I considered Haskell, Clojure and Python to build this project. Since this can
+be a great opportunity to learn a new language, Python was ruled out. I chose
+Clojure over Haskell, because:
+</p>
+<ul class="org-ul">
+<li>Clojure is a Lisp; I was craving to write some Lisp after <a href="https://mitpress.mit.edu/books/little-schemer">Little Schemer</a></li>
+<li><a href="https://www.infoq.com/author/Rich-Hickey">Rich Hickey</a></li>
+<li><a href="https://news.ycombinator.com/item?id=4122764">Couple</a> of <a href="https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell">threads</a> mentioned Clojure to be more 'practical'</li>
+</ul>
+
+<p>
+Clojure is turning out to be a great decision.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">About</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+I'm planning to use this essay as a journal to the project <a href="https://github.com/anuragpeshne/httpj">httpj</a>.  I'll record the
+achievements and lessons learned in a diary fashion so that this may help
+someone else to implement a HTTP server and most importantly, help me remember
+things I learned. 'Adventures of HTTP server Implementation' would have been
+more appropriate title for this essay. Just another note, I'm more interested
+in making a concurrent server than a perfect HTTP compliant server. Thus, I'll
+favor implementations that result in simpler, faster server than complete RFC
+compliant server. I'm using <a href="https://trello.com/b/wAJJ79cc/httpj">this board</a> to manage tasks.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Getting Started</h2>
+<div class="outline-text-2" id="text-orgheadline6">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Echo Server</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+The first stage is to make a simple server which accepts TCP connection and
+simply echos back everything sent to it. This was pretty straight forward, but
+a good exercise to get acquainted with the Clojure syntax.
+</p>
+
+<p>
+<a href="https://github.com/anuragpeshne/httpj/blob/fdf7dbccb187a655f0c4652defbdec22780da479/src/httpj/core.clj">Here's the commit</a> and <a href="https://github.com/anuragpeshne/dfsServer/blob/master/server/Server.java">similar thing</a> in Java.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Concurrent Connections</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+The next logical step was to make it accept multiple concurrent TCP connections.
+</p>
+</div>
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/tcp2c10k.html";
+this.page.identifier = "/essays/tcp2c10k.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2016-10-30</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.3.6)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

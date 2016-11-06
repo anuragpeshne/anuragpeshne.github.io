@@ -1,6 +1,6 @@
 #+TITLE: tcp to c10k
 #+DATE: 2016-10-30
-#+OPTIONS: toc:t num:t creator:t author:t tex:t date:t timestamp:nil
+#+OPTIONS: toc:t num:nil creator:t author:t tex:t date:t timestamp:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
 #+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 #+FILETAGS:  :http:tcp:c10k
@@ -8,7 +8,45 @@
 #+INCLUDE: "../../assets/ga.org"
 #+HTML: <div id="draftTag">DRAFT</div>
 
-* Clojure
+* Brief Background
+  To become a wise software engineer, one must implement at least 3 of the following
+  from scratch:
+  - A Compiler
+  - A Web Server
+  - A Text Editor
+  - Something that runs on bare metal; (maybe an OS)
 
-* TCP: Hello World
-  SCHEDULED: <2016-10-30 Sun>
+  This is my attempt to take on the 2^nd item in the list.
+
+** Why Clojure
+   I considered Haskell, Clojure and Python to build this project. Since this can
+   be a great opportunity to learn a new language, Python was ruled out. I chose
+   Clojure over Haskell, because:
+   - Clojure is a Lisp; I was craving to write some Lisp after [[https://mitpress.mit.edu/books/little-schemer][Little Schemer]]
+   - [[https://www.infoq.com/author/Rich-Hickey][Rich Hickey]]
+   - [[https://news.ycombinator.com/item?id=4122764][Couple]] of [[https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell][threads]] mentioned Clojure to be more 'practical'
+
+   Clojure is turning out to be a great decision.
+
+* About
+  I'm planning to use this essay as a journal to the project [[https://github.com/anuragpeshne/httpj][httpj]].  I'll record the
+  achievements and lessons learned in a diary fashion so that this may help
+  someone else to implement a HTTP server and most importantly, help me remember
+  things I learned. 'Adventures of HTTP server Implementation' would have been
+  more appropriate title for this essay. Just another note, I'm more interested
+  in making a concurrent server than a perfect HTTP compliant server. Thus, I'll
+  favor implementations that result in simpler, faster server than complete RFC
+  compliant server. I'm using [[https://trello.com/b/wAJJ79cc/httpj][this board]] to manage tasks.
+
+* Getting Started
+** Echo Server
+   SCHEDULED: <2016-11-02 Wed>
+   The first stage is to make a simple server which accepts TCP connection and
+   simply echos back everything sent to it. This was pretty straight forward, but
+   a good exercise to get acquainted with the Clojure syntax.
+
+   [[https://github.com/anuragpeshne/httpj/blob/fdf7dbccb187a655f0c4652defbdec22780da479/src/httpj/core.clj][Here's the commit]] and [[https://github.com/anuragpeshne/dfsServer/blob/master/server/Server.java][similar thing]] in Java.
+
+** Concurrent Connections
+   SCHEDULED: <2016-11-05 Sat>
+   The next logical step was to make it accept multiple concurrent TCP connections.
