@@ -360,8 +360,8 @@ Everything that is tracked using git is in one of these 3 states:
 <ul class="org-ul">
 <li><b>Modified</b>: You have changed the file but have not yet committed the modified
 file.</li>
-<li><b>Staged</b>: You have marked a modified file to go to next commit.</li>
 <li><b>Committed</b>: The files which are committed are safely stored in local database.</li>
+<li><b>Staged</b>: You have marked a modified file to go to next commit.</li>
 </ul>
 
 <p>
@@ -371,14 +371,16 @@ stored:
 <ul class="org-ul">
 <li><b>Working Directory</b>: This is where you edit your content. And this is the only
 state where you can manipulate files directly.</li>
-<li><b>Repository</b>: This is where versions of each file are stored. Git manages this
-state and there will be almost never a reason for you to fiddle with it directly.
-Once a file is saved in repository, any of its versions can be visited easily.</li>
-<li><b>Staging Area</b></li>
+<li><b>Repository</b>: (<code>.git</code> directory) This is where versions of each file and metadata
+are stored. Git manages this state and there will be almost never a reason
+for you to fiddle with it directly.</li>
+<li><b>Staging Area</b>: It's just a file (<code>.git/index</code>) which stores information about
+what will go into the next commit.</li>
 </ul>
 </div>
 </div>
 </div>
+
 
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">Not So Basic Commands</h2>

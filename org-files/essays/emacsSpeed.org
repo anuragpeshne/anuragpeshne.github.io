@@ -6,7 +6,6 @@
 #+FILETAGS:  :emacs:init:
 
 #+INCLUDE: "../../assets/ga.org"
-#+HTML: <div id="draftTag">DRAFT</div>
 
 * Motivation
   I've being using Emacs for quite some time now. After picking up several modes and

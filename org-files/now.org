@@ -6,8 +6,10 @@
 #+INCLUDE: "../assets/ga.org"
 
 * Now
-1. Working on essay [[./essays/asynchronous.org][Asynchronous]] part 2, where a simple asynchronous implementation is discussed.
-1. Reading book [[https://www.goodreads.com/book/show/400716.Introduction_to_the_Theory_of_Computation]['Introduction to the Theory of Computation']]
-1. Working through [[https://lagunita.stanford.edu/courses/Engineering/Compilers/Fall2014/courseware/ed92b25157d94fbe9874370673ca0a58/][Compilers course]]
+1. Working on making HTTP server from scratch in Clojure.
+   - Learning Clojure
+   - Reading [[http://www.braveclojure.com/][Brave Clojure]]
+1. Reading [[http://greenteapress.com/wp/semaphores/][The Little Book of Semaphores]]
+1. Working through 1^st semester for MS at [[http://www.ufl.edu/][UF]]
 
 This /now page is inspired by [[http://sivers.org/nowff][Derek Sivers. What are you working on?]].

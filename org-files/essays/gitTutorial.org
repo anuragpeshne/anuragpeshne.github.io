@@ -124,6 +124,7 @@
    - *Staging Area*: It's just a file (~.git/index~) which stores information about
      what will go into the next commit.
 
+* Basic Commands
 
 * Not So Basic Commands
 
