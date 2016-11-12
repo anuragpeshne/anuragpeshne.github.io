@@ -1,6 +1,6 @@
 #+TITLE: BrainDump: Anurag Peshne
 #+OPTIONS: toc:nil num:nil creator:t author:nil timestamp:nil
-#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/style.css" />
 #+INCLUDE: "../assets/ga.org"
 #+EXPORT_OPTIONS: comments:t

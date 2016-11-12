@@ -2,7 +2,7 @@
 #+DATE: 2016-03-30
 #+OPTIONS: toc:nil num:nil creator:t author:t tex:nil date:t timestamp:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
-#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 #+HTML_HEAD: <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 #+HTML_HEAD: <script src="/js/keywords/drawGraph.js"></script>
 #+FILETAGS:  :keywords:programming-languages:
