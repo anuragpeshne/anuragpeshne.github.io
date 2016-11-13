@@ -9,12 +9,13 @@ argument—but the definition is vague, overlapping with those of an article, a
 pamphlet, and a short story.
 -- [[https://en.wikipedia.org/wiki/Essay][Wiki]]
 #+END_VERSE
-|------------+----------------------|
-|       Date | Essay                |
-|------------+----------------------|
-| 2016-07-20 | [[file:./gitTutorial.org][Git Tutorial]]         |
-| 2016-05-19 | [[file:./permissions101.org][Unix Permissions 101]] |
-| 2016-03-30 | [[file:./keywords.org][Keywords]]             |
-| 2016-03-19 | [[file:emacsSpeed.org][Speeding Up Emacs]]    |
-| 2016-02-07 | [[file:asynchronous.org][Asyncrhonous]]         |
-|------------+----------------------|
+|------------+-----------------------------------------|
+|       Date | Essay                                   |
+|------------+-----------------------------------------|
+| 2016-10-30 | [[file:./tcp2c10k.org][TCP to C10k: HTTP Server Implementation]] |
+| 2016-07-20 | [[file:./gitTutorial.org][Git Tutorial]]                            |
+| 2016-05-19 | [[file:./permissions101.org][Unix Permissions 101]]                    |
+| 2016-03-30 | [[file:./keywords.org][Keywords]]                                |
+| 2016-03-19 | [[file:emacsSpeed.org][Speeding Up Emacs]]                       |
+| 2016-02-07 | [[file:asynchronous.org][Asyncrhonous]]                            |
+|------------+-----------------------------------------|
