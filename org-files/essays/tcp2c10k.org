@@ -6,17 +6,19 @@
 #+FILETAGS:  :http:tcp:c10k
 
 #+INCLUDE: "../../assets/ga.org"
-#+HTML: <div id="draftTag">DRAFT</div>
 
 * Brief Background
-  To become a wise software engineer, one must implement at least 3 of the following
+  Here's my bucket list for next couple of years: the things which I want to make
   from scratch:
   - A Compiler
   - A Web Server
   - A Text Editor
   - Something that runs on bare metal; (maybe an OS)
 
-  This is my attempt to take on the 2^nd item in the list.
+  It's over 4 months since I started with grad school at [[https://ufl.edu][UF]]. With the Networking
+  and Concurrent Programming courses this semester, implementing a web server seemed
+  the most natural step forward. This is my attempt to take on the 2^nd item in
+  the list.
 
 ** Why Clojure
    I considered Haskell, Clojure and Python to build this project. Since this can
@@ -24,15 +26,15 @@
    Clojure over Haskell, because:
    - Clojure is a Lisp; I was craving to write some Lisp after [[https://mitpress.mit.edu/books/little-schemer][Little Schemer]]
    - [[https://www.infoq.com/author/Rich-Hickey][Rich Hickey]]
-   - [[https://news.ycombinator.com/item?id=4122764][Couple]] of [[https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell][threads]] mentioned Clojure to be more 'practical'
+   - [[https://news.ycombinator.com/item?id=4122764][Couple]] of [[https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell][threads]] mentioning Clojure to be more 'practical'
 
-   Clojure is turning out to be a great decision.
+   As of now, Clojure is turning out to be a great decision.
 
 * About
   I'm planning to use this essay as a journal to the project [[https://github.com/anuragpeshne/httpj][httpj]].  I'll record the
   achievements and lessons learned in a diary fashion so that this may help
   someone else to implement a HTTP server and most importantly, help me remember
-  things I learned. 'Adventures of HTTP server Implementation' would have been
+  things I learned. 'Adventures of HTTP Server Implementation' would have been
   more appropriate title for this essay. Just another note, I'm more interested
   in making a concurrent server than a perfect HTTP compliant server. Thus, I'll
   favor implementations that result in simpler, faster server than complete RFC
@@ -50,3 +52,26 @@
 ** Concurrent Connections
    SCHEDULED: <2016-11-05 Sat>
    The next logical step was to make it accept multiple concurrent TCP connections.
+   And the Java thing to do would have been to create a new thread to handle the new
+   connection. Creating thread takes time and resources, it's better to use a thread
+   pool (something similar to ~[[https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html][ThreadPoolExecutor]]~) to manage and reuse threads to handle
+   the clients. We could then use /Java Interop/ feature of Clojure to port this to
+   Clojure.
+
+   I went to through the chapter [[http://www.braveclojure.com/concurrency/][Concurrency]] of the book Clojure for the brave and true and
+   found out various other methods to make the program concurrent. The first and the
+   most easiest way is to create a ~[[https://clojuredocs.org/clojure.core/future][future]]~ object. Right now, to get the project started
+   we'll use this construct; but we'll revisit concurrency after we have worked on
+   the protocol implementation to a fair extent.
+
+*** TODO Persistent Data Structure
+
+** HTTP request and response
+*** Parsing GET request
+**** Looping: ~loop - recur~ construct
+*** Generating response
+**** HTTP 1.0 v/s HTTP 1.1
+***** ~Content-Length~ and socket close.
+**** Thread first macro, ~->~
+** File Server
+   A subject so complicated, it needs a level 2 heading.

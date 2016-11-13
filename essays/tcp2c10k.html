@@ -156,23 +156,33 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgheadline3">About</a></li>
-<li><a href="#orgheadline6">Getting Started</a>
+<li><a href="#orgheadline15">Getting Started</a>
 <ul>
 <li><a href="#orgheadline4">Echo Server</a></li>
-<li><a href="#orgheadline5">Concurrent Connections</a></li>
+<li><a href="#orgheadline5">Concurrent Connections</a>
+<ul>
+<li><a href="#orgheadline6"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">HTTP request and response</a>
+<ul>
+<li><a href="#orgheadline8">Parsing GET request</a></li>
+<li><a href="#orgheadline12">Generating response</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline14">File Server</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-<div id="draftTag">DRAFT</div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">Brief Background</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-To become a wise software engineer, one must implement at least 3 of the following
+Here's my bucket list for next couple of years: the things which I want to make
 from scratch:
 </p>
 <ul class="org-ul">
@@ -183,7 +193,10 @@ from scratch:
 </ul>
 
 <p>
-This is my attempt to take on the 2<sup>nd</sup> item in the list.
+It's over 4 months since I started with grad school at <a href="https://ufl.edu">UF</a>. With the Networking
+and Concurrent Programming courses this semester, implementing a web server seemed
+the most natural step forward. This is my attempt to take on the 2<sup>nd</sup> item in
+the list.
 </p>
 </div>
 
@@ -198,11 +211,11 @@ Clojure over Haskell, because:
 <ul class="org-ul">
 <li>Clojure is a Lisp; I was craving to write some Lisp after <a href="https://mitpress.mit.edu/books/little-schemer">Little Schemer</a></li>
 <li><a href="https://www.infoq.com/author/Rich-Hickey">Rich Hickey</a></li>
-<li><a href="https://news.ycombinator.com/item?id=4122764">Couple</a> of <a href="https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell">threads</a> mentioned Clojure to be more 'practical'</li>
+<li><a href="https://news.ycombinator.com/item?id=4122764">Couple</a> of <a href="https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell">threads</a> mentioning Clojure to be more 'practical'</li>
 </ul>
 
 <p>
-Clojure is turning out to be a great decision.
+As of now, Clojure is turning out to be a great decision.
 </p>
 </div>
 </div>
@@ -215,7 +228,7 @@ Clojure is turning out to be a great decision.
 I'm planning to use this essay as a journal to the project <a href="https://github.com/anuragpeshne/httpj">httpj</a>.  I'll record the
 achievements and lessons learned in a diary fashion so that this may help
 someone else to implement a HTTP server and most importantly, help me remember
-things I learned. 'Adventures of HTTP server Implementation' would have been
+things I learned. 'Adventures of HTTP Server Implementation' would have been
 more appropriate title for this essay. Just another note, I'm more interested
 in making a concurrent server than a perfect HTTP compliant server. Thus, I'll
 favor implementations that result in simpler, faster server than complete RFC
@@ -224,9 +237,9 @@ compliant server. I'm using <a href="https://trello.com/b/wAJJ79cc/httpj">this b
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">Getting Started</h2>
-<div class="outline-text-2" id="text-orgheadline6">
+<div id="outline-container-orgheadline15" class="outline-2">
+<h2 id="orgheadline15">Getting Started</h2>
+<div class="outline-text-2" id="text-orgheadline15">
 </div><div id="outline-container-orgheadline4" class="outline-3">
 <h3 id="orgheadline4">Echo Server</h3>
 <div class="outline-text-3" id="text-orgheadline4">
@@ -247,6 +260,47 @@ a good exercise to get acquainted with the Clojure syntax.
 <div class="outline-text-3" id="text-orgheadline5">
 <p>
 The next logical step was to make it accept multiple concurrent TCP connections.
+And the Java thing to do would have been to create a new thread to handle the new
+connection. Creating thread takes time and resources, it's better to use a thread
+pool (something similar to <code>[[https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html][ThreadPoolExecutor]]</code>) to manage and reuse threads to handle
+the clients. We could then use <i>Java Interop</i> feature of Clojure to port this to
+Clojure.
+</p>
+
+<p>
+I went to through the chapter <a href="http://www.braveclojure.com/concurrency/">Concurrency</a> of the book Clojure for the brave and true and
+found out various other methods to make the program concurrent. The first and the
+most easiest way is to create a <code>[[https://clojuredocs.org/clojure.core/future][future]]</code> object. Right now, to get the project started
+we'll use this construct; but we'll revisit concurrency after we have worked on
+the protocol implementation to a fair extent.
+</p>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13">HTTP request and response</h3>
+<div class="outline-text-3" id="text-orgheadline13">
+</div><div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">Parsing GET request</h4>
+<div class="outline-text-4" id="text-orgheadline8">
+</div><ul class="org-ul"><li><a id="orgheadline7"></a>Looping: <code>loop - recur</code> construct<br  /></li></ul>
+</div>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">Generating response</h4>
+<div class="outline-text-4" id="text-orgheadline12">
+</div><ul class="org-ul"><li><a id="orgheadline10"></a>HTTP 1.0 v/s HTTP 1.1<br  /><ul class="org-ul"><li><a id="orgheadline9"></a><code>Content-Length</code> and socket close.<br  /></li></ul></li>
+<li><a id="orgheadline11"></a>Thread first macro, <code>-&gt;</code><br  /></li></ul>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14">File Server</h3>
+<div class="outline-text-3" id="text-orgheadline14">
+<p>
+A subject so complicated, it needs a level 2 heading.
 </p>
 </div>
 </div>
