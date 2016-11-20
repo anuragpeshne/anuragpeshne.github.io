@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>tcp to c10k</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Anurag Peshne" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -52,13 +52,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -91,6 +175,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -150,27 +235,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Brief Background</a>
+<li><a href="#orgd1dd4a7">Brief Background</a>
 <ul>
-<li><a href="#orgheadline2">Why Clojure</a></li>
+<li><a href="#org6fa6b08">Why Clojure</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline3">About</a></li>
-<li><a href="#orgheadline15">Getting Started</a>
+<li><a href="#org871ce24">About this essay</a></li>
+<li><a href="#org86d0b0a">Getting Started</a>
 <ul>
-<li><a href="#orgheadline4">Echo Server</a></li>
-<li><a href="#orgheadline5">Concurrent Connections</a>
+<li><a href="#orgd65d52d">Echo Server</a></li>
+<li><a href="#org1d96fa1">Concurrent Connections</a>
 <ul>
-<li><a href="#orgheadline6"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
+<li><a href="#orgd63b99c"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline13">HTTP request and response</a>
+<li><a href="#orgf9b5338">HTTP request and response</a>
 <ul>
-<li><a href="#orgheadline8">Parsing GET request</a></li>
-<li><a href="#orgheadline12">Generating response</a></li>
+<li><a href="#orgc45df0e">Let's server HTTP!</a></li>
+<li><a href="#orgbc8e09f">Parsing <code>GET</code> request</a></li>
+<li><a href="#org75daa11">Generating response</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">File Server</a></li>
+<li><a href="#orgf395c93">File Server</a></li>
 </ul>
 </li>
 </ul>
@@ -178,38 +264,35 @@ for the JavaScript code in this tag.
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Brief Background</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgd1dd4a7" class="outline-2">
+<h2 id="orgd1dd4a7">Brief Background</h2>
+<div class="outline-text-2" id="text-orgd1dd4a7">
 <p>
-Here's my bucket list for next couple of years: the things which I want to make
-from scratch:
+Get's get straight to the point, here's my bucket list for next couple of years:
+the things which I want to build from scratch:
 </p>
 <ul class="org-ul">
 <li>A Compiler</li>
 <li>A Web Server</li>
-<li>A Text Editor</li>
-<li>Something that runs on bare metal; (maybe an OS)</li>
+<li>Something that runs on bare metal; (maybe a super primitive OS)</li>
 </ul>
 
 <p>
 It's over 4 months since I started with grad school at <a href="https://ufl.edu">UF</a>. With the Networking
-and Concurrent Programming courses this semester, implementing a web server seemed
-the most natural step forward. This is my attempt to take on the 2<sup>nd</sup> item in
-the list.
+and Concurrent Programming courses this semester, implementing a web server seems
+the most natural choice. This is my attempt to take on the 2<sup>nd</sup> item in the list.
 </p>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">Why Clojure</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org6fa6b08" class="outline-3">
+<h3 id="org6fa6b08">Why Clojure</h3>
+<div class="outline-text-3" id="text-org6fa6b08">
 <p>
-I considered Haskell, Clojure and Python to build this project. Since this can
-be a great opportunity to learn a new language, Python was ruled out. I chose
-Clojure over Haskell, because:
+Since this is a great opportunity to learn a new language, I considered Haskell,
+and Clojure for this project.I chose Clojure over Haskell, because:
 </p>
 <ul class="org-ul">
-<li>Clojure is a Lisp; I was craving to write some Lisp after <a href="https://mitpress.mit.edu/books/little-schemer">Little Schemer</a></li>
+<li>Clojure is a Lisp; It's long since I worked through <a href="https://mitpress.mit.edu/books/little-schemer">Little Schemer</a> and I was craving to write some Lisp</li>
 <li><a href="https://www.infoq.com/author/Rich-Hickey">Rich Hickey</a></li>
 <li><a href="https://news.ycombinator.com/item?id=4122764">Couple</a> of <a href="https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell">threads</a> mentioning Clojure to be more 'practical'</li>
 </ul>
@@ -221,32 +304,33 @@ As of now, Clojure is turning out to be a great decision.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">About</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-org871ce24" class="outline-2">
+<h2 id="org871ce24">About this essay</h2>
+<div class="outline-text-2" id="text-org871ce24">
 <p>
 I'm planning to use this essay as a journal to the project <a href="https://github.com/anuragpeshne/httpj">httpj</a>.  I'll record the
 achievements and lessons learned in a diary fashion so that this may help
 someone else to implement a HTTP server and most importantly, help me remember
-things I learned. 'Adventures of HTTP Server Implementation' would have been
+things I learned. '<i>Adventures of HTTP Server Implementation</i>' would have been
 more appropriate title for this essay. Just another note, I'm more interested
-in making a concurrent server than a perfect HTTP compliant server. Thus, I'll
-favor implementations that result in simpler, faster server than complete RFC
-compliant server. I'm using <a href="https://trello.com/b/wAJJ79cc/httpj">this board</a> to manage tasks.
+in making a concurrent server than a perfect HTTP specification compliant server.
+Thus, I'll favor implementations that result in simpler, faster server than complete
+RFC compliant server. I'm using <a href="https://trello.com/b/wAJJ79cc/httpj">this board</a> to manage tasks.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-2">
-<h2 id="orgheadline15">Getting Started</h2>
-<div class="outline-text-2" id="text-orgheadline15">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Echo Server</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org86d0b0a" class="outline-2">
+<h2 id="org86d0b0a">Getting Started</h2>
+<div class="outline-text-2" id="text-org86d0b0a">
+</div><div id="outline-container-orgd65d52d" class="outline-3">
+<h3 id="orgd65d52d">Echo Server</h3>
+<div class="outline-text-3" id="text-orgd65d52d">
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp">&lt;2016-11-02 Wed&gt;</span></span></p>
 <p>
 The first stage is to make a simple server which accepts TCP connection and
 simply echos back everything sent to it. This was pretty straight forward, but
-a good exercise to get acquainted with the Clojure syntax.
+a good exercise to get acquainted with the Clojure syntax and <a href="http://clojure.org/reference/java_interop">Java interop</a>.
 </p>
 
 <p>
@@ -255,57 +339,148 @@ a good exercise to get acquainted with the Clojure syntax.
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Concurrent Connections</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org1d96fa1" class="outline-3">
+<h3 id="org1d96fa1">Concurrent Connections</h3>
+<div class="outline-text-3" id="text-org1d96fa1">
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp">&lt;2016-11-05 Sat&gt;</span></span></p>
 <p>
 The next logical step was to make it accept multiple concurrent TCP connections.
 And the Java thing to do would have been to create a new thread to handle the new
-connection. Creating thread takes time and resources, it's better to use a thread
-pool (something similar to <code>[[https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html][ThreadPoolExecutor]]</code>) to manage and reuse threads to handle
-the clients. We could then use <i>Java Interop</i> feature of Clojure to port this to
+connection. Creating thread takes time and resources, and hence thread pool (something
+similar to <code>ThreadPoolExecutor</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>) to manage and reuse threads to handle the clients
+is recommended. We can use <i>Java Interop</i> feature of Clojure to port this to
 Clojure.
 </p>
 
 <p>
-I went to through the chapter <a href="http://www.braveclojure.com/concurrency/">Concurrency</a> of the book Clojure for the brave and true and
-found out various other methods to make the program concurrent. The first and the
-most easiest way is to create a <code>[[https://clojuredocs.org/clojure.core/future][future]]</code> object. Right now, to get the project started
+I went to through the chapter <a href="http://www.braveclojure.com/concurrency/">Concurrency</a> of the book 'Clojure for the brave and
+true' and found out various ways to make the program concurrent. The first and the
+easiest way is to create a <a href="https://clojuredocs.org/clojure.core/future">future</a> object. Right now, to get the project started
 we'll use this construct; but we'll revisit concurrency after we have worked on
 the protocol implementation to a fair extent.
 </p>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
+<div id="outline-container-orgd63b99c" class="outline-4">
+<h4 id="orgd63b99c"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">HTTP request and response</h3>
-<div class="outline-text-3" id="text-orgheadline13">
-</div><div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">Parsing GET request</h4>
-<div class="outline-text-4" id="text-orgheadline8">
-</div><ul class="org-ul"><li><a id="orgheadline7"></a>Looping: <code>loop - recur</code> construct<br  /></li></ul>
+<div id="outline-container-orgf9b5338" class="outline-3">
+<h3 id="orgf9b5338">HTTP request and response</h3>
+<div class="outline-text-3" id="text-orgf9b5338">
+<p>
+Right now, our server does nothing interesting other than greeting the world.
+Let's change that; let's parse the request and try to figure out what client
+is requesting. Since we are trying to make a static server, most of our requests
+would be <code>GET</code> request, so let's start with them<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+</p>
+
+<p>
+A <code>GET</code> request has a structure similar to<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>:
+</p>
+<div class="org-src-container">
+<pre class="src src-html">GET /html/index.html HTTP/1.1
+Host: localhost:8080
+User-Agent: curl/7.49.1
+Accept: */*
+&lt;<span style="color: #93E0E3;">CRLF</span>&gt;
+</pre>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">Generating response</h4>
-<div class="outline-text-4" id="text-orgheadline12">
-</div><ul class="org-ul"><li><a id="orgheadline10"></a>HTTP 1.0 v/s HTTP 1.1<br  /><ul class="org-ul"><li><a id="orgheadline9"></a><code>Content-Length</code> and socket close.<br  /></li></ul></li>
-<li><a id="orgheadline11"></a>Thread first macro, <code>-&gt;</code><br  /></li></ul>
+<p>
+In general the HTTP request format consists of an initial line followed by several
+headers in <code>key: value</code> format, followed by <code>CRLF</code> (carriage return <code>\r</code> and
+line feed <code>\n</code>) and then followed by message body (which may contain data for
+<code>POST</code> method).
+</p>
+
+<p>
+Other HTTP requests, such as <code>POST</code>, and HTTP response have similar format with
+some differences in number and type of headers.
+</p>
+
+<p>
+If HTTP/1.0 is used, it's easy to know the end of request/response; socket is
+closed after each transfer, which makes implementing HTTP server and client a
+bit easy but makes the whole process a lot in efficient<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>.
+</p>
+</div>
+
+<div id="outline-container-orgc45df0e" class="outline-4">
+<h4 id="orgc45df0e">Let's server HTTP!</h4>
+<div class="outline-text-4" id="text-orgc45df0e">
+<p>
+Now that we know the request and response format, we can start servering HTTP,
+and by serve, I literally mean <b>serve</b> HTTP.
+We can use <code>nc</code><sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup> to manually talk HTTP:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">nc -lk 8080
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">-l make nc *listen* to socket</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">-k nc keep listening</span>
+
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">now point browser to 'http://localhost:8080'</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">browser blocks, and we can see the request browser made on nc stdout</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">type in HTTP response directly into nc</span>
+HTTP/1.1 200 OK
+Content-Length: 12
+
+Hello World
+
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">after the last blank line, the loading gears in browsers should stop and</span>
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">'Hello World' should appear on browser!</span>
+</pre>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">File Server</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+</div>
+<div id="outline-container-orgbc8e09f" class="outline-4">
+<h4 id="orgbc8e09f">Parsing <code>GET</code> request</h4>
+<div class="outline-text-4" id="text-orgbc8e09f">
+</div><ul class="org-ul"><li><a id="org069d3da"></a>Looping: <code>loop - recur</code> construct<br  /></li></ul>
+</div>
+<div id="outline-container-org75daa11" class="outline-4">
+<h4 id="org75daa11">Generating response</h4>
+<div class="outline-text-4" id="text-org75daa11">
+</div><ul class="org-ul"><li><a id="org50174da"></a>HTTP 1.0 v/s HTTP 1.1<br  /><ul class="org-ul"><li><a id="orgec16767"></a><code>Content-Length</code> and socket close.<br  /></li></ul></li>
+<li><a id="org89ee2f0"></a>Thread first macro, <code>-&gt;</code><br  /></li></ul>
+</div>
+</div>
+<div id="outline-container-orgf395c93" class="outline-3">
+<h3 id="orgf395c93">File Server</h3>
+<div class="outline-text-3" id="text-orgf395c93">
 <p>
 A subject so complicated, it needs a level 2 heading.
 </p>
 </div>
 </div>
 </div>
-<div id="disqus_thread"></div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html">Java Docs</a> for <code>Threadpoolexecutor</code>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+I'm following along <a href="http://www.jmarshall.com/easy/http/">this</a>, brilliant yet very simple HTTP tutorial.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">RFC 2616</a> HTTP request format
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_establishment">TCP Connection establishment</a> is a long process. Hello; (Hello) Acknowledged; (Hello Acknowledged) Acknowledged.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+man pages describe <code>nc</code> as: <code>arbitrary TCP and UDP connections and listens</code>. It pipes socket to <code>stdin</code> and <code>stdout</code>
+</p></div></div>
+
+
+</div>
+</div><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/tcp2c10k.html";
@@ -324,7 +499,7 @@ this.page.identifier = "/essays/tcp2c10k.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-10-30</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.3.6)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
