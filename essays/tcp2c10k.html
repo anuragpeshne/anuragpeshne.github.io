@@ -235,28 +235,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd1dd4a7">Brief Background</a>
+<li><a href="#org85f6b99">Brief Background</a>
 <ul>
-<li><a href="#org6fa6b08">Why Clojure</a></li>
+<li><a href="#orgfc16395">Why Clojure</a></li>
 </ul>
 </li>
-<li><a href="#org871ce24">About this essay</a></li>
-<li><a href="#org86d0b0a">Getting Started</a>
+<li><a href="#org5176ac9">About this essay</a></li>
+<li><a href="#org5e6d1ee">Getting Started</a>
 <ul>
-<li><a href="#orgd65d52d">Echo Server</a></li>
-<li><a href="#org1d96fa1">Concurrent Connections</a>
+<li><a href="#org6e300a2">Echo Server</a></li>
+<li><a href="#orgf5baefb">Concurrent Connections</a>
 <ul>
-<li><a href="#orgd63b99c"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
+<li><a href="#org0cb2d9c"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
 </ul>
 </li>
-<li><a href="#orgf9b5338">HTTP request and response</a>
+<li><a href="#orgd900930">HTTP request and response</a>
 <ul>
-<li><a href="#orgc45df0e">Let's server HTTP!</a></li>
-<li><a href="#orgbc8e09f">Parsing <code>GET</code> request</a></li>
-<li><a href="#org75daa11">Generating response</a></li>
+<li><a href="#org7070481">Let's serve HTTP!</a></li>
+<li><a href="#org0598860">Parsing <code>GET</code> request</a></li>
+<li><a href="#org11c67fd">Generating response</a></li>
 </ul>
 </li>
-<li><a href="#orgf395c93">File Server</a></li>
+<li><a href="#org58bc71e">File Server</a></li>
 </ul>
 </li>
 </ul>
@@ -264,9 +264,9 @@ for the JavaScript code in this tag.
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-orgd1dd4a7" class="outline-2">
-<h2 id="orgd1dd4a7">Brief Background</h2>
-<div class="outline-text-2" id="text-orgd1dd4a7">
+<div id="outline-container-org85f6b99" class="outline-2">
+<h2 id="org85f6b99">Brief Background</h2>
+<div class="outline-text-2" id="text-org85f6b99">
 <p>
 Get's get straight to the point, here's my bucket list for next couple of years:
 the things which I want to build from scratch:
@@ -284,17 +284,17 @@ the most natural choice. This is my attempt to take on the 2<sup>nd</sup> item i
 </p>
 </div>
 
-<div id="outline-container-org6fa6b08" class="outline-3">
-<h3 id="org6fa6b08">Why Clojure</h3>
-<div class="outline-text-3" id="text-org6fa6b08">
+<div id="outline-container-orgfc16395" class="outline-3">
+<h3 id="orgfc16395">Why Clojure</h3>
+<div class="outline-text-3" id="text-orgfc16395">
 <p>
-Since this is a great opportunity to learn a new language, I considered Haskell,
-and Clojure for this project.I chose Clojure over Haskell, because:
+Since this is a great opportunity to learn a new language, I considered Haskell
+and Clojure to implement this project.I chose Clojure over Haskell<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, because:
 </p>
 <ul class="org-ul">
 <li>Clojure is a Lisp; It's long since I worked through <a href="https://mitpress.mit.edu/books/little-schemer">Little Schemer</a> and I was craving to write some Lisp</li>
 <li><a href="https://www.infoq.com/author/Rich-Hickey">Rich Hickey</a></li>
-<li><a href="https://news.ycombinator.com/item?id=4122764">Couple</a> of <a href="https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell">threads</a> mentioning Clojure to be more 'practical'</li>
+<li><a href="https://news.ycombinator.com/item?id=4122764">Couple</a> of <a href="https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell">threads</a> mentioning Clojure to be more 'practical'<sup><a id="fnr.1.100" class="footref" href="#fn.1">1</a></sup></li>
 </ul>
 
 <p>
@@ -304,9 +304,9 @@ As of now, Clojure is turning out to be a great decision.
 </div>
 </div>
 
-<div id="outline-container-org871ce24" class="outline-2">
-<h2 id="org871ce24">About this essay</h2>
-<div class="outline-text-2" id="text-org871ce24">
+<div id="outline-container-org5176ac9" class="outline-2">
+<h2 id="org5176ac9">About this essay</h2>
+<div class="outline-text-2" id="text-org5176ac9">
 <p>
 I'm planning to use this essay as a journal to the project <a href="https://github.com/anuragpeshne/httpj">httpj</a>.  I'll record the
 achievements and lessons learned in a diary fashion so that this may help
@@ -320,12 +320,12 @@ RFC compliant server. I'm using <a href="https://trello.com/b/wAJJ79cc/httpj">th
 </div>
 </div>
 
-<div id="outline-container-org86d0b0a" class="outline-2">
-<h2 id="org86d0b0a">Getting Started</h2>
-<div class="outline-text-2" id="text-org86d0b0a">
-</div><div id="outline-container-orgd65d52d" class="outline-3">
-<h3 id="orgd65d52d">Echo Server</h3>
-<div class="outline-text-3" id="text-orgd65d52d">
+<div id="outline-container-org5e6d1ee" class="outline-2">
+<h2 id="org5e6d1ee">Getting Started</h2>
+<div class="outline-text-2" id="text-org5e6d1ee">
+</div><div id="outline-container-org6e300a2" class="outline-3">
+<h3 id="org6e300a2">Echo Server</h3>
+<div class="outline-text-3" id="text-org6e300a2">
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp">&lt;2016-11-02 Wed&gt;</span></span></p>
 <p>
 The first stage is to make a simple server which accepts TCP connection and
@@ -339,15 +339,15 @@ a good exercise to get acquainted with the Clojure syntax and <a href="http://cl
 </div>
 </div>
 
-<div id="outline-container-org1d96fa1" class="outline-3">
-<h3 id="org1d96fa1">Concurrent Connections</h3>
-<div class="outline-text-3" id="text-org1d96fa1">
+<div id="outline-container-orgf5baefb" class="outline-3">
+<h3 id="orgf5baefb">Concurrent Connections</h3>
+<div class="outline-text-3" id="text-orgf5baefb">
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp">&lt;2016-11-05 Sat&gt;</span></span></p>
 <p>
 The next logical step was to make it accept multiple concurrent TCP connections.
 And the Java thing to do would have been to create a new thread to handle the new
 connection. Creating thread takes time and resources, and hence thread pool (something
-similar to <code>ThreadPoolExecutor</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>) to manage and reuse threads to handle the clients
+similar to <code>ThreadPoolExecutor</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>) to manage and reuse threads to handle the clients
 is recommended. We can use <i>Java Interop</i> feature of Clojure to port this to
 Clojure.
 </p>
@@ -361,23 +361,23 @@ the protocol implementation to a fair extent.
 </p>
 </div>
 
-<div id="outline-container-orgd63b99c" class="outline-4">
-<h4 id="orgd63b99c"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
+<div id="outline-container-org0cb2d9c" class="outline-4">
+<h4 id="org0cb2d9c"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
 </div>
 </div>
 
-<div id="outline-container-orgf9b5338" class="outline-3">
-<h3 id="orgf9b5338">HTTP request and response</h3>
-<div class="outline-text-3" id="text-orgf9b5338">
+<div id="outline-container-orgd900930" class="outline-3">
+<h3 id="orgd900930">HTTP request and response</h3>
+<div class="outline-text-3" id="text-orgd900930">
 <p>
 Right now, our server does nothing interesting other than greeting the world.
 Let's change that; let's parse the request and try to figure out what client
 is requesting. Since we are trying to make a static server, most of our requests
-would be <code>GET</code> request, so let's start with them<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+would be <code>GET</code> request, so let's start with them<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
 </p>
 
 <p>
-A <code>GET</code> request has a structure similar to<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>:
+A <code>GET</code> request has a structure similar to<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>:
 </p>
 <div class="org-src-container">
 <pre class="src src-html">GET /html/index.html HTTP/1.1
@@ -402,20 +402,20 @@ some differences in number and type of headers.
 <p>
 If HTTP/1.0 is used, it's easy to know the end of request/response; socket is
 closed after each transfer, which makes implementing HTTP server and client a
-bit easy but makes the whole process a lot in efficient<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>.
+bit easy but makes the whole process a lot in efficient<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>.
 </p>
 </div>
 
-<div id="outline-container-orgc45df0e" class="outline-4">
-<h4 id="orgc45df0e">Let's server HTTP!</h4>
-<div class="outline-text-4" id="text-orgc45df0e">
+<div id="outline-container-org7070481" class="outline-4">
+<h4 id="org7070481">Let's serve HTTP!</h4>
+<div class="outline-text-4" id="text-org7070481">
 <p>
 Now that we know the request and response format, we can start servering HTTP,
 and by serve, I literally mean <b>serve</b> HTTP.
-We can use <code>nc</code><sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup> to manually talk HTTP:
+We can use <code>nc</code><sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup> to manually talk HTTP:
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">nc -lk 8080
+<pre class="src src-bash">$ nc -lk 8080
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">-l make nc *listen* to socket</span>
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">-k nc keep listening</span>
 
@@ -433,21 +433,46 @@ Hello World
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc8e09f" class="outline-4">
-<h4 id="orgbc8e09f">Parsing <code>GET</code> request</h4>
-<div class="outline-text-4" id="text-orgbc8e09f">
-</div><ul class="org-ul"><li><a id="org069d3da"></a>Looping: <code>loop - recur</code> construct<br  /></li></ul>
+<div id="outline-container-org0598860" class="outline-4">
+<h4 id="org0598860">Parsing <code>GET</code> request</h4>
+<div class="outline-text-4" id="text-org0598860">
+<p>
+<code>parse-request</code> parses the HTTP request and returns a map <code>{:headLine :headers}</code>
+where <code>headers</code> in itself is map. Parsing is straightforward splitting the string
+over <code>": "</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-Clojure">(defn parse-reqest
+"parses and returns request obj"
+[in]
+(let [inp (line-seq in)
+      head-line (parse-head-line (first inp))
+      headers (loop [cur-inp (rest inp) list []]
+                (if (or (= (first cur-inp) "") (nil? (first cur-inp))) list
+                    (recur (rest cur-inp)
+                           (conj list (apply hash-map
+                                             (str/split (first cur-inp) #": "))))))]
+</pre>
 </div>
-<div id="outline-container-org75daa11" class="outline-4">
-<h4 id="org75daa11">Generating response</h4>
-<div class="outline-text-4" id="text-org75daa11">
-</div><ul class="org-ul"><li><a id="org50174da"></a>HTTP 1.0 v/s HTTP 1.1<br  /><ul class="org-ul"><li><a id="orgec16767"></a><code>Content-Length</code> and socket close.<br  /></li></ul></li>
-<li><a id="org89ee2f0"></a>Thread first macro, <code>-&gt;</code><br  /></li></ul>
+<p>
+Most of the code is obvious. The only thing which isn't is <code>loop - recur</code> construct.
+<code>line-seq</code> returns a lazy sequence of lines from socket. We are recurring over
+the list (Lisp style), but instead of doing a function call, we are using this
+construct because Java doesn't provide tail call optimization<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup> and <code>recur</code> is a
+hack to save stacks.
+</p>
 </div>
 </div>
-<div id="outline-container-orgf395c93" class="outline-3">
-<h3 id="orgf395c93">File Server</h3>
-<div class="outline-text-3" id="text-orgf395c93">
+<div id="outline-container-org11c67fd" class="outline-4">
+<h4 id="org11c67fd">Generating response</h4>
+<div class="outline-text-4" id="text-org11c67fd">
+</div><ul class="org-ul"><li><a id="orgda0fa0a"></a>HTTP 1.0 v/s HTTP 1.1<br  /><ul class="org-ul"><li><a id="orgc922b1e"></a><code>Content-Length</code> and socket close.<br  /></li></ul></li>
+<li><a id="org3c39128"></a>Thread first macro, <code>-&gt;</code><br  /></li></ul>
+</div>
+</div>
+<div id="outline-container-org58bc71e" class="outline-3">
+<h3 id="org58bc71e">File Server</h3>
+<div class="outline-text-3" id="text-org58bc71e">
 <p>
 A subject so complicated, it needs a level 2 heading.
 </p>
@@ -459,23 +484,31 @@ A subject so complicated, it needs a level 2 heading.
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html">Java Docs</a> for <code>Threadpoolexecutor</code>
+Haskell is recommended if one wants to learn FP, so I'll build something else to learn it.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-I'm following along <a href="http://www.jmarshall.com/easy/http/">this</a>, brilliant yet very simple HTTP tutorial.
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html">Java Docs</a> for <code>Threadpoolexecutor</code>
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">RFC 2616</a> HTTP request format
+I'm following along <a href="http://www.jmarshall.com/easy/http/">this</a>, brilliant yet very simple HTTP tutorial.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_establishment">TCP Connection establishment</a> is a long process. Hello; (Hello) Acknowledged; (Hello Acknowledged) Acknowledged.
+<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">RFC 2616</a> HTTP request format
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_establishment">TCP Connection establishment</a> is a long process. Hello; (Hello) Acknowledged; (Hello Acknowledged) Acknowledged.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
 man pages describe <code>nc</code> as: <code>arbitrary TCP and UDP connections and listens</code>. It pipes socket to <code>stdin</code> and <code>stdout</code>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://youtu.be/2y5Pv4yN0b0?t=1h2m6s">Here</a> Brian Goetz mentions they are working to get tail call optimization to JVM (but not soon)
 </p></div></div>
 
 
