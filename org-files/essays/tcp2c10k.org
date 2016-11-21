@@ -19,11 +19,11 @@
   the most natural choice. This is my attempt to take on the 2^nd item in the list.
 
 ** Why Clojure
-   Since this is a great opportunity to learn a new language, I considered Haskell,
-   and Clojure for this project.I chose Clojure over Haskell, because:
+   Since this is a great opportunity to learn a new language, I considered Haskell
+   and Clojure to implement this project.I chose Clojure over Haskell[fn:0], because:
    - Clojure is a Lisp; It's long since I worked through [[https://mitpress.mit.edu/books/little-schemer][Little Schemer]] and I was craving to write some Lisp
    - [[https://www.infoq.com/author/Rich-Hickey][Rich Hickey]]
-   - [[https://news.ycombinator.com/item?id=4122764][Couple]] of [[https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell][threads]] mentioning Clojure to be more 'practical'
+   - [[https://news.ycombinator.com/item?id=4122764][Couple]] of [[https://www.quora.com/Which-power-programming-language-should-I-put-the-effort-into-learning-this-year-Clojure-or-Haskell][threads]] mentioning Clojure to be more 'practical'[fn:0]
 
    As of now, Clojure is turning out to be a great decision.
 
@@ -89,12 +89,12 @@
    closed after each transfer, which makes implementing HTTP server and client a
    bit easy but makes the whole process a lot in efficient[fn:4].
 
-*** Let's server HTTP!
+*** Let's serve HTTP!
     Now that we know the request and response format, we can start servering HTTP,
     and by serve, I literally mean *serve* HTTP.
     We can use ~nc~[fn:5] to manually talk HTTP:
     #+BEGIN_SRC bash
-    nc -lk 8080
+    $ nc -lk 8080
     # -l make nc *listen* to socket
     # -k nc keep listening
 
@@ -110,7 +110,26 @@
     # 'Hello World' should appear on browser!
     #+END_SRC
 *** Parsing ~GET~ request
-**** Looping: ~loop - recur~ construct
+    ~parse-request~ parses the HTTP request and returns a map ~{:headLine :headers}~
+    where ~headers~ in itself is map. Parsing is straightforward splitting the string
+    over ~": "~.
+    #+BEGIN_SRC Clojure
+    (defn parse-reqest
+    "parses and returns request obj"
+    [in]
+    (let [inp (line-seq in)
+          head-line (parse-head-line (first inp))
+          headers (loop [cur-inp (rest inp) list []]
+                    (if (or (= (first cur-inp) "") (nil? (first cur-inp))) list
+                        (recur (rest cur-inp)
+                               (conj list (apply hash-map
+                                                 (str/split (first cur-inp) #": "))))))]
+    #+END_SRC
+    Most of the code is obvious. The only thing which isn't is ~loop - recur~ construct.
+    ~line-seq~ returns a lazy sequence of lines from socket. We are recurring over
+    the list (Lisp style), but instead of doing a function call, we are using this
+    construct because Java doesn't provide tail call optimization[fn:6] and ~recur~ is a
+    hack to save stacks.
 *** Generating response
 **** HTTP 1.0 v/s HTTP 1.1
 ***** ~Content-Length~ and socket close.
@@ -118,8 +137,10 @@
 ** File Server
    A subject so complicated, it needs a level 2 heading.
 
+[fn:0] Haskell is recommended if one wants to learn FP, so I'll build something else to learn it.
 [fn:1] [[https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html][Java Docs]] for ~Threadpoolexecutor~
 [fn:2] I'm following along [[http://www.jmarshall.com/easy/http/][this]], brilliant yet very simple HTTP tutorial.
 [fn:3] [[https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html][RFC 2616]] HTTP request format
 [fn:4] [[https://en.wikipedia.org/wiki/Transmission_Control_Protocol#Connection_establishment][TCP Connection establishment]] is a long process. Hello; (Hello) Acknowledged; (Hello Acknowledged) Acknowledged.
 [fn:5] man pages describe ~nc~ as: ~arbitrary TCP and UDP connections and listens~. It pipes socket to ~stdin~ and ~stdout~
+[fn:6] [[https://youtu.be/2y5Pv4yN0b0?t=1h2m6s][Here]] Brian Goetz mentions they are working to get tail call optimization to JVM (but not soon)
