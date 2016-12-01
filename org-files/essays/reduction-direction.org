@@ -1,0 +1,37 @@
+#+TITLE: Reduction Direction for Hackers
+#+DATE: 2016-01-12
+#+OPTIONS: toc:t num:t creator:t author:t tex:t
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+#+FILETAGS:  :reduction:np:np-complete:np-hard:
+
+#+INCLUDE: "../../assets/ga.org"
+
+* A $\propto$ B or B $\propto$ A?
+To prove some problem is NP hard, we often reduct one the known NP hard problem
+to it. Sometimes, we get confused about the direction in which reduction works.
+This is a simple example, with no real life use except to help remember which problem
+should be reduced to which and what does reduction imply.
+
+* Finding min
+Suppose, given a list of integers, we want find the minimum integer in the list.
+Let's call this Min problem. We can find minimum in a list by sorting the list in
+non decreasing order and returning the first element. Thus we can code Min as:
+#+BEGIN_SRC python
+def Min(l):
+    sorted_list = sort(l)
+    return sorted_list[0]
+#+END_SRC
+
+Thus we have reduced Min to Sorting (Min $\propto$ Sort). Here we are not concerned
+about how ~sort~ is implemented, say it takes $\mathcal{O}n^2$. Thus clearly, it
+says nothing about hardness of Min; Min can be calculated by some other method in
+$\mathcal{O}n$.
+
+But, we have proved sorting is at least as hard as Min. Because, say if there was
+an algorithm which can sort in $\mathcal{O} \log n$, then we can use that to implement
+Min in $\mathcal{O} \log n$[fn:1]. But in an unsorted list, minimum bound for finding
+Min is $\mathcal{O} n$, thus this is a contradiction, sorting cannot be done in less
+than $\mathcal{O} n$.
+
+[fn:1]: note that our reduction is in $\mathcal{O}(1)$

@@ -124,6 +124,7 @@
                         (recur (rest cur-inp)
                                (conj list (apply hash-map
                                                  (str/split (first cur-inp) #": "))))))]
+      {:headLine head-line, :headers headers}))
     #+END_SRC
     Most of the code is obvious. The only thing which isn't is ~loop - recur~ construct.
     ~line-seq~ returns a lazy sequence of lines from socket. We are recurring over
