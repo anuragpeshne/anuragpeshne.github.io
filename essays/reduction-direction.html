@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-12-01 Thu 09:13 -->
+<!-- 2016-12-01 Thu 09:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reduction Direction for Hackers</title>
@@ -256,11 +256,11 @@ for the JavaScript code in this tag.
 <h1 class="title">Reduction Direction for Hackers</h1>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-orge6420ee" class="outline-2">
-<h2 id="orge6420ee">A \(\le\) B or B \(\le\) A?</h2>
-<div class="outline-text-2" id="text-orge6420ee">
+<div id="outline-container-org9b0b3aa" class="outline-2">
+<h2 id="org9b0b3aa">A \(\le\) B or B \(\le\) A?</h2>
+<div class="outline-text-2" id="text-org9b0b3aa">
 <p>
-To prove some problem is NP hard, we often reduct one the known NP hard problem
+To prove some problem is NP hard, we often reduce one the known NP hard problem
 to it. Sometimes, we get confused about the direction in which reduction works.
 This is a simple example, with no real life use except to help remember which problem
 should be reduced to which and what does reduction imply.
@@ -268,9 +268,9 @@ should be reduced to which and what does reduction imply.
 </div>
 </div>
 
-<div id="outline-container-org86887c6" class="outline-2">
-<h2 id="org86887c6">Finding min</h2>
-<div class="outline-text-2" id="text-org86887c6">
+<div id="outline-container-org4265311" class="outline-2">
+<h2 id="org4265311">Finding min</h2>
+<div class="outline-text-2" id="text-org4265311">
 <p>
 Suppose, given a list of integers, we want find the minimum integer in the list.
 Let's call this Min problem. We can find minimum in a list by sorting the list in
@@ -285,17 +285,17 @@ non decreasing order and returning the first element. Thus we can code Min as:
 
 <p>
 Thus we have reduced Min to Sorting (Min \(\le\) Sort). Here we are not concerned
-about how <code>sort</code> is implemented, say it takes \(\mathcal{O}n^2\). Thus clearly, it
+about how <code>sort</code> is implemented, say it takes \(\mathcal{O}(n^2)\). Thus clearly, it
 says nothing about hardness of Min; Min can be calculated by some other method in
-\(\mathcal{O}n\).
+\(\mathcal{O}(n)\).
 </p>
 
 <p>
 But, we have proved sorting is at least as hard as Min. Because, say if there was
-an algorithm which can sort in \(\mathcal{O} \log n\), then we can use that to implement
-Min in \(\mathcal{O} \log n\)<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. But in an unsorted list, minimum bound for finding
-Min is \(\mathcal{O} n\), thus this is a contradiction, sorting cannot be done in less
-than \(\mathcal{O} n\).
+an algorithm which can sort in \(\mathcal{O} (\log n)\), then we can use that to implement
+Min in \(\mathcal{O} (\log n)\)<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. But in an unsorted list, minimum bound for finding
+Min is \(\mathcal{O} (n)\), thus this is a contradiction, sorting cannot be done in less
+than \(\mathcal{O} (n)\).
 </p>
 </div>
 </div>
@@ -328,7 +328,7 @@ this.page.identifier = "/essays/reduction-direction.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-01-12</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2016-12-01 Thu 09:13</p>
+<p class="date">Created: 2016-12-01 Thu 09:17</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
