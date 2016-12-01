@@ -1,13 +1,13 @@
 #+TITLE: Reduction Direction for Hackers
 #+DATE: 2016-01-12
-#+OPTIONS: toc:t num:t creator:t author:t tex:t
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
 #+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 #+FILETAGS:  :reduction:np:np-complete:np-hard:
 
 #+INCLUDE: "../../assets/ga.org"
 
-* A $\propto$ B or B $\propto$ A?
+* A $\le$ B or B $\le$ A?
 To prove some problem is NP hard, we often reduct one the known NP hard problem
 to it. Sometimes, we get confused about the direction in which reduction works.
 This is a simple example, with no real life use except to help remember which problem
@@ -23,7 +23,7 @@ def Min(l):
     return sorted_list[0]
 #+END_SRC
 
-Thus we have reduced Min to Sorting (Min $\propto$ Sort). Here we are not concerned
+Thus we have reduced Min to Sorting (Min $\le$ Sort). Here we are not concerned
 about how ~sort~ is implemented, say it takes $\mathcal{O}n^2$. Thus clearly, it
 says nothing about hardness of Min; Min can be calculated by some other method in
 $\mathcal{O}n$.
