@@ -1,0 +1,1516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-04-05 Wed 22:11 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computer Networks</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/notes/computerNetwork.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Computer Networks</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb0d6595">1. lecture 2</a>
+<ul>
+<li><a href="#org6b16374">1.1. <span class="todo TODO">TODO</span> Read chapter 1</a></li>
+<li><a href="#org402c26f">1.2. <span class="todo TODO">TODO</span> Read about FM/AM</a></li>
+</ul>
+</li>
+<li><a href="#org5acd6e7">2. lecture 3</a>
+<ul>
+<li><a href="#orgacb8363">2.1. Cable Network</a></li>
+<li><a href="#orgb20838c">2.2. Wireless access networks</a></li>
+<li><a href="#org73fd485">2.3. Physical Media</a></li>
+<li><a href="#orga7072c4">2.4. Network core</a>
+<ul>
+<li><a href="#orge7340a3">2.4.1. Packet switching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org82687d6">3. lecture 4</a>
+<ul>
+<li><a href="#orgc75cf01">3.1. numerical comparison: circuit switch v/s packet switch</a></li>
+<li><a href="#org350e9f9">3.2. Circuit switch implemented over packet switching (Virtual Circuit)</a></li>
+<li><a href="#orgd357815">3.3. Routing</a></li>
+</ul>
+</li>
+<li><a href="#orgd24a039">4. lecture 5, 6</a>
+<ul>
+<li><a href="#org98a330a">4.1. Internet protocol stack (pramatic view):</a>
+<ul>
+<li><a href="#orge690492">4.1.1. Application</a></li>
+<li><a href="#org48625ec">4.1.2. transport&#xa0;&#xa0;&#xa0;<span class="tag"><span class="OS">OS</span>&#xa0;<span class="implemented">implemented</span></span></a></li>
+<li><a href="#orgc860b03">4.1.3. network</a></li>
+<li><a href="#org5dbf019">4.1.4. link</a></li>
+<li><a href="#orgbd4d63f">4.1.5. physical</a></li>
+</ul>
+</li>
+<li><a href="#org9c04f67">4.2. many physical, application layer design but one network layer</a></li>
+<li><a href="#org1b07746">4.3. OSI/ISO reference model (Internet protocol + additional layers):</a>
+<ul>
+<li><a href="#org0305621">4.3.1. Presentation:</a></li>
+<li><a href="#org552aa09">4.3.2. session:</a></li>
+</ul>
+</li>
+<li><a href="#orgac90da8">4.4. buffer overflow attack</a></li>
+<li><a href="#org73eb83e">4.5. Chapter 2: Application layer</a>
+<ul>
+<li><a href="#org1d59168">4.5.1. Architecture</a></li>
+<li><a href="#org8fda547">4.5.2. File sharing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0077192">5. lecture 7</a>
+<ul>
+<li><a href="#orgcc29237">5.1. Application layer (continued)</a>
+<ul>
+<li><a href="#orgfe08b2c">5.1.1. Sockets</a></li>
+<li><a href="#orge799475">5.1.2. TCP and UDP</a></li>
+<li><a href="#org969a598">5.1.3. HTTP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6d0cf9a">6. lecture 8: HTTP continued</a>
+<ul>
+<li><a href="#orgb025651">6.1. HTTP request message</a></li>
+</ul>
+</li>
+<li><a href="#org4d254c3">7. lecture 11: Socket Programming</a></li>
+<li><a href="#org3959862">8. Structured Peer to Peer networks</a>
+<ul>
+<li><a href="#org80e80d1">8.1. Chord</a>
+<ul>
+<li><a href="#org1163e69">8.1.1. ID space considered as ring</a></li>
+<li><a href="#orgf2c1bcb">8.1.2. operations</a></li>
+<li><a href="#org19b7399">8.1.3. Variation</a></li>
+</ul>
+</li>
+<li><a href="#orge2eab1e">8.2. CAN (Content address network)</a></li>
+</ul>
+</li>
+<li><a href="#orgc1aafef">9. Pastry</a></li>
+<li><a href="#org9a9d511">10. Chapter 3: Transport layer (contd)</a>
+<ul>
+<li><a href="#orgf3def2b">10.1. Pipelined Protocol</a>
+<ul>
+<li><a href="#orgcd0c431">10.1.1. go-back-N</a></li>
+<li><a href="#orgd3f8876">10.1.2. Seleiictive repeat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd398221">11. TCP</a>
+<ul>
+<li><a href="#org2238225">11.1. Sequence Number and accumulative ack</a></li>
+<li><a href="#orgfe70b22">11.2. Window size and data throughput</a></li>
+<li><a href="#orgac3cc15">11.3. Slow start and exponential growth</a></li>
+<li><a href="#org49aaee5">11.4. Measurement of network status</a>
+<ul>
+<li><a href="#orgdf1474a">11.4.1. Mild congession: <b>triple duplicate acks</b></a></li>
+<li><a href="#org759a1fa">11.4.2. Severe congession: <b>timeout</b></a></li>
+</ul>
+</li>
+<li><a href="#orgb55dc2e">11.5. TCP lifecycle (slow start &amp; AIMD)</a></li>
+<li><a href="#orgb13568d">11.6. Fairness</a></li>
+<li><a href="#org93bc098">11.7. TCP segment structure</a></li>
+<li><a href="#org8763d91">11.8. Three way handshake</a>
+<ul>
+<li><a href="#org5061013">11.8.1. reset command</a></li>
+<li><a href="#orga08b9c9">11.8.2. SYN</a></li>
+<li><a href="#orgbeed073">11.8.3. FIN</a></li>
+<li><a href="#org8d9773a">11.8.4. Timeout interval</a></li>
+<li><a href="#orga603b51">11.8.5. actual handshake</a></li>
+</ul>
+</li>
+<li><a href="#org33bcf49">11.9. Flow control</a></li>
+<li><a href="#orgcc0215f">11.10. Misc</a>
+<ul>
+<li><a href="#orgbb352f6">11.10.1. Faster TCP</a></li>
+<li><a href="#org86e73f9">11.10.2. RTT and fairness</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org00109e5">12. Stop and wait</a>
+<ul>
+<li><a href="#org738692f">12.1. pkt corrupted -&gt; checksum -&gt; retransmission</a></li>
+<li><a href="#org2ed49d1">12.2. ACK corrupted -&gt; sequence number -&gt; 0/1 only required in this case</a></li>
+<li><a href="#orgfa0f069">12.3. pkt lost -&gt; timeout</a>
+<ul>
+<li><a href="#org532725d">12.3.1. how to set appropriate timeout</a></li>
+</ul>
+</li>
+<li><a href="#org4d3cca6">12.4. ACK lost -&gt; timeout + sequence number</a></li>
+<li><a href="#org6feeaeb">12.5. NACK free design</a></li>
+</ul>
+</li>
+<li><a href="#org0da8257">13. Go back N</a></li>
+<li><a href="#org6fffd1c">14. Selective repeat</a></li>
+<li><a href="#orgd179b1b">15. RTT and window size Chap 4: Network Layer</a>
+<ul>
+<li><a href="#org20ff2ad">15.1. r &prop; 1/RTT<sup>2</sup></a></li>
+<li><a href="#org9797b5d">15.2. Network Layer</a>
+<ul>
+<li><a href="#org5e95316">15.2.1. Forwarding</a></li>
+<li><a href="#orgf198802">15.2.2. Routing</a></li>
+</ul>
+</li>
+<li><a href="#org716f72a">15.3. forwarding table</a></li>
+</ul>
+</li>
+<li><a href="#org0c2e47b">16. Inside Router</a>
+<ul>
+<li><a href="#orgafdd98e">16.1. 2 functions of router:</a></li>
+<li><a href="#orgc76d90d">16.2. IP Protocol</a>
+<ul>
+<li><a href="#org4f605e5">16.2.1. Datagram</a></li>
+<li><a href="#orgddc29a7">16.2.2. TTL:</a></li>
+<li><a href="#org3e2cd1f">16.2.3. IP fragmentation and re-assembly</a></li>
+</ul>
+</li>
+<li><a href="#org6e71c3f">16.3. IP Addressing</a>
+<ul>
+<li><a href="#orgcc268f9">16.3.1. Class A</a></li>
+<li><a href="#org5840d0a">16.3.2. Private IP</a></li>
+<li><a href="#orgd9f9742">16.3.3. <span class="todo TODO">TODO</span> Subnet</a></li>
+<li><a href="#org1b4cc6d">16.3.4. DHCP: dynamic host configuration protocol</a></li>
+<li><a href="#org4c952c3">16.3.5. NAT: network address translation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb30a5d9">17. IPv6</a>
+<ul>
+<li><a href="#org2a9e5d8">17.1. v/s IPv4</a></li>
+<li><a href="#org4bde4eb">17.2. Tunneling</a></li>
+<li><a href="#org2d31ed9">17.3. Running algrorithm</a></li>
+<li><a href="#org8c54ea7">17.4. Routing Algorithm:</a></li>
+</ul>
+</li>
+<li><a href="#orgcf90a81">18. Network Layer, routing algorithms:</a>
+<ul>
+<li><a href="#org6394506">18.1. Bellman Ford</a></li>
+<li><a href="#org2eb37f0">18.2. count-to-infinity, poisoned-reverse</a></li>
+<li><a href="#orgb9f708f">18.3. Hierarchical Routing</a>
+<ul>
+<li><a href="#org028071d">18.3.1. Inter and Intra domain routing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2bdd42f">19. Interior gateway protocols (IGP)</a>
+<ul>
+<li><a href="#orgff7b25e">19.1. RIP: Routing information protocol</a></li>
+<li><a href="#orge2d9cc2">19.2. EGBG</a></li>
+</ul>
+</li>
+<li><a href="#orgbd97884">20. Hamming code and Cyclic redundancy check</a>
+<ul>
+<li><a href="#org965bc83">20.1. Hamming code</a></li>
+<li><a href="#orgd9c6c32">20.2. CRC</a></li>
+<li><a href="#org1822724">20.3. MAC protocols</a>
+<ul>
+<li><a href="#org30a6cfb">20.3.1. TDMA: time division multiple access</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2a0fbf0">21. Slotted Aloha, CSMA for ethernet/ wifi</a>
+<ul>
+<li><a href="#orgf20343c">21.1. Slotted aloha: max throughput 37%</a></li>
+<li><a href="#org479c4d6">21.2. Taking turns</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+
+<div id="outline-container-orgb0d6595" class="outline-2">
+<h2 id="orgb0d6595"><span class="section-number-2">1</span> lecture 2</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org6b16374" class="outline-3">
+<h3 id="org6b16374"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Read chapter 1</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>REC: request for comment</li>
+<li>Routers can be connected in arbitrary topology; switches are cheap and fast,
+lack software to deal with arbitrary configuration, hence connected in tree
+like formation.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org402c26f" class="outline-3">
+<h3 id="org402c26f"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Read about FM/AM</h3>
+</div>
+</div>
+<div id="outline-container-org5acd6e7" class="outline-2">
+<h2 id="org5acd6e7"><span class="section-number-2">2</span> lecture 3</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgacb8363" class="outline-3">
+<h3 id="orgacb8363"><span class="section-number-3">2.1</span> Cable Network</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>designed for broadcast/one way communication</li>
+<li>shared wire</li>
+<li>data is also broadcasted, modem recognizes which data is requires; drops rest</li>
+<li>uploading is more complicated - no central transmitter
+<ul class="org-ul">
+<li>uploading is done using control signal to gain uploading right</li>
+</ul></li>
+<li>each line in digital ISP diagram can be an abstraction over analog network
+(slide 16)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb20838c" class="outline-3">
+<h3 id="orgb20838c"><span class="section-number-3">2.2</span> Wireless access networks</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>wireless LAN
+<ul class="org-ul">
+<li>overlapping channels
+<ul class="org-ul">
+<li>protocol designed to take turns to transmit data</li>
+</ul></li>
+<li>802.11 b/g/n : 11 54 150</li>
+</ul></li>
+<li>wide area wireless access
+<ul class="org-ul">
+<li>provided by cellular</li>
+<li>3g,4g LTE</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org73fd485" class="outline-3">
+<h3 id="org73fd485"><span class="section-number-3">2.3</span> Physical Media</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>difference between Cat wires is due to insulation - wire can carry more signal
+cat 5: 10Mbps, cat 6:</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga7072c4" class="outline-3">
+<h3 id="orga7072c4"><span class="section-number-3">2.4</span> Network core</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-orge7340a3" class="outline-4">
+<h4 id="orge7340a3"><span class="section-number-4">2.4.1</span> Packet switching</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<ul class="org-ul">
+<li>circuit switching use for phone
+<ul class="org-ul">
+<li>not suitable for digital data:
+<ul class="org-ul">
+<li>burst of data</li>
+<li>not fixed sized</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org82687d6" class="outline-2">
+<h2 id="org82687d6"><span class="section-number-2">3</span> lecture 4</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgc75cf01" class="outline-3">
+<h3 id="orgc75cf01"><span class="section-number-3">3.1</span> numerical comparison: circuit switch v/s packet switch</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="LaTeX">
+<p>
+Circuit switching:
+10 users, 100kbps per user -&gt; 1Mbps
+</p>
+
+<p>
+Packet Switching:
+N, active users a = k, 0 &lt;= k &lt;= N
+prob{a=k} = (n,K) 0.1<sup>k</sup> 0.9 ^ (n-k)
+prob{a&lt;=10} = &sum;<sub>k=0</sub><sup>10</sup> prob{a=k}
+N = 35
+prob{a&lt;=10}
+= 1 - 0.04%
+</p>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org350e9f9" class="outline-3">
+<h3 id="org350e9f9"><span class="section-number-3">3.2</span> Circuit switch implemented over packet switching (Virtual Circuit)</h3>
+</div>
+<div id="outline-container-orgd357815" class="outline-3">
+<h3 id="orgd357815"><span class="section-number-3">3.3</span> Routing</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>aka forwarding</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd24a039" class="outline-2">
+<h2 id="orgd24a039"><span class="section-number-2">4</span> lecture 5, 6</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><code>traceroute</code>: implemented using <i>TTL</i> (time to live)</li>
+<li>network layer has server address</li>
+<li>link layer has local address (maybe router address)</li>
+</ul>
+</div>
+<div id="outline-container-org98a330a" class="outline-3">
+<h3 id="org98a330a"><span class="section-number-3">4.1</span> Internet protocol stack (pramatic view):</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Router implements till network</li>
+</ul>
+</div>
+<div id="outline-container-orge690492" class="outline-4">
+<h4 id="orge690492"><span class="section-number-4">4.1.1</span> Application</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+HTTP
+</p>
+</div>
+</div>
+<div id="outline-container-org48625ec" class="outline-4">
+<h4 id="org48625ec"><span class="section-number-4">4.1.2</span> transport&#xa0;&#xa0;&#xa0;<span class="tag"><span class="OS">OS</span>&#xa0;<span class="implemented">implemented</span></span></h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+TCP, UDP
+</p>
+</div>
+</div>
+<div id="outline-container-orgc860b03" class="outline-4">
+<h4 id="orgc860b03"><span class="section-number-4">4.1.3</span> network</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+routing
+</p>
+</div>
+</div>
+<div id="outline-container-org5dbf019" class="outline-4">
+<h4 id="org5dbf019"><span class="section-number-4">4.1.4</span> link</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<p>
+deals with 1 data pack
+if there is interference due to other signals, it handles it. Askes sender
+to resend
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd4d63f" class="outline-4">
+<h4 id="orgbd4d63f"><span class="section-number-4">4.1.5</span> physical</h4>
+<div class="outline-text-4" id="text-4-1-5">
+<p>
+deals with synchronizing frq
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9c04f67" class="outline-3">
+<h3 id="org9c04f67"><span class="section-number-3">4.2</span> many physical, application layer design but one network layer</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>transport layer: 2 (TCP, UDP)</li>
+<li>glass hour architecture</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1b07746" class="outline-3">
+<h3 id="org1b07746"><span class="section-number-3">4.3</span> OSI/ISO reference model (Internet protocol + additional layers):</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>ideal layer model</li>
+<li>can be implemented in application layer</li>
+</ul>
+</div>
+<div id="outline-container-org0305621" class="outline-4">
+<h4 id="org0305621"><span class="section-number-4">4.3.1</span> Presentation:</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+allow application to interpret meaning
+</p>
+</div>
+</div>
+<div id="outline-container-org552aa09" class="outline-4">
+<h4 id="org552aa09"><span class="section-number-4">4.3.2</span> session:</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+take where left from
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgac90da8" class="outline-3">
+<h3 id="orgac90da8"><span class="section-number-3">4.4</span> buffer overflow attack</h3>
+</div>
+<div id="outline-container-org73eb83e" class="outline-3">
+<h3 id="org73eb83e"><span class="section-number-3">4.5</span> Chapter 2: Application layer</h3>
+<div class="outline-text-3" id="text-4-5">
+</div><div id="outline-container-org1d59168" class="outline-4">
+<h4 id="org1d59168"><span class="section-number-4">4.5.1</span> Architecture</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<ol class="org-ol">
+<li>Client - Server</li>
+<li>Peer to Peer</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8fda547" class="outline-4">
+<h4 id="org8fda547"><span class="section-number-4">4.5.2</span> File sharing</h4>
+<div class="outline-text-4" id="text-4-5-2">
+</div><ol class="org-ol"><li><a id="org6102715"></a>Napster like<br /><div class="outline-text-5" id="text-4-5-2-1">
+<p>
+central server
+</p>
+</div></li>
+<li><a id="org09e0040"></a>Kazaa<br /><div class="outline-text-5" id="text-4-5-2-2">
+<p>
+flooding traffic
+</p>
+</div></li>
+<li><a id="org2a2491e"></a>Bit torrent<br /><div class="outline-text-5" id="text-4-5-2-3">
+<ul class="org-ul">
+<li>chop file into pieces</li>
+<li>share pieces among peers</li>
+<li>Incentive mechanism build in</li>
+</ul>
+</div></li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org0077192" class="outline-2">
+<h2 id="org0077192"><span class="section-number-2">5</span> lecture 7</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgcc29237" class="outline-3">
+<h3 id="orgcc29237"><span class="section-number-3">5.1</span> Application layer (continued)</h3>
+<div class="outline-text-3" id="text-5-1">
+</div><div id="outline-container-orgfe08b2c" class="outline-4">
+<h4 id="orgfe08b2c"><span class="section-number-4">5.1.1</span> Sockets</h4>
+</div>
+<div id="outline-container-orge799475" class="outline-4">
+<h4 id="orge799475"><span class="section-number-4">5.1.2</span> TCP and UDP</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<ul class="org-ul">
+<li>TCP: does not provide timing, minimum toughput gurantee</li>
+<li>UDP: not reliable</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org969a598" class="outline-4">
+<h4 id="org969a598"><span class="section-number-4">5.1.3</span> HTTP</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<ul class="org-ul">
+<li>http is full ascii text
+<ul class="org-ul">
+<li>binary if sent, has to be encoded</li>
+</ul></li>
+<li>Persistent (HTTP 1.1) and non-persistent (HTTP 1.0)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6d0cf9a" class="outline-2">
+<h2 id="org6d0cf9a"><span class="section-number-2">6</span> lecture 8: HTTP continued</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgb025651" class="outline-3">
+<h3 id="orgb025651"><span class="section-number-3">6.1</span> HTTP request message</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>full ascii
+<ul class="org-ul">
+<li>if we want to send/receive binary, encode into ascii</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d254c3" class="outline-2">
+<h2 id="org4d254c3"><span class="section-number-2">7</span> lecture 11: Socket Programming</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>TCP - reliable, stream oriented</li>
+<li>UDP - unreliable</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3959862" class="outline-2">
+<h2 id="org3959862"><span class="section-number-2">8</span> Structured Peer to Peer networks</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org80e80d1" class="outline-3">
+<h3 id="org80e80d1"><span class="section-number-3">8.1</span> Chord</h3>
+<div class="outline-text-3" id="text-8-1">
+</div><div id="outline-container-org1163e69" class="outline-4">
+<h4 id="org1163e69"><span class="section-number-4">8.1.1</span> ID space considered as ring</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<ul class="org-ul">
+<li>take modulo after <b>N</b></li>
+<li>ID: hash of the address</li>
+<li>each node (Peer) responsible for it's previous node</li>
+<li>segment can have different length: hashing may not be uniform</li>
+<li>for each file, it's hash is calculated, and stored in graph</li>
+<li>node keeps track for the file before it.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf2c1bcb" class="outline-4">
+<h4 id="orgf2c1bcb"><span class="section-number-4">8.1.2</span> operations</h4>
+<div class="outline-text-4" id="text-8-1-2">
+<ol class="org-ol">
+<li>Structure</li>
+<li>Neighbors
+<ul class="org-ul">
+<li>number of neighbors = O(log<sub>2</sub> n)</li>
+</ul></li>
+<li>lookup for a file</li>
+<li>Insert a peer
+Finding neighbors is similar to finding file</li>
+<li>Delete a peer
+<ul class="org-ul">
+<li>Tell everyone to delete files owned by the node</li>
+<li>Tell the predecessor to take over as owner of the files</li>
+<li>Fault - what if system crashes
+<ul class="org-ul">
+<li>replication to neighbor
+he will take care of cleaning and acting as file owner</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org19b7399" class="outline-4">
+<h4 id="org19b7399"><span class="section-number-4">8.1.3</span> Variation</h4>
+<div class="outline-text-4" id="text-8-1-3">
+<ol class="org-ol">
+<li>neighbor O(log<sub>2</sub> n), lookup O(log<sub>3</sub> n)</li>
+<li>neighbor O(k log<sub>k</sub> n), lookup O(log<sub>k</sub> n)
+<ul class="org-ul">
+<li>instead of dividing into 1/2; divide in 1/3</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2eab1e" class="outline-3">
+<h3 id="orge2eab1e"><span class="section-number-3">8.2</span> CAN (Content address network)</h3>
+<div class="outline-text-3" id="text-8-2">
+<ul class="org-ul">
+<li>n dimension ID space</li>
+<li>each node has n co ordinate
+<ul class="org-ul">
+<li>x = H<sub>1</sub>(a), y = H<sub>2</sub>(a)</li>
+</ul></li>
+<li>overflows are modulo(tated)</li>
+<li>Peer responsible for area</li>
+<li>Neighbor: who share the boundary of space</li>
+<li>Finding a file
+<ul class="org-ul">
+<li>shortest path among neighbors</li>
+</ul></li>
+<li>Complexity
+<ul class="org-ul">
+<li>lookup
+<ul class="org-ul">
+<li>O(n<sup>1/2</sup>): for 2 dimension</li>
+<li>O(n<sup>1/k</sup>): for k dimension</li>
+</ul></li>
+<li>neighbors
+<ul class="org-ul">
+<li>O(n<sup>1/k</sup>): for 2 dimension</li>
+<li>O(3 &times; n<sup>1/k</sup>): for k dimension</li>
+</ul></li>
+</ul></li>
+<li>Deletion
+<ul class="org-ul">
+<li>who owns area after node deletion
+<ul class="org-ul">
+<li>voluntary give up area to neighbor</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc1aafef" class="outline-2">
+<h2 id="orgc1aafef"><span class="section-number-2">9</span> Pastry</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+</div>
+<div id="outline-container-org9a9d511" class="outline-2">
+<h2 id="org9a9d511"><span class="section-number-2">10</span> Chapter 3: Transport layer (contd)</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>missed last class (AoA Exam)</li>
+<li>read about post letter example in book for TCP v network problem</li>
+</ul>
+</div>
+<div id="outline-container-orgf3def2b" class="outline-3">
+<h3 id="orgf3def2b"><span class="section-number-3">10.1</span> Pipelined Protocol</h3>
+<div class="outline-text-3" id="text-10-1">
+</div><div id="outline-container-orgcd0c431" class="outline-4">
+<h4 id="orgcd0c431"><span class="section-number-4">10.1.1</span> go-back-N</h4>
+<div class="outline-text-4" id="text-10-1-1">
+<ul class="org-ul">
+<li>receiver expects a number:
+<ul class="org-ul">
+<li>if that number is not received, reject it.</li>
+<li>if expected number  received, accept, send <code>ack</code></li>
+</ul></li>
+<li>corrupted <code>ack</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd3f8876" class="outline-4">
+<h4 id="orgd3f8876"><span class="section-number-4">10.1.2</span> Seleiictive repeat</h4>
+<div class="outline-text-4" id="text-10-1-2">
+<ul class="org-ul">
+<li>each packet has it's own timer</li>
+<li>Receiver has more than 1 size buffer</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd398221" class="outline-2">
+<h2 id="orgd398221"><span class="section-number-2">11</span> TCP</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org2238225" class="outline-3">
+<h3 id="org2238225"><span class="section-number-3">11.1</span> Sequence Number and accumulative ack</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>sequence number is per byte</li>
+<li>ack means ack - 1 is received, ack is expected</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe70b22" class="outline-3">
+<h3 id="orgfe70b22"><span class="section-number-3">11.2</span> Window size and data throughput</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+window size determines data throughput
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">r = <span style="color: #0000FF;">\dfrac</span>{W}{RTT}
+</pre>
+</div>
+<ul class="org-ul">
+<li>how to set initial window size:
+<ul class="org-ul">
+<li>slow start and exponential growth</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgac3cc15" class="outline-3">
+<h3 id="orgac3cc15"><span class="section-number-3">11.3</span> Slow start and exponential growth</h3>
+<div class="outline-text-3" id="text-11-3">
+<ul class="org-ul">
+<li>We don't know the network congestion, start with one and probe network.</li>
+<li>Double the sending if successful ack</li>
+<li>when to stop doubling:
+<ul class="org-ul">
+<li>OS limit</li>
+<li>network limit - network starts dropping packet.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org49aaee5" class="outline-3">
+<h3 id="org49aaee5"><span class="section-number-3">11.4</span> Measurement of network status</h3>
+<div class="outline-text-3" id="text-11-4">
+</div><div id="outline-container-orgdf1474a" class="outline-4">
+<h4 id="orgdf1474a"><span class="section-number-4">11.4.1</span> Mild congession: <b>triple duplicate acks</b></h4>
+<div class="outline-text-4" id="text-11-4-1">
+<p>
+packets are going through but some are lost.
+</p>
+<ul class="org-ul">
+<li>cut window size by half.</li>
+<li>send only leading packet</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org759a1fa" class="outline-4">
+<h4 id="org759a1fa"><span class="section-number-4">11.4.2</span> Severe congession: <b>timeout</b></h4>
+<div class="outline-text-4" id="text-11-4-2">
+<ul class="org-ul">
+<li>almost all packets are dropped</li>
+<li><b>cut size to 1</b>
+<ul class="org-ul">
+<li>and start doing exponential growth</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb55dc2e" class="outline-3">
+<h3 id="orgb55dc2e"><span class="section-number-3">11.5</span> TCP lifecycle (slow start &amp; AIMD)</h3>
+<div class="outline-text-3" id="text-11-5">
+<ul class="org-ul">
+<li>exponential increase till threshold, then additive incrase till we hit tripple
+congestion</li>
+<li>multiplicative decrease when we hit triple ack, then cut to half and additive
+incrase</li>
+<li>faced timeout:
+<ul class="org-ul">
+<li>drop to window 1.</li>
+<li>exponential growth</li>
+<li>threshold to half of original threshold
+<ul class="org-ul">
+<li>then additive incrase</li>
+</ul></li>
+</ul></li>
+<li>initial threshold is set by OS</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb13568d" class="outline-3">
+<h3 id="orgb13568d"><span class="section-number-3">11.6</span> Fairness</h3>
+<div class="outline-text-3" id="text-11-6">
+<ul class="org-ul">
+<li>Reason of using <b>multiplicative</b> decrease (why do we cut to half instead of
+decreasing by 1)</li>
+<li>Person using higher bandwidth will dec by half, that's half of larger bandwidth
+Contrasting with person using less bandwidth
+<ul class="org-ul">
+<li>if you earn more, you pay more</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org93bc098" class="outline-3">
+<h3 id="org93bc098"><span class="section-number-3">11.7</span> TCP segment structure</h3>
+<div class="outline-text-3" id="text-11-7">
+<ul class="org-ul">
+<li>two way communication
+<ul class="org-ul">
+<li>acknowledgment number can be used to piggy back with data segment</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8763d91" class="outline-3">
+<h3 id="org8763d91"><span class="section-number-3">11.8</span> Three way handshake</h3>
+<div class="outline-text-3" id="text-11-8">
+</div><div id="outline-container-org5061013" class="outline-4">
+<h4 id="org5061013"><span class="section-number-4">11.8.1</span> reset command</h4>
+</div>
+<div id="outline-container-orga08b9c9" class="outline-4">
+<h4 id="orga08b9c9"><span class="section-number-4">11.8.2</span> SYN</h4>
+<div class="outline-text-4" id="text-11-8-2">
+<ul class="org-ul">
+<li>snync ack number</li>
+<li>ack sync</li>
+<li>ack</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbeed073" class="outline-4">
+<h4 id="orgbeed073"><span class="section-number-4">11.8.3</span> FIN</h4>
+<div class="outline-text-4" id="text-11-8-3">
+<ul class="org-ul">
+<li>to finish connection
+<ul class="org-ul">
+<li>if receiver also send FIN, then close connection</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8d9773a" class="outline-4">
+<h4 id="org8d9773a"><span class="section-number-4">11.8.4</span> Timeout interval</h4>
+<div class="outline-text-4" id="text-11-8-4">
+<div class="org-src-container">
+<pre class="src src-latex">TimeoutInterval = EstimatedRTT + 4 <span style="color: #0000FF;">\times</span> DevRTT
+where
+DevRTT = (1 - <span style="color: #0000FF;">\beta</span>) <span style="color: #0000FF;">\times</span> DevRTT + <span style="color: #0000FF;">\beta</span> <span style="color: #0000FF;">\times</span> SampleRTT - EstimatedRTT
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga603b51" class="outline-4">
+<h4 id="orga603b51"><span class="section-number-4">11.8.5</span> actual handshake</h4>
+<div class="outline-text-4" id="text-11-8-5">
+</div><ol class="org-ol"><li><a id="orgb809c06"></a>Connection Establish<br /><div class="outline-text-5" id="text-11-8-5-1">
+<ol class="org-ol">
+<li>-&gt; SYNbit = 1, Seq = x</li>
+<li>&lt;- SYNbit = 1, Seq = y
+ACKbit = 1, ACKnum = x + 1</li>
+<li>-&gt; ACKbit = 1, ACKnum = y + 1</li>
+</ol>
+</div></li>
+<li><a id="orga1c0475"></a>Connection Close<br /><div class="outline-text-5" id="text-11-8-5-2">
+<ol class="org-ol">
+<li>-&gt; FINbit = 1, seq = x</li>
+<li>&lt;- ACKbit = 1, ACKnum = x + 1</li>
+<li>&lt;- FINbit = 1, seq = y</li>
+<li>-&gt; ACKbit = 1, ACKnum = y + 1</li>
+</ol>
+</div></li></ol>
+</div>
+</div>
+<div id="outline-container-org33bcf49" class="outline-3">
+<h3 id="org33bcf49"><span class="section-number-3">11.9</span> Flow control</h3>
+<div class="outline-text-3" id="text-11-9">
+<ul class="org-ul">
+<li>put in remaining buffer size in <code>Window</code> field in segment</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcc0215f" class="outline-3">
+<h3 id="orgcc0215f"><span class="section-number-3">11.10</span> Misc</h3>
+<div class="outline-text-3" id="text-11-10">
+</div><div id="outline-container-orgbb352f6" class="outline-4">
+<h4 id="orgbb352f6"><span class="section-number-4">11.10.1</span> Faster TCP</h4>
+<div class="outline-text-4" id="text-11-10-1">
+<ul class="org-ul">
+<li>negotiate for larger segment size</li>
+<li>make parallel TCP connection - each get equal share</li>
+<li>hack into to increase the Additive increase to more than one</li>
+<li>f1/f2 = (RTT2/RTT1)<sup>2</sup> (rate is inversely proportional to RTT)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org86e73f9" class="outline-4">
+<h4 id="org86e73f9"><span class="section-number-4">11.10.2</span> RTT and fairness</h4>
+<div class="outline-text-4" id="text-11-10-2">
+<p>
+if RTT is larger then additive increase will more frequent
+rate &prop; 1/RTT<sup>2</sup>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org00109e5" class="outline-2">
+<h2 id="org00109e5"><span class="section-number-2">12</span> Stop and wait</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+One buffer space for sender and receiver.
+</p>
+</div>
+<div id="outline-container-org738692f" class="outline-3">
+<h3 id="org738692f"><span class="section-number-3">12.1</span> pkt corrupted -&gt; checksum -&gt; retransmission</h3>
+</div>
+<div id="outline-container-org2ed49d1" class="outline-3">
+<h3 id="org2ed49d1"><span class="section-number-3">12.2</span> ACK corrupted -&gt; sequence number -&gt; 0/1 only required in this case</h3>
+</div>
+<div id="outline-container-orgfa0f069" class="outline-3">
+<h3 id="orgfa0f069"><span class="section-number-3">12.3</span> pkt lost -&gt; timeout</h3>
+<div class="outline-text-3" id="text-12-3">
+</div><div id="outline-container-org532725d" class="outline-4">
+<h4 id="org532725d"><span class="section-number-4">12.3.1</span> how to set appropriate timeout</h4>
+<div class="outline-text-4" id="text-12-3-1">
+<p>
+measure RTT (round trip time) delay.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d3cca6" class="outline-3">
+<h3 id="org4d3cca6"><span class="section-number-3">12.4</span> ACK lost -&gt; timeout + sequence number</h3>
+</div>
+<div id="outline-container-org6feeaeb" class="outline-3">
+<h3 id="org6feeaeb"><span class="section-number-3">12.5</span> NACK free design</h3>
+<div class="outline-text-3" id="text-12-5">
+<p>
+along with ack, send which was the last correct segment
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0da8257" class="outline-2">
+<h2 id="org0da8257"><span class="section-number-2">13</span> Go back N</h2>
+<div class="outline-text-2" id="text-13">
+<ul class="org-ul">
+<li>sequence number is 0 to n. (total n + 1(buffer space + 1); 1 extra to wrap
+around)</li>
+<li>sender has buffer size n; receiver has buffer size 1</li>
+<li>ack of sequence number received</li>
+<li>problems:
+<ul class="org-ul">
+<li>pkt corruption: drop pkt; send last successful received packet seq number
+(called as accumulative ack); timeout -&gt; go back n</li>
+<li>pkt lost: trash unexpected packets; do accumulative ack (ack only most recent
+successful pkt);</li>
+<li>out of order: trash until expected packets; update expected packet</li>
+<li>ack corruption: cumulative ack; thus when next ack is received, assumed corrupted
+ack is good</li>
+<li>ack loss: same as above</li>
+<li>ack re-order: same as above; when earlier ack arrives: (prof says can't handle)
+<ul class="org-ul">
+<li>keep sequence number so large, wrap around doesn't happend in same transfer
+session</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6fffd1c" class="outline-2">
+<h2 id="org6fffd1c"><span class="section-number-2">14</span> Selective repeat</h2>
+<div class="outline-text-2" id="text-14">
+<ul class="org-ul">
+<li>requires 2N sequence number</li>
+<li>receiver (and sender) buffer size n</li>
+<li>timer for each packet
+<ul class="org-ul">
+<li>since packet can be sent independent of each other</li>
+</ul></li>
+<li>problems:
+<ul class="org-ul">
+<li>ack lost: mark the rest of the ack as received and after timer of that packet
+timesout, resend
+<ul class="org-ul">
+<li>packets cannot be delivered out of order, do not delivery until all packets
+are received</li>
+</ul></li>
+</ul></li>
+<li>why 2N
+<ul class="org-ul">
+<li>what if all ack are lost
+<ul class="org-ul">
+<li>new expected seq wrapped around (multiple expected seq)</li>
+<li>individual timer timeout</li>
+<li>it will re transmit, it will fit the expected seq</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd179b1b" class="outline-2">
+<h2 id="orgd179b1b"><span class="section-number-2">15</span> RTT and window size Chap 4: Network Layer</h2>
+<div class="outline-text-2" id="text-15">
+</div>
+<div id="outline-container-org20ff2ad" class="outline-3">
+<h3 id="org20ff2ad"><span class="section-number-3">15.1</span> r &prop; 1/RTT<sup>2</sup></h3>
+<div class="outline-text-3" id="text-15-1">
+<ul class="org-ul">
+<li>one comes from window size - window size is doubled on RTT</li>
+<li>one comes from rate: in one RTT, 2 windows are sent</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9797b5d" class="outline-3">
+<h3 id="org9797b5d"><span class="section-number-3">15.2</span> Network Layer</h3>
+<div class="outline-text-3" id="text-15-2">
+</div><div id="outline-container-org5e95316" class="outline-4">
+<h4 id="org5e95316"><span class="section-number-4">15.2.1</span> Forwarding</h4>
+</div>
+<div id="outline-container-orgf198802" class="outline-4">
+<h4 id="orgf198802"><span class="section-number-4">15.2.2</span> Routing</h4>
+</div>
+</div>
+<div id="outline-container-org716f72a" class="outline-3">
+<h3 id="org716f72a"><span class="section-number-3">15.3</span> forwarding table</h3>
+<div class="outline-text-3" id="text-15-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Header Value</td>
+<td class="org-left">output Link</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org0c2e47b" class="outline-2">
+<h2 id="org0c2e47b"><span class="section-number-2">16</span> Inside Router</h2>
+<div class="outline-text-2" id="text-16">
+</div>
+<div id="outline-container-orgafdd98e" class="outline-3">
+<h3 id="orgafdd98e"><span class="section-number-3">16.1</span> 2 functions of router:</h3>
+<div class="outline-text-3" id="text-16-1">
+<ol class="org-ol">
+<li>Run routing algorithm</li>
+<li>Forward datagrams</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc76d90d" class="outline-3">
+<h3 id="orgc76d90d"><span class="section-number-3">16.2</span> IP Protocol</h3>
+<div class="outline-text-3" id="text-16-2">
+</div><div id="outline-container-org4f605e5" class="outline-4">
+<h4 id="org4f605e5"><span class="section-number-4">16.2.1</span> Datagram</h4>
+</div>
+<div id="outline-container-orgddc29a7" class="outline-4">
+<h4 id="orgddc29a7"><span class="section-number-4">16.2.2</span> TTL:</h4>
+<div class="outline-text-4" id="text-16-2-2">
+<p>
+each router reduces TTL by 1
+</p>
+</div>
+</div>
+<div id="outline-container-org3e2cd1f" class="outline-4">
+<h4 id="org3e2cd1f"><span class="section-number-4">16.2.3</span> IP fragmentation and re-assembly</h4>
+<div class="outline-text-4" id="text-16-2-3">
+<ul class="org-ul">
+<li><code>offset</code> field in packet</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e71c3f" class="outline-3">
+<h3 id="org6e71c3f"><span class="section-number-3">16.3</span> IP Addressing</h3>
+<div class="outline-text-3" id="text-16-3">
+</div><div id="outline-container-orgcc268f9" class="outline-4">
+<h4 id="orgcc268f9"><span class="section-number-4">16.3.1</span> Class A</h4>
+<div class="outline-text-4" id="text-16-3-1">
+<p>
+00000001.X.X.X
+^-&#x2013;&#x2014;^|^-&#x2014;^
+ network| host
+ address| Addr
+</p>
+
+<p>
+128 class A address
+^ divide into Class B
+2<sup>14</sup> Class B address
+^ divide into class C
+first 3 bytes fixed
+</p>
+</div>
+</div>
+<div id="outline-container-org5840d0a" class="outline-4">
+<h4 id="org5840d0a"><span class="section-number-4">16.3.2</span> Private IP</h4>
+<div class="outline-text-4" id="text-16-3-2">
+<ul class="org-ul">
+<li>10.X.X.X class A</li>
+<li>192.X.X.X class B</li>
+<li>something Class C</li>
+</ul>
+<p>
+These are not assigned to anyone, so everyone can use it.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9f9742" class="outline-4">
+<h4 id="orgd9f9742"><span class="section-number-4">16.3.3</span> <span class="todo TODO">TODO</span> Subnet</h4>
+<div class="outline-text-4" id="text-16-3-3">
+<ul class="org-ul">
+<li>223.1.4.1/24 - first 24 bits are subnet bits
+<ul class="org-ul">
+<li>alternate representation: 223.1.4.1/255.255.255.0
+^------&#x2013;&#x2014;^ first 24 bits are 1</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1b4cc6d" class="outline-4">
+<h4 id="org1b4cc6d"><span class="section-number-4">16.3.4</span> DHCP: dynamic host configuration protocol</h4>
+</div>
+<div id="outline-container-org4c952c3" class="outline-4">
+<h4 id="org4c952c3"><span class="section-number-4">16.3.5</span> NAT: network address translation</h4>
+<div class="outline-text-4" id="text-16-3-5">
+<ul class="org-ul">
+<li>router does translation and reverse tranalation</li>
+<li>IP + port number</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb30a5d9" class="outline-2">
+<h2 id="orgb30a5d9"><span class="section-number-2">17</span> IPv6</h2>
+<div class="outline-text-2" id="text-17">
+</div>
+<div id="outline-container-org2a9e5d8" class="outline-3">
+<h3 id="org2a9e5d8"><span class="section-number-3">17.1</span> v/s IPv4</h3>
+<div class="outline-text-3" id="text-17-1">
+<ul class="org-ul">
+<li>IPv4: 32 bit address</li>
+<li>IPv6: 40 byte header
+<ul class="org-ul">
+<li>IPv6 has virtual circuit switching</li>
+<li>Removed checksum</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4bde4eb" class="outline-3">
+<h3 id="org4bde4eb"><span class="section-number-3">17.2</span> Tunneling</h3>
+<div class="outline-text-3" id="text-17-2">
+<p>
+Transitioning from IPv4 to IPv6:
+IP in IP -&gt; IP tunneling
+</p>
+</div>
+</div>
+<div id="outline-container-org2d31ed9" class="outline-3">
+<h3 id="org2d31ed9"><span class="section-number-3">17.3</span> Running algrorithm</h3>
+<div class="outline-text-3" id="text-17-3">
+<ul class="org-ul">
+<li>Link State</li>
+<li>Distance Algorithm</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8c54ea7" class="outline-3">
+<h3 id="org8c54ea7"><span class="section-number-3">17.4</span> Routing Algorithm:</h3>
+<div class="outline-text-3" id="text-17-4">
+<ul class="org-ul">
+<li>Dijkstra</li>
+<li>Bellman Ford</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcf90a81" class="outline-2">
+<h2 id="orgcf90a81"><span class="section-number-2">18</span> Network Layer, routing algorithms:</h2>
+<div class="outline-text-2" id="text-18">
+</div><div id="outline-container-org6394506" class="outline-3">
+<h3 id="org6394506"><span class="section-number-3">18.1</span> Bellman Ford</h3>
+</div>
+<div id="outline-container-org2eb37f0" class="outline-3">
+<h3 id="org2eb37f0"><span class="section-number-3">18.2</span> count-to-infinity, poisoned-reverse</h3>
+<div class="outline-text-3" id="text-18-2">
+<p>
+do not solve all problems. Use max hop limit
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9f708f" class="outline-3">
+<h3 id="orgb9f708f"><span class="section-number-3">18.3</span> Hierarchical Routing</h3>
+<div class="outline-text-3" id="text-18-3">
+<ul class="org-ul">
+<li>if every router broadcasts routing info, then the network will clog
+by the routing messages.</li>
+<li>whole network acts as a single node</li>
+<li>Called as autonomous system</li>
+<li>if two routers in a domain are not connected
+<ul class="org-ul">
+<li>they open TCP connection between themselves and do routing.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org028071d" class="outline-4">
+<h4 id="org028071d"><span class="section-number-4">18.3.1</span> Inter and Intra domain routing</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org2bdd42f" class="outline-2">
+<h2 id="org2bdd42f"><span class="section-number-2">19</span> Interior gateway protocols (IGP)</h2>
+<div class="outline-text-2" id="text-19">
+</div>
+<div id="outline-container-orgff7b25e" class="outline-3">
+<h3 id="orgff7b25e"><span class="section-number-3">19.1</span> RIP: Routing information protocol</h3>
+</div>
+<div id="outline-container-orge2d9cc2" class="outline-3">
+<h3 id="orge2d9cc2"><span class="section-number-3">19.2</span> EGBG</h3>
+</div>
+</div>
+<div id="outline-container-orgbd97884" class="outline-2">
+<h2 id="orgbd97884"><span class="section-number-2">20</span> Hamming code and Cyclic redundancy check</h2>
+<div class="outline-text-2" id="text-20">
+</div><div id="outline-container-org965bc83" class="outline-3">
+<h3 id="org965bc83"><span class="section-number-3">20.1</span> Hamming code</h3>
+<div class="outline-text-3" id="text-20-1">
+<ul class="org-ul">
+<li>can detect only a bit error</li>
+<li>saves number of parity bit</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd9c6c32" class="outline-3">
+<h3 id="orgd9c6c32"><span class="section-number-3">20.2</span> CRC</h3>
+<div class="outline-text-3" id="text-20-2">
+<ul class="org-ul">
+<li>noise can affect consecutive bits</li>
+<li>when 1 bit corrupt, there is good chance next bit (nearby bit) will also get
+corrupted. CRC detects burst error</li>
+<li>parity bit cannot detect even number of bit error</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1822724" class="outline-3">
+<h3 id="org1822724"><span class="section-number-3">20.3</span> MAC protocols</h3>
+<div class="outline-text-3" id="text-20-3">
+</div><div id="outline-container-org30a6cfb" class="outline-4">
+<h4 id="org30a6cfb"><span class="section-number-4">20.3.1</span> TDMA: time division multiple access</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org2a0fbf0" class="outline-2">
+<h2 id="org2a0fbf0"><span class="section-number-2">21</span> Slotted Aloha, CSMA for ethernet/ wifi</h2>
+<div class="outline-text-2" id="text-21">
+</div><div id="outline-container-orgf20343c" class="outline-3">
+<h3 id="orgf20343c"><span class="section-number-3">21.1</span> Slotted aloha: max throughput 37%</h3>
+</div>
+<div id="outline-container-org479c4d6" class="outline-3">
+<h3 id="org479c4d6"><span class="section-number-3">21.2</span> Taking turns</h3>
+<div class="outline-text-3" id="text-21-2">
+<ul class="org-ul">
+<li>what if node with token crashed</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/notes/computerNetwork.html";
+this.page.identifier = "/notes/computerNetwork.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="author">Author: Anurag Peshne</p>
+<p class="date">Created: 2017-04-05 Wed 22:11</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

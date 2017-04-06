@@ -1,0 +1,3157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-04-05 Wed 22:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concurrent Programming</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/notes/concurrentProg.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Concurrent Programming</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdc3dcb5">1. Lect 2 (24 August): Basic Mechanics for Processes and Threads</a>
+<ul>
+<li><a href="#orgf5680a7">1.1. Process</a></li>
+<li><a href="#orgdc692af">1.2. Thread</a>
+<ul>
+<li><a href="#orga9849f2">1.2.1. PThreads</a></li>
+<li><a href="#org170affc">1.2.2. Java: <code>java.lang.Thread</code></a></li>
+<li><a href="#org71efee4">1.2.3. C++</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgcf70763">2. Lect 3 (29 August): Atomicity</a>
+<ul>
+<li><a href="#org3b8902b">2.1. Immutable: Java BigInteger is immutable</a></li>
+<li><a href="#org5e6be81">2.2. Stateless method</a></li>
+<li><a href="#org41b59f7">2.3. AtomicLong: Java provided atomic DS</a>
+<ul>
+<li><a href="#org3356cd8">2.3.1. <span class="todo TODO">TODO</span> Memory synchronization</a></li>
+</ul>
+</li>
+<li><a href="#orgbabca0a">2.4. Lock</a>
+<ul>
+<li><a href="#orgadb84a8">2.4.1. <span class="todo TODO">TODO</span> slide 24, return statement</a></li>
+</ul>
+</li>
+<li><a href="#org313c59f">2.5. Pthread Mutexes</a></li>
+<li><a href="#org125388b">2.6. Java Intrinsic Locks (monitor locks)</a>
+<ul>
+<li><a href="#orgc4bf43e">2.6.1. <span class="todo DONE">DONE</span> was in earlier version, considered as mistake</a></li>
+<li><a href="#orgff3993c">2.6.2. How monitors work&#xa0;&#xa0;&#xa0;<span class="tag"><span class="intuition">intuition</span></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9650acf">3. Lect 4 (31 August): Atomicity Continued</a>
+<ul>
+<li><a href="#org9b6aa75">3.1. template for atomic type</a></li>
+<li><a href="#org37671bb">3.2. mutex (locks)</a>
+<ul>
+<li><a href="#org06eed66">3.2.1. <code>lock_guard</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org14857d1">4. Lect 4 (31 August): Memory Model</a></li>
+<li><a href="#orgba24687">5. Lect 5 (7 September): Memory Model continued</a>
+<ul>
+<li><a href="#orge7e74a1">5.1. <span class="todo TODO">TODO</span> Visibility</a></li>
+<li><a href="#org9318280">5.2. <span class="todo TODO">TODO</span> TSO (Total store order)</a></li>
+<li><a href="#orgd08321a">5.3. Special instructions/ <i>FENCE</i></a></li>
+<li><a href="#org5bbc480">5.4. Compiler optimization</a>
+<ul>
+<li><a href="#org95500fa">5.4.1. when to optimize?</a></li>
+</ul>
+</li>
+<li><a href="#org0636bef">5.5. Vocabulary</a>
+<ul>
+<li><a href="#org574289b">5.5.1. Conflicting operation:</a></li>
+<li><a href="#org81aeead">5.5.2. Data race:</a></li>
+</ul>
+</li>
+<li><a href="#orgf07d25a">5.6. A data race free (DRF) program behaves sequentially</a></li>
+<li><a href="#orgce3d455">5.7. What happens if data race</a>
+<ul>
+<li><a href="#orged47b48">5.7.1. Java</a></li>
+</ul>
+</li>
+<li><a href="#orgf8298d4">5.8. Race v/s data race</a></li>
+<li><a href="#orgbcd76c2">5.9. atomic provide order and</a></li>
+<li><a href="#org01f0706">5.10. <b>Order</b>: defined control flow</a></li>
+<li><a href="#org96930c8">5.11. <span class="todo TODO">TODO</span> Ordered by happens-before</a></li>
+</ul>
+</li>
+<li><a href="#orge34b86b">6. Lect 6: Publishing</a>
+<ul>
+<li><a href="#org5937e5c">6.1. Publishing (problems with Publishing data)</a>
+<ul>
+<li><a href="#org043df14">6.1.1. Java double checking locking</a></li>
+<li><a href="#org2b533fb">6.1.2. C++ initialization</a></li>
+</ul>
+</li>
+<li><a href="#org0da5c89">6.2. unsafe publication - <b>escape</b></a>
+<ul>
+<li><a href="#orgde09383">6.2.1. Construction</a></li>
+</ul>
+</li>
+<li><a href="#org0019c2d">6.3. Immutability</a></li>
+</ul>
+</li>
+<li><a href="#org1f4ff76">7. Lect 7: Patterns for concurrent programming</a>
+<ul>
+<li><a href="#org57a2d77">7.1. Fully synchronized object</a>
+<ul>
+<li><a href="#org41c309e">7.1.1. Not scalable</a></li>
+<li><a href="#orgb9787db">7.1.2. Easy to implement</a></li>
+<li><a href="#orgbc70223">7.1.3. Publishing</a></li>
+<li><a href="#org9cc08c4">7.1.4. Re using sequential code</a></li>
+</ul>
+</li>
+<li><a href="#org3811db9">7.2. Finer grained approach</a></li>
+</ul>
+</li>
+<li><a href="#orga813d31">8. Lect 8: Patterns for concurrent data structures</a>
+<ul>
+<li><a href="#orga9648eb">8.1. Hand-over-hand locking</a></li>
+<li><a href="#org753de6d">8.2. Optimistic synchronization</a></li>
+</ul>
+</li>
+<li><a href="#org0c305b7">9. Lect 9: Patterns for thread safe data structures</a>
+<ul>
+<li><a href="#org5beb73f">9.1. Copy on write</a></li>
+</ul>
+</li>
+<li><a href="#org6c0c882">10. Lect 10: Case study: Swing Package</a>
+<ul>
+<li><a href="#org6ddd602">10.1. Threads:</a></li>
+<li><a href="#orgf484401">10.2. event listener</a></li>
+<li><a href="#org85ba11d">10.3. Swing <b>not</b> thread safe</a></li>
+<li><a href="#org70c5895">10.4. Assignment 1: Thread safe queue</a></li>
+</ul>
+</li>
+<li><a href="#org89d43fa">11. Lect 11: Patterns for concurrent data structures 4: Deadlocks</a>
+<ul>
+<li><a href="#orga313835">11.1. Design problem: queue</a></li>
+<li><a href="#orgbd2e04f">11.2. <span class="todo TODO">TODO</span> Automated tests</a></li>
+<li><a href="#orga805411">11.3. Deadlocks</a>
+<ul>
+<li><a href="#orgcb747cf">11.3.1. Avoiding deadlocks</a></li>
+<li><a href="#org0a008e1">11.3.2. Deadlock suspesion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7119e2c">12. Lect 12: Deadlocks (contd)</a>
+<ul>
+<li><a href="#org388423f">12.1. Let them happen, then deal with it</a></li>
+<li><a href="#orgd2d54e5">12.2. Thread priority</a></li>
+<li><a href="#org50dcd5e">12.3. Conditional Synchrnozation</a>
+<ul>
+<li><a href="#orgc7e079d">12.3.1. Design by Contract</a></li>
+<li><a href="#org827ff3e">12.3.2. 3 main conservative approaches</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org791808d">13. Lect 13: Java synchronized, wait, notify(got late)</a>
+<ul>
+<li><a href="#orgf977d3c">13.1. wait</a></li>
+<li><a href="#org72220b5">13.2. Safety and Liveness</a></li>
+<li><a href="#orgb2c6c0d">13.3. waiting in C++</a></li>
+<li><a href="#orgf0d47f1">13.4. Readers-Writers Problem</a></li>
+</ul>
+</li>
+<li><a href="#orgbb58918">14. Lect 14: Reader Writer problem (contd)</a>
+<ul>
+<li><a href="#orga97a1ac">14.1. Bounded Buffer</a></li>
+<li><a href="#orgbac5385">14.2. <span class="todo TODO">TODO</span> <code>unique_lock</code> v/s <code>lock_guard</code></a></li>
+</ul>
+</li>
+<li><a href="#org74aa7fc">15. Lect 15: Cancellation</a>
+<ul>
+<li><a href="#org1407a8b">15.1. <span class="todo TODO">TODO</span> Solve last problem of last slides</a></li>
+<li><a href="#org9b660dd">15.2. Cancellation: terminate thread externally</a>
+<ul>
+<li><a href="#orgb9635a6">15.2.1. Do cleanup</a></li>
+<li><a href="#org1f2f2d7">15.2.2. Unrestricted asynchronous cancellation</a></li>
+<li><a href="#org9698815">15.2.3. Polling for flag</a></li>
+<li><a href="#org56622d1">15.2.4. Deferred cancellation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org787d882">16. Lect 16: Cancellation (contd)</a>
+<ul>
+<li><a href="#orgafaace1">16.1. Interrupts and IO</a></li>
+<li><a href="#org30fda2f">16.2. Resource revocation (Java)</a>
+<ul>
+<li><a href="#org52acacc">16.2.1. Java.nio</a></li>
+</ul>
+</li>
+<li><a href="#org0985c81">16.3. C++ thread cancellation</a></li>
+<li><a href="#orga21b61b">16.4. Timed Waiting</a>
+<ul>
+<li><a href="#org2bf6e34">16.4.1. Java</a></li>
+<li><a href="#orgc6d75a8">16.4.2. C++</a></li>
+</ul>
+</li>
+<li><a href="#orga1dc893">16.5. Semaphores</a>
+<ul>
+<li><a href="#orgf7b869a">16.5.1. P and V</a></li>
+<li><a href="#orgd46e319">16.5.2. Split binary semaphore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org563a912">17. Lect 17: Split Binary Semaphore</a>
+<ul>
+<li><a href="#org2bce713">17.1. Passing the baton</a></li>
+</ul>
+</li>
+<li><a href="#org0d58000">18. Mid Exam 1 Notes:</a>
+<ul>
+<li><a href="#org7db8a95">18.1. Java memory model allows assignments to be reordered.</a></li>
+<li><a href="#orga65547e">18.2. Deadlocks</a></li>
+<li><a href="#org7facabe">18.3. Safe publication:</a></li>
+<li><a href="#orga06edf1">18.4. <code>wait</code>, <code>notify</code></a></li>
+<li><a href="#org52fc29d">18.5. Passing the baton:</a>
+<ul>
+<li><a href="#orgba17508">18.5.1. How multiple readers access is implemented</a></li>
+</ul>
+</li>
+<li><a href="#orgfe3548d">18.6. <code>Callable</code> v/s <code>Runnable</code></a></li>
+<li><a href="#orgee6eb93">18.7. <code>ReentrantLock</code> v/s <code>synchronized</code></a></li>
+<li><a href="#orgcb125a2">18.8. <code>getAndSet()</code></a></li>
+<li><a href="#org1d9d891">18.9. <code>lock_guard</code> v/s <code>unique_guard</code></a></li>
+<li><a href="#org80fe14b">18.10. <b>safety</b> and *liveness~</a></li>
+</ul>
+</li>
+<li><a href="#orgf9f836e">19. Lect 18: Thread Pools</a>
+<ul>
+<li><a href="#orgb7fb05c">19.1. Overhead of creating threads, and cleaning them</a></li>
+<li><a href="#orge82fb18">19.2. web Server</a>
+<ul>
+<li><a href="#orgde7efdb">19.2.1. <span class="todo TODO">TODO</span> check <code>socket</code> doc in java and c++</a></li>
+<li><a href="#org9275d01">19.2.2. socket construction</a></li>
+<li><a href="#org465e1de">19.2.3. Server construction</a></li>
+<li><a href="#org530abd4">19.2.4. Producer Consumer Paradigm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org65dff83">20. Lect 19: Executors &amp; Futures</a>
+<ul>
+<li><a href="#org345089f">20.1. <span class="todo TODO">TODO</span> Java Executors Doc</a></li>
+<li><a href="#org60b16c8">20.2. Asynchronous Computations</a>
+<ul>
+<li><a href="#orga2e730c">20.2.1. Future</a></li>
+</ul>
+</li>
+<li><a href="#org6e0119e">20.3. misc</a></li>
+</ul>
+</li>
+<li><a href="#orgd9a160d">21. Lect 20: C++ Move, futures, <code>fork/join</code></a>
+<ul>
+<li><a href="#org0dbf587">21.1. Lvalues and Rvalues</a>
+<ul>
+<li><a href="#orgeb2ca21">21.1.1. C++ refs</a></li>
+<li><a href="#orgfd283aa">21.1.2. C++ rvalue references</a></li>
+</ul>
+</li>
+<li><a href="#orgfbe71a3">21.2. futures</a></li>
+<li><a href="#org36ab49d">21.3. fork/join tasks</a>
+<ul>
+<li><a href="#org5edc866">21.3.1. Work steal</a></li>
+<li><a href="#org9577a4e">21.3.2. using</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga7e93cb">22. Lect 21: case study: Concurrency in Android, Lock implementation</a>
+<ul>
+<li><a href="#orgf26a471">22.1. Andriod app case study</a></li>
+<li><a href="#org8c63209">22.2. Lock Implementation</a>
+<ul>
+<li><a href="#orgedbee71">22.2.1. Spin Lock Implementation</a></li>
+<li><a href="#org28a7646">22.2.2. <span class="todo TODO">TODO</span> Doubts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org026d820">23. Lect 22: TTAS</a>
+<ul>
+<li><a href="#org0106502">23.1. Backoff has disadvantage</a></li>
+<li><a href="#org999f71b">23.2. waiting queue</a>
+<ul>
+<li><a href="#orged03ecc">23.2.1. advantages:</a></li>
+<li><a href="#orgc9d9a73">23.2.2. disadvantages:</a></li>
+</ul>
+</li>
+<li><a href="#orgae1f2a5">23.3. misc</a></li>
+<li><a href="#orgfcddf5b">23.4. CLHLock</a></li>
+<li><a href="#org55f7f04">23.5. MCS Queue Lock</a></li>
+<li><a href="#org2932ef9">23.6. <code>AtomicInt</code> Binary representation lock</a></li>
+</ul>
+</li>
+<li><a href="#org05fb1e8">24. Lect 23: Spin Lock Implementations, hybrid Locks</a>
+<ul>
+<li><a href="#org1796b5d">24.1. Timeout</a></li>
+<li><a href="#orgf26ab83">24.2. Hybrid Locks</a></li>
+<li><a href="#org68e4016">24.3. Fat Locks</a></li>
+<li><a href="#org74cb99e">24.4. Thin Locks</a></li>
+</ul>
+</li>
+<li><a href="#org7ce85f1">25. Lect 24: Mid 1 Review</a>
+<ul>
+<li><a href="#orgf4796da">25.1. <span class="todo TODO">TODO</span> Can there be a deadlock without a conflict?</a></li>
+<li><a href="#orgc18bd67">25.2. Conflicts and deadlock</a></li>
+</ul>
+</li>
+<li><a href="#org04e06a3">26. Linearizability and correctness</a>
+<ul>
+<li><a href="#org3f84828">26.1. Linearizability</a>
+<ul>
+<li><a href="#org3414335">26.1.1. Objects are linearlizable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc08cb4d">27. Reasoning about Linearizability</a>
+<ul>
+<li><a href="#orgcdd70c9">27.1. Linearizability Proof</a></li>
+<li><a href="#org732ed4d">27.2. Sequential Consistency</a></li>
+<li><a href="#orgf7e66a7">27.3. Wait Free</a></li>
+<li><a href="#org6a7dcc0">27.4. Lock Free</a></li>
+<li><a href="#orgb855c3a">27.5. Obstruction free</a></li>
+<li><a href="#orgc22498f">27.6. <span class="todo DONE">DONE</span> Safe</a></li>
+<li><a href="#org4a6ab1e">27.7. <span class="todo DONE">DONE</span> Regular</a></li>
+<li><a href="#orgad7c952">27.8. <span class="todo TODO">TODO</span> Linearizable</a></li>
+<li><a href="#org3adda88">27.9. Foundation of Concurrency</a></li>
+</ul>
+</li>
+<li><a href="#org26f20a7">28. Composing higher constructs using primitive</a>
+<ul>
+<li><a href="#org97d3823">28.1. Safe MRSW from SRSW</a></li>
+<li><a href="#orgf71836b">28.2. Mututal exclution can not be used to get wait free</a>
+<ul>
+<li><a href="#orgc428171">28.2.1. Example, 2 thread FIFO</a></li>
+<li><a href="#org47d9f91">28.2.2. Consensus Number</a></li>
+<li><a href="#orgf54f019">28.2.3. Read modify write</a></li>
+</ul>
+</li>
+<li><a href="#orgdaced89">28.3. ABA problem (Problem in CAS):</a></li>
+<li><a href="#orgecc6497">28.4. Lock free</a></li>
+</ul>
+</li>
+<li><a href="#org94dc017">29. Parallel Programming</a>
+<ul>
+<li><a href="#orga7c6f5e">29.1. OpenMP</a>
+<ul>
+<li><a href="#org862fbfe">29.1.1. SPMD (Single program, multiple data):</a></li>
+<li><a href="#orgafaa353">29.1.2. Work sharing</a></li>
+</ul>
+</li>
+<li><a href="#org6c62c7b">29.2. OpenMP: variables in block</a>
+<ul>
+<li><a href="#orga63cafb">29.2.1. <span class="todo TODO">TODO</span> Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5d2c255">30. OpenMP (cont)</a>
+<ul>
+<li><a href="#org22fbf07">30.1. Reduction</a></li>
+<li><a href="#orga5f198a">30.2. Critical Section</a></li>
+<li><a href="#org644d5a6">30.3. False Sharing</a></li>
+<li><a href="#org9064a99">30.4. Atomic</a></li>
+<li><a href="#org63cfec0">30.5. Barriers</a></li>
+<li><a href="#org244e925">30.6. Ordered:</a></li>
+<li><a href="#org03e0e6e">30.7. Flush</a></li>
+<li><a href="#orgdef8c49">30.8. Environment Variable</a></li>
+<li><a href="#orgfd36875">30.9. Problems with openMP</a></li>
+<li><a href="#orge0c850a">30.10. Tree based reduction</a></li>
+<li><a href="#org2e60f0b">30.11. Floating point is not associative</a></li>
+</ul>
+</li>
+<li><a href="#orgb26e89b">31. Research Work: ACES4</a></li>
+<li><a href="#org6ec9af5">32. Performance Models</a>
+<ul>
+<li><a href="#org43c1ee2">32.1. Metrics</a></li>
+<li><a href="#orgbdeaf0f">32.2. Models</a>
+<ul>
+<li><a href="#org6ec94e7">32.2.1. Simple Analytical model</a></li>
+</ul>
+</li>
+<li><a href="#org29886e3">32.3. Amdahl's Law</a></li>
+<li><a href="#orgaa2c56d">32.4. Message Passing</a>
+<ul>
+<li><a href="#org65fdff6">32.4.1. CSP (Communicating Sequential Processes)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc090bd3">33. Go</a>
+<ul>
+<li><a href="#org113300a">33.1. Bg</a></li>
+<li><a href="#orgcaae31c">33.2. Concurrency</a></li>
+</ul>
+</li>
+<li><a href="#org66b6530">34. Actors</a>
+<ul>
+<li><a href="#orgb51294d">34.1. Actors inside</a></li>
+<li><a href="#org3c5e837">34.2. Difference with OOP</a></li>
+<li><a href="#org3fb7e8a">34.3. MPI</a></li>
+<li><a href="#org5824eb3">34.4. <span class="todo TODO">TODO</span> SPMD</a></li>
+</ul>
+</li>
+<li><a href="#orgba5fd86">35. MPI</a>
+<ul>
+<li><a href="#org41590e1">35.1. <code>MPI_type</code></a></li>
+<li><a href="#org9382706">35.2. <code>MPI_send</code> blocks until buff is copied into system</a></li>
+<li><a href="#org377d8e4">35.3. SPMD</a></li>
+<li><a href="#orgffe61a6">35.4. Asychrony</a></li>
+</ul>
+</li>
+<li><a href="#org1d3f8b5">36. Vector Algorithms</a>
+<ul>
+<li><a href="#org6c36f06">36.1. Regular datastructures (homogeneous array)</a></li>
+<li><a href="#org2215360">36.2. Kernel Parallelism</a></li>
+<li><a href="#org03f25ba">36.3. Vector parallelism (SIMD)</a>
+<ul>
+<li><a href="#orgdb349ab">36.3.1. Challenges:</a></li>
+<li><a href="#org2d027c4">36.3.2. How to use vector units</a></li>
+</ul>
+</li>
+<li><a href="#org8e91ded">36.4. OpenCl</a></li>
+</ul>
+</li>
+<li><a href="#org40fe274">37. Final Review</a>
+<ul>
+<li><a href="#orgca0a80b">37.1. Instructions</a></li>
+<li><a href="#orgd8ec78e">37.2. Preparation</a></li>
+</ul>
+</li>
+<li><a href="#org5c41c0f">38. Deadlocks</a>
+<ul>
+<li><a href="#orgacb5dde">38.1. Solutions</a></li>
+</ul>
+</li>
+<li><a href="#orga265a1f">39. Livelock</a></li>
+<li><a href="#org2851cc5">40. Starvation</a></li>
+<li><a href="#org3206273">41. Invariant</a>
+<ul>
+<li><a href="#org00f3520">41.1. Pre-condition</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+
+<div id="outline-container-orgdc3dcb5" class="outline-2">
+<h2 id="orgdc3dcb5"><span class="section-number-2">1</span> Lect 2 (24 August): Basic Mechanics for Processes and Threads</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Unit of execution &#x2013; common word for process or thread</li>
+<li>Threads: light weight process</li>
+</ul>
+</div>
+<div id="outline-container-orgf5680a7" class="outline-3">
+<h3 id="orgf5680a7"><span class="section-number-3">1.1</span> Process</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>has its own heap and stack (address space)</li>
+<li>IPC: requires sys call, hence slow</li>
+<li>created in UNIX using <code>fork</code>
+&#x2013; everything same except return code</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdc692af" class="outline-3">
+<h3 id="orgdc692af"><span class="section-number-3">1.2</span> Thread</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>share address space; shared heap</li>
+<li><code>pthreads</code>: POSIX threads</li>
+<li>IPC don't require sys call</li>
+</ul>
+</div>
+<div id="outline-container-orga9849f2" class="outline-4">
+<h4 id="orga9849f2"><span class="section-number-4">1.2.1</span> PThreads</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+See slides for more Pthreads APIs, I'm listing some details about some APIs:
+</p>
+<ul class="org-ul">
+<li><code>int pthread_join(pthread_t thread, void **value_ptr);</code>
+will suspend execution of the thread which calls it until target thread terminates.
+Useful when main thread waits for spawned threads to complete their execution
+before continuing. Here we can collect returned valued from thread in <code>value_ptr</code>.</li>
+<li><code>void pthread_exit(void *retval);</code>
+This will exit the thread which calls it (which calls <code>pthread_exit</code>)
+Main thread will exit, but spawned threads will continue. This is useful when
+main thread is used only to spawn new threads and does no other work.</li>
+<li><code>int pthread_detach(pthread_t thread);</code>
+The pthread<sub>detach</sub>() function marks the thread identified by thread
+as detached.  When a detached thread terminates, its resources are
+automatically released back to the system without the need for
+another thread to join with the terminated thread.</li>
+<li>use <code>pthread_exit</code> to exit from thread and return value instead of directly
+using <code>return val</code> so that proper destructor are called.</li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="orgf6083b0"></a><code>detached</code> vs <code>join</code><br /><div class="outline-text-5" id="text-1-2-1-1">
+<p>
+Create a <b>detached</b> thread using <code>pthread_attr_setdetachstate</code> when we don't
+want to join it. A <b>detached</b> thread, after terminating, returns all of its
+resources, where a <b>joinable</b> thread doesn't return resources until it is joined.
+If a <b>joinable</b> thread is not joined, it's resources are not released until
+the process it terminated.
+</p>
+</div></li>
+<li><a id="orgb5dabb5"></a>Todos<br /><ol class="org-ol"><li><a id="orgd4fde29"></a><span class="todo DONE">DONE</span> return value <code>void*</code><br /></li>
+<li><a id="orgb9acf4d"></a><span class="todo DONE">DONE</span> increment t<br /></li>
+<li><a id="org02aeef6"></a><span class="todo DONE">DONE</span> Read about pthreads<br /></li></ol></li></ol>
+</div>
+<div id="outline-container-org170affc" class="outline-4">
+<h4 id="org170affc"><span class="section-number-4">1.2.2</span> Java: <code>java.lang.Thread</code></h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>threads can be set as Daemon
+<ul class="org-ul">
+<li>JVM waits for non daemon threads before shutting down</li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="orgf788fa1"></a><span class="todo DONE">DONE</span> Java8 lambda<br /></li>
+<li><a id="orgb39d060"></a><span class="todo DONE">DONE</span> Java8 Lexical Scope<br /></li>
+<li><a id="orga0c9343"></a>Scheduling<br /><div class="outline-text-5" id="text-1-2-2-3">
+<ul class="org-ul">
+<li>set by JVM</li>
+<li>priorities are just guide lines</li>
+</ul>
+</div></li></ol>
+</div>
+<div id="outline-container-org71efee4" class="outline-4">
+<h4 id="org71efee4"><span class="section-number-4">1.2.3</span> C++</h4>
+<div class="outline-text-4" id="text-1-2-3">
+</div><ol class="org-ol"><li><a id="org2decc38"></a><span class="todo TODO">TODO</span> C+++ lambdas<br /></li>
+<li><a id="orgd55f16f"></a><span class="todo TODO">TODO</span> try multi threaded program<br /></li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcf70763" class="outline-2">
+<h2 id="orgcf70763"><span class="section-number-2">2</span> Lect 3 (29 August): Atomicity</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org3b8902b" class="outline-3">
+<h3 id="org3b8902b"><span class="section-number-3">2.1</span> Immutable: Java BigInteger is immutable</h3>
+</div>
+<div id="outline-container-org5e6be81" class="outline-3">
+<h3 id="org5e6be81"><span class="section-number-3">2.2</span> Stateless method</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+everything which is created is deleted/cleared after return
+Thread safe
+</p>
+</div>
+</div>
+<div id="outline-container-org41b59f7" class="outline-3">
+<h3 id="org41b59f7"><span class="section-number-3">2.3</span> AtomicLong: Java provided atomic DS</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Gives methods such as increment</li>
+<li>C++ added atomic DS in C++ 11.</li>
+<li>utilizes hardware to provide atomicity</li>
+</ul>
+</div>
+<div id="outline-container-org3356cd8" class="outline-4">
+<h4 id="org3356cd8"><span class="section-number-4">2.3.1</span> <span class="todo TODO">TODO</span> Memory synchronization</h4>
+</div>
+</div>
+<div id="outline-container-orgbabca0a" class="outline-3">
+<h3 id="orgbabca0a"><span class="section-number-3">2.4</span> Lock</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Package <code>java.util.lock</code> - Interface</li>
+<li><code>ReenterantLock</code></li>
+<li>Exceptions in critical section
+<ul class="org-ul">
+<li><p>
+use <code>unlock</code> in <code>finally</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-java">l.lock()
+<span style="color: #0000FF;">try</span>
+  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">critical section</span>
+<span style="color: #0000FF;">finally</span>
+  l.unlock()
+</pre>
+</div></li>
+</ul></li>
+<li>Note, we need to lock <code>lastNumber</code> return <code>lastFactor</code>, we return what we checked
+[slide 25]</li>
+</ul>
+</div>
+<div id="outline-container-orgadb84a8" class="outline-4">
+<h4 id="orgadb84a8"><span class="section-number-4">2.4.1</span> <span class="todo TODO">TODO</span> slide 24, return statement</h4>
+</div>
+</div>
+<div id="outline-container-org313c59f" class="outline-3">
+<h3 id="org313c59f"><span class="section-number-3">2.5</span> Pthread Mutexes</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>pthread<sub>mutex</sub>_[lock,trylock,unlock]</li>
+<li><code>tryLock</code> returns true/false</li>
+<li><code>reenterantLock</code> or <code>pthread_mutex_recursive</code> same thread can lock the
+same lock
+<ul class="org-ul">
+<li>Java - <code>reenterantLock</code> is default; C,C++ says otherwise</li>
+</ul></li>
+<li>No garbage collector: <code>pthread_mutex_destroy</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org125388b" class="outline-3">
+<h3 id="org125388b"><span class="section-number-3">2.6</span> Java Intrinsic Locks (monitor locks)</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>used with <code>synchronized</code> keyword</li>
+<li>compiler gives support for proper use</li>
+<li><code>this</code> is default object for locking</li>
+<li><code>synchronized</code> keyword is not inherited in sub classes</li>
+<li>Java: intrinsic lock can also be on class object, refer <a href="http://stackoverflow.com/questions/14495776/synchronizethis-vs-synchronizemyclass-class">SO</a>
+(slide 47)</li>
+</ul>
+</div>
+<div id="outline-container-orgc4bf43e" class="outline-4">
+<h4 id="orgc4bf43e"><span class="section-number-4">2.6.1</span> <span class="todo DONE">DONE</span> was in earlier version, considered as mistake</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<ul class="org-ul">
+<li>many still use</li>
+<li>every object has lock - overhead</li>
+<li>some methods are missing/unavailable in such method of locking
+<ul class="org-ul">
+<li><code>lockinterruptibility</code>, <code>tryLock</code> &#x2026;</li>
+</ul></li>
+<li><a href="http://stackoverflow.com/questions/4201713/synchronization-vs-lock">SO</a> says <code>synchronized</code> is for easy cases, <code>locks</code> give more flexibility
+and responsibility.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgff3993c" class="outline-4">
+<h4 id="orgff3993c"><span class="section-number-4">2.6.2</span> How monitors work&#xa0;&#xa0;&#xa0;<span class="tag"><span class="intuition">intuition</span></span></h4>
+<div class="outline-text-4" id="text-2-6-2">
+<p>
+AtomicIntegers can be implemented using <code>synchronized</code> keyword.
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">class</span> <span style="color: #6434A3;">AtomicInt</span> {
+    <span style="color: #0000FF;">private</span> <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">value</span>;
+    <span style="color: #0000FF;">synchronized</span> <span style="color: #0000FF;">public</span> <span style="color: #6434A3;">int</span> <span style="color: #006699;">increment</span>() { <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">here we are having lock on `this`</span>
+        <span style="color: #0000FF;">return</span> AtomicInt(<span style="color: #0000FF;">this</span>.value++);
+        <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">since atomic types are immutable, we are passing</span>
+        <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">new AtomicInt</span>
+    }
+}
+</pre>
+</div>
+<p>
+meanwhile in some other part of the universe
+<code>AtomicIntegers i = new AtomicInteger(0);</code>
+t1 calls <code>i.increment()</code>
+t2 calls <code>i.increment()</code>
+where `i` is shared, while <code>t1</code> and <code>t2</code> are different objects, <code>i</code> is shared
+and this is used for locking in the intrinsic lock (monitor lock) in
+<code>synchronized public int increment() {</code>
+Thus atomicity is maintained.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9650acf" class="outline-2">
+<h2 id="org9650acf"><span class="section-number-2">3</span> Lect 4 (31 August): Atomicity Continued</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org9b6aa75" class="outline-3">
+<h3 id="org9b6aa75"><span class="section-number-3">3.1</span> template for atomic type</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li><code>++</code> is overloaded</li>
+<li>implemented by runtime
+<ul class="org-ul">
+<li>often utilized using hw instruction</li>
+<li>if not available, it uses lock</li>
+<li>in c++, <code>is_lock_free</code> indicates if lock is used</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org37671bb" class="outline-3">
+<h3 id="org37671bb"><span class="section-number-3">3.2</span> mutex (locks)</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-org06eed66" class="outline-4">
+<h4 id="org06eed66"><span class="section-number-4">3.2.1</span> <code>lock_guard</code></h4>
+<div class="outline-text-4" id="text-3-2-1">
+</div><ol class="org-ol"><li><a id="orgeaf9bd6"></a><span class="todo TODO">TODO</span> Implements <b>RAII</b> (Resource allocation is initialization)<br /><div class="outline-text-5" id="text-3-2-1-1">
+<ul class="org-ul">
+<li><p>
+<code>manager</code> object: allocated in constructor, deallocates in destructor
+</p>
+<div class="org-src-container">
+<pre class="src src-c++">{
+     <span style="color: #6434A3;">manage_obj</span> <span style="color: #BA36A5;">man</span> <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">calls constructor, allocates resource (file open, mutex lock)</span>
+     <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">do your stuff...</span>
+} <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">man goes out of scope, destructor is called</span>
+</pre>
+</div></li>
+<li><code>mutex</code> RAII - explained in slide "Cached version"</li>
+</ul>
+</div></li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org14857d1" class="outline-2">
+<h2 id="org14857d1"><span class="section-number-2">4</span> Lect 4 (31 August): Memory Model</h2>
+</div>
+<div id="outline-container-orgba24687" class="outline-2">
+<h2 id="orgba24687"><span class="section-number-2">5</span> Lect 5 (7 September): Memory Model continued</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orge7e74a1" class="outline-3">
+<h3 id="orge7e74a1"><span class="section-number-3">5.1</span> <span class="todo TODO">TODO</span> Visibility</h3>
+</div>
+<div id="outline-container-org9318280" class="outline-3">
+<h3 id="org9318280"><span class="section-number-3">5.2</span> <span class="todo TODO">TODO</span> TSO (Total store order)</h3>
+</div>
+<div id="outline-container-orgd08321a" class="outline-3">
+<h3 id="orgd08321a"><span class="section-number-3">5.3</span> Special instructions/ <i>FENCE</i></h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>sides of the <i>FENCE</i> are not mixed
+<ul class="org-ul">
+<li>eg: ARM calls fence as <code>sync</code></li>
+</ul></li>
+<li>compiler takes care of it</li>
+<li>add <i>FENCE</i> only when required</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5bbc480" class="outline-3">
+<h3 id="org5bbc480"><span class="section-number-3">5.4</span> Compiler optimization</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>eg: dead code elimination -&gt; spin locks</li>
+</ul>
+</div>
+<div id="outline-container-org95500fa" class="outline-4">
+<h4 id="org95500fa"><span class="section-number-4">5.4.1</span> when to optimize?</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<ul class="org-ul">
+<li>communication needed with compiler</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0636bef" class="outline-3">
+<h3 id="org0636bef"><span class="section-number-3">5.5</span> Vocabulary</h3>
+<div class="outline-text-3" id="text-5-5">
+</div><div id="outline-container-org574289b" class="outline-4">
+<h4 id="org574289b"><span class="section-number-4">5.5.1</span> Conflicting operation:</h4>
+<div class="outline-text-4" id="text-5-5-1">
+<ul class="org-ul">
+<li>different threads</li>
+<li>access same location</li>
+<li>at least one write</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org81aeead" class="outline-4">
+<h4 id="org81aeead"><span class="section-number-4">5.5.2</span> Data race:</h4>
+<div class="outline-text-4" id="text-5-5-2">
+<p>
+conflicting operations are not ordered
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf07d25a" class="outline-3">
+<h3 id="orgf07d25a"><span class="section-number-3">5.6</span> A data race free (DRF) program behaves sequentially</h3>
+</div>
+<div id="outline-container-orgce3d455" class="outline-3">
+<h3 id="orgce3d455"><span class="section-number-3">5.7</span> What happens if data race</h3>
+<div class="outline-text-3" id="text-5-7">
+</div><div id="outline-container-orged47b48" class="outline-4">
+<h4 id="orged47b48"><span class="section-number-4">5.7.1</span> Java</h4>
+<div class="outline-text-4" id="text-5-7-1">
+</div><ol class="org-ol"><li><a id="org9033dd4"></a>No <b>out of thin</b> air values<br /><div class="outline-text-5" id="text-5-7-1-1">
+<p>
+maybe helpful for allowed races for performance
+</p>
+</div></li></ol>
+</div>
+</div>
+<div id="outline-container-orgf8298d4" class="outline-3">
+<h3 id="orgf8298d4"><span class="section-number-3">5.8</span> Race v/s data race</h3>
+<div class="outline-text-3" id="text-5-8">
+<ul class="org-ul">
+<li>some mean race, as un wanted behavior due to schduler</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbcd76c2" class="outline-3">
+<h3 id="orgbcd76c2"><span class="section-number-3">5.9</span> atomic provide order and</h3>
+</div>
+<div id="outline-container-org01f0706" class="outline-3">
+<h3 id="org01f0706"><span class="section-number-3">5.10</span> <b>Order</b>: defined control flow</h3>
+</div>
+<div id="outline-container-org96930c8" class="outline-3">
+<h3 id="org96930c8"><span class="section-number-3">5.11</span> <span class="todo TODO">TODO</span> Ordered by happens-before</h3>
+</div>
+</div>
+<div id="outline-container-orge34b86b" class="outline-2">
+<h2 id="orge34b86b"><span class="section-number-2">6</span> Lect 6: Publishing</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org5937e5c" class="outline-3">
+<h3 id="org5937e5c"><span class="section-number-3">6.1</span> Publishing (problems with Publishing data)</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>ensure happens before relation between construction and use of object</li>
+<li>wrapper for implementing multithreading</li>
+<li>do not trush the function</li>
+<li>block pointers</li>
+</ul>
+</div>
+<div id="outline-container-org043df14" class="outline-4">
+<h4 id="org043df14"><span class="section-number-4">6.1.1</span> Java double checking locking</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<ul class="org-ul">
+<li>partially created instance can trigger <code>instance == null</code>
+<ul class="org-ul">
+<li>constructor may not be atomic</li>
+<li>can be fixed by making instance <code>volatile</code></li>
+<li>can this be fixed by synchronizing <code>constructor</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2b533fb" class="outline-4">
+<h4 id="org2b533fb"><span class="section-number-4">6.1.2</span> C++ initialization</h4>
+<div class="outline-text-4" id="text-6-1-2">
+</div><ol class="org-ol"><li><a id="orge87a931"></a><span class="todo TODO">TODO</span> <code>shared_pointers</code><br /></li>
+<li><a id="orgcc868a2"></a><code>call_once</code> C++ initialization in a thread safe way provided by language<br /><div class="outline-text-5" id="text-6-1-2-2">
+<ul class="org-ul">
+<li><code>once_flag</code></li>
+</ul>
+</div></li></ol>
+</div>
+</div>
+<div id="outline-container-org0da5c89" class="outline-3">
+<h3 id="org0da5c89"><span class="section-number-3">6.2</span> unsafe publication - <b>escape</b></h3>
+<div class="outline-text-3" id="text-6-2">
+</div><div id="outline-container-orgde09383" class="outline-4">
+<h4 id="orgde09383"><span class="section-number-4">6.2.1</span> Construction</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<ul class="org-ul">
+<li>Java: <code>this</code> cannot escape during construction</li>
+<li>use <code>private</code> constructor, wraper to get new object</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0019c2d" class="outline-3">
+<h3 id="org0019c2d"><span class="section-number-3">6.3</span> Immutability</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li><code>final</code> is special in Java wrt to concurrency</li>
+<li><code>call_once</code> is corresponding stuff in C++</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org1f4ff76" class="outline-2">
+<h2 id="org1f4ff76"><span class="section-number-2">7</span> Lect 7: Patterns for concurrent programming</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org57a2d77" class="outline-3">
+<h3 id="org57a2d77"><span class="section-number-3">7.1</span> Fully synchronized object</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>one single lock</li>
+<li>no public fields</li>
+<li>finite</li>
+<li>consistent</li>
+<li>publish object without data race</li>
+</ul>
+</div>
+<div id="outline-container-org41c309e" class="outline-4">
+<h4 id="org41c309e"><span class="section-number-4">7.1.1</span> Not scalable</h4>
+</div>
+<div id="outline-container-orgb9787db" class="outline-4">
+<h4 id="orgb9787db"><span class="section-number-4">7.1.2</span> Easy to implement</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<ul class="org-ul">
+<li>good when concurrency level is low</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbc70223" class="outline-4">
+<h4 id="orgbc70223"><span class="section-number-4">7.1.3</span> Publishing</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<ul class="org-ul">
+<li>if instance is <code>volatile</code> in java then it's construction is safe</li>
+<li>publishing is about constructing</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9cc08c4" class="outline-4">
+<h4 id="org9cc08c4"><span class="section-number-4">7.1.4</span> Re using sequential code</h4>
+<div class="outline-text-4" id="text-7-1-4">
+<ul class="org-ul">
+<li>modify source code - add lock</li>
+<li>subclass - add lock</li>
+<li>adapter, proxy, lock then call method</li>
+<li>iterator is not thread safe
+<ul class="org-ul">
+<li>user has to manually do it</li>
+<li><p>
+why not synchronized
+</p>
+<div class="org-src-container">
+<pre class="src src-java">iter.hasNext();
+nextItem = iter.next(); <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">two methods</span>
+</pre>
+</div></li>
+<li>throws exception <code>ConcurrentModification</code>
+<ul class="org-ul">
+<li>this is not guaranteed</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3811db9" class="outline-3">
+<h3 id="org3811db9"><span class="section-number-3">7.2</span> Finer grained approach</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li>maybe too small granularity</li>
+<li>identify stateless
+<ul class="org-ul">
+<li>does not rely on mutable object</li>
+<li>slide 56, why make a copy of <code>b</code>
+<ul class="org-ul">
+<li>maybe read &gt; 1 in <code>compute</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orga813d31" class="outline-2">
+<h2 id="orga813d31"><span class="section-number-2">8</span> Lect 8: Patterns for concurrent data structures</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-orga9648eb" class="outline-3">
+<h3 id="orga9648eb"><span class="section-number-3">8.1</span> Hand-over-hand locking</h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>lock only one element of the data structure
+<ul class="org-ul">
+<li>in example in slides: lock means, to delete predecessor we need lock
+<ul class="org-ul">
+<li>what about inserting new node (my question)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org753de6d" class="outline-3">
+<h3 id="org753de6d"><span class="section-number-3">8.2</span> Optimistic synchronization</h3>
+<div class="outline-text-3" id="text-8-2">
+<ul class="org-ul">
+<li>let things happen, then check if something went wrong</li>
+<li>better if low contention</li>
+<li>Atomic commit
+<ul class="org-ul">
+<li>check if anything changed</li>
+<li>if no, then edit/commit</li>
+</ul></li>
+<li>dont use optimistic sync if irreversible side effects</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0c305b7" class="outline-2">
+<h2 id="org0c305b7"><span class="section-number-2">9</span> Lect 9: Patterns for thread safe data structures</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>slide 49:
+<ul class="org-ul">
+<li><code>Node next</code> should be <code>volatile</code>, one thread locks it but other
+traverses without locking.</li>
+<li><code>item</code> and <code>key</code> final.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org5beb73f" class="outline-3">
+<h3 id="org5beb73f"><span class="section-number-3">9.1</span> Copy on write</h3>
+<div class="outline-text-3" id="text-9-1">
+<ul class="org-ul">
+<li>relevant when we need to update multiple field in the same object</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6c0c882" class="outline-2">
+<h2 id="org6c0c882"><span class="section-number-2">10</span> Lect 10: Case study: Swing Package</h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-org6ddd602" class="outline-3">
+<h3 id="org6ddd602"><span class="section-number-3">10.1</span> Threads:</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>main thread</li>
+<li>event queue for GUI</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf484401" class="outline-3">
+<h3 id="orgf484401"><span class="section-number-3">10.2</span> event listener</h3>
+<div class="outline-text-3" id="text-10-2">
+<ul class="org-ul">
+<li>create button</li>
+<li>create listener</li>
+<li>install listener</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org85ba11d" class="outline-3">
+<h3 id="org85ba11d"><span class="section-number-3">10.3</span> Swing <b>not</b> thread safe</h3>
+<div class="outline-text-3" id="text-10-3">
+<ul class="org-ul">
+<li>event dispatch thread cannot do long computation - GUI freeze</li>
+<li><code>listenerList</code> is copy-on-write</li>
+<li>what happens if event is removed from <code>listenerList</code>
+<ul class="org-ul">
+<li>handle events even after removing listener</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org70c5895" class="outline-3">
+<h3 id="org70c5895"><span class="section-number-3">10.4</span> Assignment 1: Thread safe queue</h3>
+<div class="outline-text-3" id="text-10-4">
+<ul class="org-ul">
+<li>C++, template - any class can be put in</li>
+<li>use exception - inherit from standard exception</li>
+<li><code>default</code> compiler will generate the function</li>
+<li><code>delete</code> cannot be called
+<ul class="org-ul">
+<li>copy constructor</li>
+<li><code>=</code> operator</li>
+</ul></li>
+<li><code>lock_guard</code> auto release when goes out of scope
+<ul class="org-ul">
+<li>even if exception happens</li>
+</ul></li>
+<li><code>shared_pointer</code> auto deleted after all reference are exhausted</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org89d43fa" class="outline-2">
+<h2 id="org89d43fa"><span class="section-number-2">11</span> Lect 11: Patterns for concurrent data structures 4: Deadlocks</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orga313835" class="outline-3">
+<h3 id="orga313835"><span class="section-number-3">11.1</span> Design problem: queue</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>cannot be solved just by making all methods <code>synchronized</code>
+<ul class="org-ul">
+<li><code>empty</code> is shared, two threads in different <code>synchronized</code> methods can access
+the same variable.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbd2e04f" class="outline-3">
+<h3 id="orgbd2e04f"><span class="section-number-3">11.2</span> <span class="todo TODO">TODO</span> Automated tests</h3>
+<div class="outline-text-3" id="text-11-2">
+<ul class="org-ul">
+<li>how to test data races?</li>
+<li>create threads, add to queue</li>
+<li>make threads to add certain intervals</li>
+<li>time to make thread v/s work done in thread</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga805411" class="outline-3">
+<h3 id="orga805411"><span class="section-number-3">11.3</span> Deadlocks</h3>
+<div class="outline-text-3" id="text-11-3">
+<ul class="org-ul">
+<li>when thread hold multiple locks - think about deadlocks</li>
+</ul>
+</div>
+<div id="outline-container-orgcb747cf" class="outline-4">
+<h4 id="orgcb747cf"><span class="section-number-4">11.3.1</span> Avoiding deadlocks</h4>
+<div class="outline-text-4" id="text-11-3-1">
+<ul class="org-ul">
+<li>associate lock with serial number</li>
+<li>cannot lock before locking other instance</li>
+<li>acquire lower number lock than higher number lock.</li>
+<li>orderings to acquire lock:
+<ul class="org-ul">
+<li>ids in object</li>
+<li>system identity hash code</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0a008e1" class="outline-4">
+<h4 id="org0a008e1"><span class="section-number-4">11.3.2</span> Deadlock suspesion</h4>
+<div class="outline-text-4" id="text-11-3-2">
+<ul class="org-ul">
+<li>design code without deadlocks</li>
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7119e2c" class="outline-2">
+<h2 id="org7119e2c"><span class="section-number-2">12</span> Lect 12: Deadlocks (contd)</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-org388423f" class="outline-3">
+<h3 id="org388423f"><span class="section-number-3">12.1</span> Let them happen, then deal with it</h3>
+<div class="outline-text-3" id="text-12-1">
+<ul class="org-ul">
+<li>hard to detect deadlock accurately in distributed concurrent programs</li>
+<li>if there suspicion that there is deadlock, consider as there is deadlock</li>
+<li><code>synchronized</code> keyword doesn't allow to <code>try_lock</code></li>
+<li><code>try_lock</code> returns false if could not acquire lock else lock.</li>
+<li>try to get lock, if not acquired then release own lock
+<ul class="org-ul">
+<li>0, try again immediately</li>
+<li>constant delay</li>
+<li>random delay</li>
+<li>exponential back off</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd2d54e5" class="outline-3">
+<h3 id="orgd2d54e5"><span class="section-number-3">12.2</span> Thread priority</h3>
+<div class="outline-text-3" id="text-12-2">
+<ul class="org-ul">
+<li>10 priority levels in Java, maybe mapped to lesser number of OS thread priority
+<ul class="org-ul">
+<li>thread priority may not be very useful</li>
+</ul></li>
+<li>give daemon thread low priority</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org50dcd5e" class="outline-3">
+<h3 id="org50dcd5e"><span class="section-number-3">12.3</span> Conditional Synchrnozation</h3>
+<div class="outline-text-3" id="text-12-3">
+</div><div id="outline-container-orgc7e079d" class="outline-4">
+<h4 id="orgc7e079d"><span class="section-number-4">12.3.1</span> Design by Contract</h4>
+<div class="outline-text-4" id="text-12-3-1">
+</div><ol class="org-ol"><li><a id="org48accdb"></a>precondition<br /><div class="outline-text-5" id="text-12-3-1-1">
+<p>
+responsibility of caller -&gt; must be true before calling method
+</p>
+</div></li>
+<li><a id="org375bbbd"></a>postcondition<br /><div class="outline-text-5" id="text-12-3-1-2">
+<p>
+responsibility of method -&gt; must be true after method is called
+</p>
+</div></li>
+<li><a id="org32ef912"></a>Invariant<br /><div class="outline-text-5" id="text-12-3-1-3">
+<p>
+always true between method calls
+#+END<sub>SRC</sub>
+</p>
+</div></li></ol>
+</div>
+<div id="outline-container-org827ff3e" class="outline-4">
+<h4 id="org827ff3e"><span class="section-number-4">12.3.2</span> 3 main conservative approaches</h4>
+<div class="outline-text-4" id="text-12-3-2">
+</div><ol class="org-ol"><li><a id="org58896ef"></a>balking:<br /><div class="outline-text-5" id="text-12-3-2-1">
+<p>
+I'm not doing it!
+</p>
+</div></li>
+<li><a id="orgcf10bfb"></a>Guarded suspension<br /><div class="outline-text-5" id="text-12-3-2-2">
+<p>
+wait till someone completes the precondition
+</p>
+
+<ul class="org-ul">
+<li>use <code>atomic_wait</code></li>
+</ul>
+<p>
+<b>*</b>
+</p>
+</div></li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org791808d" class="outline-2">
+<h2 id="org791808d"><span class="section-number-2">13</span> Lect 13: Java synchronized, wait, notify(got late)</h2>
+<div class="outline-text-2" id="text-13">
+</div>
+<div id="outline-container-orgf977d3c" class="outline-3">
+<h3 id="orgf977d3c"><span class="section-number-3">13.1</span> wait</h3>
+<div class="outline-text-3" id="text-13-1">
+<ul class="org-ul">
+<li>obj reacquires the lock after coming from <b>wait</b> state.</li>
+<li>check and wait must be in a while loop</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org72220b5" class="outline-3">
+<h3 id="org72220b5"><span class="section-number-3">13.2</span> Safety and Liveness</h3>
+<div class="outline-text-3" id="text-13-2">
+<ul class="org-ul">
+<li>safety is correctness</li>
+<li>doing nothing can also be correct
+<ul class="org-ul">
+<li>ensure Liveness</li>
+</ul></li>
+<li><code>notify</code> v/s <code>notifyAll</code>
+<ul class="org-ul">
+<li><code>notify</code> may be efficient</li>
+<li><code>notifyAll</code> may be easier to prove correct</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb2c6c0d" class="outline-3">
+<h3 id="orgb2c6c0d"><span class="section-number-3">13.3</span> waiting in C++</h3>
+<div class="outline-text-3" id="text-13-3">
+<ul class="org-ul">
+<li><code>condition_variable</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf0d47f1" class="outline-3">
+<h3 id="orgf0d47f1"><span class="section-number-3">13.4</span> Readers-Writers Problem</h3>
+<div class="outline-text-3" id="text-13-4">
+<ul class="org-ul">
+<li><p>
+concurrent read allowed
+</p>
+<pre class="example">
+nr &gt; 0 || nw == 1
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb58918" class="outline-2">
+<h2 id="orgbb58918"><span class="section-number-2">14</span> Lect 14: Reader Writer problem (contd)</h2>
+<div class="outline-text-2" id="text-14">
+<ul class="org-ul">
+<li>instead of just mutual exclusion, multiple readers allowed, only one writer
+allowed.</li>
+<li><p>
+invariant
+</p>
+<pre class="example">
+nr &gt;= 0 ^ nw &gt;= 0 ^
+(nw == 0 v (nw == 1 and nr == 0))
+</pre></li>
+<li><code>condition</code> in java
+<ul class="org-ul">
+<li><code>await</code></li>
+</ul></li>
+<li><code>readers</code> lock</li>
+</ul>
+</div>
+<div id="outline-container-orga97a1ac" class="outline-3">
+<h3 id="orga97a1ac"><span class="section-number-3">14.1</span> Bounded Buffer</h3>
+<div class="outline-text-3" id="text-14-1">
+<ul class="org-ul">
+<li><p>
+invariant
+</p>
+<pre class="example">
+0 &lt;= i ^ 0 &lt;= j ^ 0 &lt; i - j &lt;= N
+</pre></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbac5385" class="outline-3">
+<h3 id="orgbac5385"><span class="section-number-3">14.2</span> <span class="todo TODO">TODO</span> <code>unique_lock</code> v/s <code>lock_guard</code></h3>
+</div>
+</div>
+<div id="outline-container-org74aa7fc" class="outline-2">
+<h2 id="org74aa7fc"><span class="section-number-2">15</span> Lect 15: Cancellation</h2>
+<div class="outline-text-2" id="text-15">
+</div>
+<div id="outline-container-org1407a8b" class="outline-3">
+<h3 id="org1407a8b"><span class="section-number-3">15.1</span> <span class="todo TODO">TODO</span> Solve last problem of last slides</h3>
+</div>
+<div id="outline-container-org9b660dd" class="outline-3">
+<h3 id="org9b660dd"><span class="section-number-3">15.2</span> Cancellation: terminate thread externally</h3>
+<div class="outline-text-3" id="text-15-2">
+</div><div id="outline-container-orgb9635a6" class="outline-4">
+<h4 id="orgb9635a6"><span class="section-number-4">15.2.1</span> Do cleanup</h4>
+<div class="outline-text-4" id="text-15-2-1">
+<ul class="org-ul">
+<li>release locks</li>
+<li>free memory (if not garbage collection; or delete references)</li>
+<li>free resources</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1f2f2d7" class="outline-4">
+<h4 id="org1f2f2d7"><span class="section-number-4">15.2.2</span> Unrestricted asynchronous cancellation</h4>
+<div class="outline-text-4" id="text-15-2-2">
+<ul class="org-ul">
+<li>stop thread - it stops sometime soon</li>
+<li>Java stop deprecated - it may not cleanup
+<ul class="org-ul">
+<li>difficult to stop program in safe manner -see slides</li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org34b573d"></a><span class="todo TODO">TODO</span> why called asynchronous<br /></li></ol>
+</div>
+<div id="outline-container-org9698815" class="outline-4">
+<h4 id="org9698815"><span class="section-number-4">15.2.3</span> Polling for flag</h4>
+<div class="outline-text-4" id="text-15-2-3">
+<ul class="org-ul">
+<li>set flag</li>
+<li>thread polls and stops when see flag set
+<ul class="org-ul">
+<li>after self cleaning</li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org7b97f74"></a>Problems<br /><div class="outline-text-5" id="text-15-2-3-1">
+<ul class="org-ul">
+<li>efforts on programmer</li>
+<li>lock, block</li>
+</ul>
+</div></li></ol>
+</div>
+<div id="outline-container-org56622d1" class="outline-4">
+<h4 id="org56622d1"><span class="section-number-4">15.2.4</span> Deferred cancellation</h4>
+<div class="outline-text-4" id="text-15-2-4">
+<ul class="org-ul">
+<li>request cancellation anytime but will occur at specific points
+<ul class="org-ul">
+<li>where threads checks for it</li>
+<li>predefined cancellation point</li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org303a807"></a>Implementation<br /><ol class="org-ol"><li><a id="org02ba23d"></a>Java<br /><div class="outline-text-6" id="text-15-2-4-1-1">
+<ul class="org-ul">
+<li><code>Java.lang.Thread.interrupt()</code></li>
+<li>throw <code>InterruptedException</code>
+<ul class="org-ul">
+<li>if the thread is blocked, sleeping, waiting</li>
+<li><code>run</code> method not declared to throw <code>InterruptedException</code>
+<ul class="org-ul">
+<li>catch exception and interrupt thread <code>Thread.currentThread.interrupt()</code></li>
+<li>or wrap into <code>RuntimeException</code>
+<ul class="org-ul">
+<li><code>RuntimeException</code> doesn't need to be declared (unchecked exception)</li>
+</ul></li>
+</ul></li>
+<li>catching clears interrupt flag</li>
+</ul></li>
+<li>can poll for interrupt - <code>interrupt()</code>, <code>isInterrupted</code></li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org95a0005"></a>Advantages<br /><div class="outline-text-7" id="text-15-2-4-1-1-1">
+<ul class="org-ul">
+<li>language provided</li>
+<li>works even after when blocked</li>
+</ul>
+</div></li>
+<li><a id="org74fa547"></a>Interrupts and memory model<br /><div class="outline-text-7" id="text-15-2-4-1-1-2">
+<ul class="org-ul">
+<li>call on <code>interrupt()</code> happens before detection
+<ul class="org-ul">
+<li>no data race</li>
+</ul></li>
+<li>check before something difficult to stop</li>
+<li>empirical test</li>
+</ul>
+</div></li>
+<li><a id="org296b9be"></a>Problems<br /><div class="outline-text-7" id="text-15-2-4-1-1-3">
+<ul class="org-ul">
+<li><code>synchronized</code> doesn't allow interrupt</li>
+<li>Blocked on IO doesn't interrupt
+<ul class="org-ul">
+<li>socket have timed waiting blocking</li>
+</ul></li>
+</ul>
+</div></li></ol></li></ol></li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org787d882" class="outline-2">
+<h2 id="org787d882"><span class="section-number-2">16</span> Lect 16: Cancellation (contd)</h2>
+<div class="outline-text-2" id="text-16">
+</div>
+<div id="outline-container-orgafaace1" class="outline-3">
+<h3 id="orgafaace1"><span class="section-number-3">16.1</span> Interrupts and IO</h3>
+<div class="outline-text-3" id="text-16-1">
+<ul class="org-ul">
+<li>Sockets have timeout
+<ul class="org-ul">
+<li>poll when timed out</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org30fda2f" class="outline-3">
+<h3 id="org30fda2f"><span class="section-number-3">16.2</span> Resource revocation (Java)</h3>
+<div class="outline-text-3" id="text-16-2">
+<ul class="org-ul">
+<li>forcefully close resource</li>
+</ul>
+</div>
+<div id="outline-container-org52acacc" class="outline-4">
+<h4 id="org52acacc"><span class="section-number-4">16.2.1</span> Java.nio</h4>
+<div class="outline-text-4" id="text-16-2-1">
+<ul class="org-ul">
+<li><code>close()</code> provided in Java.nio</li>
+<li>no interrupt on write</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0985c81" class="outline-3">
+<h3 id="org0985c81"><span class="section-number-3">16.3</span> C++ thread cancellation</h3>
+<div class="outline-text-3" id="text-16-3">
+<ul class="org-ul">
+<li>no support</li>
+<li>use <b>Boost</b></li>
+<li>can be implemented using <code>Java.socket</code> like timeout
+<ul class="org-ul">
+<li>Refer: C++ concurrency in action: Practical Multithreading</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga21b61b" class="outline-3">
+<h3 id="orga21b61b"><span class="section-number-3">16.4</span> Timed Waiting</h3>
+<div class="outline-text-3" id="text-16-4">
+</div><div id="outline-container-org2bf6e34" class="outline-4">
+<h4 id="org2bf6e34"><span class="section-number-4">16.4.1</span> Java</h4>
+<div class="outline-text-4" id="text-16-4-1">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">if</span> (B,T) s
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">B: if condition is true</span>
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">T: wait for T timeout</span>
+<span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">execute s</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc6d75a8" class="outline-4">
+<h4 id="orgc6d75a8"><span class="section-number-4">16.4.2</span> C++</h4>
+<div class="outline-text-4" id="text-16-4-2">
+<div class="org-src-container">
+<pre class="src src-C++">wait_for(lock, duration);
+wait_until(lock, time_point);
+</pre>
+</div>
+<ul class="org-ul">
+<li>slide 15: what happens after we go into wait until and then done is true</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orga1dc893" class="outline-3">
+<h3 id="orga1dc893"><span class="section-number-3">16.5</span> Semaphores</h3>
+<div class="outline-text-3" id="text-16-5">
+</div><div id="outline-container-orgf7b869a" class="outline-4">
+<h4 id="orgf7b869a"><span class="section-number-4">16.5.1</span> P and V</h4>
+<div class="outline-text-4" id="text-16-5-1">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #6434A3;">nat</span> <span style="color: #BA36A5;">s</span>; <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">s &gt;= 0</span>
+<span style="color: #D0372D;">P</span>(): &lt;await (s &gt; 0) s--&gt;
+V(): &lt;s++&gt;
+</pre>
+</div>
+</div>
+<ol class="org-ol"><li><a id="org89392bf"></a>Chunk P/V<br /><div class="outline-text-5" id="text-16-5-1-1">
+<ul class="org-ul">
+<li>useful in reader/writer
+<ul class="org-ul">
+<li>n readers allowed =&gt; writer requires n</li>
+</ul></li>
+</ul>
+</div></li></ol>
+</div>
+<div id="outline-container-orgd46e319" class="outline-4">
+<h4 id="orgd46e319"><span class="section-number-4">16.5.2</span> Split binary semaphore</h4>
+<div class="outline-text-4" id="text-16-5-2">
+<ul class="org-ul">
+<li>producer consumer- 2 semaphore, <code>empty</code> and <code>full</code>
+<ul class="org-ul">
+<li>gives signaling like effect</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org563a912" class="outline-2">
+<h2 id="org563a912"><span class="section-number-2">17</span> Lect 17: Split Binary Semaphore</h2>
+<div class="outline-text-2" id="text-17">
+<ul class="org-ul">
+<li>singaling on semaphores are sequencial</li>
+</ul>
+</div>
+<div id="outline-container-org2bce713" class="outline-3">
+<h3 id="org2bce713"><span class="section-number-3">17.1</span> Passing the baton</h3>
+<div class="outline-text-3" id="text-17-1">
+<ul class="org-ul">
+<li>only one thread does (slide 59)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0d58000" class="outline-2">
+<h2 id="org0d58000"><span class="section-number-2">18</span> Mid Exam 1 Notes:</h2>
+<div class="outline-text-2" id="text-18">
+</div><div id="outline-container-org7db8a95" class="outline-3">
+<h3 id="org7db8a95"><span class="section-number-3">18.1</span> Java memory model allows assignments to be reordered.</h3>
+<div class="outline-text-3" id="text-18-1">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">thread 0</span>
+<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">x</span> = ...
+Boolean done = <span style="color: #D0372D;">true</span>;
+
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">thread 1</span>
+<span style="color: #0000FF;">if</span> (done) {
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">do something with x</span>
+}
+</pre>
+</div>
+<p>
+Here declare <code>x</code> as <code>volatile</code>
+This is also the reason for problem in double checking idiom. Due to assignment
+re-ordering, the constructed object can reflect as non <code>NULL</code> before construction
+is finished.
+</p>
+</div>
+</div>
+<div id="outline-container-orga65547e" class="outline-3">
+<h3 id="orga65547e"><span class="section-number-3">18.2</span> Deadlocks</h3>
+<div class="outline-text-3" id="text-18-2">
+<p>
+If a thread acquires &gt;= 2 locks, think of deadlock.
+Two ways of dealing with deadlocks:
+</p>
+<ol class="org-ol">
+<li>Avoidance: order them so that without first locking 'A', should not lock
+'B'. In java, we can use <code>System.identityHashCode</code> to get unique value from
+totally ordered set.</li>
+<li>Dealing with deadlock: use <code>tryLock</code>, which uses timeout to tell locking failed.
+Then re-try, with:
+<ol class="org-ol">
+<li>certain timeout</li>
+<li>exponential back off</li>
+<li>random delay</li>
+<li>0 delay</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org7facabe" class="outline-3">
+<h3 id="org7facabe"><span class="section-number-3">18.3</span> Safe publication:</h3>
+<div class="outline-text-3" id="text-18-3">
+<ol class="org-ol">
+<li>mark variable as <code>static</code></li>
+<li>mark as <code>volatile</code></li>
+<li>refer from concurrent data structure, such as <code>ConcurrentQueue</code> etc.</li>
+<li>keep <code>atomic</code> reference.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga06edf1" class="outline-3">
+<h3 id="orga06edf1"><span class="section-number-3">18.4</span> <code>wait</code>, <code>notify</code></h3>
+<div class="outline-text-3" id="text-18-4">
+<ul class="org-ul">
+<li><code>obj.wait()</code> only releases one lock, if it is nested inside multiple locks,
+this will release only 1 (outer ones are still acquired).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org52fc29d" class="outline-3">
+<h3 id="org52fc29d"><span class="section-number-3">18.5</span> Passing the baton:</h3>
+<div class="outline-text-3" id="text-18-5">
+<ul class="org-ul">
+<li>#guards = conditions to be satisfied</li>
+<li>guards are conditions, thus multiple invariant expression can form a single
+guard.
+Ex: in reader/writer, <code>nr == 0 ^ nw == 0</code> denotes safe for writer.</li>
+<li>be careful of the initial state of semaphores</li>
+</ul>
+</div>
+<div id="outline-container-orgba17508" class="outline-4">
+<h4 id="orgba17508"><span class="section-number-4">18.5.1</span> How multiple readers access is implemented</h4>
+<div class="outline-text-4" id="text-18-5-1">
+<p>
+The <code>SIGNAL</code> is executed after <code>startReading</code> as well as <code>endReading</code>. Thus
+after a reading thread awakens, it can signal other reading thread.
+</p>
+<ul class="org-ul">
+<li>which in turn can cause starvation for writing thread
+<ul class="org-ul">
+<li>in <code>startRead</code>, check if no writer and no writer pending.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe3548d" class="outline-3">
+<h3 id="orgfe3548d"><span class="section-number-3">18.6</span> <code>Callable</code> v/s <code>Runnable</code></h3>
+<div class="outline-text-3" id="text-18-6">
+<p>
+A Runnable, does not return a result and cannot throw a checked exception.
+</p>
+</div>
+</div>
+<div id="outline-container-orgee6eb93" class="outline-3">
+<h3 id="orgee6eb93"><span class="section-number-3">18.7</span> <code>ReentrantLock</code> v/s <code>synchronized</code></h3>
+<div class="outline-text-3" id="text-18-7">
+<ul class="org-ul">
+<li><code>ReentrantLock</code> provides timed lock waits, interruptible lock waits,
+non-block-structured locks, multiple condition variables and lock polling</li>
+<li><code>ReentrantLock</code> can give conditional locking.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcb125a2" class="outline-3">
+<h3 id="orgcb125a2"><span class="section-number-3">18.8</span> <code>getAndSet()</code></h3>
+<div class="outline-text-3" id="text-18-8">
+<ul class="org-ul">
+<li><code>getAndSet()</code> creates a lot more traffic on message bus than <code>get()</code>.
+Thus it is better to test by <code>get()</code> before spinning on <code>getAndSet()</code>.
+<code>getAndSet()</code> invalidates the cache, thus substantial performance penalty.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1d9d891" class="outline-3">
+<h3 id="org1d9d891"><span class="section-number-3">18.9</span> <code>lock_guard</code> v/s <code>unique_guard</code></h3>
+<div class="outline-text-3" id="text-18-9">
+<ul class="org-ul">
+<li><code>lock_guard</code> automatically releases lock on reaching closing brace.
+Takes care of exception.</li>
+<li><code>unique_guard</code>: same as <code>lock_guard</code>, but can be unlocked and locked again.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org80fe14b" class="outline-3">
+<h3 id="org80fe14b"><span class="section-number-3">18.10</span> <b>safety</b> and *liveness~</h3>
+<div class="outline-text-3" id="text-18-10">
+<ul class="org-ul">
+<li><b>safety</b> says nothing bad happens</li>
+<li><b>liveness</b> something good will eventually happen</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf9f836e" class="outline-2">
+<h2 id="orgf9f836e"><span class="section-number-2">19</span> Lect 18: Thread Pools</h2>
+<div class="outline-text-2" id="text-19">
+</div>
+<div id="outline-container-orgb7fb05c" class="outline-3">
+<h3 id="orgb7fb05c"><span class="section-number-3">19.1</span> Overhead of creating threads, and cleaning them</h3>
+<div class="outline-text-3" id="text-19-1">
+<ul class="org-ul">
+<li>2 options:
+<ol class="org-ol">
+<li>Thread Pool</li>
+<li>Futures</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge82fb18" class="outline-3">
+<h3 id="orge82fb18"><span class="section-number-3">19.2</span> web Server</h3>
+<div class="outline-text-3" id="text-19-2">
+</div><div id="outline-container-orgde7efdb" class="outline-4">
+<h4 id="orgde7efdb"><span class="section-number-4">19.2.1</span> <span class="todo TODO">TODO</span> check <code>socket</code> doc in java and c++</h4>
+</div>
+<div id="outline-container-org9275d01" class="outline-4">
+<h4 id="org9275d01"><span class="section-number-4">19.2.2</span> socket construction</h4>
+<div class="outline-text-4" id="text-19-2-2">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">version 1</span>
+<span style="color: #6434A3;">Socket</span> <span style="color: #BA36A5;">s</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Socket</span>(IP_add, port);
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">blocking!</span>
+
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">version 2</span>
+<span style="color: #6434A3;">Socket</span> <span style="color: #BA36A5;">s</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">Socket</span>();
+s.inetSocket(ip, port, timeout);
+<span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">added `timeout`</span>
+</pre>
+</div>
+</div>
+<ol class="org-ol"><li><a id="orga1331df"></a>Work around<br /><div class="outline-text-5" id="text-19-2-2-1">
+<ul class="org-ul">
+<li>Create another thread for blocked call</li>
+<li>try to join the thread by giving a timeout
+<ul class="org-ul">
+<li>after timeout,  the <code>SocketOpener</code> thread continues to execute</li>
+<li>main thread is unblocked by getting <code>InterruptedException</code>
+<ul class="org-ul">
+<li>may have to clean resources by inner thread</li>
+</ul></li>
+</ul></li>
+</ul>
+</div></li></ol>
+</div>
+<div id="outline-container-org465e1de" class="outline-4">
+<h4 id="org465e1de"><span class="section-number-4">19.2.3</span> Server construction</h4>
+</div>
+<div id="outline-container-org530abd4" class="outline-4">
+<h4 id="org530abd4"><span class="section-number-4">19.2.4</span> Producer Consumer Paradigm</h4>
+<div class="outline-text-4" id="text-19-2-4">
+<ul class="org-ul">
+<li>N threads</li>
+<li>one server socket which creates job in bounded buffer</li>
+<li>N consumer/worker threads</li>
+<li>Need to clean resources etc
+<ul class="org-ul">
+<li>may use <code>java.util.ExecutorService</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org65dff83" class="outline-2">
+<h2 id="org65dff83"><span class="section-number-2">20</span> Lect 19: Executors &amp; Futures</h2>
+<div class="outline-text-2" id="text-20">
+</div>
+<div id="outline-container-org345089f" class="outline-3">
+<h3 id="org345089f"><span class="section-number-3">20.1</span> <span class="todo TODO">TODO</span> Java Executors Doc</h3>
+<div class="outline-text-3" id="text-20-1">
+<p>
+Java lambda automagically turns into <code>runnable</code> or <code>callable</code> depending on
+if value is returned
+</p>
+</div>
+</div>
+<div id="outline-container-org60b16c8" class="outline-3">
+<h3 id="org60b16c8"><span class="section-number-3">20.2</span> Asynchronous Computations</h3>
+<div class="outline-text-3" id="text-20-2">
+</div><div id="outline-container-orga2e730c" class="outline-4">
+<h4 id="orga2e730c"><span class="section-number-4">20.2.1</span> Future</h4>
+<div class="outline-text-4" id="text-20-2-1">
+<ul class="org-ul">
+<li>why? joining may not be easy. If executor, it is not possible</li>
+<li>methods:
+<ul class="org-ul">
+<li>check: isDone()</li>
+<li>wait</li>
+<li>get(timeout) : <b>blocking</b></li>
+<li>cancel()
+<ul class="org-ul">
+<li>task should be written in a way which respects <code>interrupt</code> flag.</li>
+</ul></li>
+</ul></li>
+<li>C++ futures
+<ul class="org-ul">
+<li><code>&lt;future&gt;</code>
+<ul class="org-ul">
+<li><code>std::future()</code> unique future</li>
+<li><code>std::shared_future()</code> less efficient</li>
+<li><b>valid</b></li>
+<li>how to create
+<ul class="org-ul">
+<li><code>std::async</code>
+<ul class="org-ul">
+<li>takes same kind of arguments as thread (lambdas, parameters etc)</li>
+<li>may create new thread or <b>not!</b>
+<ul class="org-ul">
+<li>can pass parameter to tell run in another thread <code>std::launch::async</code> or <code>std::launch::defered</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>packaged_task</code>
+<ul class="org-ul">
+<li>wrapper around (<code>stored task</code> and <code>shared thread</code>)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e0119e" class="outline-3">
+<h3 id="org6e0119e"><span class="section-number-3">20.3</span> misc</h3>
+<div class="outline-text-3" id="text-20-3">
+<p>
+Lambda, runnable, callable are all closure.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd9a160d" class="outline-2">
+<h2 id="orgd9a160d"><span class="section-number-2">21</span> Lect 20: C++ Move, futures, <code>fork/join</code></h2>
+<div class="outline-text-2" id="text-21">
+</div>
+<div id="outline-container-org0dbf587" class="outline-3">
+<h3 id="org0dbf587"><span class="section-number-3">21.1</span> Lvalues and Rvalues</h3>
+<div class="outline-text-3" id="text-21-1">
+<ul class="org-ul">
+<li>Lvalues are memory location</li>
+</ul>
+</div>
+<div id="outline-container-orgeb2ca21" class="outline-4">
+<h4 id="orgeb2ca21"><span class="section-number-4">21.1.1</span> C++ refs</h4>
+<div class="outline-text-4" id="text-21-1-1">
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">x</span> = 44;
+<span style="color: #6434A3;">int</span>&amp; <span style="color: #BA36A5;">y</span> = x;
+
+<span style="color: #6434A3;">int</span>&amp;<span style="color: #BA36A5;">z</span> = 44; <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">this won't compile</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfd283aa" class="outline-4">
+<h4 id="orgfd283aa"><span class="section-number-4">21.1.2</span> C++ rvalue references</h4>
+</div>
+</div>
+<div id="outline-container-orgfbe71a3" class="outline-3">
+<h3 id="orgfbe71a3"><span class="section-number-3">21.2</span> futures</h3>
+</div>
+<div id="outline-container-org36ab49d" class="outline-3">
+<h3 id="org36ab49d"><span class="section-number-3">21.3</span> fork/join tasks</h3>
+<div class="outline-text-3" id="text-21-3">
+<p>
+typical use case: divide and conquer
+</p>
+</div>
+<div id="outline-container-org5edc866" class="outline-4">
+<h4 id="org5edc866"><span class="section-number-4">21.3.1</span> Work steal</h4>
+<div class="outline-text-4" id="text-21-3-1">
+<ul class="org-ul">
+<li>if thread's queue is empty, steal it from other thread's queue</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9577a4e" class="outline-4">
+<h4 id="org9577a4e"><span class="section-number-4">21.3.2</span> using</h4>
+<div class="outline-text-4" id="text-21-3-2">
+<ul class="org-ul">
+<li>override <code>compute()</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga7e93cb" class="outline-2">
+<h2 id="orga7e93cb"><span class="section-number-2">22</span> Lect 21: case study: Concurrency in Android, Lock implementation</h2>
+<div class="outline-text-2" id="text-22">
+</div>
+<div id="outline-container-orgf26a471" class="outline-3">
+<h3 id="orgf26a471"><span class="section-number-3">22.1</span> Andriod app case study</h3>
+<div class="outline-text-3" id="text-22-1">
+<ul class="org-ul">
+<li><code>LinkedBlockingQueue</code>: blocks if queue empty</li>
+<li>Saves the thread somewhere so that it can interrupted if needed.
+<ul class="org-ul">
+<li>since executor class is used, we don't know which thread computes what</li>
+</ul></li>
+<li>efforts made to make thread cancel at safe point</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8c63209" class="outline-3">
+<h3 id="org8c63209"><span class="section-number-3">22.2</span> Lock Implementation</h3>
+<div class="outline-text-3" id="text-22-2">
+</div><div id="outline-container-orgedbee71" class="outline-4">
+<h4 id="orgedbee71"><span class="section-number-4">22.2.1</span> Spin Lock Implementation</h4>
+<div class="outline-text-4" id="text-22-2-1">
+<ul class="org-ul">
+<li>if want lock, get lock or:
+<ul class="org-ul">
+<li>block (suspend)</li>
+<li>spinning (busy waiting)
+<ul class="org-ul">
+<li>can be better than suspending on multi processor
+<ul class="org-ul">
+<li>blocking needs context switch</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org384ed03"></a><span class="todo TODO">TODO</span> Classical Algorithms<br /><div class="outline-text-5" id="text-22-2-1-1">
+<ul class="org-ul">
+<li>Lamport bakery</li>
+<li>Peterson</li>
+<li>Dekker's</li>
+</ul>
+</div></li>
+<li><a id="org1985aec"></a>Modern approach<br /><ol class="org-ol"><li><a id="orgc1e7315"></a>TAS (test and set)<br /><div class="outline-text-6" id="text-22-2-1-2-1">
+<ul class="org-ul">
+<li><p>
+atomic <code>getAndSet</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #0000FF;">public</span> <span style="color: #6434A3;">void</span> <span style="color: #006699;">lock</span>() {
+  <span style="color: #0000FF;">while</span> (state.getAndSet(<span style="color: #D0372D;">true</span>)) { }
+  <span style="color: #8D8D84;">//      </span><span style="color: #8D8D84; font-style: italic;">^ atomic</span>
+}
+</pre>
+</div></li>
+<li><b>Not</b> re entrant</li>
+</ul>
+</div></li>
+<li><a id="org9e7af61"></a>TTAS (test and test and set)<br /><div class="outline-text-6" id="text-22-2-1-2-2">
+<ul class="org-ul">
+<li>additional check, <code>test</code> before <code>testAndSet</code></li>
+</ul>
+</div></li></ol></li>
+<li><a id="orge949ed8"></a>Multiprocessor Architecture<br /><ol class="org-ol"><li><a id="org5900cb8"></a>Cache coherent protocols<br /><ol class="org-ol"><li><a id="orga2b7e9a"></a>Write through<br /></li>
+<li><a id="org9409a33"></a>Write back<br /></li></ol></li></ol></li></ol>
+</div>
+<div id="outline-container-org28a7646" class="outline-4">
+<h4 id="org28a7646"><span class="section-number-4">22.2.2</span> <span class="todo TODO">TODO</span> Doubts</h4>
+<div class="outline-text-4" id="text-22-2-2">
+<ul class="org-ul">
+<li>why not built in optimization
+Prof: These are directly mapped to hw instructions. We want these to be fast.</li>
+<li>how to stop thread without context switch
+Prof: <code>park</code> java</li>
+<li>Do spin locks utilize processor/ will they drain battery
+Prof: Yes, and hence use only for short amount of time.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org026d820" class="outline-2">
+<h2 id="org026d820"><span class="section-number-2">23</span> Lect 22: TTAS</h2>
+<div class="outline-text-2" id="text-23">
+</div>
+<div id="outline-container-org0106502" class="outline-3">
+<h3 id="org0106502"><span class="section-number-3">23.1</span> Backoff has disadvantage</h3>
+</div>
+<div id="outline-container-org999f71b" class="outline-3">
+<h3 id="org999f71b"><span class="section-number-3">23.2</span> waiting queue</h3>
+<div class="outline-text-3" id="text-23-2">
+</div><div id="outline-container-orged03ecc" class="outline-4">
+<h4 id="orged03ecc"><span class="section-number-4">23.2.1</span> advantages:</h4>
+<div class="outline-text-4" id="text-23-2-1">
+<ul class="org-ul">
+<li>fair</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc9d9a73" class="outline-4">
+<h4 id="orgc9d9a73"><span class="section-number-4">23.2.2</span> disadvantages:</h4>
+<div class="outline-text-4" id="text-23-2-2">
+<ul class="org-ul">
+<li>memory allocation</li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org1fad15d"></a><span class="todo TODO">TODO</span> false sharing<br /></li></ol>
+</div>
+</div>
+<div id="outline-container-orgae1f2a5" class="outline-3">
+<h3 id="orgae1f2a5"><span class="section-number-3">23.3</span> misc</h3>
+<div class="outline-text-3" id="text-23-3">
+<ul class="org-ul">
+<li>atomic reference to array of int</li>
+<li>array of atomic int
+<ul class="org-ul">
+<li><code>atomicInt</code> are mutable</li>
+<li>safe</li>
+</ul></li>
+<li>atomicIntArray
+<ul class="org-ul">
+<li>safe to add new integers: <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicIntegerArray.html">java docs</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfcddf5b" class="outline-3">
+<h3 id="orgfcddf5b"><span class="section-number-3">23.4</span> CLHLock</h3>
+<div class="outline-text-3" id="text-23-4">
+<ul class="org-ul">
+<li>uses virtual linked list</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org55f7f04" class="outline-3">
+<h3 id="org55f7f04"><span class="section-number-3">23.5</span> MCS Queue Lock</h3>
+<div class="outline-text-3" id="text-23-5">
+<ul class="org-ul">
+<li>check <code>java.util.ConcurrentLinkedQueue</code> source code</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2932ef9" class="outline-3">
+<h3 id="org2932ef9"><span class="section-number-3">23.6</span> <code>AtomicInt</code> Binary representation lock</h3>
+<div class="outline-text-3" id="text-23-6">
+<ul class="org-ul">
+<li>use bits to denote lock</li>
+<li>rest of the bits to represent tail position index</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org05fb1e8" class="outline-2">
+<h2 id="org05fb1e8"><span class="section-number-2">24</span> Lect 23: Spin Lock Implementations, hybrid Locks</h2>
+<div class="outline-text-2" id="text-24">
+</div>
+<div id="outline-container-org1796b5d" class="outline-3">
+<h3 id="org1796b5d"><span class="section-number-3">24.1</span> Timeout</h3>
+<div class="outline-text-3" id="text-24-1">
+<p>
+missed inital part, was fixing fiber lamp! :D
+</p>
+</div>
+</div>
+<div id="outline-container-orgf26ab83" class="outline-3">
+<h3 id="orgf26ab83"><span class="section-number-3">24.2</span> Hybrid Locks</h3>
+</div>
+<div id="outline-container-org68e4016" class="outline-3">
+<h3 id="org68e4016"><span class="section-number-3">24.3</span> Fat Locks</h3>
+<div class="outline-text-3" id="text-24-3">
+<ul class="org-ul">
+<li>stored in hashtables</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org74cb99e" class="outline-3">
+<h3 id="org74cb99e"><span class="section-number-3">24.4</span> Thin Locks</h3>
+<div class="outline-text-3" id="text-24-4">
+<ul class="org-ul">
+<li>fast path if no contention</li>
+<li>convert to fat lock if contention</li>
+<li>header contatains bits which indicate if there is a lock. If there is need
+for fat lock, the bits points to fat lock.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7ce85f1" class="outline-2">
+<h2 id="org7ce85f1"><span class="section-number-2">25</span> Lect 24: Mid 1 Review</h2>
+<div class="outline-text-2" id="text-25">
+</div>
+<div id="outline-container-orgf4796da" class="outline-3">
+<h3 id="orgf4796da"><span class="section-number-3">25.1</span> <span class="todo TODO">TODO</span> Can there be a deadlock without a conflict?</h3>
+<div class="outline-text-3" id="text-25-1">
+<p>
+No!
+</p>
+</div>
+</div>
+<div id="outline-container-orgc18bd67" class="outline-3">
+<h3 id="orgc18bd67"><span class="section-number-3">25.2</span> Conflicts and deadlock</h3>
+<div class="outline-text-3" id="text-25-2">
+<p>
+resolve conflict by
+</p>
+<ul class="org-ul">
+<li>happens before</li>
+<li>mark as <code>volatile</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org04e06a3" class="outline-2">
+<h2 id="org04e06a3"><span class="section-number-2">26</span> Linearizability and correctness</h2>
+<div class="outline-text-2" id="text-26">
+</div>
+<div id="outline-container-org3f84828" class="outline-3">
+<h3 id="org3f84828"><span class="section-number-3">26.1</span> Linearizability</h3>
+<div class="outline-text-3" id="text-26-1">
+<ul class="org-ul">
+<li>what is it for a data structure to be correct to be serial</li>
+<li>when not locks</li>
+</ul>
+</div>
+<div id="outline-container-org3414335" class="outline-4">
+<h4 id="org3414335"><span class="section-number-4">26.1.1</span> Objects are linearlizable</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc08cb4d" class="outline-2">
+<h2 id="orgc08cb4d"><span class="section-number-2">27</span> Reasoning about Linearizability</h2>
+<div class="outline-text-2" id="text-27">
+</div>
+<div id="outline-container-orgcdd70c9" class="outline-3">
+<h3 id="orgcdd70c9"><span class="section-number-3">27.1</span> Linearizability Proof</h3>
+<div class="outline-text-3" id="text-27-1">
+<ul class="org-ul">
+<li>Linearization order is order lock released</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org732ed4d" class="outline-3">
+<h3 id="org732ed4d"><span class="section-number-3">27.2</span> Sequential Consistency</h3>
+<div class="outline-text-3" id="text-27-2">
+<ul class="org-ul">
+<li>not composible
+<ul class="org-ul">
+<li>re-ordering can cause cycles</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf7e66a7" class="outline-3">
+<h3 id="orgf7e66a7"><span class="section-number-3">27.3</span> Wait Free</h3>
+<div class="outline-text-3" id="text-27-3">
+<p>
+<a href="https://en.wikipedia.org/wiki/Non-blocking_algorithm">wiki link</a>
+</p>
+<ul class="org-ul">
+<li>Every contending thread is guaranteed to complete its method call within a bounded</li>
+</ul>
+<p>
+number of its own time steps.
+</p>
+<ul class="org-ul">
+<li>have helper thread to substitute for the thread
+<ul class="org-ul">
+<li>so that even if the thread fails, it can take over</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6a7dcc0" class="outline-3">
+<h3 id="org6a7dcc0"><span class="section-number-3">27.4</span> Lock Free</h3>
+<div class="outline-text-3" id="text-27-4">
+<ul class="org-ul">
+<li>Lock-freedom allows individual threads to starve but guarantees system-wide
+throughput</li>
+<li><b>Some</b> contending threads are guaranteed to complete their method call within a
+bounded number of steps</li>
+<li>The difference between Wait free and lock free is, in wait free operations
+every process is guaranteed to succeed in finite amount of steps</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb855c3a" class="outline-3">
+<h3 id="orgb855c3a"><span class="section-number-3">27.5</span> Obstruction free</h3>
+<div class="outline-text-3" id="text-27-5">
+<p>
+In absence of contention, a thread is guaranteed to complete its method within
+a bounded number of steps
+</p>
+</div>
+</div>
+<div id="outline-container-orgc22498f" class="outline-3">
+<h3 id="orgc22498f"><span class="section-number-3">27.6</span> <span class="todo DONE">DONE</span> Safe</h3>
+<div class="outline-text-3" id="text-27-6">
+<ul class="org-ul">
+<li>if a read call that doesn't overlap a write call returns the value written
+by the most recent write call</li>
+<li>otherwise, if a read call overlaps with a write call then it can return any
+value within register's allowed range of values</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4a6ab1e" class="outline-3">
+<h3 id="org4a6ab1e"><span class="section-number-3">27.7</span> <span class="todo DONE">DONE</span> Regular</h3>
+<div class="outline-text-3" id="text-27-7">
+<ul class="org-ul">
+<li>safe</li>
+<li>if read overlaps i<sup>th</sup> write, then read value can be between i and (i - 1) write</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgad7c952" class="outline-3">
+<h3 id="orgad7c952"><span class="section-number-3">27.8</span> <span class="todo TODO">TODO</span> Linearizable</h3>
+</div>
+<div id="outline-container-org3adda88" class="outline-3">
+<h3 id="org3adda88"><span class="section-number-3">27.9</span> Foundation of Concurrency</h3>
+<div class="outline-text-3" id="text-27-9">
+<ul class="org-ul">
+<li>SRSW</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org26f20a7" class="outline-2">
+<h2 id="org26f20a7"><span class="section-number-2">28</span> Composing higher constructs using primitive</h2>
+<div class="outline-text-2" id="text-28">
+</div>
+<div id="outline-container-org97d3823" class="outline-3">
+<h3 id="org97d3823"><span class="section-number-3">28.1</span> Safe MRSW from SRSW</h3>
+<div class="outline-text-3" id="text-28-1">
+<ul class="org-ul">
+<li>get idea, skipped slides</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf71836b" class="outline-3">
+<h3 id="orgf71836b"><span class="section-number-3">28.2</span> Mututal exclution can not be used to get wait free</h3>
+<div class="outline-text-3" id="text-28-2">
+<ul class="org-ul">
+<li>once in critical section, it can go away</li>
+<li>not all wait free are practical</li>
+</ul>
+</div>
+<div id="outline-container-orgc428171" class="outline-4">
+<h4 id="orgc428171"><span class="section-number-4">28.2.1</span> Example, 2 thread FIFO</h4>
+<div class="outline-text-4" id="text-28-2-1">
+<ul class="org-ul">
+<li>spinning on pre conditions
+<ul class="org-ul">
+<li>works because only 1 thread each on enqueue and dequeue</li>
+</ul></li>
+<li>what happens if multiple dequeuers</li>
+<li>proved by contradiction</li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="org4ed76c8"></a>Consensus problem<br /></li></ol>
+</div>
+<div id="outline-container-org47d9f91" class="outline-4">
+<h4 id="org47d9f91"><span class="section-number-4">28.2.2</span> Consensus Number</h4>
+</div>
+<div id="outline-container-orgf54f019" class="outline-4">
+<h4 id="orgf54f019"><span class="section-number-4">28.2.3</span> Read modify write</h4>
+</div>
+</div>
+<div id="outline-container-orgdaced89" class="outline-3">
+<h3 id="orgdaced89"><span class="section-number-3">28.3</span> ABA problem (Problem in CAS):</h3>
+<div class="outline-text-3" id="text-28-3">
+<ul class="org-ul">
+<li>we get value of variable</li>
+<li>then check if value is still olf, if yes change to</li>
+<li>what if someone changes to old value</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgecc6497" class="outline-3">
+<h3 id="orgecc6497"><span class="section-number-3">28.4</span> Lock free</h3>
+<div class="outline-text-3" id="text-28-4">
+<ul class="org-ul">
+<li>cannot have lock free</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org94dc017" class="outline-2">
+<h2 id="org94dc017"><span class="section-number-2">29</span> Parallel Programming</h2>
+<div class="outline-text-2" id="text-29">
+<ul class="org-ul">
+<li>subset of concurrent programming</li>
+<li>OpenMP: memory parallelism - <i>compiler directives</i></li>
+</ul>
+</div>
+<div id="outline-container-orga7c6f5e" class="outline-3">
+<h3 id="orga7c6f5e"><span class="section-number-3">29.1</span> <a href="http://www.openmp.com">OpenMP</a></h3>
+<div class="outline-text-3" id="text-29-1">
+<ul class="org-ul">
+<li>add to program, compiler takes care of it. If compiler doesn't understand it
+then it ignores</li>
+<li>Fork-join Parallelism
+<ul class="org-ul">
+<li>need not create actual thread, might be thread pool</li>
+</ul></li>
+<li><p>
+example:
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #808080;">#include</span> <span style="color: #008000;">"omp.h"</span>
+...
+<span style="color: #808080;">#pragma</span> omp parallel <span style="color: #0000FF;">for</span>
+<span style="color: #0000FF;">for</span> (i = 0; i &lt; 1000; i++) {
+  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">some big computation</span>
+}
+</pre>
+</div></li>
+<li>works only (better?) on structured/blocked code
+<ul class="org-ul">
+<li>because there is implicit barrier at end of block</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org862fbfe" class="outline-4">
+<h4 id="org862fbfe"><span class="section-number-4">29.1.1</span> SPMD (Single program, multiple data):</h4>
+<div class="outline-text-4" id="text-29-1-1">
+<ul class="org-ul">
+<li><p>
+Get thread id then do different work based on <b>id</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">ID</span> = omp_get_thread_num();
+</pre>
+</div></li>
+<li>barrier at end of openMP block implicitly</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgafaa353" class="outline-4">
+<h4 id="orgafaa353"><span class="section-number-4">29.1.2</span> Work sharing</h4>
+<div class="outline-text-4" id="text-29-1-2">
+<ul class="org-ul">
+<li>divides work for threads automatically
+<ul class="org-ul">
+<li>in SPMD this was done manually</li>
+</ul></li>
+<li>args
+<ul class="org-ul">
+<li><code>schedule(static [,chunk])</code>: preditible</li>
+<li><code>schedule(dynamic [,chunk])</code>: unpredictable, highly variable</li>
+<li><code>schedule(guided [,chunk])</code></li>
+<li><code>schedule(runtime)</code></li>
+</ul></li>
+<li>instead of shared variable like <code>sum</code>, have <code>sum[]</code> and have each thread its
+own space to store.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6c62c7b" class="outline-3">
+<h3 id="org6c62c7b"><span class="section-number-3">29.2</span> OpenMP: variables in block</h3>
+<div class="outline-text-3" id="text-29-2">
+<ul class="org-ul">
+<li>most variables are shared</li>
+<li>local variables are not shared</li>
+</ul>
+</div>
+<div id="outline-container-orga63cafb" class="outline-4">
+<h4 id="orga63cafb"><span class="section-number-4">29.2.1</span> <span class="todo TODO">TODO</span> Types</h4>
+<div class="outline-text-4" id="text-29-2-1">
+<ul class="org-ul">
+<li><code>lastprivate</code></li>
+<li><code>firstprivate</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5d2c255" class="outline-2">
+<h2 id="org5d2c255"><span class="section-number-2">30</span> OpenMP (cont)</h2>
+<div class="outline-text-2" id="text-30">
+</div>
+<div id="outline-container-org22fbf07" class="outline-3">
+<h3 id="org22fbf07"><span class="section-number-3">30.1</span> Reduction</h3>
+<div class="outline-text-3" id="text-30-1">
+<ul class="org-ul">
+<li>don't accumulate!</li>
+<li>operator
+<ul class="org-ul">
+<li>associative</li>
+<li>commutative</li>
+</ul></li>
+<li>form: <code>reduction(op : list)</code></li>
+<li>based on operator the var are initialized
+<ul class="org-ul">
+<li><code>+</code> 0</li>
+<li><code>*</code> 1</li>
+</ul></li>
+<li>slide 60: by applying reduction clause, we get final result in <code>res</code>
+<ul class="org-ul">
+<li>each thread is doing some accumulation</li>
+<li>without the reduction clause. <code>res</code> is shared, so accessing it needs to be
+synchronized</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga5f198a" class="outline-3">
+<h3 id="orga5f198a"><span class="section-number-3">30.2</span> Critical Section</h3>
+<div class="outline-text-3" id="text-30-2">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #808080;">#pragma</span> omp critical
+{
+  <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">call the critical sections</span>
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org644d5a6" class="outline-3">
+<h3 id="org644d5a6"><span class="section-number-3">30.3</span> False Sharing</h3>
+<div class="outline-text-3" id="text-30-3">
+<ul class="org-ul">
+<li>incorrect update of cache.</li>
+<li>array: values next to each other, updating one, updates the whole cache line
+which contains other elements</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9064a99" class="outline-3">
+<h3 id="org9064a99"><span class="section-number-3">30.4</span> Atomic</h3>
+<div class="outline-text-3" id="text-30-4">
+<ul class="org-ul">
+<li>special case of critical section</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org63cfec0" class="outline-3">
+<h3 id="org63cfec0"><span class="section-number-3">30.5</span> Barriers</h3>
+<div class="outline-text-3" id="text-30-5">
+<ul class="org-ul">
+<li><code>#pragma omp barrier</code>: explicit</li>
+<li>wait until all threads arrive</li>
+<li>implicit barrier at end of block</li>
+<li>lot of barriers by default
+<ul class="org-ul">
+<li><code>nowait()</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org244e925" class="outline-3">
+<h3 id="org244e925"><span class="section-number-3">30.6</span> Ordered:</h3>
+<div class="outline-text-3" id="text-30-6">
+<p>
+sequencial ordering
+</p>
+<ul class="org-ul">
+<li>if operation is not associative/commutative</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org03e0e6e" class="outline-3">
+<h3 id="org03e0e6e"><span class="section-number-3">30.7</span> Flush</h3>
+<div class="outline-text-3" id="text-30-7">
+<ul class="org-ul">
+<li>memory synchronization</li>
+<li>creates consistent view of memory</li>
+<li>write everything to memory before flush, read everything after flush from memory</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdef8c49" class="outline-3">
+<h3 id="orgdef8c49"><span class="section-number-3">30.8</span> Environment Variable</h3>
+<div class="outline-text-3" id="text-30-8">
+<ul class="org-ul">
+<li>setting options at runtime (after compiling, during execution)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfd36875" class="outline-3">
+<h3 id="orgfd36875"><span class="section-number-3">30.9</span> Problems with openMP</h3>
+<div class="outline-text-3" id="text-30-9">
+<ul class="org-ul">
+<li>when to flush</li>
+<li>memory not symmetric, some memory close to some processor</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge0c850a" class="outline-3">
+<h3 id="orge0c850a"><span class="section-number-3">30.10</span> Tree based reduction</h3>
+<div class="outline-text-3" id="text-30-10">
+<ul class="org-ul">
+<li>divide and conquer</li>
+<li>serial to parallel</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2e60f0b" class="outline-3">
+<h3 id="org2e60f0b"><span class="section-number-3">30.11</span> Floating point is not associative</h3>
+<div class="outline-text-3" id="text-30-11">
+<ul class="org-ul">
+<li>programmer needs to take care of it</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb26e89b" class="outline-2">
+<h2 id="orgb26e89b"><span class="section-number-2">31</span> Research Work: ACES4</h2>
+<div class="outline-text-2" id="text-31">
+<ul class="org-ul">
+<li>Between the compiler and the runtime system, significant opportunities exist
+for error checking as well as static and dynamic analyses to improve performance</li>
+<li>asynchronous task delegation</li>
+<li>MADNESS DAG</li>
+<li>any issues or bug fixes needed in code</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6ec9af5" class="outline-2">
+<h2 id="org6ec9af5"><span class="section-number-2">32</span> Performance Models</h2>
+<div class="outline-text-2" id="text-32">
+</div>
+<div id="outline-container-org43c1ee2" class="outline-3">
+<h3 id="org43c1ee2"><span class="section-number-3">32.1</span> Metrics</h3>
+<div class="outline-text-3" id="text-32-1">
+<ul class="org-ul">
+<li>Elapsed time
+<ul class="org-ul">
+<li>TODO: how good is this, multi processors real time</li>
+<li>Java: <code>System.nanoTime</code></li>
+<li>C++: <code>chrono</code> package</li>
+</ul></li>
+<li>Price/Performance</li>
+<li>Speedup</li>
+<li>Efficiency</li>
+<li>Energy Efficiency</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbdeaf0f" class="outline-3">
+<h3 id="orgbdeaf0f"><span class="section-number-3">32.2</span> Models</h3>
+<div class="outline-text-3" id="text-32-2">
+</div><div id="outline-container-org6ec94e7" class="outline-4">
+<h4 id="org6ec94e7"><span class="section-number-4">32.2.1</span> Simple Analytical model</h4>
+<div class="outline-text-4" id="text-32-2-1">
+<pre class="example">
+T(1) = T_{serial} + T_{parallelizable}(1)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org29886e3" class="outline-3">
+<h3 id="org29886e3"><span class="section-number-3">32.3</span> Amdahl's Law</h3>
+<div class="outline-text-3" id="text-32-3">
+<ul class="org-ul">
+<li>Effect of serial part to overall performance.
+<ul class="org-ul">
+<li>or serial part limits the overall performance</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaa2c56d" class="outline-3">
+<h3 id="orgaa2c56d"><span class="section-number-3">32.4</span> Message Passing</h3>
+<div class="outline-text-3" id="text-32-4">
+<ul class="org-ul">
+<li>UE: unit of execution</li>
+<li>Memory Sharing needs locks</li>
+<li>You cannot receive a message before it is sent</li>
+</ul>
+</div>
+<div id="outline-container-org65fdff6" class="outline-4">
+<h4 id="org65fdff6"><span class="section-number-4">32.4.1</span> CSP (Communicating Sequential Processes)</h4>
+<div class="outline-text-4" id="text-32-4-1">
+<ul class="org-ul">
+<li>CAR Hoare paper 1978</li>
+<li>S0 || S1 &#x2026; Sn</li>
+<li>x ! S1 &#x2013;|</li>
+<li>y ? S0 &#x2013;| Blocking</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc090bd3" class="outline-2">
+<h2 id="orgc090bd3"><span class="section-number-2">33</span> Go</h2>
+<div class="outline-text-2" id="text-33">
+</div>
+<div id="outline-container-org113300a" class="outline-3">
+<h3 id="org113300a"><span class="section-number-3">33.1</span> Bg</h3>
+<div class="outline-text-3" id="text-33-1">
+<ul class="org-ul">
+<li>type inference</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcaae31c" class="outline-3">
+<h3 id="orgcaae31c"><span class="section-number-3">33.2</span> Concurrency</h3>
+<div class="outline-text-3" id="text-33-2">
+<ul class="org-ul">
+<li>share memory by communicating</li>
+<li>goroutine:
+<ul class="org-ul">
+<li>lightweight</li>
+</ul></li>
+<li>channels:
+<ul class="org-ul">
+<li>first class, can be passed around</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org66b6530" class="outline-2">
+<h2 id="org66b6530"><span class="section-number-2">34</span> Actors</h2>
+<div class="outline-text-2" id="text-34">
+<ul class="org-ul">
+<li>works well when regular flow of data</li>
+</ul>
+</div>
+<div id="outline-container-orgb51294d" class="outline-3">
+<h3 id="orgb51294d"><span class="section-number-3">34.1</span> Actors inside</h3>
+<div class="outline-text-3" id="text-34-1">
+<ul class="org-ul">
+<li>local data</li>
+<li>mailbox (message queueu)</li>
+<li>Loop - handle messages</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3c5e837" class="outline-3">
+<h3 id="org3c5e837"><span class="section-number-3">34.2</span> Difference with OOP</h3>
+<div class="outline-text-3" id="text-34-2">
+<ul class="org-ul">
+<li>actors do not share memory
+<ul class="org-ul">
+<li>can't send references</li>
+<li>send deep copy
+<ul class="org-ul">
+<li>many frameworks try to optimize this
+<ul class="org-ul">
+<li>send ref if safe</li>
+<li>immutable messages are safe</li>
+<li>enforcing encapsulation may not be guaranteed</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>sending message is synchronous in OOP</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3fb7e8a" class="outline-3">
+<h3 id="org3fb7e8a"><span class="section-number-3">34.3</span> MPI</h3>
+<div class="outline-text-3" id="text-34-3">
+<ul class="org-ul">
+<li>portable message passing format</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5824eb3" class="outline-3">
+<h3 id="org5824eb3"><span class="section-number-3">34.4</span> <span class="todo TODO">TODO</span> SPMD</h3>
+</div>
+</div>
+<div id="outline-container-orgba5fd86" class="outline-2">
+<h2 id="orgba5fd86"><span class="section-number-2">35</span> MPI</h2>
+<div class="outline-text-2" id="text-35">
+</div>
+<div id="outline-container-org41590e1" class="outline-3">
+<h3 id="org41590e1"><span class="section-number-3">35.1</span> <code>MPI_type</code></h3>
+<div class="outline-text-3" id="text-35-1">
+<ul class="org-ul">
+<li>constant</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9382706" class="outline-3">
+<h3 id="org9382706"><span class="section-number-3">35.2</span> <code>MPI_send</code> blocks until buff is copied into system</h3>
+<div class="outline-text-3" id="text-35-2">
+<ul class="org-ul">
+<li>similar to <code>MPI_recv</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org377d8e4" class="outline-3">
+<h3 id="org377d8e4"><span class="section-number-3">35.3</span> SPMD</h3>
+<div class="outline-text-3" id="text-35-3">
+<p>
+same code, based on id decide who process what part
+</p>
+</div>
+</div>
+<div id="outline-container-orgffe61a6" class="outline-3">
+<h3 id="orgffe61a6"><span class="section-number-3">35.4</span> Asychrony</h3>
+<div class="outline-text-3" id="text-35-4">
+<ul class="org-ul">
+<li>send and recv return immediately, we'll need to handle using <code>MPI_Wait</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org1d3f8b5" class="outline-2">
+<h2 id="org1d3f8b5"><span class="section-number-2">36</span> Vector Algorithms</h2>
+<div class="outline-text-2" id="text-36">
+</div>
+<div id="outline-container-org6c36f06" class="outline-3">
+<h3 id="org6c36f06"><span class="section-number-3">36.1</span> Regular datastructures (homogeneous array)</h3>
+<div class="outline-text-3" id="text-36-1">
+<ul class="org-ul">
+<li>instead of having array of structs, have stucts of array
+<ul class="org-ul">
+<li>better performance due to locality</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2215360" class="outline-3">
+<h3 id="org2215360"><span class="section-number-3">36.2</span> Kernel Parallelism</h3>
+<div class="outline-text-3" id="text-36-2">
+<ul class="org-ul">
+<li>Cuda and OpenCl</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org03f25ba" class="outline-3">
+<h3 id="org03f25ba"><span class="section-number-3">36.3</span> Vector parallelism (SIMD)</h3>
+<div class="outline-text-3" id="text-36-3">
+</div><div id="outline-container-orgdb349ab" class="outline-4">
+<h4 id="orgdb349ab"><span class="section-number-4">36.3.1</span> Challenges:</h4>
+<div class="outline-text-4" id="text-36-3-1">
+<ul class="org-ul">
+<li>change problem- change code</li>
+<li>special register - small number of vector registers
+<ul class="org-ul">
+<li>may have to swap to memory</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2d027c4" class="outline-4">
+<h4 id="org2d027c4"><span class="section-number-4">36.3.2</span> How to use vector units</h4>
+<div class="outline-text-4" id="text-36-3-2">
+<ul class="org-ul">
+<li>Language constructs</li>
+<li>Compiler vectorization
+<ul class="org-ul">
+<li>typically loops</li>
+<li>pass flag to see vector report
+<ul class="org-ul">
+<li>some code may make look un-vectorizable</li>
+</ul></li>
+</ul></li>
+<li>vector instruction sets
+<ul class="org-ul">
+<li>Example: SSE 4.2</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8e91ded" class="outline-3">
+<h3 id="org8e91ded"><span class="section-number-3">36.4</span> OpenCl</h3>
+<div class="outline-text-3" id="text-36-4">
+<ul class="org-ul">
+<li>portable way to use all CPUs, GPUs etc</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org40fe274" class="outline-2">
+<h2 id="org40fe274"><span class="section-number-2">37</span> Final Review</h2>
+<div class="outline-text-2" id="text-37">
+</div>
+<div id="outline-container-orgca0a80b" class="outline-3">
+<h3 id="orgca0a80b"><span class="section-number-3">37.1</span> Instructions</h3>
+<div class="outline-text-3" id="text-37-1">
+<ul class="org-ul">
+<li>6 pages notes</li>
+<li>10am to 12, 14th December</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd8ec78e" class="outline-3">
+<h3 id="orgd8ec78e"><span class="section-number-3">37.2</span> Preparation</h3>
+<div class="outline-text-3" id="text-37-2">
+<ul class="org-ul">
+<li>Homework</li>
+<li>Definitions</li>
+<li>Previous Exams</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5c41c0f" class="outline-2">
+<h2 id="org5c41c0f"><span class="section-number-2">38</span> Deadlocks</h2>
+<div class="outline-text-2" id="text-38">
+<ul class="org-ul">
+<li>When threads holds multiple locks, think about <b>deadlocks</b>!
+<ul class="org-ul">
+<li>Eg: <code>synchronized</code> method invokes other <code>synchronized</code> method associated with
+a different monitor lock.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgacb5dde" class="outline-3">
+<h3 id="orgacb5dde"><span class="section-number-3">38.1</span> Solutions</h3>
+<div class="outline-text-3" id="text-38-1">
+<ol class="org-ol">
+<li>Resource ordering
+<ul class="org-ul">
+<li>can use <code>System.identityHashCode</code></li>
+</ul></li>
+<li>Deadlock suspicion
+<ul class="org-ul">
+<li>lock with timeout
+<ul class="org-ul">
+<li>not available with <code>monitor</code> -&gt; use <code>reentrant</code></li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orga265a1f" class="outline-2">
+<h2 id="orga265a1f"><span class="section-number-2">39</span> Livelock</h2>
+<div class="outline-text-2" id="text-39">
+<ul class="org-ul">
+<li>narrow passage example: passage wide enough to allow only 1 person, two people</li>
+</ul>
+<p>
+coming in opposite direction. Both move sideway to allow other to pass.
+</p>
+<ul class="org-ul">
+<li><b>Solution</b>: random backoff</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2851cc5" class="outline-2">
+<h2 id="org2851cc5"><span class="section-number-2">40</span> Starvation</h2>
+<div class="outline-text-2" id="text-40">
+<p>
+denial of resource
+</p>
+</div>
+</div>
+<div id="outline-container-org3206273" class="outline-2">
+<h2 id="org3206273"><span class="section-number-2">41</span> Invariant</h2>
+<div class="outline-text-2" id="text-41">
+<p>
+conditions that are needed to be true at certain points.
+</p>
+</div>
+<div id="outline-container-org00f3520" class="outline-3">
+<h3 id="org00f3520"><span class="section-number-3">41.1</span> Pre-condition</h3>
+<div class="outline-text-3" id="text-41-1">
+<p>
+ways to check
+</p>
+<ul class="org-ul">
+<li><b>Optimistic</b>: do everything then check</li>
+<li><b>Balking</b>
+<ul class="org-ul">
+<li><b>Guarded Suspension</b>: suspend until preconditions not true</li>
+<li><b>Timed Waiting</b>: wait for certain time then balk</li>
+</ul></li>
+<li><b>atomic await</b>
+<code>&lt;await B {S}&gt;</code>
+wait till <code>B</code> becomes <code>true</code> then atomically execute <code>S</code>
+<ul class="org-ul">
+<li>Implement
+<ul class="org-ul">
+<li>Test a condition and suspend thread if not true</li>
+<li>release lock before suspending</li>
+<li>awaken, re acquire lock before proceeding</li>
+</ul></li>
+<li><p>
+Every <code>Object</code> in Java has 2 Queues: <b>wait set</b> and <b>lock set</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-java">&lt;await B {S}&gt; =&gt; <span style="color: #0000FF;">synchronized</span> (obj) {
+                     <span style="color: #0000FF;">while</span> (<span style="color: #F0DFAF; font-weight: bold;">!</span>B) { obj.wait(); }
+                     S;
+                 }
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>wait</code> gives safety</li>
+<li><code>notify</code> gives liveness</li>
+</ul></li>
+<li><b>Condition Variables</b>
+<ul class="org-ul">
+<li>Java: <code>cv = ReentrantLock.newCondition()</code>
+<ul class="org-ul">
+<li>each condition variable has it's own wait set.</li>
+<li><p>
+Comparison with <code>monitor</code>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">cv</td>
+<td class="org-left"><code>await</code></td>
+<td class="org-left"><code>signal</code></td>
+<td class="org-left"><code>signalAll</code></td>
+<td class="org-left">for specific condition</td>
+</tr>
+
+<tr>
+<td class="org-left">monitor</td>
+<td class="org-left"><code>wait</code></td>
+<td class="org-left"><code>notify</code></td>
+<td class="org-left"><code>notifyAll</code></td>
+<td class="org-left">for specific monitor lock</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li>C++: <code>std::condition_variable c;</code>
+<ul class="org-ul">
+<li><code>c</code>: takes in <code>mutex</code> (needed for release and reacquire mechanism)</li>
+<li>optionally takes in condition (guard) else we need to manually loop on
+<code>!B</code> (condition)</li>
+</ul></li>
+</ul></li>
+<li><b>Reader Writer lock</b>: more expensive than mutex
+<ul class="org-ul">
+<li>only situation when write less and lock for small time</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/notes/concurrentProg.html";
+this.page.identifier = "/notes/concurrentProg.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="author">Author: Anurag Peshne</p>
+<p class="date">Created: 2017-04-05 Wed 22:10</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

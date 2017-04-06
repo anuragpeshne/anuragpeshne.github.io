@@ -47,6 +47,8 @@
 * Notes
   Bunch of notes to me.
   - [[file:./notes/plp.org][Programming Language Principles]]
+  - [[file:./notes/concurrentProg.org][Concurrent Programming]]
+  - [[file:./notes/computerNetwork.org][Computer Networks]]
 * Contact
   Feel free to drop me a mail at [[mailto:anurag.peshne@gmail.com][anurag.peshne@gmail.com]], find me on [[https://www.linkedin.com/in/anuragpeshne][Linkedin]],
   [[https://github.com/anuragpeshne/][Github]] or browse my [[https://www.flickr.com/photos/anuragpeshne/][photostream]].
