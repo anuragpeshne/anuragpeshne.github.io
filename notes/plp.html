@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-21 Fri 20:55 -->
+<!-- 2017-04-22 Sat 10:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Programming Language Principles</title>
@@ -236,268 +236,268 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb7366fd">1. Intro</a>
+<li><a href="#org89c4c2a">1. Intro</a>
 <ul>
-<li><a href="#orgb89913c">1.1. Specification of programming lang:</a></li>
-<li><a href="#org397895f">1.2. Spectrum</a></li>
-<li><a href="#orgbff8d80">1.3. Compilation process</a></li>
-<li><a href="#org02764e2">1.4. JVM</a></li>
-<li><a href="#org881cd0b">1.5. Bootstrapping</a></li>
-<li><a href="#org35fe421">1.6. Preprocessor</a></li>
-<li><a href="#orge866f24">1.7. Turing Complete</a></li>
+<li><a href="#orge029ec6">1.1. Specification of programming lang:</a></li>
+<li><a href="#orga7187af">1.2. Spectrum</a></li>
+<li><a href="#orgebe0f96">1.3. Compilation process</a></li>
+<li><a href="#orgf66de8f">1.4. JVM</a></li>
+<li><a href="#orge97ab25">1.5. Bootstrapping</a></li>
+<li><a href="#orga7bf87e">1.6. Preprocessor</a></li>
+<li><a href="#orgc154e6a">1.7. Turing Complete</a></li>
 </ul>
 </li>
-<li><a href="#org9643fc6">2. Lexical Analysis</a>
+<li><a href="#orgf9d88ec">2. Lexical Analysis</a>
 <ul>
-<li><a href="#orgdaa1eee">2.1. Syntax v/s semantics</a></li>
-<li><a href="#org13cdc77">2.2. Regular Expression</a>
+<li><a href="#orgc3194b5">2.1. Syntax v/s semantics</a></li>
+<li><a href="#org6c7cebb">2.2. Regular Expression</a>
 <ul>
-<li><a href="#org1dc8bc3">2.2.1. ε</a></li>
-<li><a href="#org648cd1d">2.2.2. Atom:</a></li>
-<li><a href="#org9c5a50d">2.2.3. Concatenation</a></li>
-<li><a href="#orgc466ac1">2.2.4. Alternative: |</a></li>
-<li><a href="#orgfb341d7">2.2.5. Kleene Closure: *</a></li>
-<li><a href="#orgde895b7">2.2.6. Derived notations:</a></li>
-<li><a href="#orgfe9ea4b">2.2.7. Restrictions</a></li>
+<li><a href="#orgb766254">2.2.1. ε</a></li>
+<li><a href="#org9251c8a">2.2.2. Atom:</a></li>
+<li><a href="#org83bfa63">2.2.3. Concatenation</a></li>
+<li><a href="#org5e57df5">2.2.4. Alternative: |</a></li>
+<li><a href="#org87ef043">2.2.5. Kleene Closure: *</a></li>
+<li><a href="#orgc526383">2.2.6. Derived notations:</a></li>
+<li><a href="#orgd0c7392">2.2.7. Restrictions</a></li>
 </ul>
 </li>
-<li><a href="#org0cce2d0">2.3. Scanners</a>
+<li><a href="#orgc41b230">2.3. Scanners</a>
 <ul>
-<li><a href="#orgb86648d">2.3.1. Implementation</a></li>
-<li><a href="#org3afcf9c">2.3.2. Whitespace</a></li>
-<li><a href="#orgedc5155">2.3.3. Automatic DFA generation</a></li>
+<li><a href="#org1a6427f">2.3.1. Implementation</a></li>
+<li><a href="#org8a2ae33">2.3.2. Whitespace</a></li>
+<li><a href="#org731079f">2.3.3. Automatic DFA generation</a></li>
 </ul>
 </li>
-<li><a href="#orgfffc71e">2.4. Informal Summary</a></li>
+<li><a href="#org4a3dd9c">2.4. Informal Summary</a></li>
 </ul>
 </li>
-<li><a href="#org3cc1ba9">3. Parsing</a>
+<li><a href="#orgceea818">3. Parsing</a>
 <ul>
-<li><a href="#org8a8eb57">3.1. Regular and Context Free language:</a></li>
-<li><a href="#org19b9974">3.2. CFG: Context Free Grammar</a>
+<li><a href="#orgecb0e71">3.1. Regular and Context Free language:</a></li>
+<li><a href="#org4c52663">3.2. CFG: Context Free Grammar</a>
 <ul>
-<li><a href="#org7d1732f">3.2.1. BNF</a></li>
-<li><a href="#org11ffe72">3.2.2. EBNF</a></li>
-<li><a href="#org2f0a866">3.2.3. Example:</a></li>
+<li><a href="#orgfddfa0d">3.2.1. BNF</a></li>
+<li><a href="#orgab06598">3.2.2. EBNF</a></li>
+<li><a href="#orgddb2388">3.2.3. Example:</a></li>
 </ul>
 </li>
-<li><a href="#orged33a2d">3.3. Non Context Free Grammar</a></li>
-<li><a href="#org060520d">3.4. Parse tree</a></li>
-<li><a href="#org1e80672">3.5. Ambiguous Grammar</a></li>
-<li><a href="#orga88b5a3">3.6. Grammar Class</a>
+<li><a href="#org2d63069">3.3. Non Context Free Grammar</a></li>
+<li><a href="#org584dd73">3.4. Parse tree</a></li>
+<li><a href="#org8b5c0e1">3.5. Ambiguous Grammar</a></li>
+<li><a href="#org407e04e">3.6. Grammar Class</a>
 <ul>
-<li><a href="#orgf7095a3">3.6.1. LL: Left to right, Left-most derivation</a></li>
-<li><a href="#org64dc17b">3.6.2. LR: Left to right, Right-most derivation</a></li>
+<li><a href="#orga309b45">3.6.1. LL: Left to right, Left-most derivation</a></li>
+<li><a href="#org9e6d6d6">3.6.2. LR: Left to right, Right-most derivation</a></li>
 </ul>
 </li>
-<li><a href="#org41eb31e">3.7. Grammar and parsing</a></li>
-<li><a href="#org4c37ee7">3.8. Top Down parser</a>
+<li><a href="#org29db1a1">3.7. Grammar and parsing</a></li>
+<li><a href="#org563c2a7">3.8. Top Down parser</a>
 <ul>
-<li><a href="#orge8427f1">3.8.1. LL(K): look ahead k tokens</a></li>
-<li><a href="#org5c710df">3.8.2. LL(*): can look ahead as much tokens as needed</a></li>
-<li><a href="#orge8c3be3">3.8.3. First Set</a></li>
-<li><a href="#org5d3d34a">3.8.4. Follow Set</a></li>
-<li><a href="#orga8f6b5d">3.8.5. Predict Set</a></li>
-<li><a href="#org739ab35">3.8.6. LL(1) Rule</a></li>
-<li><a href="#org587850a">3.8.7. Recursive decent parsing working</a></li>
-<li><a href="#org257650e">3.8.8. Left recrusive grammar</a></li>
-<li><a href="#orgbd9b879">3.8.9. associativity and precedence</a></li>
+<li><a href="#org4d3db4e">3.8.1. LL(K): look ahead k tokens</a></li>
+<li><a href="#org9d78c69">3.8.2. LL(*): can look ahead as much tokens as needed</a></li>
+<li><a href="#orgd427c06">3.8.3. First Set</a></li>
+<li><a href="#org2f7da86">3.8.4. Follow Set</a></li>
+<li><a href="#orgf703121">3.8.5. Predict Set</a></li>
+<li><a href="#orgf1f854b">3.8.6. LL(1) Rule</a></li>
+<li><a href="#orgc1e35db">3.8.7. Recursive decent parsing working</a></li>
+<li><a href="#org6b74653">3.8.8. Left recrusive grammar</a></li>
+<li><a href="#orgb3d8ba2">3.8.9. associativity and precedence</a></li>
 </ul>
 </li>
-<li><a href="#org0a3eaba">3.9. Parser Construction</a>
+<li><a href="#orgf79d078">3.9. Parser Construction</a>
 <ul>
-<li><a href="#org32ab175">3.9.1. Grammar Simplication</a></li>
-<li><a href="#orgc898799">3.9.2. Handling errors</a></li>
+<li><a href="#org84b8002">3.9.1. Grammar Simplication</a></li>
+<li><a href="#orgf5f51d2">3.9.2. Handling errors</a></li>
 </ul>
 </li>
-<li><a href="#orgad00fe1">3.10. Parsers</a>
+<li><a href="#org384d01d">3.10. Parsers</a>
 <ul>
-<li><a href="#orga8c8cb6">3.10.1. Backtracking Algorithms</a></li>
-<li><a href="#orgcd41432">3.10.2. Predictive Algorithms</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org342faf0">4. Binding Times</a>
-<ul>
-<li><a href="#orgc1b6267">4.1. Binding and visibility</a></li>
-<li><a href="#orgbfc0e58">4.2. Storage Allocation Mechanism</a>
-<ul>
-<li><a href="#orgd9da0ab">4.2.1. Static Allocation</a></li>
-<li><a href="#org93fcb24">4.2.2. Stack Allocation</a></li>
-<li><a href="#org678d1bf">4.2.3. Heap Allocation</a></li>
-</ul>
-</li>
-<li><a href="#orge7e5c7d">4.3. Scope</a>
-<ul>
-<li><a href="#org47f6718">4.3.1. Static Scope</a></li>
-<li><a href="#org4aef7ec">4.3.2. Declaration Order</a></li>
-<li><a href="#org73a7fde">4.3.3. Dynamic Scoping</a></li>
-<li><a href="#org73a7eda">4.3.4. Implementing Scope</a></li>
-<li><a href="#org8a26f58">4.3.5. Shallow and Deep binding (passing subroutine as parameter)</a></li>
-<li><a href="#org22e4322">4.3.6. First Class and unlimited extent</a></li>
+<li><a href="#orgdb06d2f">3.10.1. Backtracking Algorithms</a></li>
+<li><a href="#org2d1b1d8">3.10.2. Predictive Algorithms</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1506098">5. Sematic Analysis</a>
+<li><a href="#orge0d3199">4. Binding Times</a>
 <ul>
-<li><a href="#org473c998">5.1. Static Analysis</a></li>
-<li><a href="#org7340ec7">5.2. Semantics:</a></li>
-<li><a href="#orgb27c6e4">5.3. Attribute Grammar</a>
+<li><a href="#org73e2822">4.1. Binding and visibility</a></li>
+<li><a href="#org836c06b">4.2. Storage Allocation Mechanism</a>
 <ul>
-<li><a href="#org4ea553b">5.3.1. Synthesized</a></li>
-<li><a href="#orgc819cdb">5.3.2. Inherited</a></li>
-<li><a href="#org48c009a">5.3.3. Attribute Flow</a></li>
+<li><a href="#org2b4e93d">4.2.1. Static Allocation</a></li>
+<li><a href="#org44822f7">4.2.2. Stack Allocation</a></li>
+<li><a href="#org17e6c99">4.2.3. Heap Allocation</a></li>
 </ul>
 </li>
-<li><a href="#org23a5d1b">5.4. is generic just sugar coating over <code>instanceof</code></a></li>
-</ul>
-</li>
-<li><a href="#org046fe6a">6. Control Flow</a>
+<li><a href="#org7097a71">4.3. Scope</a>
 <ul>
-<li><a href="#org55d9d6c">6.1. Precedence and associativity</a></li>
-<li><a href="#org61d253c">6.2. Assignment</a></li>
-<li><a href="#orge1b96cd">6.3. References and Values</a>
-<ul>
-<li><a href="#org03df609">6.3.1. value model</a></li>
-<li><a href="#org2599c15">6.3.2. reference model</a></li>
-<li><a href="#org68c11bc">6.3.3. Boxing</a></li>
-<li><a href="#orgb8ebd5a">6.3.4. Initialization</a></li>
-<li><a href="#orga70dae5">6.3.5. Ordering within expressions</a></li>
-<li><a href="#org427d784">6.3.6. Mathematical Identities</a></li>
-<li><a href="#org3ad65f7">6.3.7. Switch Case</a></li>
-<li><a href="#orgba6613e">6.3.8. Applicative and Normal Order Evaluation</a></li>
-<li><a href="#orgac8fe1b">6.3.9. Non determinacy</a></li>
+<li><a href="#org005dc8a">4.3.1. Static Scope</a></li>
+<li><a href="#org29f3123">4.3.2. Declaration Order</a></li>
+<li><a href="#orgd17c62d">4.3.3. Dynamic Scoping</a></li>
+<li><a href="#org40d5962">4.3.4. Implementing Scope</a></li>
+<li><a href="#org00c00c4">4.3.5. Shallow and Deep binding (passing subroutine as parameter)</a></li>
+<li><a href="#org24ba287">4.3.6. First Class and unlimited extent</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb7b2998">7. Type Systems</a>
+<li><a href="#org807185b">5. Sematic Analysis</a>
 <ul>
-<li><a href="#orga1b5379">7.1. Meaning of Type</a></li>
-<li><a href="#org8c0418c">7.2. Polymorphism</a></li>
-<li><a href="#org94db9c8">7.3. Orthogonality</a></li>
-<li><a href="#org7d5d68d">7.4. Enumeration</a></li>
-<li><a href="#org5a73156">7.5. Sub-range type</a></li>
-<li><a href="#org009eeb2">7.6. Composite Types</a>
+<li><a href="#orgf0aede1">5.1. Static Analysis</a></li>
+<li><a href="#org7628d48">5.2. Semantics:</a></li>
+<li><a href="#orgf109594">5.3. Attribute Grammar</a>
 <ul>
-<li><a href="#orgfbf61dc">7.6.1. Records (structs)</a></li>
-<li><a href="#orgc7f7026">7.6.2. Variant Records (Union)</a></li>
-<li><a href="#orga1725ca">7.6.3. Arrays</a></li>
-<li><a href="#orgfb7f418">7.6.4. Sets</a></li>
-<li><a href="#orgbec25d6">7.6.5. Pointers</a></li>
-<li><a href="#org6b3653b">7.6.6. Lists</a></li>
-<li><a href="#org2e5fac8">7.6.7. Files</a></li>
+<li><a href="#org7a8d7ef">5.3.1. Synthesized</a></li>
+<li><a href="#orgea945a5">5.3.2. Inherited</a></li>
+<li><a href="#orgd3165e5">5.3.3. Attribute Flow</a></li>
 </ul>
 </li>
-<li><a href="#org56a6bbf">7.7. Type Equivalence</a>
-<ul>
-<li><a href="#orgc5f39af">7.7.1. Structural Equivalence</a></li>
-<li><a href="#org5d858d7">7.7.2. Name Equivalence</a></li>
+<li><a href="#orgcfa5a7d">5.4. is generic just sugar coating over <code>instanceof</code></a></li>
 </ul>
 </li>
-<li><a href="#org7d11295">7.8. Type Conversion and Cast</a>
+<li><a href="#org70fc25d">6. Control Flow</a>
 <ul>
-<li><a href="#org28f5ac6">7.8.1. Nonconverting Type Cast</a></li>
-<li><a href="#org2fe80d9">7.8.2. Coercion</a></li>
-</ul>
-</li>
-<li><a href="#org1b0e267">7.9. Universal Reference type</a></li>
-<li><a href="#org8bf0746">7.10. Type inference</a></li>
-<li><a href="#orgd0d4799">7.11. Parametric Polymorphism</a>
+<li><a href="#org492fa72">6.1. Precedence and associativity</a></li>
+<li><a href="#orgd1a1c52">6.2. Assignment</a></li>
+<li><a href="#org0885a4c">6.3. References and Values</a>
 <ul>
-<li><a href="#org93c04f5">7.11.1. Generic Implementation</a></li>
-</ul>
-</li>
-<li><a href="#org642eac7">7.12. Equality Testing and assignment</a></li>
-</ul>
-</li>
-<li><a href="#org4a7bd84">8. Composite Types</a>
-<ul>
-<li><a href="#orgc052b1d">8.1. Records (Structures)</a></li>
-<li><a href="#orgd1e5cc9">8.2. Unions</a></li>
-<li><a href="#orgc6f5781">8.3. Arrays</a>
-<ul>
-<li><a href="#org09126d0">8.3.1. Storage allocation</a></li>
-</ul>
-</li>
-<li><a href="#org4350d21">8.4. Strings</a></li>
-<li><a href="#orgcc1f15c">8.5. Sets</a></li>
-<li><a href="#org255414c">8.6. Pointers and recursive types</a>
-<ul>
-<li><a href="#org7648eab">8.6.1. Value Model</a></li>
-<li><a href="#orge56b528">8.6.2. Reference Model</a></li>
-<li><a href="#org8be5a95">8.6.3. Dangling Pointers</a></li>
-<li><a href="#org34bfc01">8.6.4. Garbage Collection</a></li>
-</ul>
-</li>
-<li><a href="#org06118e7">8.7. Lists</a></li>
-<li><a href="#orgfaf0561">8.8. Files</a></li>
-</ul>
-</li>
-<li><a href="#org5046b4d">9. Subroutine and Control Abstraction</a></li>
-<li><a href="#org7e26bd5">10. <span class="todo TODO">TODO</span> Scott Supplement</a></li>
-<li><a href="#org6b4c54a">11. λ Calculus</a>
-<ul>
-<li><a href="#org7d578f6">11.1. Functions</a></li>
-<li><a href="#orgdbc22d9">11.2. Pure λ calculus</a></li>
-<li><a href="#org4f66d66">11.3. Conventions to avoid paranthesis</a></li>
-<li><a href="#orgd522a87">11.4. Evaluation of λ expression (Reduction)</a>
-<ul>
-<li><a href="#orga253319">11.4.1. Reduction Rules</a></li>
-<li><a href="#org72cd56c">11.4.2. Normal Form</a></li>
-</ul>
-</li>
-<li><a href="#orgf5a4892">11.5. Reduction Strategies</a>
-<ul>
-<li><a href="#org0413ed2">11.5.1. Normal Order</a></li>
-<li><a href="#org6599dd5">11.5.2. Applicative Order</a></li>
-<li><a href="#orge6d5441">11.5.3. Comparison</a></li>
-</ul>
-</li>
-<li><a href="#org791bf03">11.6. Booleans and condition functional representation</a>
-<ul>
-<li><a href="#org056f6ef">11.6.1. <code>if true a b = a</code></a></li>
-<li><a href="#org3601bbe">11.6.2. <code>if false a b = b</code></a></li>
-</ul>
-</li>
-<li><a href="#orgf02aef5">11.7. Y Combinator</a>
-<ul>
-<li><a href="#org5128449">11.7.1. Fixed Points</a></li>
+<li><a href="#org09299dc">6.3.1. value model</a></li>
+<li><a href="#org23f5831">6.3.2. reference model</a></li>
+<li><a href="#orgfc9aa4f">6.3.3. Boxing</a></li>
+<li><a href="#orgb343def">6.3.4. Initialization</a></li>
+<li><a href="#org9437c76">6.3.5. Ordering within expressions</a></li>
+<li><a href="#orgec3b910">6.3.6. Mathematical Identities</a></li>
+<li><a href="#org7863f74">6.3.7. Switch Case</a></li>
+<li><a href="#orgf91e323">6.3.8. Applicative and Normal Order Evaluation</a></li>
+<li><a href="#orgc40e9b7">6.3.9. Non determinacy</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd783617">12. JVM Overview</a>
+<li><a href="#org4b71362">7. Type Systems</a>
 <ul>
-<li><a href="#orgf3ab64e">12.1. Types</a></li>
-<li><a href="#orgce0e7df">12.2. Method Signature</a></li>
-<li><a href="#org3db1d46">12.3. Variables</a></li>
-<li><a href="#orgb4175a0">12.4. Method Invocation</a></li>
+<li><a href="#org4e91da2">7.1. Meaning of Type</a></li>
+<li><a href="#org8251ce6">7.2. Polymorphism</a></li>
+<li><a href="#orgcdc07ff">7.3. Orthogonality</a></li>
+<li><a href="#org5463790">7.4. Enumeration</a></li>
+<li><a href="#org64e57cf">7.5. Sub-range type</a></li>
+<li><a href="#orgf3eb710">7.6. Composite Types</a>
+<ul>
+<li><a href="#org6c6ee59">7.6.1. Records (structs)</a></li>
+<li><a href="#org27cf778">7.6.2. Variant Records (Union)</a></li>
+<li><a href="#orgdaa1cd7">7.6.3. Arrays</a></li>
+<li><a href="#org896ffb9">7.6.4. Sets</a></li>
+<li><a href="#org35f41de">7.6.5. Pointers</a></li>
+<li><a href="#org1708109">7.6.6. Lists</a></li>
+<li><a href="#orgf95c7e5">7.6.7. Files</a></li>
 </ul>
 </li>
-<li><a href="#org7ffc978">13. Denotational Semantics</a>
+<li><a href="#orgc0e4d9c">7.7. Type Equivalence</a>
 <ul>
-<li><a href="#org67f0a8b">13.1. Semantics</a></li>
-<li><a href="#org6946b2a">13.2. Ex: Simple Stack Machine</a>
-<ul>
-<li><a href="#org2e2eac0">13.2.1. AST</a></li>
-<li><a href="#org858a532">13.2.2. Syntactic Domain</a></li>
-<li><a href="#orgb6245c8">13.2.3. Semantic Domain</a></li>
-<li><a href="#org7c3f04f">13.2.4. Semantic Functions</a></li>
+<li><a href="#org9e14c7a">7.7.1. Structural Equivalence</a></li>
+<li><a href="#org243fef6">7.7.2. Name Equivalence</a></li>
 </ul>
 </li>
-<li><a href="#org100f74b">13.3. Modeling Memory</a>
+<li><a href="#org579edaf">7.8. Type Conversion and Cast</a>
 <ul>
-<li><a href="#org7239281">13.3.1. AST</a></li>
-<li><a href="#org1c7013e">13.3.2. Syntactic Domain</a></li>
-<li><a href="#org2533138">13.3.3. Semantic Domain</a></li>
-<li><a href="#org573fa02">13.3.4. Semantic functions</a></li>
-<li><a href="#orgc6bff46">13.3.5. Meaning</a></li>
-<li><a href="#org498ef1e">13.3.6. <code>if</code> statements</a></li>
-<li><a href="#orgde685ca">13.3.7. <code>while</code> statements</a></li>
-<li><a href="#org65dad3f">13.3.8. Nested Scopes</a></li>
+<li><a href="#org8ce8ed7">7.8.1. Nonconverting Type Cast</a></li>
+<li><a href="#org58d1cbd">7.8.2. Coercion</a></li>
+</ul>
+</li>
+<li><a href="#orgee75c5f">7.9. Universal Reference type</a></li>
+<li><a href="#orgcb2bb4f">7.10. Type inference</a></li>
+<li><a href="#org509ccf3">7.11. Parametric Polymorphism</a>
+<ul>
+<li><a href="#org6d81d75">7.11.1. Generic Implementation</a></li>
+</ul>
+</li>
+<li><a href="#orgcc673cf">7.12. Equality Testing and assignment</a></li>
+</ul>
+</li>
+<li><a href="#orge180c49">8. Composite Types</a>
+<ul>
+<li><a href="#orgcafce74">8.1. Records (Structures)</a></li>
+<li><a href="#orge2fb668">8.2. Unions</a></li>
+<li><a href="#orgfa41468">8.3. Arrays</a>
+<ul>
+<li><a href="#orgc2ec6ae">8.3.1. Storage allocation</a></li>
+</ul>
+</li>
+<li><a href="#orgf33dfe4">8.4. Strings</a></li>
+<li><a href="#orga2f303c">8.5. Sets</a></li>
+<li><a href="#org939fb58">8.6. Pointers and recursive types</a>
+<ul>
+<li><a href="#org8e79fda">8.6.1. Value Model</a></li>
+<li><a href="#orga3b6703">8.6.2. Reference Model</a></li>
+<li><a href="#org3ebd100">8.6.3. Dangling Pointers</a></li>
+<li><a href="#org9f5c185">8.6.4. Garbage Collection</a></li>
+</ul>
+</li>
+<li><a href="#orga74e085">8.7. Lists</a></li>
+<li><a href="#orgf521700">8.8. Files</a></li>
+</ul>
+</li>
+<li><a href="#org006f9d2">9. Subroutine and Control Abstraction</a></li>
+<li><a href="#org5a4255d">10. <span class="todo TODO">TODO</span> Scott Supplement</a></li>
+<li><a href="#org4ffdea3">11. λ Calculus</a>
+<ul>
+<li><a href="#orgd0577eb">11.1. Functions</a></li>
+<li><a href="#orgd605654">11.2. Pure λ calculus</a></li>
+<li><a href="#org624ab72">11.3. Conventions to avoid paranthesis</a></li>
+<li><a href="#org8d61216">11.4. Evaluation of λ expression (Reduction)</a>
+<ul>
+<li><a href="#orgf6d81a5">11.4.1. Reduction Rules</a></li>
+<li><a href="#org2b19f30">11.4.2. Normal Form</a></li>
+</ul>
+</li>
+<li><a href="#orgc5c36b2">11.5. Reduction Strategies</a>
+<ul>
+<li><a href="#org96640aa">11.5.1. Normal Order</a></li>
+<li><a href="#org282cf17">11.5.2. Applicative Order</a></li>
+<li><a href="#orgb5ff797">11.5.3. Comparison</a></li>
+</ul>
+</li>
+<li><a href="#org5835c01">11.6. Booleans and condition functional representation</a>
+<ul>
+<li><a href="#org68b34e6">11.6.1. <code>if true a b = a</code></a></li>
+<li><a href="#org2d4527f">11.6.2. <code>if false a b = b</code></a></li>
+</ul>
+</li>
+<li><a href="#org16cae52">11.7. Y Combinator</a>
+<ul>
+<li><a href="#orgd0f5c35">11.7.1. Fixed Points</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge7ec826">12. JVM Overview</a>
+<ul>
+<li><a href="#org54c2cf6">12.1. Types</a></li>
+<li><a href="#org517093f">12.2. Method Signature</a></li>
+<li><a href="#org590e68e">12.3. Variables</a></li>
+<li><a href="#org404a60a">12.4. Method Invocation</a></li>
+</ul>
+</li>
+<li><a href="#org43ce7ed">13. Denotational Semantics</a>
+<ul>
+<li><a href="#org90dabf3">13.1. Semantics</a></li>
+<li><a href="#org5ab3992">13.2. Ex: Simple Stack Machine</a>
+<ul>
+<li><a href="#org128f414">13.2.1. AST</a></li>
+<li><a href="#org348faf8">13.2.2. Syntactic Domain</a></li>
+<li><a href="#org5cf2d71">13.2.3. Semantic Domain</a></li>
+<li><a href="#org0e88783">13.2.4. Semantic Functions</a></li>
+</ul>
+</li>
+<li><a href="#org65bab26">13.3. Modeling Memory</a>
+<ul>
+<li><a href="#org55c55f8">13.3.1. AST</a></li>
+<li><a href="#orga84260f">13.3.2. Syntactic Domain</a></li>
+<li><a href="#org6531cf1">13.3.3. Semantic Domain</a></li>
+<li><a href="#org4630baa">13.3.4. Semantic functions</a></li>
+<li><a href="#org54c4296">13.3.5. Meaning</a></li>
+<li><a href="#org81184a4">13.3.6. <code>if</code> statements</a></li>
+<li><a href="#org709706a">13.3.7. <code>while</code> statements</a></li>
+<li><a href="#org4ab3b64">13.3.8. Nested Scopes</a></li>
 </ul>
 </li>
 </ul>
@@ -507,12 +507,12 @@ for the JavaScript code in this tag.
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-orgb7366fd" class="outline-2">
-<h2 id="orgb7366fd"><span class="section-number-2">1</span> Intro</h2>
+<div id="outline-container-org89c4c2a" class="outline-2">
+<h2 id="org89c4c2a"><span class="section-number-2">1</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgb89913c" class="outline-3">
-<h3 id="orgb89913c"><span class="section-number-3">1.1</span> Specification of programming lang:</h3>
+<div id="outline-container-orge029ec6" class="outline-3">
+<h3 id="orge029ec6"><span class="section-number-3">1.1</span> Specification of programming lang:</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Syntax</li>
@@ -520,8 +520,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org397895f" class="outline-3">
-<h3 id="org397895f"><span class="section-number-3">1.2</span> Spectrum</h3>
+<div id="outline-container-orga7187af" class="outline-3">
+<h3 id="orga7187af"><span class="section-number-3">1.2</span> Spectrum</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Imperative</li>
@@ -535,8 +535,8 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbff8d80" class="outline-3">
-<h3 id="orgbff8d80"><span class="section-number-3">1.3</span> Compilation process</h3>
+<div id="outline-container-orgebe0f96" class="outline-3">
+<h3 id="orgebe0f96"><span class="section-number-3">1.3</span> Compilation process</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-text">Source code &#8594; incomplete machine code &#8594; complete machine code
@@ -546,16 +546,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org02764e2" class="outline-3">
-<h3 id="org02764e2"><span class="section-number-3">1.4</span> JVM</h3>
+<div id="outline-container-orgf66de8f" class="outline-3">
+<h3 id="orgf66de8f"><span class="section-number-3">1.4</span> JVM</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>has support for OOP, exception, threads</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org881cd0b" class="outline-3">
-<h3 id="org881cd0b"><span class="section-number-3">1.5</span> Bootstrapping</h3>
+<div id="outline-container-orge97ab25" class="outline-3">
+<h3 id="orge97ab25"><span class="section-number-3">1.5</span> Bootstrapping</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Suppose we want to make compiler for new language L.
@@ -574,8 +574,8 @@ to implement other L features.
 </p>
 </div>
 </div>
-<div id="outline-container-org35fe421" class="outline-3">
-<h3 id="org35fe421"><span class="section-number-3">1.6</span> Preprocessor</h3>
+<div id="outline-container-orga7bf87e" class="outline-3">
+<h3 id="orga7bf87e"><span class="section-number-3">1.6</span> Preprocessor</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li>Trivial manipulation of text using simple pattern matching.</li>
@@ -583,8 +583,8 @@ to implement other L features.
 </ul>
 </div>
 </div>
-<div id="outline-container-orge866f24" class="outline-3">
-<h3 id="orge866f24"><span class="section-number-3">1.7</span> Turing Complete</h3>
+<div id="outline-container-orgc154e6a" class="outline-3">
+<h3 id="orgc154e6a"><span class="section-number-3">1.7</span> Turing Complete</h3>
 <div class="outline-text-3" id="text-1-7">
 <p class="verse">
 A programming language is said to be Turing complete if it can be shown that
@@ -605,12 +605,12 @@ it is computationally equivalent to a Turing machine. <sup><a id="fnr.1" class="
 </div>
 </div>
 </div>
-<div id="outline-container-org9643fc6" class="outline-2">
-<h2 id="org9643fc6"><span class="section-number-2">2</span> Lexical Analysis</h2>
+<div id="outline-container-orgf9d88ec" class="outline-2">
+<h2 id="orgf9d88ec"><span class="section-number-2">2</span> Lexical Analysis</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgdaa1eee" class="outline-3">
-<h3 id="orgdaa1eee"><span class="section-number-3">2.1</span> Syntax v/s semantics</h3>
+<div id="outline-container-orgc3194b5" class="outline-3">
+<h3 id="orgc3194b5"><span class="section-number-3">2.1</span> Syntax v/s semantics</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Syntax: Structure of the language</li>
@@ -633,27 +633,27 @@ Semantics: meaning of the constructs
 </ul>
 </div>
 </div>
-<div id="outline-container-org13cdc77" class="outline-3">
-<h3 id="org13cdc77"><span class="section-number-3">2.2</span> Regular Expression</h3>
+<div id="outline-container-org6c7cebb" class="outline-3">
+<h3 id="org6c7cebb"><span class="section-number-3">2.2</span> Regular Expression</h3>
 <div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-org1dc8bc3" class="outline-4">
-<h4 id="org1dc8bc3"><span class="section-number-4">2.2.1</span> ε</h4>
+</div><div id="outline-container-orgb766254" class="outline-4">
+<h4 id="orgb766254"><span class="section-number-4">2.2.1</span> ε</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Empty String <code>""</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org648cd1d" class="outline-4">
-<h4 id="org648cd1d"><span class="section-number-4">2.2.2</span> Atom:</h4>
+<div id="outline-container-org9251c8a" class="outline-4">
+<h4 id="org9251c8a"><span class="section-number-4">2.2.2</span> Atom:</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Eg: Σ = {a, b c}
 </p>
 </div>
 </div>
-<div id="outline-container-org9c5a50d" class="outline-4">
-<h4 id="org9c5a50d"><span class="section-number-4">2.2.3</span> Concatenation</h4>
+<div id="outline-container-org83bfa63" class="outline-4">
+<h4 id="org83bfa63"><span class="section-number-4">2.2.3</span> Concatenation</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li>a ε = {a}</li>
@@ -661,8 +661,8 @@ Eg: Σ = {a, b c}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc466ac1" class="outline-4">
-<h4 id="orgc466ac1"><span class="section-number-4">2.2.4</span> Alternative: |</h4>
+<div id="outline-container-org5e57df5" class="outline-4">
+<h4 id="org5e57df5"><span class="section-number-4">2.2.4</span> Alternative: |</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li>a | b</li>
@@ -670,8 +670,8 @@ Eg: Σ = {a, b c}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfb341d7" class="outline-4">
-<h4 id="orgfb341d7"><span class="section-number-4">2.2.5</span> Kleene Closure: *</h4>
+<div id="outline-container-org87ef043" class="outline-4">
+<h4 id="org87ef043"><span class="section-number-4">2.2.5</span> Kleene Closure: *</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <ul class="org-ul">
 <li>a* = {ε, a, aa, aaa}</li>
@@ -679,15 +679,15 @@ Eg: Σ = {a, b c}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgde895b7" class="outline-4">
-<h4 id="orgde895b7"><span class="section-number-4">2.2.6</span> Derived notations:</h4>
+<div id="outline-container-orgc526383" class="outline-4">
+<h4 id="orgc526383"><span class="section-number-4">2.2.6</span> Derived notations:</h4>
 <div class="outline-text-4" id="text-2-2-6">
-</div><ol class="org-ol"><li><a id="org4b0c3d7"></a>positive closure: +<br /><div class="outline-text-5" id="text-2-2-6-1">
+</div><ol class="org-ol"><li><a id="org35c1994"></a>positive closure: +<br /><div class="outline-text-5" id="text-2-2-6-1">
 <ul class="org-ul">
 <li>a+ = aa*</li>
 </ul>
 </div></li>
-<li><a id="orgc57e91b"></a>Not:<br /><div class="outline-text-5" id="text-2-2-6-2">
+<li><a id="org24c0842"></a>Not:<br /><div class="outline-text-5" id="text-2-2-6-2">
 <ul class="org-ul">
 <li>not(a) = Σ - a
 we can derive this if the alphabets are finite, we can enumerate all the
@@ -695,8 +695,8 @@ alphabets</li>
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-orgfe9ea4b" class="outline-4">
-<h4 id="orgfe9ea4b"><span class="section-number-4">2.2.7</span> Restrictions</h4>
+<div id="outline-container-orgd0c7392" class="outline-4">
+<h4 id="orgd0c7392"><span class="section-number-4">2.2.7</span> Restrictions</h4>
 <div class="outline-text-4" id="text-2-2-7">
 <ul class="org-ul">
 <li>Nothing can be defined recursively.</li>
@@ -716,8 +716,8 @@ in Java/C.
 </div>
 </div>
 </div>
-<div id="outline-container-org0cce2d0" class="outline-3">
-<h3 id="org0cce2d0"><span class="section-number-3">2.3</span> Scanners</h3>
+<div id="outline-container-orgc41b230" class="outline-3">
+<h3 id="orgc41b230"><span class="section-number-3">2.3</span> Scanners</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>tokenize using RE</li>
@@ -739,8 +739,8 @@ column number after scanning phase is not possible.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgb86648d" class="outline-4">
-<h4 id="orgb86648d"><span class="section-number-4">2.3.1</span> Implementation</h4>
+<div id="outline-container-org1a6427f" class="outline-4">
+<h4 id="org1a6427f"><span class="section-number-4">2.3.1</span> Implementation</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>Ad-doc</li>
@@ -748,7 +748,7 @@ column number after scanning phase is not possible.</li>
 <li>table-driven DFA</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org7c48559"></a>In Java<br /><ol class="org-ol"><li><a id="org26c05dd"></a>Token type<br /><div class="outline-text-6" id="text-2-3-1-1-1">
+<ol class="org-ol"><li><a id="orgdbbeeab"></a>In Java<br /><ol class="org-ol"><li><a id="org48f18f2"></a>Token type<br /><div class="outline-text-6" id="text-2-3-1-1-1">
 <div class="org-src-container">
 <pre class="src src-java"> <span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Token</span> {
     <span style="color: #6434A3;">Kind</span> <span style="color: #BA36A5;">kind</span>;
@@ -758,20 +758,20 @@ column number after scanning phase is not possible.</li>
 </pre>
 </div>
 </div></li>
-<li><a id="org464136b"></a>Use each state as case in switch (Eg: START, AFTER<sub>START</sub>)<br /></li>
-<li><a id="orgdf2aebb"></a>Enums:<br /><div class="outline-text-6" id="text-2-3-1-1-3">
+<li><a id="org896f496"></a>Use each state as case in switch (Eg: START, AFTER<sub>START</sub>)<br /></li>
+<li><a id="orgf5c996a"></a>Enums:<br /><div class="outline-text-6" id="text-2-3-1-1-3">
 <ul class="org-ul">
 <li>they have types</li>
 <li>they are ordered</li>
 <li>can be used in switch case</li>
 </ul>
 </div></li>
-<li><a id="orgafa40c8"></a>Handling comments<br /><div class="outline-text-6" id="text-2-3-1-1-4">
+<li><a id="org8454f9a"></a>Handling comments<br /><div class="outline-text-6" id="text-2-3-1-1-4">
 <ul class="org-ul">
 <li>track pos and line number</li>
 </ul>
 </div></li>
-<li><a id="org8e09268"></a>Reserved words v/s keyword<br /><div class="outline-text-6" id="text-2-3-1-1-5">
+<li><a id="org1c1a6fd"></a>Reserved words v/s keyword<br /><div class="outline-text-6" id="text-2-3-1-1-5">
 <ul class="org-ul">
 <li>reserved word: cannot be used as identifier</li>
 <li>keyword: cannot be used as identifier because they have special meaning
@@ -780,7 +780,7 @@ in laguage</li>
 (does nothing)</li>
 </ul>
 </div></li></ol></li>
-<li><a id="org09c9e08"></a>Handling reserved word<br /><div class="outline-text-5" id="text-2-3-1-2">
+<li><a id="org4b4ae2b"></a>Handling reserved word<br /><div class="outline-text-5" id="text-2-3-1-2">
 <ul class="org-ul">
 <li>build identifier first then keyword</li>
 <li>list all the reserved words, then check if the identifier is present in
@@ -788,8 +788,8 @@ the list</li>
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-org3afcf9c" class="outline-4">
-<h4 id="org3afcf9c"><span class="section-number-4">2.3.2</span> Whitespace</h4>
+<div id="outline-container-org8a2ae33" class="outline-4">
+<h4 id="org8a2ae33"><span class="section-number-4">2.3.2</span> Whitespace</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li>skip</li>
@@ -798,8 +798,8 @@ the list</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgedc5155" class="outline-4">
-<h4 id="orgedc5155"><span class="section-number-4">2.3.3</span> Automatic DFA generation</h4>
+<div id="outline-container-org731079f" class="outline-4">
+<h4 id="org731079f"><span class="section-number-4">2.3.3</span> Automatic DFA generation</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li>DFA can be generated based on RE for parsing.</li>
@@ -808,8 +808,8 @@ the list</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfffc71e" class="outline-3">
-<h3 id="orgfffc71e"><span class="section-number-3">2.4</span> Informal Summary</h3>
+<div id="outline-container-org4a3dd9c" class="outline-3">
+<h3 id="org4a3dd9c"><span class="section-number-3">2.4</span> Informal Summary</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>Lexical analysis forms stream of tokens from stream of characters</li>
@@ -823,11 +823,11 @@ the list</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org3cc1ba9" class="outline-2">
-<h2 id="org3cc1ba9"><span class="section-number-2">3</span> Parsing</h2>
+<div id="outline-container-orgceea818" class="outline-2">
+<h2 id="orgceea818"><span class="section-number-2">3</span> Parsing</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org8a8eb57" class="outline-3">
-<h3 id="org8a8eb57"><span class="section-number-3">3.1</span> Regular and Context Free language:</h3>
+</div><div id="outline-container-orgecb0e71" class="outline-3">
+<h3 id="orgecb0e71"><span class="section-number-3">3.1</span> Regular and Context Free language:</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Any set of strings that can be defined in terms of the first three rules (Atom,
@@ -837,15 +837,15 @@ Alternative, Kleene closure) is called a <b>regular language</b></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org19b9974" class="outline-3">
-<h3 id="org19b9974"><span class="section-number-3">3.2</span> CFG: Context Free Grammar</h3>
+<div id="outline-container-org4c52663" class="outline-3">
+<h3 id="org4c52663"><span class="section-number-3">3.2</span> CFG: Context Free Grammar</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>RE is not recursive, need more powerful formalism</li>
 </ul>
 </div>
-<div id="outline-container-org7d1732f" class="outline-4">
-<h4 id="org7d1732f"><span class="section-number-4">3.2.1</span> BNF</h4>
+<div id="outline-container-orgfddfa0d" class="outline-4">
+<h4 id="orgfddfa0d"><span class="section-number-4">3.2.1</span> BNF</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>Σ set of alphabet (terminals)</li>
@@ -855,8 +855,8 @@ Alternative, Kleene closure) is called a <b>regular language</b></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org11ffe72" class="outline-4">
-<h4 id="org11ffe72"><span class="section-number-4">3.2.2</span> EBNF</h4>
+<div id="outline-container-orgab06598" class="outline-4">
+<h4 id="orgab06598"><span class="section-number-4">3.2.2</span> EBNF</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 In addition to BNF:
@@ -871,8 +871,8 @@ In addition to BNF:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f0a866" class="outline-4">
-<h4 id="org2f0a866"><span class="section-number-4">3.2.3</span> Example:</h4>
+<div id="outline-container-orgddb2388" class="outline-4">
+<h4 id="orgddb2388"><span class="section-number-4">3.2.3</span> Example:</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <div class="org-src-container">
 <pre class="src src-text">expr &#8594; factor | expr op factor
@@ -882,8 +882,8 @@ factor &#8594; ident | numlit | (expr)
 </div>
 </div>
 </div>
-<div id="outline-container-orged33a2d" class="outline-3">
-<h3 id="orged33a2d"><span class="section-number-3">3.3</span> Non Context Free Grammar</h3>
+<div id="outline-container-org2d63069" class="outline-3">
+<h3 id="org2d63069"><span class="section-number-3">3.3</span> Non Context Free Grammar</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>for CFG production doesn't depend on neighbors</li>
@@ -897,8 +897,8 @@ hence the context free ness.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org060520d" class="outline-3">
-<h3 id="org060520d"><span class="section-number-3">3.4</span> Parse tree</h3>
+<div id="outline-container-org584dd73" class="outline-3">
+<h3 id="org584dd73"><span class="section-number-3">3.4</span> Parse tree</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Scanner converts stream of characters into stream of tokens</li>
@@ -906,8 +906,8 @@ hence the context free ness.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1e80672" class="outline-3">
-<h3 id="org1e80672"><span class="section-number-3">3.5</span> Ambiguous Grammar</h3>
+<div id="outline-container-org8b5c0e1" class="outline-3">
+<h3 id="org8b5c0e1"><span class="section-number-3">3.5</span> Ambiguous Grammar</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>more than one parse tree for given expression</li>
@@ -915,8 +915,8 @@ hence the context free ness.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga88b5a3" class="outline-3">
-<h3 id="orga88b5a3"><span class="section-number-3">3.6</span> Grammar Class</h3>
+<div id="outline-container-org407e04e" class="outline-3">
+<h3 id="org407e04e"><span class="section-number-3">3.6</span> Grammar Class</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>we can create parser for any CFG which runs in O(n³)</li>
@@ -933,8 +933,8 @@ it to left hand side</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgf7095a3" class="outline-4">
-<h4 id="orgf7095a3"><span class="section-number-4">3.6.1</span> LL: Left to right, Left-most derivation</h4>
+<div id="outline-container-orga309b45" class="outline-4">
+<h4 id="orga309b45"><span class="section-number-4">3.6.1</span> LL: Left to right, Left-most derivation</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <ul class="org-ul">
 <li>considered simpler than LR, smaller class than LR</li>
@@ -943,15 +943,15 @@ it to left hand side</li>
 <li>usually hand written- we will use this in class</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgedabcb5"></a>LL Implementation<br /><div class="outline-text-5" id="text-3-6-1-1">
+<ol class="org-ol"><li><a id="orgc22f93a"></a>LL Implementation<br /><div class="outline-text-5" id="text-3-6-1-1">
 <ul class="org-ul">
 <li>start with root</li>
 <li><i>Peek</i> to check next token in the input string</li>
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-org64dc17b" class="outline-4">
-<h4 id="org64dc17b"><span class="section-number-4">3.6.2</span> LR: Left to right, Right-most derivation</h4>
+<div id="outline-container-org9e6d6d6" class="outline-4">
+<h4 id="org9e6d6d6"><span class="section-number-4">3.6.2</span> LR: Left to right, Right-most derivation</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <ul class="org-ul">
 <li>usually generated</li>
@@ -968,20 +968,20 @@ it to left hand side</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org41eb31e" class="outline-3">
-<h3 id="org41eb31e"><span class="section-number-3">3.7</span> Grammar and parsing</h3>
+<div id="outline-container-org29db1a1" class="outline-3">
+<h3 id="org29db1a1"><span class="section-number-3">3.7</span> Grammar and parsing</h3>
 </div>
-<div id="outline-container-org4c37ee7" class="outline-3">
-<h3 id="org4c37ee7"><span class="section-number-3">3.8</span> Top Down parser</h3>
+<div id="outline-container-org563c2a7" class="outline-3">
+<h3 id="org563c2a7"><span class="section-number-3">3.8</span> Top Down parser</h3>
 <div class="outline-text-3" id="text-3-8">
-</div><div id="outline-container-orge8427f1" class="outline-4">
-<h4 id="orge8427f1"><span class="section-number-4">3.8.1</span> LL(K): look ahead k tokens</h4>
+</div><div id="outline-container-org4d3db4e" class="outline-4">
+<h4 id="org4d3db4e"><span class="section-number-4">3.8.1</span> LL(K): look ahead k tokens</h4>
 </div>
-<div id="outline-container-org5c710df" class="outline-4">
-<h4 id="org5c710df"><span class="section-number-4">3.8.2</span> LL(*): can look ahead as much tokens as needed</h4>
+<div id="outline-container-org9d78c69" class="outline-4">
+<h4 id="org9d78c69"><span class="section-number-4">3.8.2</span> LL(*): can look ahead as much tokens as needed</h4>
 </div>
-<div id="outline-container-orge8c3be3" class="outline-4">
-<h4 id="orge8c3be3"><span class="section-number-4">3.8.3</span> First Set</h4>
+<div id="outline-container-orgd427c06" class="outline-4">
+<h4 id="orgd427c06"><span class="section-number-4">3.8.3</span> First Set</h4>
 <div class="outline-text-4" id="text-3-8-3">
 <ul class="org-ul">
 <li><p>
@@ -1004,7 +1004,7 @@ First(S) = First(A) &#8746; First(B)
 <li>for LL(1), there should not be common element in First of two elements</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org74ac8c6"></a>Including ε in First<br /><div class="outline-text-5" id="text-3-8-3-1">
+<ol class="org-ol"><li><a id="org57ca53b"></a>Including ε in First<br /><div class="outline-text-5" id="text-3-8-3-1">
 <div class="org-src-container">
 <pre class="src src-text">S &#8594; Ay
 A &#8594; x | &#949;
@@ -1013,8 +1013,8 @@ First(S) = {x, y}
 </div>
 </div></li></ol>
 </div>
-<div id="outline-container-org5d3d34a" class="outline-4">
-<h4 id="org5d3d34a"><span class="section-number-4">3.8.4</span> Follow Set</h4>
+<div id="outline-container-org2f7da86" class="outline-4">
+<h4 id="org2f7da86"><span class="section-number-4">3.8.4</span> Follow Set</h4>
 <div class="outline-text-4" id="text-3-8-4">
 <div class="org-src-container">
 <pre class="src src-text">S &#8594; A B
@@ -1033,11 +1033,11 @@ RHS)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga8f6b5d" class="outline-4">
-<h4 id="orga8f6b5d"><span class="section-number-4">3.8.5</span> Predict Set</h4>
+<div id="outline-container-orgf703121" class="outline-4">
+<h4 id="orgf703121"><span class="section-number-4">3.8.5</span> Predict Set</h4>
 </div>
-<div id="outline-container-org739ab35" class="outline-4">
-<h4 id="org739ab35"><span class="section-number-4">3.8.6</span> LL(1) Rule</h4>
+<div id="outline-container-orgf1f854b" class="outline-4">
+<h4 id="orgf1f854b"><span class="section-number-4">3.8.6</span> LL(1) Rule</h4>
 <div class="outline-text-4" id="text-3-8-6">
 <p class="verse">
 The predict set of all productions with the same left side should be disjoint.
@@ -1045,8 +1045,8 @@ This is neccessary and sufficient condition for a grammar to be LL(1)
 </p>
 </div>
 </div>
-<div id="outline-container-org587850a" class="outline-4">
-<h4 id="org587850a"><span class="section-number-4">3.8.7</span> Recursive decent parsing working</h4>
+<div id="outline-container-orgc1e35db" class="outline-4">
+<h4 id="orgc1e35db"><span class="section-number-4">3.8.7</span> Recursive decent parsing working</h4>
 <div class="outline-text-4" id="text-3-8-7">
 <ul class="org-ul">
 <li>determine which production to get based on predict set</li>
@@ -1056,14 +1056,14 @@ then there are multiple options for production which can produce next symbol
 </ul>
 </div>
 </div>
-<div id="outline-container-org257650e" class="outline-4">
-<h4 id="org257650e"><span class="section-number-4">3.8.8</span> Left recrusive grammar</h4>
+<div id="outline-container-org6b74653" class="outline-4">
+<h4 id="org6b74653"><span class="section-number-4">3.8.8</span> Left recrusive grammar</h4>
 <div class="outline-text-4" id="text-3-8-8">
 <ul class="org-ul">
 <li>LL parsing doesn't work on Left recursive grammar</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orga48167f"></a>Left recursive removal<br /><div class="outline-text-5" id="text-3-8-8-1">
+<ol class="org-ol"><li><a id="orgc5fccee"></a>Left recursive removal<br /><div class="outline-text-5" id="text-3-8-8-1">
 <pre class="example">
 A → A σ | β
 can be replaced with
@@ -1080,24 +1080,24 @@ B → σ B | ε
 </pre>
 </div></li></ol>
 </div>
-<div id="outline-container-orgbd9b879" class="outline-4">
-<h4 id="orgbd9b879"><span class="section-number-4">3.8.9</span> associativity and precedence</h4>
+<div id="outline-container-orgb3d8ba2" class="outline-4">
+<h4 id="orgb3d8ba2"><span class="section-number-4">3.8.9</span> associativity and precedence</h4>
 <div class="outline-text-4" id="text-3-8-9">
-</div><ol class="org-ol"><li><a id="org684da64"></a>Associativity<br /><div class="outline-text-5" id="text-3-8-9-1">
+</div><ol class="org-ol"><li><a id="orgfeac939"></a>Associativity<br /><div class="outline-text-5" id="text-3-8-9-1">
 <ul class="org-ul">
 <li>operator group left to right or right to left.</li>
 <li>Eg: 10 - 4 - 5 means (10 - 4) - 5 rather than 10 - (4 - 5)</li>
 </ul>
 </div></li>
 
-<li><a id="org50ca88b"></a>Precedence<br /><div class="outline-text-5" id="text-3-8-9-2">
+<li><a id="orgf3bbcd1"></a>Precedence<br /><div class="outline-text-5" id="text-3-8-9-2">
 <ul class="org-ul">
 <li>some operator group tightly than others</li>
 <li>Eg: 10 - 4 × 3 = 10 - 12 rather than 6 × 3</li>
 </ul>
 </div></li>
 
-<li><a id="org5ca6b62"></a>Inbuilt associativity and precedence<br /><div class="outline-text-5" id="text-3-8-9-3">
+<li><a id="orgc1651af"></a>Inbuilt associativity and precedence<br /><div class="outline-text-5" id="text-3-8-9-3">
 <ul class="org-ul">
 <li><p>
 we can make grammar in such a way that associativity and precedence is handled
@@ -1119,15 +1119,15 @@ to produce more <code>add_op</code>) always to left of <code>add_op</code></li>
 </div></li></ol>
 </div>
 </div>
-<div id="outline-container-org0a3eaba" class="outline-3">
-<h3 id="org0a3eaba"><span class="section-number-3">3.9</span> Parser Construction</h3>
+<div id="outline-container-orgf79d078" class="outline-3">
+<h3 id="orgf79d078"><span class="section-number-3">3.9</span> Parser Construction</h3>
 <div class="outline-text-3" id="text-3-9">
 <ul class="org-ul">
 <li>we have LL(1) grammar, construct <b>recursive decent parser</b></li>
 </ul>
 </div>
-<div id="outline-container-org32ab175" class="outline-4">
-<h4 id="org32ab175"><span class="section-number-4">3.9.1</span> Grammar Simplication</h4>
+<div id="outline-container-org84b8002" class="outline-4">
+<h4 id="org84b8002"><span class="section-number-4">3.9.1</span> Grammar Simplication</h4>
 <div class="outline-text-4" id="text-3-9-1">
 <ul class="org-ul">
 <li>useless symbols</li>
@@ -1135,30 +1135,30 @@ to produce more <code>add_op</code>) always to left of <code>add_op</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc898799" class="outline-4">
-<h4 id="orgc898799"><span class="section-number-4">3.9.2</span> Handling errors</h4>
+<div id="outline-container-orgf5f51d2" class="outline-4">
+<h4 id="orgf5f51d2"><span class="section-number-4">3.9.2</span> Handling errors</h4>
 <div class="outline-text-4" id="text-3-9-2">
-</div><ol class="org-ol"><li><a id="orgc20b15b"></a>Halt<br /><div class="outline-text-5" id="text-3-9-2-1">
+</div><ol class="org-ol"><li><a id="org4d982fc"></a>Halt<br /><div class="outline-text-5" id="text-3-9-2-1">
 <ul class="org-ul">
 <li>Easy to implement</li>
 <li>inconvinient for programmar</li>
 </ul>
 </div></li>
-<li><a id="org3e17cba"></a>Recovery<br /><ol class="org-ol"><li><a id="org85b0e3c"></a>panic mode<br /><div class="outline-text-6" id="text-3-9-2-2-1">
+<li><a id="orga78dd88"></a>Recovery<br /><ol class="org-ol"><li><a id="org08a7cf8"></a>panic mode<br /><div class="outline-text-6" id="text-3-9-2-2-1">
 <ul class="org-ul">
 <li>define safe symbols that delimit "clean" point</li>
 </ul>
 </div></li>
-<li><a id="org34c6ff0"></a>phrase recovery<br /></li>
-<li><a id="org00cb0a7"></a>context specific<br /></li>
-<li><a id="org46a8a03"></a>exception based<br /></li></ol></li></ol>
+<li><a id="org866f704"></a>phrase recovery<br /></li>
+<li><a id="orgc36726c"></a>context specific<br /></li>
+<li><a id="org395c9fb"></a>exception based<br /></li></ol></li></ol>
 </div>
 </div>
-<div id="outline-container-orgad00fe1" class="outline-3">
-<h3 id="orgad00fe1"><span class="section-number-3">3.10</span> Parsers</h3>
+<div id="outline-container-org384d01d" class="outline-3">
+<h3 id="org384d01d"><span class="section-number-3">3.10</span> Parsers</h3>
 <div class="outline-text-3" id="text-3-10">
-</div><div id="outline-container-orga8c8cb6" class="outline-4">
-<h4 id="orga8c8cb6"><span class="section-number-4">3.10.1</span> Backtracking Algorithms</h4>
+</div><div id="outline-container-orgdb06d2f" class="outline-4">
+<h4 id="orgdb06d2f"><span class="section-number-4">3.10.1</span> Backtracking Algorithms</h4>
 <div class="outline-text-4" id="text-3-10-1">
 <ul class="org-ul">
 <li>BFS
@@ -1178,8 +1178,8 @@ and try next production.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd41432" class="outline-4">
-<h4 id="orgcd41432"><span class="section-number-4">3.10.2</span> Predictive Algorithms</h4>
+<div id="outline-container-org2d1b1d8" class="outline-4">
+<h4 id="org2d1b1d8"><span class="section-number-4">3.10.2</span> Predictive Algorithms</h4>
 <div class="outline-text-4" id="text-3-10-2">
 <ul class="org-ul">
 <li>Based on remaining input, predict which production to use</li>
@@ -1193,14 +1193,14 @@ complicated too</li>
 </ul></li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgc808afa"></a>LL(1)<br /><div class="outline-text-5" id="text-3-10-2-1">
+<ol class="org-ol"><li><a id="org4d9a6df"></a>LL(1)<br /><div class="outline-text-5" id="text-3-10-2-1">
 <ul class="org-ul">
 <li>Left to right scan of token</li>
 <li>Leftmost derivation</li>
 <li>(1): 1 token of lookahead</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org33f604e"></a>Parse Table<br /><div class="outline-text-6" id="text-3-10-2-1-1">
+<ol class="org-ol"><li><a id="org4245491"></a>Parse Table<br /><div class="outline-text-6" id="text-3-10-2-1-1">
 <div class="org-src-container">
 <pre class="src src-text">1. E &#8594; int
 2. E &#8594; (E Op E)
@@ -1255,7 +1255,7 @@ complicated too</li>
 </tbody>
 </table>
 </div>
-<ol class="org-ol"><li><a id="org367922d"></a>Example:<br /><div class="outline-text-7" id="text-3-10-2-1-1-1">
+<ol class="org-ol"><li><a id="org8942ec6"></a>Example:<br /><div class="outline-text-7" id="text-3-10-2-1-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1359,13 +1359,13 @@ complicated too</li>
 </tbody>
 </table>
 </div></li></ol></li>
-<li><a id="orgbdaa704"></a>Construction of Parse table<br /><ol class="org-ol"><li><a id="org6fc9f5b"></a>Intuition<br /><div class="outline-text-7" id="text-3-10-2-1-2-1">
+<li><a id="org96289d5"></a>Construction of Parse table<br /><ol class="org-ol"><li><a id="org8dfd832"></a>Intuition<br /><div class="outline-text-7" id="text-3-10-2-1-2-1">
 <p>
 The next character should uniquely identify a production, so we should pick
 a production that ultimately starts with that character
 </p>
 </div></li>
-<li><a id="org6cc8222"></a>First Sets<br /><div class="outline-text-7" id="text-3-10-2-1-2-2">
+<li><a id="orgf76dfec"></a>First Sets<br /><div class="outline-text-7" id="text-3-10-2-1-2-2">
 <p>
 The First(A) is the set of terminals that can be at the start of a string
 produced by A.
@@ -1384,7 +1384,7 @@ First(A) = First(A) ∪ First(B)</li>
 </ul></li>
 </ul>
 </div></li>
-<li><a id="org1e181b7"></a>Follow Set<br /><div class="outline-text-7" id="text-3-10-2-1-2-3">
+<li><a id="org81a90ba"></a>Follow Set<br /><div class="outline-text-7" id="text-3-10-2-1-2-3">
 <p class="verse">
 Follow(A) is set of all terminal symbols that can immediately follow a
 subsequence derived from A in a sequence derived from start symbol, S.
@@ -1410,7 +1410,7 @@ symbol → ε then add follow of parent</li>
 </ul></li>
 </ul>
 </div></li>
-<li><a id="org558f16e"></a>Final Construction<br /><div class="outline-text-7" id="text-3-10-2-1-2-4">
+<li><a id="orgcbe6851"></a>Final Construction<br /><div class="outline-text-7" id="text-3-10-2-1-2-4">
 <ul class="org-ul">
 <li>For each rule A → ω, for each terminal t &sub; First*(ω)
 set T[A, t] = ω (at A if you see t, use production to goto ω)</li>
@@ -1420,7 +1420,7 @@ set T[A, t] = ω for each t &sub; Follow(A)
 and let A get lost)</li>
 </ul>
 </div></li></ol></li>
-<li><a id="orgf9bd1cc"></a>Limitation of LL(1)<br /><div class="outline-text-6" id="text-3-10-2-1-3">
+<li><a id="org1530425"></a>Limitation of LL(1)<br /><div class="outline-text-6" id="text-3-10-2-1-3">
 <ul class="org-ul">
 <li>Left recursion
 <ul class="org-ul">
@@ -1456,7 +1456,7 @@ Y &#8594; + E | &#949;
 </div></li>
 </ul>
 </div></li>
-<li><a id="org05239ed"></a>Condition for LL(1):<br /><div class="outline-text-6" id="text-3-10-2-1-4">
+<li><a id="orgbc84e46"></a>Condition for LL(1):<br /><div class="outline-text-6" id="text-3-10-2-1-4">
 <blockquote>
 <p>
 A grammar G is LL(1) iff for any productions A → ω1 and A → ω2 the sets:
@@ -1472,8 +1472,8 @@ This condition is equivalent to saying that there are no conflicts in the table
 </div>
 </div>
 </div>
-<div id="outline-container-org342faf0" class="outline-2">
-<h2 id="org342faf0"><span class="section-number-2">4</span> Binding Times</h2>
+<div id="outline-container-orge0d3199" class="outline-2">
+<h2 id="orge0d3199"><span class="section-number-2">4</span> Binding Times</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Language design time: control flow constructs, primitive data types&#x2026;</li>
@@ -1486,8 +1486,8 @@ variables in other module is finalized during link time.</li>
 <li>run time: address of variable.</li>
 </ul>
 </div>
-<div id="outline-container-orgc1b6267" class="outline-3">
-<h3 id="orgc1b6267"><span class="section-number-3">4.1</span> Binding and visibility</h3>
+<div id="outline-container-org73e2822" class="outline-3">
+<h3 id="org73e2822"><span class="section-number-3">4.1</span> Binding and visibility</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-java"><span style="color: #6434A3;">void</span> <span style="color: #006699;">testFoo</span>() {
@@ -1502,11 +1502,11 @@ variables in other module is finalized during link time.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbfc0e58" class="outline-3">
-<h3 id="orgbfc0e58"><span class="section-number-3">4.2</span> Storage Allocation Mechanism</h3>
+<div id="outline-container-org836c06b" class="outline-3">
+<h3 id="org836c06b"><span class="section-number-3">4.2</span> Storage Allocation Mechanism</h3>
 <div class="outline-text-3" id="text-4-2">
-</div><div id="outline-container-orgd9da0ab" class="outline-4">
-<h4 id="orgd9da0ab"><span class="section-number-4">4.2.1</span> Static Allocation</h4>
+</div><div id="outline-container-org2b4e93d" class="outline-4">
+<h4 id="org2b4e93d"><span class="section-number-4">4.2.1</span> Static Allocation</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Global variables</li>
@@ -1514,7 +1514,7 @@ variables in other module is finalized during link time.</li>
 <li>tables generated for helping runtime: debugging, dynamic type checking etc</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org83d04c1"></a>Languages without recursion<br /><div class="outline-text-5" id="text-4-2-1-1">
+<ol class="org-ol"><li><a id="org4f971c3"></a>Languages without recursion<br /><div class="outline-text-5" id="text-4-2-1-1">
 <ul class="org-ul">
 <li>some languages such as Fortran (before Fortran90), did not have recursion.</li>
 <li>as a result, only one invocation of subroutine will be active at a time.</li>
@@ -1522,7 +1522,7 @@ variables in other module is finalized during link time.</li>
 of creation and destruction.</li>
 </ul>
 </div></li>
-<li><a id="org5c928ec"></a>Constants<br /><div class="outline-text-5" id="text-4-2-1-2">
+<li><a id="orgd238e08"></a>Constants<br /><div class="outline-text-5" id="text-4-2-1-2">
 <ul class="org-ul">
 <li>constants can be allocated space during compile time, since their value can
 be shared across recursive calls.</li>
@@ -1531,8 +1531,8 @@ constants are allocated on <b>stack</b>.</li>
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-org93fcb24" class="outline-4">
-<h4 id="org93fcb24"><span class="section-number-4">4.2.2</span> Stack Allocation</h4>
+<div id="outline-container-org44822f7" class="outline-4">
+<h4 id="org44822f7"><span class="section-number-4">4.2.2</span> Stack Allocation</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>if language allows recursion, local variables cannot be allocated statically.</li>
@@ -1565,8 +1565,8 @@ active at the same time, stack based allocation takes less memory.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org678d1bf" class="outline-4">
-<h4 id="org678d1bf"><span class="section-number-4">4.2.3</span> Heap Allocation</h4>
+<div id="outline-container-org17e6c99" class="outline-4">
+<h4 id="org17e6c99"><span class="section-number-4">4.2.3</span> Heap Allocation</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <ul class="org-ul">
 <li>Issues:
@@ -1594,8 +1594,8 @@ existing pointer.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orge7e5c7d" class="outline-3">
-<h3 id="orge7e5c7d"><span class="section-number-3">4.3</span> Scope</h3>
+<div id="outline-container-org7097a71" class="outline-3">
+<h3 id="org7097a71"><span class="section-number-3">4.3</span> Scope</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>the textual region of the program in which the binding is active is its scope</li>
@@ -1608,8 +1608,8 @@ for global variables.</li>
 <li>Set of active binding is called current <b>referencing environment</b></li>
 </ul>
 </div>
-<div id="outline-container-org47f6718" class="outline-4">
-<h4 id="org47f6718"><span class="section-number-4">4.3.1</span> Static Scope</h4>
+<div id="outline-container-org005dc8a" class="outline-4">
+<h4 id="org005dc8a"><span class="section-number-4">4.3.1</span> Static Scope</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li>there can be nested scope.</li>
@@ -1618,7 +1618,7 @@ global scope.</li>
 <li>if no variable found even in global scope, then throw an error;</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org382a71c"></a>Hole in scope<br /><div class="outline-text-5" id="text-4-3-1-1">
+<ol class="org-ol"><li><a id="org1c18fd6"></a>Hole in scope<br /><div class="outline-text-5" id="text-4-3-1-1">
 <ul class="org-ul">
 <li>A name-to-object binding that is hidden by a nested declaration of the same
 name is said to have a <b>hole</b> in its scope.
@@ -1628,12 +1628,12 @@ name is said to have a <b>hole</b> in its scope.
 <li>Some languages may have qualifier to access outer scope variables.</li>
 </ul>
 </div></li>
-<li><a id="orgf247345"></a>Objects in lexically surrounding scopes<br /><div class="outline-text-5" id="text-4-3-1-2">
+<li><a id="org55810dd"></a>Objects in lexically surrounding scopes<br /><div class="outline-text-5" id="text-4-3-1-2">
 <ul class="org-ul">
 <li>the frames of surrounding subroutines are already active on the stack.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org094c3a5"></a>Static Chain<br /><div class="outline-text-6" id="text-4-3-1-2-1">
+<ol class="org-ol"><li><a id="org9ff14aa"></a>Static Chain<br /><div class="outline-text-6" id="text-4-3-1-2-1">
 <ul class="org-ul">
 <li><p>
 link to the surrounding block's stack
@@ -1688,14 +1688,14 @@ to be active. Thus, during execution of <code>blockD</code>, the stack will look
 </ul>
 </div></li></ol></li></ol>
 </div>
-<div id="outline-container-org4aef7ec" class="outline-4">
-<h4 id="org4aef7ec"><span class="section-number-4">4.3.2</span> Declaration Order</h4>
+<div id="outline-container-org29f3123" class="outline-4">
+<h4 id="org29f3123"><span class="section-number-4">4.3.2</span> Declaration Order</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <ul class="org-ul">
 <li>can we use a variable in a block before it was declared.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgaf40ffc"></a>Forward Reference<br /><div class="outline-text-5" id="text-4-3-2-1">
+<ol class="org-ol"><li><a id="org7d2aa70"></a>Forward Reference<br /><div class="outline-text-5" id="text-4-3-2-1">
 <p>
 An attempt to use a name before it's declaration
 </p>
@@ -1707,7 +1707,7 @@ An attempt to use a name before it's declaration
 </ul></li>
 </ul>
 </div></li>
-<li><a id="org48cd008"></a>Declaration and Definition<br /><div class="outline-text-5" id="text-4-3-2-2">
+<li><a id="org6332e3c"></a>Declaration and Definition<br /><div class="outline-text-5" id="text-4-3-2-2">
 <ul class="org-ul">
 <li>to implement mutually recursive data structures (example: manager and employee)
 C,C++ has declaration and definition.</li>
@@ -1715,7 +1715,7 @@ C,C++ has declaration and definition.</li>
 <li>Definition gives actual implementation details.</li>
 </ul>
 </div></li>
-<li><a id="org017bda2"></a>Redeclaration<br /><div class="outline-text-5" id="text-4-3-2-3">
+<li><a id="org9ebc79f"></a>Redeclaration<br /><div class="outline-text-5" id="text-4-3-2-3">
 <ul class="org-ul">
 <li>most dynamic languages overwrites the older value.</li>
 <li><p>
@@ -1734,28 +1734,28 @@ f 2 <span style="color: #8D8D84;">(* </span><span style="color: #8D8D84; font-st
 Whereas in ML, program is compiled that access old meaning of variable.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org3c15b8f"></a><span class="todo TODO">TODO</span> does ML simply substitute the value of variable while defining the function?<br /><div class="outline-text-6" id="text-4-3-2-3-1">
+<ol class="org-ol"><li><a id="orgbf846cf"></a><span class="todo TODO">TODO</span> does ML simply substitute the value of variable while defining the function?<br /><div class="outline-text-6" id="text-4-3-2-3-1">
 <p>
 Maybe because it is immutable.
 </p>
 </div></li></ol></li></ol>
 </div>
-<div id="outline-container-org73a7fde" class="outline-4">
-<h4 id="org73a7fde"><span class="section-number-4">4.3.3</span> Dynamic Scoping</h4>
+<div id="outline-container-orgd17c62d" class="outline-4">
+<h4 id="orgd17c62d"><span class="section-number-4">4.3.3</span> Dynamic Scoping</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <ul class="org-ul">
 <li>The bindings depends on flow of control during runtime.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org73a7eda" class="outline-4">
-<h4 id="org73a7eda"><span class="section-number-4">4.3.4</span> Implementing Scope</h4>
+<div id="outline-container-org40d5962" class="outline-4">
+<h4 id="org40d5962"><span class="section-number-4">4.3.4</span> Implementing Scope</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <ul class="org-ul">
 <li>Symbol table is dictionary which maps name to information about it.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org3bef8cb"></a>Static Scope:<br /><div class="outline-text-5" id="text-4-3-4-1">
+<ol class="org-ol"><li><a id="org7bb7924"></a>Static Scope:<br /><div class="outline-text-5" id="text-4-3-4-1">
 <ul class="org-ul">
 <li>never delete anything from symbol table.</li>
 <li>Most variations on static scoping can be handled by augmenting a basic dictionary
@@ -1763,7 +1763,7 @@ style symbol table with <code>enter_scope</code> and <code>leave_scope</code> op
 of visibility.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org2fe36bb"></a>LeBlanc and Cook Table<br /><div class="outline-text-6" id="text-4-3-4-1-1">
+<ol class="org-ol"><li><a id="orgdacaf66"></a>LeBlanc and Cook Table<br /><div class="outline-text-6" id="text-4-3-4-1-1">
 <ul class="org-ul">
 <li>Each scope, as it is encountered, is assigned a serial number.
 <ul class="org-ul">
@@ -1784,7 +1784,7 @@ the table, we search scope stack to check scope of that entry has scope
 visible.</li>
 </ul>
 </div></li></ol></li>
-<li><a id="org70db862"></a>Dynamic Scope:<br /><ol class="org-ol"><li><a id="org8671c68"></a>A-list (Association list)<br /><div class="outline-text-6" id="text-4-3-4-2-1">
+<li><a id="orgf31cbc9"></a>Dynamic Scope:<br /><ol class="org-ol"><li><a id="orgbaaa189"></a>A-list (Association list)<br /><div class="outline-text-6" id="text-4-3-4-2-1">
 <ul class="org-ul">
 <li>a simple list of name-value pairs.</li>
 <li>When used to implement dynamic scoping it functions as stack: new declarations
@@ -1792,7 +1792,7 @@ are pushed as they are encountered and popped as the end of the scope in which
 they appear.</li>
 </ul>
 </div></li>
-<li><a id="org839fe08"></a>Central Reference table<br /><div class="outline-text-6" id="text-4-3-4-2-2">
+<li><a id="org0f950af"></a>Central Reference table<br /><div class="outline-text-6" id="text-4-3-4-2-2">
 <ul class="org-ul">
 <li>maintains a mapping from names to current meanings.</li>
 <li>new entries are added in front of the chain (bucket list (when key collides))</li>
@@ -1801,8 +1801,8 @@ they appear.</li>
 </ul>
 </div></li></ol></li></ol>
 </div>
-<div id="outline-container-org8a26f58" class="outline-4">
-<h4 id="org8a26f58"><span class="section-number-4">4.3.5</span> Shallow and Deep binding (passing subroutine as parameter)</h4>
+<div id="outline-container-org00c00c4" class="outline-4">
+<h4 id="org00c00c4"><span class="section-number-4">4.3.5</span> Shallow and Deep binding (passing subroutine as parameter)</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">sub1</span>:
@@ -1819,19 +1819,19 @@ they appear.</li>
 </pre>
 </div>
 </div>
-<ol class="org-ol"><li><a id="org51b93e1"></a>Deep Binding<br /><div class="outline-text-5" id="text-4-3-5-1">
+<ol class="org-ol"><li><a id="orgda3bf7b"></a>Deep Binding<br /><div class="outline-text-5" id="text-4-3-5-1">
 <ul class="org-ul">
 <li>referencing environment is the one when reference is created</li>
 <li>in the example, binding x = 3 is created when we pass <code>sub2</code></li>
 </ul>
 </div></li>
-<li><a id="org4d3152e"></a>Shallow Binding<br /><div class="outline-text-5" id="text-4-3-5-2">
+<li><a id="org57f5d8e"></a>Shallow Binding<br /><div class="outline-text-5" id="text-4-3-5-2">
 <ul class="org-ul">
 <li>referencing environment is the one during routine is called</li>
 <li>in the example, binding x = 4 is created when we call <code>subx</code></li>
 </ul>
 </div></li>
-<li><a id="org5a28c84"></a>Deep Binding and Closure<br /><div class="outline-text-5" id="text-4-3-5-3">
+<li><a id="org8484a51"></a>Deep Binding and Closure<br /><div class="outline-text-5" id="text-4-3-5-3">
 <ul class="org-ul">
 <li>Note that Deep binding has reference to the binding environment.</li>
 <li>if we pass this subroutine (second class citizen), the subroutine can access
@@ -1840,37 +1840,37 @@ the environment deep in the stack.</li>
 space on heap.</li>
 <li>the issue arises when we return the subroutine and the stack unwinds. In this
 case to have closure we need unlimited extent and thus space allocation for
-the subroutine on stack. See <a href="#org1942cc5">4.3.6.4</a></li>
+the subroutine on stack. See <a href="#org6b446f3">4.3.6.4</a></li>
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-org22e4322" class="outline-4">
-<h4 id="org22e4322"><span class="section-number-4">4.3.6</span> First Class and unlimited extent</h4>
+<div id="outline-container-org24ba287" class="outline-4">
+<h4 id="org24ba287"><span class="section-number-4">4.3.6</span> First Class and unlimited extent</h4>
 <div class="outline-text-4" id="text-4-3-6">
-</div><ol class="org-ol"><li><a id="org0981588"></a>First Class<br /><div class="outline-text-5" id="text-4-3-6-1">
+</div><ol class="org-ol"><li><a id="org8a723e9"></a>First Class<br /><div class="outline-text-5" id="text-4-3-6-1">
 <ul class="org-ul">
 <li>can be passed as parameter</li>
 <li>can be returned from subroutine</li>
 <li>can be assigned to a variable</li>
 </ul>
 </div></li>
-<li><a id="org729789b"></a>Second Class<br /><div class="outline-text-5" id="text-4-3-6-2">
+<li><a id="orgff63281"></a>Second Class<br /><div class="outline-text-5" id="text-4-3-6-2">
 <ul class="org-ul">
 <li>can be passed as parameter</li>
 <li>can <b>not</b> be returned from subroutine</li>
 <li>can <b>not</b> be assigned to variable</li>
 </ul>
 </div></li>
-<li><a id="org8b9c58d"></a>Third Class<br /><div class="outline-text-5" id="text-4-3-6-3">
+<li><a id="orga312452"></a>Third Class<br /><div class="outline-text-5" id="text-4-3-6-3">
 <ul class="org-ul">
 <li>cannot be passed as parameter</li>
 <li>cannot be returned from subroutine</li>
 <li>cannot be assigned to variable</li>
 </ul>
 </div></li>
-<li><a id="org1942cc5"></a>Misc: Unlimited Extent<br /><div class="outline-text-5" id="text-4-3-6-4">
+<li><a id="org6b446f3"></a>Misc: Unlimited Extent<br /><div class="outline-text-5" id="text-4-3-6-4">
 <ul class="org-ul">
-<li>check <a href="#org5a28c84">4.3.5.3</a>, unlimited extent needed only in case of
+<li>check <a href="#org8484a51">4.3.5.3</a>, unlimited extent needed only in case of
 first class function, second class can do with stack allocation.</li>
 <li>if we return subroutine and that subroutine has access to local variable
 in surrounding subroutine,
@@ -1888,7 +1888,7 @@ in surrounding subroutine,
 allocation.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org78824bd"></a>Function Object/Object Closure/Functor<br /><div class="outline-text-6" id="text-4-3-6-4-1">
+<ol class="org-ol"><li><a id="org94fc674"></a>Function Object/Object Closure/Functor<br /><div class="outline-text-6" id="text-4-3-6-4-1">
 <ul class="org-ul">
 <li>to implement closure in imperative language such as Java, we can store
 the context in object's field.</li>
@@ -1915,8 +1915,8 @@ Here we are saving the closure context in object field <code>int X</code>
 </div>
 </div>
 
-<div id="outline-container-org1506098" class="outline-2">
-<h2 id="org1506098"><span class="section-number-2">5</span> Sematic Analysis</h2>
+<div id="outline-container-org807185b" class="outline-2">
+<h2 id="org807185b"><span class="section-number-2">5</span> Sematic Analysis</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Syntax of language can be defined using context-free grammar</li>
@@ -1929,8 +1929,8 @@ Here we are saving the closure context in object field <code>int X</code>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org473c998" class="outline-3">
-<h3 id="org473c998"><span class="section-number-3">5.1</span> Static Analysis</h3>
+<div id="outline-container-orgf0aede1" class="outline-3">
+<h3 id="orgf0aede1"><span class="section-number-3">5.1</span> Static Analysis</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Compile time algorithm which predict runtime behavior.</li>
@@ -1938,8 +1938,8 @@ Here we are saving the closure context in object field <code>int X</code>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7340ec7" class="outline-3">
-<h3 id="org7340ec7"><span class="section-number-3">5.2</span> Semantics:</h3>
+<div id="outline-container-org7628d48" class="outline-3">
+<h3 id="org7628d48"><span class="section-number-3">5.2</span> Semantics:</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>Operational Semantics</li>
@@ -1949,16 +1949,16 @@ Here we are saving the closure context in object field <code>int X</code>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb27c6e4" class="outline-3">
-<h3 id="orgb27c6e4"><span class="section-number-3">5.3</span> Attribute Grammar</h3>
+<div id="outline-container-orgf109594" class="outline-3">
+<h3 id="orgf109594"><span class="section-number-3">5.3</span> Attribute Grammar</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>formal way to define attributes for production of formal grammar, associating
 these attributes to values.</li>
 </ul>
 </div>
-<div id="outline-container-org4ea553b" class="outline-4">
-<h4 id="org4ea553b"><span class="section-number-4">5.3.1</span> Synthesized</h4>
+<div id="outline-container-org7a8d7ef" class="outline-4">
+<h4 id="org7a8d7ef"><span class="section-number-4">5.3.1</span> Synthesized</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ul class="org-ul">
 <li>values are calculated (synthesized) only in productions in which their symbol
@@ -1969,8 +1969,8 @@ S-attributed.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc819cdb" class="outline-4">
-<h4 id="orgc819cdb"><span class="section-number-4">5.3.2</span> Inherited</h4>
+<div id="outline-container-orgea945a5" class="outline-4">
+<h4 id="orgea945a5"><span class="section-number-4">5.3.2</span> Inherited</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <ul class="org-ul">
 <li>values are calculated when their symbol is on the right hand side of the current
@@ -1980,8 +1980,8 @@ is said when symbol is on rhs).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org48c009a" class="outline-4">
-<h4 id="org48c009a"><span class="section-number-4">5.3.3</span> Attribute Flow</h4>
+<div id="outline-container-orgd3165e5" class="outline-4">
+<h4 id="orgd3165e5"><span class="section-number-4">5.3.3</span> Attribute Flow</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <ul class="org-ul">
 <li>attribute grammar is well defined if its rules determine a unique set of values
@@ -2029,8 +2029,8 @@ grammar which are not S-attributed.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org23a5d1b" class="outline-3">
-<h3 id="org23a5d1b"><span class="section-number-3">5.4</span> is generic just sugar coating over <code>instanceof</code></h3>
+<div id="outline-container-orgcfa5a7d" class="outline-3">
+<h3 id="orgcfa5a7d"><span class="section-number-3">5.4</span> is generic just sugar coating over <code>instanceof</code></h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>no, compiler does static type checking</li>
@@ -2038,11 +2038,11 @@ grammar which are not S-attributed.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org046fe6a" class="outline-2">
-<h2 id="org046fe6a"><span class="section-number-2">6</span> Control Flow</h2>
+<div id="outline-container-org70fc25d" class="outline-2">
+<h2 id="org70fc25d"><span class="section-number-2">6</span> Control Flow</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-org55d9d6c" class="outline-3">
-<h3 id="org55d9d6c"><span class="section-number-3">6.1</span> Precedence and associativity</h3>
+</div><div id="outline-container-org492fa72" class="outline-3">
+<h3 id="org492fa72"><span class="section-number-3">6.1</span> Precedence and associativity</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>The basic arithmetic operator always associate left to right
@@ -2052,8 +2052,8 @@ grammar which are not S-attributed.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org61d253c" class="outline-3">
-<h3 id="org61d253c"><span class="section-number-3">6.2</span> Assignment</h3>
+<div id="outline-container-orgd1a1c52" class="outline-3">
+<h3 id="orgd1a1c52"><span class="section-number-3">6.2</span> Assignment</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>side effect: if a construct influences subsequent computation in any way other
@@ -2063,11 +2063,11 @@ than by returning a value for use in the surrounding context.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge1b96cd" class="outline-3">
-<h3 id="orge1b96cd"><span class="section-number-3">6.3</span> References and Values</h3>
+<div id="outline-container-org0885a4c" class="outline-3">
+<h3 id="org0885a4c"><span class="section-number-3">6.3</span> References and Values</h3>
 <div class="outline-text-3" id="text-6-3">
-</div><div id="outline-container-org03df609" class="outline-4">
-<h4 id="org03df609"><span class="section-number-4">6.3.1</span> value model</h4>
+</div><div id="outline-container-org09299dc" class="outline-4">
+<h4 id="org09299dc"><span class="section-number-4">6.3.1</span> value model</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <ul class="org-ul">
 <li>l-value: used on left hand side of assignments, expressions that denote locations
@@ -2076,8 +2076,8 @@ are referred as l-values</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2599c15" class="outline-4">
-<h4 id="org2599c15"><span class="section-number-4">6.3.2</span> reference model</h4>
+<div id="outline-container-org23f5831" class="outline-4">
+<h4 id="org23f5831"><span class="section-number-4">6.3.2</span> reference model</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <ul class="org-ul">
 <li>distinction is made between l-values and r-values</li>
@@ -2136,8 +2136,8 @@ to it.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org68c11bc" class="outline-4">
-<h4 id="org68c11bc"><span class="section-number-4">6.3.3</span> Boxing</h4>
+<div id="outline-container-orgfc9aa4f" class="outline-4">
+<h4 id="orgfc9aa4f"><span class="section-number-4">6.3.3</span> Boxing</h4>
 <div class="outline-text-4" id="text-6-3-3">
 <ul class="org-ul">
 <li>Java collections expect Object, primitive datatype are not descendants of Objects
@@ -2147,30 +2147,30 @@ manually.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb8ebd5a" class="outline-4">
-<h4 id="orgb8ebd5a"><span class="section-number-4">6.3.4</span> Initialization</h4>
+<div id="outline-container-orgb343def" class="outline-4">
+<h4 id="orgb343def"><span class="section-number-4">6.3.4</span> Initialization</h4>
 <div class="outline-text-4" id="text-6-3-4">
 <ul class="org-ul">
 <li>C, statically allocated variables are initialized to 0.</li>
 <li>Java, C# initializes <code>null</code> to fields of classes typed objects.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org8d6910d"></a>Dynamic Check<br /><div class="outline-text-5" id="text-6-3-4-1">
+<ol class="org-ol"><li><a id="org3b69f18"></a>Dynamic Check<br /><div class="outline-text-5" id="text-6-3-4-1">
 <ul class="org-ul">
 <li>can assign IEEE standard NaN value to uninitialized number and be checked
 at runtime.</li>
 <li>use of NaN results in hardware interrupt.</li>
 </ul>
 </div></li>
-<li><a id="org301aeae"></a>Static Check<br /><div class="outline-text-5" id="text-6-3-4-2">
+<li><a id="org1e34c19"></a>Static Check<br /><div class="outline-text-5" id="text-6-3-4-2">
 <ul class="org-ul">
 <li>check if code flow through any path leads to assigning value to variable
 before use.</li>
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-orga70dae5" class="outline-4">
-<h4 id="orga70dae5"><span class="section-number-4">6.3.5</span> Ordering within expressions</h4>
+<div id="outline-container-org9437c76" class="outline-4">
+<h4 id="org9437c76"><span class="section-number-4">6.3.5</span> Ordering within expressions</h4>
 <div class="outline-text-4" id="text-6-3-5">
 <div class="org-src-container">
 <pre class="src src-c++">a - f(b) - c * d;
@@ -2189,8 +2189,8 @@ left to implementation in some languages.
 </ul>
 </div>
 </div>
-<div id="outline-container-org427d784" class="outline-4">
-<h4 id="org427d784"><span class="section-number-4">6.3.6</span> Mathematical Identities</h4>
+<div id="outline-container-orgec3b910" class="outline-4">
+<h4 id="orgec3b910"><span class="section-number-4">6.3.6</span> Mathematical Identities</h4>
 <div class="outline-text-4" id="text-6-3-6">
 <div class="org-src-container">
 <pre class="src src-c">c = b - a + d
@@ -2203,8 +2203,8 @@ c = d - a + b
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ad65f7" class="outline-4">
-<h4 id="org3ad65f7"><span class="section-number-4">6.3.7</span> Switch Case</h4>
+<div id="outline-container-org7863f74" class="outline-4">
+<h4 id="org7863f74"><span class="section-number-4">6.3.7</span> Switch Case</h4>
 <div class="outline-text-4" id="text-6-3-7">
 <ul class="org-ul">
 <li>jump table:
@@ -2224,8 +2224,8 @@ value ranges.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgba6613e" class="outline-4">
-<h4 id="orgba6613e"><span class="section-number-4">6.3.8</span> Applicative and Normal Order Evaluation</h4>
+<div id="outline-container-orgf91e323" class="outline-4">
+<h4 id="orgf91e323"><span class="section-number-4">6.3.8</span> Applicative and Normal Order Evaluation</h4>
 <div class="outline-text-4" id="text-6-3-8">
 <ul class="org-ul">
 <li>Applicative Order: evaluating before call</li>
@@ -2233,8 +2233,8 @@ value ranges.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgac8fe1b" class="outline-4">
-<h4 id="orgac8fe1b"><span class="section-number-4">6.3.9</span> Non determinacy</h4>
+<div id="outline-container-orgc40e9b7" class="outline-4">
+<h4 id="orgc40e9b7"><span class="section-number-4">6.3.9</span> Non determinacy</h4>
 <div class="outline-text-4" id="text-6-3-9">
 <ul class="org-ul">
 <li>in which choice between alternatives (ie between control paths) is deliberately
@@ -2244,8 +2244,8 @@ unspecified.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7b2998" class="outline-2">
-<h2 id="orgb7b2998"><span class="section-number-2">7</span> Type Systems</h2>
+<div id="outline-container-org4b71362" class="outline-2">
+<h2 id="org4b71362"><span class="section-number-2">7</span> Type Systems</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>bits are untyped. hardware makes no attempt to keep track of which interpretation
@@ -2263,8 +2263,8 @@ compilation stage.</li>
 <li>Dynamic type checking: checking at runtime.</li>
 </ul>
 </div>
-<div id="outline-container-orga1b5379" class="outline-3">
-<h3 id="orga1b5379"><span class="section-number-3">7.1</span> Meaning of Type</h3>
+<div id="outline-container-org4e91da2" class="outline-3">
+<h3 id="org4e91da2"><span class="section-number-3">7.1</span> Meaning of Type</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>from denotational point of view, type is simply a set of values.</li>
@@ -2273,8 +2273,8 @@ built in types (integer, character, Boolean etc) or composite type created.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8c0418c" class="outline-3">
-<h3 id="org8c0418c"><span class="section-number-3">7.2</span> Polymorphism</h3>
+<div id="outline-container-org8251ce6" class="outline-3">
+<h3 id="org8251ce6"><span class="section-number-3">7.2</span> Polymorphism</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>"having multiple form"</li>
@@ -2291,8 +2291,8 @@ code will work with these types too.
 </ul>
 </div>
 </div>
-<div id="outline-container-org94db9c8" class="outline-3">
-<h3 id="org94db9c8"><span class="section-number-3">7.3</span> Orthogonality</h3>
+<div id="outline-container-orgcdc07ff" class="outline-3">
+<h3 id="orgcdc07ff"><span class="section-number-3">7.3</span> Orthogonality</h3>
 <div class="outline-text-3" id="text-7-3">
 <ul class="org-ul">
 <li>Trivial Type: To characterize statement that is executed for its side effect
@@ -2304,8 +2304,8 @@ and has no useful value, provide trivial type.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7d5d68d" class="outline-3">
-<h3 id="org7d5d68d"><span class="section-number-3">7.4</span> Enumeration</h3>
+<div id="outline-container-org5463790" class="outline-3">
+<h3 id="org5463790"><span class="section-number-3">7.4</span> Enumeration</h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li>In C, <code>enums</code> are just <code>typedef</code>-ed integers</li>
@@ -2313,8 +2313,8 @@ and has no useful value, provide trivial type.
 </ul>
 </div>
 </div>
-<div id="outline-container-org5a73156" class="outline-3">
-<h3 id="org5a73156"><span class="section-number-3">7.5</span> Sub-range type</h3>
+<div id="outline-container-org64e57cf" class="outline-3">
+<h3 id="org64e57cf"><span class="section-number-3">7.5</span> Sub-range type</h3>
 <div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>Why use subrange instead of int:
@@ -2326,11 +2326,11 @@ and has no useful value, provide trivial type.
 </ul>
 </div>
 </div>
-<div id="outline-container-org009eeb2" class="outline-3">
-<h3 id="org009eeb2"><span class="section-number-3">7.6</span> Composite Types</h3>
+<div id="outline-container-orgf3eb710" class="outline-3">
+<h3 id="orgf3eb710"><span class="section-number-3">7.6</span> Composite Types</h3>
 <div class="outline-text-3" id="text-7-6">
-</div><div id="outline-container-orgfbf61dc" class="outline-4">
-<h4 id="orgfbf61dc"><span class="section-number-4">7.6.1</span> Records (structs)</h4>
+</div><div id="outline-container-org6c6ee59" class="outline-4">
+<h4 id="org6c6ee59"><span class="section-number-4">7.6.1</span> Records (structs)</h4>
 <div class="outline-text-4" id="text-7-6-1">
 <ul class="org-ul">
 <li>a record consists of collection of fields, each of which belong to a simpler
@@ -2340,8 +2340,8 @@ of the fields.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc7f7026" class="outline-4">
-<h4 id="orgc7f7026"><span class="section-number-4">7.6.2</span> Variant Records (Union)</h4>
+<div id="outline-container-org27cf778" class="outline-4">
+<h4 id="org27cf778"><span class="section-number-4">7.6.2</span> Variant Records (Union)</h4>
 <div class="outline-text-4" id="text-7-6-2">
 <ul class="org-ul">
 <li>similar to Records, but only one field is valid at any given time.</li>
@@ -2349,24 +2349,24 @@ of the fields.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga1725ca" class="outline-4">
-<h4 id="orga1725ca"><span class="section-number-4">7.6.3</span> Arrays</h4>
+<div id="outline-container-orgdaa1cd7" class="outline-4">
+<h4 id="orgdaa1cd7"><span class="section-number-4">7.6.3</span> Arrays</h4>
 <div class="outline-text-4" id="text-7-6-3">
 <ul class="org-ul">
 <li>function that maps index to member of component type.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfb7f418" class="outline-4">
-<h4 id="orgfb7f418"><span class="section-number-4">7.6.4</span> Sets</h4>
+<div id="outline-container-org896ffb9" class="outline-4">
+<h4 id="org896ffb9"><span class="section-number-4">7.6.4</span> Sets</h4>
 <div class="outline-text-4" id="text-7-6-4">
 <ul class="org-ul">
 <li>Collection of distinct elements of base type.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbec25d6" class="outline-4">
-<h4 id="orgbec25d6"><span class="section-number-4">7.6.5</span> Pointers</h4>
+<div id="outline-container-org35f41de" class="outline-4">
+<h4 id="org35f41de"><span class="section-number-4">7.6.5</span> Pointers</h4>
 <div class="outline-text-4" id="text-7-6-5">
 <ul class="org-ul">
 <li><b>l-values</b></li>
@@ -2375,8 +2375,8 @@ of the fields.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b3653b" class="outline-4">
-<h4 id="org6b3653b"><span class="section-number-4">7.6.6</span> Lists</h4>
+<div id="outline-container-org1708109" class="outline-4">
+<h4 id="org1708109"><span class="section-number-4">7.6.6</span> Lists</h4>
 <div class="outline-text-4" id="text-7-6-6">
 <ul class="org-ul">
 <li>a list is defined recursively as either an empty list or a pair consisting
@@ -2384,8 +2384,8 @@ head element and reference to a sublist.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e5fac8" class="outline-4">
-<h4 id="org2e5fac8"><span class="section-number-4">7.6.7</span> Files</h4>
+<div id="outline-container-orgf95c7e5" class="outline-4">
+<h4 id="orgf95c7e5"><span class="section-number-4">7.6.7</span> Files</h4>
 <div class="outline-text-4" id="text-7-6-7">
 <ul class="org-ul">
 <li>similar to arrays, maps index to component type.</li>
@@ -2393,11 +2393,11 @@ head element and reference to a sublist.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org56a6bbf" class="outline-3">
-<h3 id="org56a6bbf"><span class="section-number-3">7.7</span> Type Equivalence</h3>
+<div id="outline-container-orgc0e4d9c" class="outline-3">
+<h3 id="orgc0e4d9c"><span class="section-number-3">7.7</span> Type Equivalence</h3>
 <div class="outline-text-3" id="text-7-7">
-</div><div id="outline-container-orgc5f39af" class="outline-4">
-<h4 id="orgc5f39af"><span class="section-number-4">7.7.1</span> Structural Equivalence</h4>
+</div><div id="outline-container-org9e14c7a" class="outline-4">
+<h4 id="org9e14c7a"><span class="section-number-4">7.7.1</span> Structural Equivalence</h4>
 <div class="outline-text-4" id="text-7-7-1">
 <ul class="org-ul">
 <li>based on content of type definition</li>
@@ -2408,8 +2408,8 @@ recursively.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d858d7" class="outline-4">
-<h4 id="org5d858d7"><span class="section-number-4">7.7.2</span> Name Equivalence</h4>
+<div id="outline-container-org243fef6" class="outline-4">
+<h4 id="org243fef6"><span class="section-number-4">7.7.2</span> Name Equivalence</h4>
 <div class="outline-text-4" id="text-7-7-2">
 <ul class="org-ul">
 <li>based on lexical occurrence of type definitions</li>
@@ -2422,8 +2422,8 @@ are probably meant to represent different types.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org7d11295" class="outline-3">
-<h3 id="org7d11295"><span class="section-number-3">7.8</span> Type Conversion and Cast</h3>
+<div id="outline-container-org579edaf" class="outline-3">
+<h3 id="org579edaf"><span class="section-number-3">7.8</span> Type Conversion and Cast</h3>
 <div class="outline-text-3" id="text-7-8">
 <p>
 depending on the types involved, conversion may or may not require code to be
@@ -2443,8 +2443,8 @@ and conversion.
 </ul></li>
 </ol>
 </div>
-<div id="outline-container-org28f5ac6" class="outline-4">
-<h4 id="org28f5ac6"><span class="section-number-4">7.8.1</span> Nonconverting Type Cast</h4>
+<div id="outline-container-org8ce8ed7" class="outline-4">
+<h4 id="org8ce8ed7"><span class="section-number-4">7.8.1</span> Nonconverting Type Cast</h4>
 <div class="outline-text-4" id="text-7-8-1">
 <ul class="org-ul">
 <li>changing the type without changing underlying implementation
@@ -2458,8 +2458,8 @@ convert it into address of float and then dereference it.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2fe80d9" class="outline-4">
-<h4 id="org2fe80d9"><span class="section-number-4">7.8.2</span> Coercion</h4>
+<div id="outline-container-org58d1cbd" class="outline-4">
+<h4 id="org58d1cbd"><span class="section-number-4">7.8.2</span> Coercion</h4>
 <div class="outline-text-4" id="text-7-8-2">
 <ul class="org-ul">
 <li>implicit conversion to expected type by language.</li>
@@ -2467,8 +2467,8 @@ convert it into address of float and then dereference it.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org1b0e267" class="outline-3">
-<h3 id="org1b0e267"><span class="section-number-3">7.9</span> Universal Reference type</h3>
+<div id="outline-container-orgee75c5f" class="outline-3">
+<h3 id="orgee75c5f"><span class="section-number-3">7.9</span> Universal Reference type</h3>
 <div class="outline-text-3" id="text-7-9">
 <ul class="org-ul">
 <li><code>void *</code></li>
@@ -2476,19 +2476,19 @@ convert it into address of float and then dereference it.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8bf0746" class="outline-3">
-<h3 id="org8bf0746"><span class="section-number-3">7.10</span> Type inference</h3>
+<div id="outline-container-orgcb2bb4f" class="outline-3">
+<h3 id="orgcb2bb4f"><span class="section-number-3">7.10</span> Type inference</h3>
 <div class="outline-text-3" id="text-7-10">
 <ul class="org-ul">
 <li>sum of range: range may be out of bound, so int</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd0d4799" class="outline-3">
-<h3 id="orgd0d4799"><span class="section-number-3">7.11</span> Parametric Polymorphism</h3>
+<div id="outline-container-org509ccf3" class="outline-3">
+<h3 id="org509ccf3"><span class="section-number-3">7.11</span> Parametric Polymorphism</h3>
 <div class="outline-text-3" id="text-7-11">
-</div><div id="outline-container-org93c04f5" class="outline-4">
-<h4 id="org93c04f5"><span class="section-number-4">7.11.1</span> Generic Implementation</h4>
+</div><div id="outline-container-org6d81d75" class="outline-4">
+<h4 id="org6d81d75"><span class="section-number-4">7.11.1</span> Generic Implementation</h4>
 <div class="outline-text-4" id="text-7-11-1">
 <ul class="org-ul">
 <li>C++ template implementation is purely static.
@@ -2503,8 +2503,8 @@ convert it into address of float and then dereference it.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org642eac7" class="outline-3">
-<h3 id="org642eac7"><span class="section-number-3">7.12</span> Equality Testing and assignment</h3>
+<div id="outline-container-orgcc673cf" class="outline-3">
+<h3 id="orgcc673cf"><span class="section-number-3">7.12</span> Equality Testing and assignment</h3>
 <div class="outline-text-3" id="text-7-12">
 <ul class="org-ul">
 <li><b>Deep Copy</b>: copy object and all other object pointed by it recursively</li>
@@ -2513,11 +2513,11 @@ convert it into address of float and then dereference it.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org4a7bd84" class="outline-2">
-<h2 id="org4a7bd84"><span class="section-number-2">8</span> Composite Types</h2>
+<div id="outline-container-orge180c49" class="outline-2">
+<h2 id="orge180c49"><span class="section-number-2">8</span> Composite Types</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-orgc052b1d" class="outline-3">
-<h3 id="orgc052b1d"><span class="section-number-3">8.1</span> Records (Structures)</h3>
+</div><div id="outline-container-orgcafce74" class="outline-3">
+<h3 id="orgcafce74"><span class="section-number-3">8.1</span> Records (Structures)</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>heterogeneous types</li>
@@ -2543,8 +2543,8 @@ together so that they lie in same <b>cache lines</b>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd1e5cc9" class="outline-3">
-<h3 id="orgd1e5cc9"><span class="section-number-3">8.2</span> Unions</h3>
+<div id="outline-container-orge2fb668" class="outline-3">
+<h3 id="orge2fb668"><span class="section-number-3">8.2</span> Unions</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>overall size of union is of the largest member</li>
@@ -2554,8 +2554,8 @@ different times</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc6f5781" class="outline-3">
-<h3 id="orgc6f5781"><span class="section-number-3">8.3</span> Arrays</h3>
+<div id="outline-container-orgfa41468" class="outline-3">
+<h3 id="orgfa41468"><span class="section-number-3">8.3</span> Arrays</h3>
 <div class="outline-text-3" id="text-8-3">
 <ul class="org-ul">
 <li>homogeneous</li>
@@ -2566,10 +2566,10 @@ different times</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org09126d0" class="outline-4">
-<h4 id="org09126d0"><span class="section-number-4">8.3.1</span> Storage allocation</h4>
+<div id="outline-container-orgc2ec6ae" class="outline-4">
+<h4 id="orgc2ec6ae"><span class="section-number-4">8.3.1</span> Storage allocation</h4>
 <div class="outline-text-4" id="text-8-3-1">
-</div><ol class="org-ol"><li><a id="org63d8892"></a>Stack Allocation<br /><ol class="org-ol"><li><a id="org16efe08"></a>Dope Vector<br /><div class="outline-text-6" id="text-8-3-1-1-1">
+</div><ol class="org-ol"><li><a id="orgd3d66e1"></a>Stack Allocation<br /><ol class="org-ol"><li><a id="orgaa49296"></a>Dope Vector<br /><div class="outline-text-6" id="text-8-3-1-1-1">
 <ul class="org-ul">
 <li>datastructure used to hold information about data object about its memory
 layout</li>
@@ -2589,14 +2589,14 @@ here along with pointer to it and dope vector goes to <b>fixed sized part</b></l
 </ul></li>
 </ul>
 </div></li></ol></li>
-<li><a id="org80379bd"></a>Heap Allocation<br /><div class="outline-text-5" id="text-8-3-1-2">
+<li><a id="orga70444c"></a>Heap Allocation<br /><div class="outline-text-5" id="text-8-3-1-2">
 <ul class="org-ul">
 <li>if number of dimension of dynamic array is know statically then dope vector
 can be kept with pointer to data on stack. If dimension is not know then
 vector is kept at the beginning of the heap block instead.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgb18e961"></a>Memory layout for multi-dimension array<br /><div class="outline-text-6" id="text-8-3-1-2-1">
+<ol class="org-ol"><li><a id="org584aa1f"></a>Memory layout for multi-dimension array<br /><div class="outline-text-6" id="text-8-3-1-2-1">
 <ul class="org-ul">
 <li>Column Major: columns kept together</li>
 <li>Row Major: rows kept together</li>
@@ -2612,8 +2612,8 @@ miss then it will affect performance.</li>
 </div></li></ol></li></ol>
 </div>
 </div>
-<div id="outline-container-org4350d21" class="outline-3">
-<h3 id="org4350d21"><span class="section-number-3">8.4</span> Strings</h3>
+<div id="outline-container-orgf33dfe4" class="outline-3">
+<h3 id="orgf33dfe4"><span class="section-number-3">8.4</span> Strings</h3>
 <div class="outline-text-3" id="text-8-4">
 <ul class="org-ul">
 <li>Dynamic strings easier to implement since they do not have reference to other
@@ -2621,8 +2621,8 @@ objects, copying is easy.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcc1f15c" class="outline-3">
-<h3 id="orgcc1f15c"><span class="section-number-3">8.5</span> Sets</h3>
+<div id="outline-container-orga2f303c" class="outline-3">
+<h3 id="orga2f303c"><span class="section-number-3">8.5</span> Sets</h3>
 <div class="outline-text-3" id="text-8-5">
 <ul class="org-ul">
 <li>Unordered, distinct elements</li>
@@ -2630,8 +2630,8 @@ objects, copying is easy.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org255414c" class="outline-3">
-<h3 id="org255414c"><span class="section-number-3">8.6</span> Pointers and recursive types</h3>
+<div id="outline-container-org939fb58" class="outline-3">
+<h3 id="org939fb58"><span class="section-number-3">8.6</span> Pointers and recursive types</h3>
 <div class="outline-text-3" id="text-8-6">
 <ul class="org-ul">
 <li>pointers needed only in language that use value model</li>
@@ -2640,24 +2640,24 @@ objects, copying is easy.</li>
 <li>Pointers are often implemented as address but not always</li>
 </ul>
 </div>
-<div id="outline-container-org7648eab" class="outline-4">
-<h4 id="org7648eab"><span class="section-number-4">8.6.1</span> Value Model</h4>
+<div id="outline-container-org8e79fda" class="outline-4">
+<h4 id="org8e79fda"><span class="section-number-4">8.6.1</span> Value Model</h4>
 <div class="outline-text-4" id="text-8-6-1">
 <ul class="org-ul">
 <li><code>A = B</code>, puts value of A in B</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge56b528" class="outline-4">
-<h4 id="orge56b528"><span class="section-number-4">8.6.2</span> Reference Model</h4>
+<div id="outline-container-orga3b6703" class="outline-4">
+<h4 id="orga3b6703"><span class="section-number-4">8.6.2</span> Reference Model</h4>
 <div class="outline-text-4" id="text-8-6-2">
 <ul class="org-ul">
 <li><code>A = B</code>, makes A refer to the same object as B</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8be5a95" class="outline-4">
-<h4 id="org8be5a95"><span class="section-number-4">8.6.3</span> Dangling Pointers</h4>
+<div id="outline-container-org3ebd100" class="outline-4">
+<h4 id="org3ebd100"><span class="section-number-4">8.6.3</span> Dangling Pointers</h4>
 <div class="outline-text-4" id="text-8-6-3">
 <ul class="org-ul">
 <li><b>Tombstone</b>: indirection is marked in a such a way that it reflects if the
@@ -2667,8 +2667,8 @@ for the pointer to be valid.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org34bfc01" class="outline-4">
-<h4 id="org34bfc01"><span class="section-number-4">8.6.4</span> Garbage Collection</h4>
+<div id="outline-container-org9f5c185" class="outline-4">
+<h4 id="org9f5c185"><span class="section-number-4">8.6.4</span> Garbage Collection</h4>
 <div class="outline-text-4" id="text-8-6-4">
 <ul class="org-ul">
 <li>Reference counting</li>
@@ -2681,7 +2681,7 @@ destructors etc.</li>
 </ul></li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org55ae91b"></a>Algorithms<br /><div class="outline-text-5" id="text-8-6-4-1">
+<ol class="org-ol"><li><a id="org27d87c7"></a>Algorithms<br /><div class="outline-text-5" id="text-8-6-4-1">
 <ul class="org-ul">
 <li>mark and sweep</li>
 <li>Pointer reversal</li>
@@ -2690,29 +2690,29 @@ destructors etc.</li>
 </div></li></ol>
 </div>
 </div>
-<div id="outline-container-org06118e7" class="outline-3">
-<h3 id="org06118e7"><span class="section-number-3">8.7</span> Lists</h3>
+<div id="outline-container-orga74e085" class="outline-3">
+<h3 id="orga74e085"><span class="section-number-3">8.7</span> Lists</h3>
 </div>
-<div id="outline-container-orgfaf0561" class="outline-3">
-<h3 id="orgfaf0561"><span class="section-number-3">8.8</span> Files</h3>
+<div id="outline-container-orgf521700" class="outline-3">
+<h3 id="orgf521700"><span class="section-number-3">8.8</span> Files</h3>
 </div>
 </div>
-<div id="outline-container-org5046b4d" class="outline-2">
-<h2 id="org5046b4d"><span class="section-number-2">9</span> Subroutine and Control Abstraction</h2>
+<div id="outline-container-org006f9d2" class="outline-2">
+<h2 id="org006f9d2"><span class="section-number-2">9</span> Subroutine and Control Abstraction</h2>
 </div>
-<div id="outline-container-org7e26bd5" class="outline-2">
-<h2 id="org7e26bd5"><span class="section-number-2">10</span> <span class="todo TODO">TODO</span> Scott Supplement</h2>
+<div id="outline-container-org5a4255d" class="outline-2">
+<h2 id="org5a4255d"><span class="section-number-2">10</span> <span class="todo TODO">TODO</span> Scott Supplement</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Error Recovery</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b4c54a" class="outline-2">
-<h2 id="org6b4c54a"><span class="section-number-2">11</span> λ Calculus</h2>
+<div id="outline-container-org4ffdea3" class="outline-2">
+<h2 id="org4ffdea3"><span class="section-number-2">11</span> λ Calculus</h2>
 <div class="outline-text-2" id="text-11">
-</div><div id="outline-container-org7d578f6" class="outline-3">
-<h3 id="org7d578f6"><span class="section-number-3">11.1</span> Functions</h3>
+</div><div id="outline-container-orgd0577eb" class="outline-3">
+<h3 id="orgd0577eb"><span class="section-number-3">11.1</span> Functions</h3>
 <div class="outline-text-3" id="text-11-1">
 <ul class="org-ul">
 <li>mapping from domain to range
@@ -2756,8 +2756,8 @@ In scheme:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdbc22d9" class="outline-3">
-<h3 id="orgdbc22d9"><span class="section-number-3">11.2</span> Pure λ calculus</h3>
+<div id="outline-container-orgd605654" class="outline-3">
+<h3 id="orgd605654"><span class="section-number-3">11.2</span> Pure λ calculus</h3>
 <div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>Everything is a function</li>
@@ -2770,8 +2770,8 @@ In scheme:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f66d66" class="outline-3">
-<h3 id="org4f66d66"><span class="section-number-3">11.3</span> Conventions to avoid paranthesis</h3>
+<div id="outline-container-org624ab72" class="outline-3">
+<h3 id="org624ab72"><span class="section-number-3">11.3</span> Conventions to avoid paranthesis</h3>
 <div class="outline-text-3" id="text-11-3">
 <ul class="org-ul">
 <li>Application associates to the left
@@ -2789,19 +2789,19 @@ In scheme:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd522a87" class="outline-3">
-<h3 id="orgd522a87"><span class="section-number-3">11.4</span> Evaluation of λ expression (Reduction)</h3>
+<div id="outline-container-org8d61216" class="outline-3">
+<h3 id="org8d61216"><span class="section-number-3">11.4</span> Evaluation of λ expression (Reduction)</h3>
 <div class="outline-text-3" id="text-11-4">
-</div><div id="outline-container-orga253319" class="outline-4">
-<h4 id="orga253319"><span class="section-number-4">11.4.1</span> Reduction Rules</h4>
+</div><div id="outline-container-orgf6d81a5" class="outline-4">
+<h4 id="orgf6d81a5"><span class="section-number-4">11.4.1</span> Reduction Rules</h4>
 <div class="outline-text-4" id="text-11-4-1">
-</div><ol class="org-ol"><li><a id="org2dabfe2"></a>δ (delta)<br /><div class="outline-text-5" id="text-11-4-1-1">
+</div><ol class="org-ol"><li><a id="org30652bd"></a>δ (delta)<br /><div class="outline-text-5" id="text-11-4-1-1">
 <ul class="org-ul">
 <li>used for built in constant</li>
 <li>(+ 2 3) →<sub>δ</sub> 5</li>
 </ul>
 </div></li>
-<li><a id="org385eeb0"></a>β (beta)<br /><div class="outline-text-5" id="text-11-4-1-2">
+<li><a id="org3e68355"></a>β (beta)<br /><div class="outline-text-5" id="text-11-4-1-2">
 <ul class="org-ul">
 <li>replace all occurrences of bound variable in the body with supplied parameter.</li>
 <li>((λ x. E1) E2)
@@ -2814,14 +2814,14 @@ In scheme:
 </ul></li>
 </ul>
 </div></li>
-<li><a id="orgf3a89d9"></a>α (alpha)<br /><div class="outline-text-5" id="text-11-4-1-3">
+<li><a id="orge41eca3"></a>α (alpha)<br /><div class="outline-text-5" id="text-11-4-1-3">
 <ul class="org-ul">
 <li>rename bound variable</li>
 <li>(λ x. E(x)) →<sub>α</sub> (λ y. E(y))</li>
 <li>Ex: (λ x. x + 1) →<sub>α</sub> (λ y. y + 1)</li>
 </ul>
 </div></li>
-<li><a id="orgcacd3bd"></a>&eta; (eta)<br /><div class="outline-text-5" id="text-11-4-1-4">
+<li><a id="org291707d"></a>&eta; (eta)<br /><div class="outline-text-5" id="text-11-4-1-4">
 <ul class="org-ul">
 <li>remove unnecessary abstractions</li>
 <li>(λ x. f) →<sub>&eta;</sub> f</li>
@@ -2829,15 +2829,15 @@ In scheme:
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-org72cd56c" class="outline-4">
-<h4 id="org72cd56c"><span class="section-number-4">11.4.2</span> Normal Form</h4>
+<div id="outline-container-org2b19f30" class="outline-4">
+<h4 id="org2b19f30"><span class="section-number-4">11.4.2</span> Normal Form</h4>
 <div class="outline-text-4" id="text-11-4-2">
 <p>
 A λ expression is in normal form if it cannot be further reduced using β, δ or &eta;
 reduction.
 </p>
 </div>
-<ol class="org-ol"><li><a id="org97f240d"></a>Can every λ expression be reduced to normal form<br /><div class="outline-text-5" id="text-11-4-2-1">
+<ol class="org-ol"><li><a id="orge2aff09"></a>Can every λ expression be reduced to normal form<br /><div class="outline-text-5" id="text-11-4-2-1">
 <ul class="org-ul">
 <li>(λ x. x x) (λ x. x x)</li>
 <li>No</li>
@@ -2845,13 +2845,13 @@ reduction.
 Turing machine.</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgf994df1"></a>Church's thesis<br /><div class="outline-text-6" id="text-11-4-2-1-1">
+<ol class="org-ol"><li><a id="org8711818"></a>Church's thesis<br /><div class="outline-text-6" id="text-11-4-2-1-1">
 <p>
 The effective computable functions on the positive integers are precisely those
 functions definable in the pure λ calculus (and computable by Turing machine)
 </p>
 </div></li></ol></li>
-<li><a id="org4dd167e"></a>Is there more than one way to reduce a λ expression<br /><div class="outline-text-5" id="text-11-4-2-2">
+<li><a id="orgd20c9ba"></a>Is there more than one way to reduce a λ expression<br /><div class="outline-text-5" id="text-11-4-2-2">
 <ul class="org-ul">
 <li>Yes</li>
 <li>((λ x. + (λ y. 4) x) 3)
@@ -2861,12 +2861,12 @@ functions definable in the pure λ calculus (and computable by Turing machine)
 </ol></li>
 </ul>
 </div></li>
-<li><a id="org9216141"></a>if there is more than one to reduce, does each lead to same normal form expression<br /><div class="outline-text-5" id="text-11-4-2-3">
+<li><a id="orgd6a1989"></a>if there is more than one to reduce, does each lead to same normal form expression<br /><div class="outline-text-5" id="text-11-4-2-3">
 <ul class="org-ul">
 <li>Yes</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgd2287a7"></a>Church-Rosser Theorem<br /><div class="outline-text-6" id="text-11-4-2-3-1">
+<ol class="org-ol"><li><a id="org428d5c1"></a>Church-Rosser Theorem<br /><div class="outline-text-6" id="text-11-4-2-3-1">
 <ul class="org-ul">
 <li>If an expression can be reduced in two different ways to two normal forms
 then these normal forms are same up to α conversion</li>
@@ -2877,12 +2877,12 @@ then these normal forms are same up to α conversion</li>
 </ul></li>
 </ul>
 </div></li></ol></li>
-<li><a id="orgbd60c9a"></a>Is there a reduction strategy that guarantees that a normal form will be produced (if there is one)<br /><div class="outline-text-5" id="text-11-4-2-4">
+<li><a id="orgd94e3c0"></a>Is there a reduction strategy that guarantees that a normal form will be produced (if there is one)<br /><div class="outline-text-5" id="text-11-4-2-4">
 <ul class="org-ul">
 <li>Yes</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="orgd85809b"></a>Standardization Theorem<br /><div class="outline-text-6" id="text-11-4-2-4-1">
+<ol class="org-ol"><li><a id="org9998e0f"></a>Standardization Theorem<br /><div class="outline-text-6" id="text-11-4-2-4-1">
 <ul class="org-ul">
 <li>If an expression has normal form, then a <b>leftmost outermost</b> reduction at
 each state is guaranteed to reach that normal form.</li>
@@ -2895,11 +2895,11 @@ each state is guaranteed to reach that normal form.</li>
 </div></li></ol></li></ol>
 </div>
 </div>
-<div id="outline-container-orgf5a4892" class="outline-3">
-<h3 id="orgf5a4892"><span class="section-number-3">11.5</span> Reduction Strategies</h3>
+<div id="outline-container-orgc5c36b2" class="outline-3">
+<h3 id="orgc5c36b2"><span class="section-number-3">11.5</span> Reduction Strategies</h3>
 <div class="outline-text-3" id="text-11-5">
-</div><div id="outline-container-org0413ed2" class="outline-4">
-<h4 id="org0413ed2"><span class="section-number-4">11.5.1</span> Normal Order</h4>
+</div><div id="outline-container-org96640aa" class="outline-4">
+<h4 id="org96640aa"><span class="section-number-4">11.5.1</span> Normal Order</h4>
 <div class="outline-text-4" id="text-11-5-1">
 <ul class="org-ul">
 <li>always choose leftmost outermost redex</li>
@@ -2912,8 +2912,8 @@ of the function being executed <b>each time</b> the parameter is referenced.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-org6599dd5" class="outline-4">
-<h4 id="org6599dd5"><span class="section-number-4">11.5.2</span> Applicative Order</h4>
+<div id="outline-container-org282cf17" class="outline-4">
+<h4 id="org282cf17"><span class="section-number-4">11.5.2</span> Applicative Order</h4>
 <div class="outline-text-4" id="text-11-5-2">
 <ul class="org-ul">
 <li>always choose leftmost innermost redex</li>
@@ -2924,10 +2924,10 @@ of the function being executed <b>each time</b> the parameter is referenced.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-orge6d5441" class="outline-4">
-<h4 id="orge6d5441"><span class="section-number-4">11.5.3</span> Comparison</h4>
+<div id="outline-container-orgb5ff797" class="outline-4">
+<h4 id="orgb5ff797"><span class="section-number-4">11.5.3</span> Comparison</h4>
 <div class="outline-text-4" id="text-11-5-3">
-</div><ol class="org-ol"><li><a id="org89df21d"></a>&infin; computation<br /><div class="outline-text-5" id="text-11-5-3-1">
+</div><ol class="org-ol"><li><a id="orgbb79554"></a>&infin; computation<br /><div class="outline-text-5" id="text-11-5-3-1">
 <div class="org-src-container">
 <pre class="src src-scheme">(<span style="color: #0000FF;">define</span> <span style="color: #006699;">eternity</span>
   (<span style="color: #0000FF;">&#955;</span> ()
@@ -2945,7 +2945,7 @@ of the function being executed <b>each time</b> the parameter is referenced.</li
 <li>applicative order: in this case, may not return</li>
 </ul>
 </div></li>
-<li><a id="org88ec233"></a>Argument Evaluation<br /><div class="outline-text-5" id="text-11-5-3-2">
+<li><a id="org30ed1ab"></a>Argument Evaluation<br /><div class="outline-text-5" id="text-11-5-3-2">
 <div class="org-src-container">
 <pre class="src src-sml"><span style="color: #0000FF;">fun</span> <span style="color: #006699;">sqr</span> x = x * x;
 sqr(sqr(sqr(2)))
@@ -2965,7 +2965,7 @@ sqr(sqr(sqr(2)))
 </pre>
 </div>
 </div></li>
-<li><a id="orgf6e75ad"></a>Graph Reduction (Lazy Evaluation)<br /><div class="outline-text-5" id="text-11-5-3-3">
+<li><a id="org04479ec"></a>Graph Reduction (Lazy Evaluation)<br /><div class="outline-text-5" id="text-11-5-3-3">
 <ul class="org-ul">
 <li>has pointer to expression</li>
 <li>save the result of expression after evaluation</li>
@@ -2975,8 +2975,8 @@ sqr(sqr(sqr(2)))
 </div></li></ol>
 </div>
 </div>
-<div id="outline-container-org791bf03" class="outline-3">
-<h3 id="org791bf03"><span class="section-number-3">11.6</span> Booleans and condition functional representation</h3>
+<div id="outline-container-org5835c01" class="outline-3">
+<h3 id="org5835c01"><span class="section-number-3">11.6</span> Booleans and condition functional representation</h3>
 <div class="outline-text-3" id="text-11-6">
 <ul class="org-ul">
 <li>true
@@ -2987,8 +2987,8 @@ define false = λ x. λ y. y</li>
 λ p. λ x. λ y. p x y</li>
 </ul>
 </div>
-<div id="outline-container-org056f6ef" class="outline-4">
-<h4 id="org056f6ef"><span class="section-number-4">11.6.1</span> <code>if true a b = a</code></h4>
+<div id="outline-container-org68b34e6" class="outline-4">
+<h4 id="org68b34e6"><span class="section-number-4">11.6.1</span> <code>if true a b = a</code></h4>
 <div class="outline-text-4" id="text-11-6-1">
 <p>
 if true a b<br />
@@ -3001,8 +3001,8 @@ replace true with its definition<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org3601bbe" class="outline-4">
-<h4 id="org3601bbe"><span class="section-number-4">11.6.2</span> <code>if false a b = b</code></h4>
+<div id="outline-container-org2d4527f" class="outline-4">
+<h4 id="org2d4527f"><span class="section-number-4">11.6.2</span> <code>if false a b = b</code></h4>
 <div class="outline-text-4" id="text-11-6-2">
 <p>
 if false a b<br />
@@ -3015,15 +3015,15 @@ replace false with its definition<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgf02aef5" class="outline-3">
-<h3 id="orgf02aef5"><span class="section-number-3">11.7</span> Y Combinator</h3>
+<div id="outline-container-org16cae52" class="outline-3">
+<h3 id="org16cae52"><span class="section-number-3">11.7</span> Y Combinator</h3>
 <div class="outline-text-3" id="text-11-7">
 <ul class="org-ul">
 <li>defining recursive functions without <i>define</i></li>
 </ul>
 </div>
-<div id="outline-container-org5128449" class="outline-4">
-<h4 id="org5128449"><span class="section-number-4">11.7.1</span> Fixed Points</h4>
+<div id="outline-container-orgd0f5c35" class="outline-4">
+<h4 id="orgd0f5c35"><span class="section-number-4">11.7.1</span> Fixed Points</h4>
 <div class="outline-text-4" id="text-11-7-1">
 <ul class="org-ul">
 <li><p>
@@ -3052,11 +3052,11 @@ function. - wiki
 </div>
 </div>
 </div>
-<div id="outline-container-orgd783617" class="outline-2">
-<h2 id="orgd783617"><span class="section-number-2">12</span> JVM Overview</h2>
+<div id="outline-container-orge7ec826" class="outline-2">
+<h2 id="orge7ec826"><span class="section-number-2">12</span> JVM Overview</h2>
 <div class="outline-text-2" id="text-12">
-</div><div id="outline-container-orgf3ab64e" class="outline-3">
-<h3 id="orgf3ab64e"><span class="section-number-3">12.1</span> Types</h3>
+</div><div id="outline-container-org54c2cf6" class="outline-3">
+<h3 id="org54c2cf6"><span class="section-number-3">12.1</span> Types</h3>
 <div class="outline-text-3" id="text-12-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3105,8 +3105,8 @@ function. - wiki
 </table>
 </div>
 </div>
-<div id="outline-container-orgce0e7df" class="outline-3">
-<h3 id="orgce0e7df"><span class="section-number-3">12.2</span> Method Signature</h3>
+<div id="outline-container-org517093f" class="outline-3">
+<h3 id="org517093f"><span class="section-number-3">12.2</span> Method Signature</h3>
 <div class="outline-text-3" id="text-12-2">
 <ul class="org-ul">
 <li>'(' + Param Types + ')' + return Type</li>
@@ -3114,8 +3114,8 @@ function. - wiki
 </ul>
 </div>
 </div>
-<div id="outline-container-org3db1d46" class="outline-3">
-<h3 id="org3db1d46"><span class="section-number-3">12.3</span> Variables</h3>
+<div id="outline-container-org590e68e" class="outline-3">
+<h3 id="org590e68e"><span class="section-number-3">12.3</span> Variables</h3>
 <div class="outline-text-3" id="text-12-3">
 <ul class="org-ul">
 <li>Static
@@ -3142,8 +3142,8 @@ function. - wiki
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb4175a0" class="outline-3">
-<h3 id="orgb4175a0"><span class="section-number-3">12.4</span> Method Invocation</h3>
+<div id="outline-container-org404a60a" class="outline-3">
+<h3 id="org404a60a"><span class="section-number-3">12.4</span> Method Invocation</h3>
 <div class="outline-text-3" id="text-12-4">
 <ol class="org-ol">
 <li><code>invokevirtual</code>
@@ -3162,11 +3162,11 @@ function. - wiki
 </div>
 </div>
 </div>
-<div id="outline-container-org7ffc978" class="outline-2">
-<h2 id="org7ffc978"><span class="section-number-2">13</span> Denotational Semantics</h2>
+<div id="outline-container-org43ce7ed" class="outline-2">
+<h2 id="org43ce7ed"><span class="section-number-2">13</span> Denotational Semantics</h2>
 <div class="outline-text-2" id="text-13">
-</div><div id="outline-container-org67f0a8b" class="outline-3">
-<h3 id="org67f0a8b"><span class="section-number-3">13.1</span> Semantics</h3>
+</div><div id="outline-container-org90dabf3" class="outline-3">
+<h3 id="org90dabf3"><span class="section-number-3">13.1</span> Semantics</h3>
 <div class="outline-text-3" id="text-13-1">
 <ul class="org-ul">
 <li>Semantics is expressed by defining:
@@ -3187,11 +3187,11 @@ domain</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6946b2a" class="outline-3">
-<h3 id="org6946b2a"><span class="section-number-3">13.2</span> Ex: Simple Stack Machine</h3>
+<div id="outline-container-org5ab3992" class="outline-3">
+<h3 id="org5ab3992"><span class="section-number-3">13.2</span> Ex: Simple Stack Machine</h3>
 <div class="outline-text-3" id="text-13-2">
-</div><div id="outline-container-org2e2eac0" class="outline-4">
-<h4 id="org2e2eac0"><span class="section-number-4">13.2.1</span> AST</h4>
+</div><div id="outline-container-org128f414" class="outline-4">
+<h4 id="org128f414"><span class="section-number-4">13.2.1</span> AST</h4>
 <div class="outline-text-4" id="text-13-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3235,8 +3235,8 @@ domain</li>
 </table>
 </div>
 </div>
-<div id="outline-container-org858a532" class="outline-4">
-<h4 id="org858a532"><span class="section-number-4">13.2.2</span> Syntactic Domain</h4>
+<div id="outline-container-org348faf8" class="outline-4">
+<h4 id="org348faf8"><span class="section-number-4">13.2.2</span> Syntactic Domain</h4>
 <div class="outline-text-4" id="text-13-2-2">
 <ul class="org-ul">
 <li>P: Program</li>
@@ -3245,8 +3245,8 @@ domain</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb6245c8" class="outline-4">
-<h4 id="orgb6245c8"><span class="section-number-4">13.2.3</span> Semantic Domain</h4>
+<div id="outline-container-org5cf2d71" class="outline-4">
+<h4 id="org5cf2d71"><span class="section-number-4">13.2.3</span> Semantic Domain</h4>
 <div class="outline-text-4" id="text-13-2-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3275,8 +3275,8 @@ domain</li>
 </table>
 </div>
 </div>
-<div id="outline-container-org7c3f04f" class="outline-4">
-<h4 id="org7c3f04f"><span class="section-number-4">13.2.4</span> Semantic Functions</h4>
+<div id="outline-container-org0e88783" class="outline-4">
+<h4 id="org0e88783"><span class="section-number-4">13.2.4</span> Semantic Functions</h4>
 <div class="outline-text-4" id="text-13-2-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3304,7 +3304,7 @@ domain</li>
 </tbody>
 </table>
 </div>
-<ol class="org-ol"><li><a id="org986eb9f"></a>Function Definitions<br /><div class="outline-text-5" id="text-13-2-4-1">
+<ol class="org-ol"><li><a id="org26c2b3b"></a>Function Definitions<br /><div class="outline-text-5" id="text-13-2-4-1">
 <div class="org-src-container">
 <pre class="src src-text">execute[|load N|] (stack, output) = (value[|N|] :: stack, output)
 execute[|+|] (x::y::xs, output) = ((x + y)::xs, output)
@@ -3317,15 +3317,15 @@ meaning[|P|] = execute[|I|] [] []  //empty stack and output
 </div></li></ol>
 </div>
 </div>
-<div id="outline-container-org100f74b" class="outline-3">
-<h3 id="org100f74b"><span class="section-number-3">13.3</span> Modeling Memory</h3>
+<div id="outline-container-org65bab26" class="outline-3">
+<h3 id="org65bab26"><span class="section-number-3">13.3</span> Modeling Memory</h3>
 <div class="outline-text-3" id="text-13-3">
 <p>
 Using simple imperative language
 </p>
 </div>
-<div id="outline-container-org7239281" class="outline-4">
-<h4 id="org7239281"><span class="section-number-4">13.3.1</span> AST</h4>
+<div id="outline-container-org55c55f8" class="outline-4">
+<h4 id="org55c55f8"><span class="section-number-4">13.3.1</span> AST</h4>
 <div class="outline-text-4" id="text-13-3-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3374,8 +3374,8 @@ Using simple imperative language
 </table>
 </div>
 </div>
-<div id="outline-container-org1c7013e" class="outline-4">
-<h4 id="org1c7013e"><span class="section-number-4">13.3.2</span> Syntactic Domain</h4>
+<div id="outline-container-orga84260f" class="outline-4">
+<h4 id="orga84260f"><span class="section-number-4">13.3.2</span> Syntactic Domain</h4>
 <div class="outline-text-4" id="text-13-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3414,8 +3414,8 @@ Using simple imperative language
 </table>
 </div>
 </div>
-<div id="outline-container-org2533138" class="outline-4">
-<h4 id="org2533138"><span class="section-number-4">13.3.3</span> Semantic Domain</h4>
+<div id="outline-container-org6531cf1" class="outline-4">
+<h4 id="org6531cf1"><span class="section-number-4">13.3.3</span> Semantic Domain</h4>
 <div class="outline-text-4" id="text-13-3-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3442,8 +3442,8 @@ Using simple imperative language
 </ul>
 </div>
 </div>
-<div id="outline-container-org573fa02" class="outline-4">
-<h4 id="org573fa02"><span class="section-number-4">13.3.4</span> Semantic functions</h4>
+<div id="outline-container-org4630baa" class="outline-4">
+<h4 id="org4630baa"><span class="section-number-4">13.3.4</span> Semantic functions</h4>
 <div class="outline-text-4" id="text-13-3-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3489,7 +3489,7 @@ Using simple imperative language
 <li>there is no <i>out</i>, we'll see the effect as side effect on memory</li>
 </ul>
 </div>
-<ol class="org-ol"><li><a id="org4ebae2d"></a><code>store</code><br /><div class="outline-text-5" id="text-13-3-4-1">
+<ol class="org-ol"><li><a id="org091f0ec"></a><code>store</code><br /><div class="outline-text-5" id="text-13-3-4-1">
 <ul class="org-ul">
 <li><code>store</code> is a function which maps Id to (Integer, <code>undefined</code>)</li>
 <li>Base case for <code>store</code> is <code>empty</code>, where everything is mapped to <code>undefined</code></li>
@@ -3513,7 +3513,7 @@ sto<sub>2</sub>: maps another id to integer, rest delegated to sto<sub>1</sub>, 
 </div></li>
 </ul>
 </div></li>
-<li><a id="org875f6c5"></a><code>evaluate</code><br /><div class="outline-text-5" id="text-13-3-4-2">
+<li><a id="org1b704dc"></a><code>evaluate</code><br /><div class="outline-text-5" id="text-13-3-4-2">
 <div class="org-src-container">
 <pre class="src src-text">evaluate[|N|] sto = value [|N|]
 evaluate[|id|] sto = sto(Id)
@@ -3526,8 +3526,8 @@ meaning[|C|] = evaluate[|C|] empty
 </div>
 </div></li></ol>
 </div>
-<div id="outline-container-orgc6bff46" class="outline-4">
-<h4 id="orgc6bff46"><span class="section-number-4">13.3.5</span> Meaning</h4>
+<div id="outline-container-org54c4296" class="outline-4">
+<h4 id="org54c4296"><span class="section-number-4">13.3.5</span> Meaning</h4>
 <div class="outline-text-4" id="text-13-3-5">
 <ul class="org-ul">
 <li>the meaning of program is a function
@@ -3547,8 +3547,8 @@ maps the identifiers to integers.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org498ef1e" class="outline-4">
-<h4 id="org498ef1e"><span class="section-number-4">13.3.6</span> <code>if</code> statements</h4>
+<div id="outline-container-org81184a4" class="outline-4">
+<h4 id="org81184a4"><span class="section-number-4">13.3.6</span> <code>if</code> statements</h4>
 <div class="outline-text-4" id="text-13-3-6">
 <div class="org-src-container">
 <pre class="src src-text">execute [|if E then C1 else C2|] state =
@@ -3559,8 +3559,8 @@ else evaluate[|C2|]
 </div>
 </div>
 </div>
-<div id="outline-container-orgde685ca" class="outline-4">
-<h4 id="orgde685ca"><span class="section-number-4">13.3.7</span> <code>while</code> statements</h4>
+<div id="outline-container-org709706a" class="outline-4">
+<h4 id="org709706a"><span class="section-number-4">13.3.7</span> <code>while</code> statements</h4>
 <div class="outline-text-4" id="text-13-3-7">
 <div class="org-src-container">
 <pre class="src src-text">execute [|while E do C|] (sto, in, out)
@@ -3580,10 +3580,10 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org65dad3f" class="outline-4">
-<h4 id="org65dad3f"><span class="section-number-4">13.3.8</span> Nested Scopes</h4>
+<div id="outline-container-org4ab3b64" class="outline-4">
+<h4 id="org4ab3b64"><span class="section-number-4">13.3.8</span> Nested Scopes</h4>
 <div class="outline-text-4" id="text-13-3-8">
-</div><ol class="org-ol"><li><a id="org4e3655a"></a>Environment and Location<br /><div class="outline-text-5" id="text-13-3-8-1">
+</div><ol class="org-ol"><li><a id="orgea5e6dc"></a>Environment and Location<br /><div class="outline-text-5" id="text-13-3-8-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -3619,12 +3619,12 @@ end
 <li><code>undefined</code>: no value stored yet</li>
 </ul>
 </div></li>
-<li><a id="orga1144e9"></a><code>extendEnv</code><br /><div class="outline-text-5" id="text-13-3-8-2">
+<li><a id="orga4ff922"></a><code>extendEnv</code><br /><div class="outline-text-5" id="text-13-3-8-2">
 <p>
 extendEnv (env, id<sub>0</sub>, loc) id<sub>1</sub> = if (id<sub>0</sub> = id<sub>1</sub>) then loc else env id<sub>1</sub>
 </p>
 </div></li>
-<li><a id="org7c20584"></a><code>update</code> store<br /><div class="outline-text-5" id="text-13-3-8-3">
+<li><a id="org60394e4"></a><code>update</code> store<br /><div class="outline-text-5" id="text-13-3-8-3">
 <p>
 update (sto, loc<sub>0</sub>, val) loc<sub>1</sub> = if loc<sub>1</sub> = loc<sub>0</sub> then val else sto loc<sub>1</sub>
 </p>
@@ -3664,7 +3664,7 @@ this.page.identifier = "/notes/plp.html";
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
 <div id="postamble" class="status">
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2017-04-21 Fri 20:55</p>
+<p class="date">Created: 2017-04-22 Sat 10:03</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

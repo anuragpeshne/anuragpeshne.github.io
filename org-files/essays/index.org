@@ -1,7 +1,6 @@
 #+TITLE: Essays
 #+OPTIONS: toc:nil num:nil creator:t author:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
-#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+#+INCLUDE: "../../assets/commonHead.org"
 
 #+BEGIN_VERSE
 An essay is, generally, a scholarly piece of writing that gives the author's own

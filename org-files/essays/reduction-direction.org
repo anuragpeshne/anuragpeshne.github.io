@@ -1,8 +1,7 @@
 #+TITLE: Reduction Direction for Hackers
 #+DATE: 2016-01-12
 #+OPTIONS: toc:nil num:nil creator:t author:t tex:t
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
-#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+#+INCLUDE: "../../assets/commonHead.org"
 #+FILETAGS:  :reduction:np:np-complete:np-hard:
 
 #+INCLUDE: "../../assets/ga.org"

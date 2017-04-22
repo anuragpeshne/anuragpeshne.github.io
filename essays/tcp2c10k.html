@@ -235,28 +235,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org85f6b99">Brief Background</a>
+<li><a href="#org1dcf5c3">Brief Background</a>
 <ul>
-<li><a href="#orgfc16395">Why Clojure</a></li>
+<li><a href="#orgcc4ccb8">Why Clojure</a></li>
 </ul>
 </li>
-<li><a href="#org5176ac9">About this essay</a></li>
-<li><a href="#org5e6d1ee">Getting Started</a>
+<li><a href="#orgf361c54">About this essay</a></li>
+<li><a href="#org3eb31f4">Getting Started</a>
 <ul>
-<li><a href="#org6e300a2">Echo Server</a></li>
-<li><a href="#orgf5baefb">Concurrent Connections</a>
+<li><a href="#org5b94af0">Echo Server</a></li>
+<li><a href="#org3cda4be">Concurrent Connections</a>
 <ul>
-<li><a href="#org0cb2d9c"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
+<li><a href="#orgd1eeb97"><span class="todo TODO">TODO</span> Persistent Data Structure</a></li>
 </ul>
 </li>
-<li><a href="#orgd900930">HTTP request and response</a>
+<li><a href="#orgde14bcb">HTTP request and response</a>
 <ul>
-<li><a href="#org7070481">Let's serve HTTP!</a></li>
-<li><a href="#org0598860">Parsing <code>GET</code> request</a></li>
-<li><a href="#org11c67fd">Generating response</a></li>
+<li><a href="#org3a321f4">Let's serve HTTP!</a></li>
+<li><a href="#org5eee40f">Parsing <code>GET</code> request</a></li>
+<li><a href="#org2bec559">Generating response</a></li>
 </ul>
 </li>
-<li><a href="#org58bc71e">File Server</a></li>
+<li><a href="#org1abd56c">File Server</a></li>
 </ul>
 </li>
 </ul>
@@ -264,9 +264,9 @@ for the JavaScript code in this tag.
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-org85f6b99" class="outline-2">
-<h2 id="org85f6b99">Brief Background</h2>
-<div class="outline-text-2" id="text-org85f6b99">
+<div id="outline-container-org1dcf5c3" class="outline-2">
+<h2 id="org1dcf5c3">Brief Background</h2>
+<div class="outline-text-2" id="text-org1dcf5c3">
 <p>
 Get's get straight to the point, here's my bucket list for next couple of years:
 the things which I want to build from scratch:
@@ -284,9 +284,9 @@ the most natural choice. This is my attempt to take on the 2<sup>nd</sup> item i
 </p>
 </div>
 
-<div id="outline-container-orgfc16395" class="outline-3">
-<h3 id="orgfc16395">Why Clojure</h3>
-<div class="outline-text-3" id="text-orgfc16395">
+<div id="outline-container-orgcc4ccb8" class="outline-3">
+<h3 id="orgcc4ccb8">Why Clojure</h3>
+<div class="outline-text-3" id="text-orgcc4ccb8">
 <p>
 Since this is a great opportunity to learn a new language, I considered Haskell
 and Clojure to implement this project.I chose Clojure over Haskell<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, because:
@@ -304,9 +304,9 @@ As of now, Clojure is turning out to be a great decision.
 </div>
 </div>
 
-<div id="outline-container-org5176ac9" class="outline-2">
-<h2 id="org5176ac9">About this essay</h2>
-<div class="outline-text-2" id="text-org5176ac9">
+<div id="outline-container-orgf361c54" class="outline-2">
+<h2 id="orgf361c54">About this essay</h2>
+<div class="outline-text-2" id="text-orgf361c54">
 <p>
 I'm planning to use this essay as a journal to the project <a href="https://github.com/anuragpeshne/httpj">httpj</a>.  I'll record the
 achievements and lessons learned in a diary fashion so that this may help
@@ -320,12 +320,12 @@ RFC compliant server. I'm using <a href="https://trello.com/b/wAJJ79cc/httpj">th
 </div>
 </div>
 
-<div id="outline-container-org5e6d1ee" class="outline-2">
-<h2 id="org5e6d1ee">Getting Started</h2>
-<div class="outline-text-2" id="text-org5e6d1ee">
-</div><div id="outline-container-org6e300a2" class="outline-3">
-<h3 id="org6e300a2">Echo Server</h3>
-<div class="outline-text-3" id="text-org6e300a2">
+<div id="outline-container-org3eb31f4" class="outline-2">
+<h2 id="org3eb31f4">Getting Started</h2>
+<div class="outline-text-2" id="text-org3eb31f4">
+</div><div id="outline-container-org5b94af0" class="outline-3">
+<h3 id="org5b94af0">Echo Server</h3>
+<div class="outline-text-3" id="text-org5b94af0">
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp">&lt;2016-11-02 Wed&gt;</span></span></p>
 <p>
 The first stage is to make a simple server which accepts TCP connection and
@@ -339,9 +339,9 @@ a good exercise to get acquainted with the Clojure syntax and <a href="http://cl
 </div>
 </div>
 
-<div id="outline-container-orgf5baefb" class="outline-3">
-<h3 id="orgf5baefb">Concurrent Connections</h3>
-<div class="outline-text-3" id="text-orgf5baefb">
+<div id="outline-container-org3cda4be" class="outline-3">
+<h3 id="org3cda4be">Concurrent Connections</h3>
+<div class="outline-text-3" id="text-org3cda4be">
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp">&lt;2016-11-05 Sat&gt;</span></span></p>
 <p>
 The next logical step was to make it accept multiple concurrent TCP connections.
@@ -361,14 +361,14 @@ the protocol implementation to a fair extent.
 </p>
 </div>
 
-<div id="outline-container-org0cb2d9c" class="outline-4">
-<h4 id="org0cb2d9c"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
+<div id="outline-container-orgd1eeb97" class="outline-4">
+<h4 id="orgd1eeb97"><span class="todo TODO">TODO</span> Persistent Data Structure</h4>
 </div>
 </div>
 
-<div id="outline-container-orgd900930" class="outline-3">
-<h3 id="orgd900930">HTTP request and response</h3>
-<div class="outline-text-3" id="text-orgd900930">
+<div id="outline-container-orgde14bcb" class="outline-3">
+<h3 id="orgde14bcb">HTTP request and response</h3>
+<div class="outline-text-3" id="text-orgde14bcb">
 <p>
 Right now, our server does nothing interesting other than greeting the world.
 Let's change that; let's parse the request and try to figure out what client
@@ -384,7 +384,7 @@ A <code>GET</code> request has a structure similar to<sup><a id="fnr.4" class="f
 Host: localhost:8080
 User-Agent: curl/7.49.1
 Accept: */*
-&lt;<span style="color: #93E0E3;">CRLF</span>&gt;
+&lt;<span style="color: #006699;">CRLF</span>&gt;
 </pre>
 </div>
 <p>
@@ -406,9 +406,9 @@ bit easy but makes the whole process a lot in efficient<sup><a id="fnr.5" class=
 </p>
 </div>
 
-<div id="outline-container-org7070481" class="outline-4">
-<h4 id="org7070481">Let's serve HTTP!</h4>
-<div class="outline-text-4" id="text-org7070481">
+<div id="outline-container-org3a321f4" class="outline-4">
+<h4 id="org3a321f4">Let's serve HTTP!</h4>
+<div class="outline-text-4" id="text-org3a321f4">
 <p>
 Now that we know the request and response format, we can start servering HTTP,
 and by serve, I literally mean <b>serve</b> HTTP.
@@ -416,26 +416,26 @@ We can use <code>nc</code><sup><a id="fnr.6" class="footref" href="#fn.6">6</a><
 </p>
 <div class="org-src-container">
 <pre class="src src-bash">$ nc -lk 8080
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">-l make nc *listen* to socket</span>
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">-k nc keep listening</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-l make nc *listen* to socket</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">-k nc keep listening</span>
 
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">now point browser to 'http://localhost:8080'</span>
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">browser blocks, and we can see the request browser made on nc stdout</span>
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">type in HTTP response directly into nc</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">now point browser to 'http://localhost:8080'</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">browser blocks, and we can see the request browser made on nc stdout</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">type in HTTP response directly into nc</span>
 HTTP/1.1 200 OK
 Content-Length: 12
 
 Hello World
 
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">after the last blank line, the loading gears in browsers should stop and</span>
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">'Hello World' should appear on browser!</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">after the last blank line, the loading gears in browsers should stop and</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">'Hello World' should appear on browser!</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0598860" class="outline-4">
-<h4 id="org0598860">Parsing <code>GET</code> request</h4>
-<div class="outline-text-4" id="text-org0598860">
+<div id="outline-container-org5eee40f" class="outline-4">
+<h4 id="org5eee40f">Parsing <code>GET</code> request</h4>
+<div class="outline-text-4" id="text-org5eee40f">
 <p>
 <code>parse-request</code> parses the HTTP request and returns a map <code>{:headLine :headers}</code>
 where <code>headers</code> in itself is map. Parsing is straightforward splitting the string
@@ -452,6 +452,7 @@ over <code>": "</code>.
                     (recur (rest cur-inp)
                            (conj list (apply hash-map
                                              (str/split (first cur-inp) #": "))))))]
+  {:headLine head-line, :headers headers}))
 </pre>
 </div>
 <p>
@@ -463,16 +464,16 @@ hack to save stacks.
 </p>
 </div>
 </div>
-<div id="outline-container-org11c67fd" class="outline-4">
-<h4 id="org11c67fd">Generating response</h4>
-<div class="outline-text-4" id="text-org11c67fd">
-</div><ul class="org-ul"><li><a id="orgda0fa0a"></a>HTTP 1.0 v/s HTTP 1.1<br  /><ul class="org-ul"><li><a id="orgc922b1e"></a><code>Content-Length</code> and socket close.<br  /></li></ul></li>
-<li><a id="org3c39128"></a>Thread first macro, <code>-&gt;</code><br  /></li></ul>
+<div id="outline-container-org2bec559" class="outline-4">
+<h4 id="org2bec559">Generating response</h4>
+<div class="outline-text-4" id="text-org2bec559">
+</div><ul class="org-ul"><li><a id="org7aa5f6d"></a>HTTP 1.0 v/s HTTP 1.1<br /><ul class="org-ul"><li><a id="org0704abf"></a><code>Content-Length</code> and socket close.<br /></li></ul></li>
+<li><a id="orgef7a441"></a>Thread first macro, <code>-&gt;</code><br /></li></ul>
 </div>
 </div>
-<div id="outline-container-org58bc71e" class="outline-3">
-<h3 id="org58bc71e">File Server</h3>
-<div class="outline-text-3" id="text-org58bc71e">
+<div id="outline-container-org1abd56c" class="outline-3">
+<h3 id="org1abd56c">File Server</h3>
+<div class="outline-text-3" id="text-org1abd56c">
 <p>
 A subject so complicated, it needs a level 2 heading.
 </p>
@@ -532,7 +533,7 @@ this.page.identifier = "/essays/tcp2c10k.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-10-30</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

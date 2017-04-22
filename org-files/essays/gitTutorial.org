@@ -2,8 +2,7 @@
 #+SUBTITLE: A non comprehensive guide to `git`
 #+DATE: 2016-07-22
 #+OPTIONS: toc:t num:nil creator:t author:t tex:t date:t timestamp:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
-#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+#+INCLUDE: "../../assets/commonHead.org"
 #+FILETAGS:  :git:git-internals:unix:
 
 #+INCLUDE: "../../assets/ga.org"

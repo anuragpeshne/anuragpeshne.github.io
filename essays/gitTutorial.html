@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Intro to Git</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Anurag Peshne" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -52,13 +52,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -91,6 +175,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -153,32 +238,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline2">Preface</a></li>
-<li><a href="#orgheadline6">VCS</a>
+<li><a href="#orgf23f3f7">Preface</a></li>
+<li><a href="#org7747558">VCS</a>
 <ul>
-<li><a href="#orgheadline3">Video Games</a></li>
-<li><a href="#orgheadline4">Save As</a></li>
-<li><a href="#orgheadline5">Distributed VCS</a></li>
+<li><a href="#org1eb0d15">Video Games</a></li>
+<li><a href="#org7738e29">Save As</a></li>
+<li><a href="#org6289892">Distributed VCS</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline10">Git</a>
+<li><a href="#orgbc9e705">Git</a>
 <ul>
-<li><a href="#orgheadline7">Linus, Linux and Git</a></li>
-<li><a href="#orgheadline8">Basics</a></li>
-<li><a href="#orgheadline9">The three states</a></li>
+<li><a href="#org10e25c5">Linus, Linux and Git</a></li>
+<li><a href="#org011797d">Basics</a></li>
+<li><a href="#org060441f">The three states</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">Basic Commands</a></li>
-<li><a href="#orgheadline1">Not So Basic Commands</a></li>
+<li><a href="#org2cabc2e">Basic Commands</a></li>
+<li><a href="#org7744982">Not So Basic Commands</a></li>
 </ul>
 </div>
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 <div id="draftTag">DRAFT</div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Preface</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-orgf23f3f7" class="outline-2">
+<h2 id="orgf23f3f7">Preface</h2>
+<div class="outline-text-2" id="text-orgf23f3f7">
 <p>
 This essay is based upon a presentation I gave to the new recruits at my
 (<i>former</i>) employer <a href="https://coupondunia.in">CouponDunia</a>. While preparing this presentation I went through
@@ -190,7 +275,7 @@ help to grok Git and solve some of the common problems.
 <p>
 Since this presentation was made for folks without any prior experience of working
 with version control system, it starts with the very basics. If you find it too
-trivial, feel free to jump to the topic <a href="#orgheadline1">advanced commands</a>. Folks with limited or
+trivial, feel free to jump to the topic <a href="#org7744982">advanced commands</a>. Folks with limited or
 no prior knowledge of VCS may find the topics at the end a bit heavy to digest
 in a single read. Nevertheless, I recommend reading till the end so that when
 any non trivial problem arise, you know what to google for.
@@ -198,12 +283,12 @@ any non trivial problem arise, you know what to google for.
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">VCS</h2>
-<div class="outline-text-2" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Video Games</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org7747558" class="outline-2">
+<h2 id="org7747558">VCS</h2>
+<div class="outline-text-2" id="text-org7747558">
+</div><div id="outline-container-org1eb0d15" class="outline-3">
+<h3 id="org1eb0d15">Video Games</h3>
+<div class="outline-text-3" id="text-org1eb0d15">
 <p>
 The very first question to be answered is what is a version control system and
 what is the need of using it. Think of writing your code or document as playing
@@ -222,9 +307,9 @@ crashes the system, there is no way of going back to the previous sane state.
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Save As</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org7738e29" class="outline-3">
+<h3 id="org7738e29">Save As</h3>
+<div class="outline-text-3" id="text-org7738e29">
 <p>
 Using <i>save as</i>, we can have multiple copies of our work which is similar to
 saving the game progress in multiple slots. Even better we can organize these
@@ -249,9 +334,9 @@ work on same part of the code. Git is one of such Version Control Systems.
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Distributed VCS</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org6289892" class="outline-3">
+<h3 id="org6289892">Distributed VCS</h3>
+<div class="outline-text-3" id="text-org6289892">
 <p>
 When you clone a git repository, you have an exact copy of the original repository.
 There is no central or canonical repository. When you want to work on a file,
@@ -263,12 +348,12 @@ Due to this nature most of the commands<sup><a id="fnr.3" class="footref" href="
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">Git</h2>
-<div class="outline-text-2" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">Linus, Linux and Git</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-orgbc9e705" class="outline-2">
+<h2 id="orgbc9e705">Git</h2>
+<div class="outline-text-2" id="text-orgbc9e705">
+</div><div id="outline-container-org10e25c5" class="outline-3">
+<h3 id="org10e25c5">Linus, Linux and Git</h3>
+<div class="outline-text-3" id="text-org10e25c5">
 <p>
 Git was created out of need to manage Linux kernel project by Linus Torvalds<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>.
 It was designed keeping in mind the complexities of the Linux project (large
@@ -283,9 +368,9 @@ number of contributers). Some of the goals of the system are:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">Basics</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org011797d" class="outline-3">
+<h3 id="org011797d">Basics</h3>
+<div class="outline-text-3" id="text-org011797d">
 <ul class="org-ul">
 <li><p>
 Snapshots, not Differences
@@ -296,10 +381,9 @@ Some version control systems store the delta or the difference between different
 versions. So suppose the original content was:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;stdio.h&gt;</span>
-<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;sys.h&gt;</span>
-<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;time.h&gt;</span>
+<pre class="src src-shell"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;stdio.h&gt;</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;sys.h&gt;</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;time.h&gt;</span>
 ...
 </pre>
 </div>
@@ -307,11 +391,10 @@ versions. So suppose the original content was:
 And you added a line to include <code>math.h</code>, the modified content would be:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-shell"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;stdio.h&gt;</span>
-<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;sys.h&gt;</span>
-<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;math.h&gt; &lt;-- line inserted</span>
-<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;time.h&gt;</span>
+<pre class="src src-shell"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;stdio.h&gt;</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;sys.h&gt;</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;math.h&gt; &lt;-- line inserted</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;time.h&gt;</span>
 ...
 </pre>
 </div>
@@ -320,9 +403,8 @@ To save space, the VCS will calculate the lines modified and store only the
 difference.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-shell">2a3
-&gt; <span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">include &lt;math.h&gt; &lt;-- line inserted</span>
+&gt; <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;math.h&gt; &lt;-- line inserted</span>
 </pre>
 </div>
 <p>
@@ -353,9 +435,9 @@ refer the snapshots. Thus, data can't get corrupt without git knowing it.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">The three states</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org060441f" class="outline-3">
+<h3 id="org060441f">The three states</h3>
+<div class="outline-text-3" id="text-org060441f">
 <p>
 Everything that is tracked using git is in one of these 3 states:
 </p>
@@ -383,13 +465,13 @@ what will go into the next commit.</li>
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">Basic Commands</h2>
+<div id="outline-container-org2cabc2e" class="outline-2">
+<h2 id="org2cabc2e">Basic Commands</h2>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Not So Basic Commands</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org7744982" class="outline-2">
+<h2 id="org7744982">Not So Basic Commands</h2>
+<div class="outline-text-2" id="text-org7744982">
 </div>
 </div>
 <div id="footnotes">
@@ -433,7 +515,7 @@ this.page.identifier = "/essays/gitTutorial.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-07-22</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.3.6)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Keywords</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Anurag Peshne" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -52,13 +52,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -91,6 +175,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -156,7 +241,7 @@ Recently while browsing through 'answer' list on quora.com, I stumbled upon a
 <a href="https://www.quora.com/About-how-many-keywords-do-most-programming-languages-contain">question</a>:
 </p>
 <p class="verse">
-About how many keywords do most programming languages contain?<br  />
+About how many keywords do most programming languages contain?
 </p>
 <p>
 While at first the question seemed uninteresting and dry, after giving it a thought,
@@ -170,9 +255,9 @@ languages.
 are interested just in glancing over the result, head over to the end of page.
 </p>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Word Count</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgbaeabc5" class="outline-2">
+<h2 id="orgbaeabc5">Word Count</h2>
+<div class="outline-text-2" id="text-orgbaeabc5">
 <p>
 The first thought that came to my mind was to get a file containing all the keywords
 in a language and pass it to <code>wc -w</code> to get the word count. And to procure such
@@ -184,14 +269,13 @@ parsable. Fortunately I found a source of such files easily on the web &#x2013;
 <a href="https://github.com/IDMComputerSolutions/wordfiles">IDMComputerSolutions/wordfiles</a>
 </p>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">Parsing Wordfiles</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orge50912a" class="outline-3">
+<h3 id="orge50912a">Parsing Wordfiles</h3>
+<div class="outline-text-3" id="text-orge50912a">
 <p>
 The wordfiles from UltraEdit project are of the format:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-text">/C&lt;d - 1&gt;"other stuff"
 ...
 /C&lt;d&gt;"keyword"
@@ -209,12 +293,11 @@ just had to pipe the lines to <code>wc</code> starting with such phrases until t
 section. Here are the <code>sed</code> commands used:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-bash">sed -n -e <span style="color: #CC9393;">"/[Kk][Ee][Yy][Ww][Oo][Rr][Dd]/, /\/C[0-9]/p"</span> <span style="color: #CC9393;">\</span>
-       -e <span style="color: #CC9393;">"/[Rr][Ee][Ss][Ee][Rr][Vv][Ee][Dd]/, /\/C[0-9]/p"</span> <span style="color: #CC9393;">\</span>
-       -e <span style="color: #CC9393;">"/[Cc][Oo][Mm][Mm][Aa][Nn][Dd]/, /\/C[0-9]/p"</span>
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">unfortunately sed on OS X does not recognize Ignorecase flag, hence the ugly [Cc]</span>
-<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">workaround</span>
+<pre class="src src-bash">sed -n -e <span style="color: #008000;">"/[Kk][Ee][Yy][Ww][Oo][Rr][Dd]/, /\/C[0-9]/p"</span> <span style="color: #008000;">\</span>
+       -e <span style="color: #008000;">"/[Rr][Ee][Ss][Ee][Rr][Vv][Ee][Dd]/, /\/C[0-9]/p"</span> <span style="color: #008000;">\</span>
+       -e <span style="color: #008000;">"/[Cc][Oo][Mm][Mm][Aa][Nn][Dd]/, /\/C[0-9]/p"</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">unfortunately sed on OS X does not recognize Ignorecase flag, hence the ugly [Cc]</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">workaround</span>
 </pre>
 </div>
 <p>
@@ -224,9 +307,9 @@ do the job and a <code>awk</code> <a href="https://github.com/anuragpeshne/keywo
 </p>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">One last thing</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-orgef11c04" class="outline-4">
+<h4 id="orgef11c04">One last thing</h4>
+<div class="outline-text-4" id="text-orgef11c04">
 <p>
 The complete repository of wordfiles contains over 600 files which contains
 several esoteric languages/DSL which have abnormally high number of reserved
@@ -236,32 +319,31 @@ language in calculations severely disturbed the mean, taking it to a very high
 number. Hence I picked around 60 well known languages and calculated the mean.
 </p>
 <div class="org-src-container">
+<pre class="src src-bash"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/</span><span style="color: #0000FF;">bash</span>
 
-<pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/bin/</span><span style="color: #F0DFAF; font-weight: bold;">bash</span>
+<span style="color: #BA36A5;">interestingFiles</span>=(<span style="color: #008000;">'JSON'</span> <span style="color: #008000;">'acl'</span> <span style="color: #008000;">'actionscript'</span> <span style="color: #008000;">'ada95'</span> <span style="color: #008000;">'c'</span> <span style="color: #008000;">'c-winapi'</span>
+                  <span style="color: #008000;">'c-os2'</span> <span style="color: #008000;">'csharp'</span> <span style="color: #008000;">'e'</span> <span style="color: #008000;">'eiffel'</span> <span style="color: #008000;">'escript'</span> <span style="color: #008000;">'euphoria'</span> <span style="color: #008000;">'falcon'</span>
+                  <span style="color: #008000;">'fortran'</span> <span style="color: #008000;">'fortran90'</span> <span style="color: #008000;">'fortran95'</span> <span style="color: #008000;">'go'</span> <span style="color: #008000;">'groovy'</span> <span style="color: #008000;">'hugo'</span>
+                  <span style="color: #008000;">'java122'</span> <span style="color: #008000;">'java13'</span> <span style="color: #008000;">'java14'</span> <span style="color: #008000;">'java14jsp'</span> <span style="color: #008000;">'javascript'</span> <span style="color: #008000;">'js20'</span>
+                  <span style="color: #008000;">'jscript'</span> <span style="color: #008000;">'jsp'</span> <span style="color: #008000;">'lua'</span> <span style="color: #008000;">'lull'</span> <span style="color: #008000;">'maple'</span> <span style="color: #008000;">'modula'</span> <span style="color: #008000;">'modula2'</span> <span style="color: #008000;">'oracle11g'</span>
+                  <span style="color: #008000;">'pascal'</span> <span style="color: #008000;">'perl'</span> <span style="color: #008000;">'php5'</span> <span style="color: #008000;">'pl1'</span> <span style="color: #008000;">'plsql'</span> <span style="color: #008000;">'python26'</span> <span style="color: #008000;">'python35'</span>
+                  <span style="color: #008000;">'qbasic'</span> <span style="color: #008000;">'ruby'</span> <span style="color: #008000;">'rust'</span> <span style="color: #008000;">'sap'</span> <span style="color: #008000;">'schema'</span> <span style="color: #008000;">'scheme'</span> <span style="color: #008000;">'small'</span> <span style="color: #008000;">'sql'</span>
+                  <span style="color: #008000;">'swift'</span> <span style="color: #008000;">'symbian'</span> <span style="color: #008000;">'tcl-tk'</span> <span style="color: #008000;">'turboc'</span> <span style="color: #008000;">'uniscript'</span> <span style="color: #008000;">'vb'</span> <span style="color: #008000;">'vbdotnet'</span>
+                  <span style="color: #008000;">'vbscript'</span> <span style="color: #008000;">'verilog2001'</span> <span style="color: #008000;">'vhdl93'</span> <span style="color: #008000;">'yaml'</span> <span style="color: #008000;">'zillions'</span>)
 
-<span style="color: #DFAF8F;">interestingFiles</span>=(<span style="color: #CC9393;">'JSON'</span> <span style="color: #CC9393;">'acl'</span> <span style="color: #CC9393;">'actionscript'</span> <span style="color: #CC9393;">'ada95'</span> <span style="color: #CC9393;">'c'</span> <span style="color: #CC9393;">'c-winapi'</span>
-                  <span style="color: #CC9393;">'c-os2'</span> <span style="color: #CC9393;">'csharp'</span> <span style="color: #CC9393;">'e'</span> <span style="color: #CC9393;">'eiffel'</span> <span style="color: #CC9393;">'escript'</span> <span style="color: #CC9393;">'euphoria'</span> <span style="color: #CC9393;">'falcon'</span>
-                  <span style="color: #CC9393;">'fortran'</span> <span style="color: #CC9393;">'fortran90'</span> <span style="color: #CC9393;">'fortran95'</span> <span style="color: #CC9393;">'go'</span> <span style="color: #CC9393;">'groovy'</span> <span style="color: #CC9393;">'hugo'</span>
-                  <span style="color: #CC9393;">'java122'</span> <span style="color: #CC9393;">'java13'</span> <span style="color: #CC9393;">'java14'</span> <span style="color: #CC9393;">'java14jsp'</span> <span style="color: #CC9393;">'javascript'</span> <span style="color: #CC9393;">'js20'</span>
-                  <span style="color: #CC9393;">'jscript'</span> <span style="color: #CC9393;">'jsp'</span> <span style="color: #CC9393;">'lua'</span> <span style="color: #CC9393;">'lull'</span> <span style="color: #CC9393;">'maple'</span> <span style="color: #CC9393;">'modula'</span> <span style="color: #CC9393;">'modula2'</span> <span style="color: #CC9393;">'oracle11g'</span>
-                  <span style="color: #CC9393;">'pascal'</span> <span style="color: #CC9393;">'perl'</span> <span style="color: #CC9393;">'php5'</span> <span style="color: #CC9393;">'pl1'</span> <span style="color: #CC9393;">'plsql'</span> <span style="color: #CC9393;">'python26'</span> <span style="color: #CC9393;">'python35'</span>
-                  <span style="color: #CC9393;">'qbasic'</span> <span style="color: #CC9393;">'ruby'</span> <span style="color: #CC9393;">'rust'</span> <span style="color: #CC9393;">'sap'</span> <span style="color: #CC9393;">'schema'</span> <span style="color: #CC9393;">'scheme'</span> <span style="color: #CC9393;">'small'</span> <span style="color: #CC9393;">'sql'</span>
-                  <span style="color: #CC9393;">'swift'</span> <span style="color: #CC9393;">'symbian'</span> <span style="color: #CC9393;">'tcl-tk'</span> <span style="color: #CC9393;">'turboc'</span> <span style="color: #CC9393;">'uniscript'</span> <span style="color: #CC9393;">'vb'</span> <span style="color: #CC9393;">'vbdotnet'</span>
-                  <span style="color: #CC9393;">'vbscript'</span> <span style="color: #CC9393;">'verilog2001'</span> <span style="color: #CC9393;">'vhdl93'</span> <span style="color: #CC9393;">'yaml'</span> <span style="color: #CC9393;">'zillions'</span>)
-
-<span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">for filename in ./wordfiles/*.uew; do</span>
-<span style="color: #F0DFAF; font-weight: bold;">for</span> filename<span style="color: #F0DFAF; font-weight: bold;"> in</span> ${<span style="color: #DFAF8F;">interestingFiles</span>[@]}; <span style="color: #F0DFAF; font-weight: bold;">do</span>
-    <span style="color: #DCDCCC; font-weight: bold;">echo</span> -n <span style="color: #CC9393;">"$filename"</span>
-    ./capture.py ./wordfiles/<span style="color: #CC9393;">"$filename"</span>.uew | wc -w
-<span style="color: #F0DFAF; font-weight: bold;">done</span>
+<span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">for filename in ./wordfiles/*.uew; do</span>
+<span style="color: #0000FF;">for</span> filename<span style="color: #0000FF;"> in</span> ${<span style="color: #BA36A5;">interestingFiles</span>[@]}; <span style="color: #0000FF;">do</span>
+    <span style="color: #006FE0; font-weight: bold;">echo</span> -n <span style="color: #008000;">"$filename"</span>
+    ./capture.py ./wordfiles/<span style="color: #008000;">"$filename"</span>.uew | wc -w
+<span style="color: #0000FF;">done</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Result</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orgd7b9e35" class="outline-3">
+<h3 id="orgd7b9e35">Result</h3>
+<div class="outline-text-3" id="text-orgd7b9e35">
 <p>
 Piping everything together, the average number of keywords in 60 languages came
 out to be:
@@ -273,9 +355,9 @@ out to be:
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">Charts</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-orgf1a52b1" class="outline-4">
+<h4 id="orgf1a52b1">Charts</h4>
+<div class="outline-text-4" id="text-orgf1a52b1">
 <canvas id="keywordChart" width="800" height="600"></canvas>
 <script> drawGraph(); </script>
 
@@ -285,9 +367,9 @@ View the graph in bigger size <a href="./keywords-chart.html">here</a>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">Caveats</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-orge2a4709" class="outline-4">
+<h4 id="orge2a4709">Caveats</h4>
+<div class="outline-text-4" id="text-orge2a4709">
 <p>
 As it is evident from the results, the number of words to be highlighted <b>do
 not</b> accurately reflect the actual number of keywords. For example, keywords
@@ -335,7 +417,7 @@ this.page.identifier = "/essays/keywords.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-30</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.3.6)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
