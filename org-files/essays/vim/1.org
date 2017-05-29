@@ -1,0 +1,62 @@
+#+TITLE: Vim: Introduction
+#+DATE: 2017-05-28
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t
+#+INCLUDE: "../../assets/commonHead.org"
+#+FILETAGS:  :vim:tutorial:
+
+#+INCLUDE: "../../assets/ga.org"
+
+* Hello
+  Quick, look at the calendar, because today, if you are someone who spends more
+  than 6 hours a day in front of a text editor, your life is going to change. Let
+  me repeat that, you won't look at editing text the same way; if you manage to
+  hang around till the end, your brain will be rewired to demand nothing less than
+  a powerful editor like Vim.
+
+** Why Vim
+   There are really just 3 types of editors:
+   1. Vim
+   2. Emacs
+   3. Everything else
+   Emacs is an magnificient text editor, make no mistake. If you can think of doing
+   any transformation of text--writing code, sending emails, reading news, connecting
+   to databases, creating websites, taking notes--Emacs does a brilliant job. Emacs
+   just isn't Vim[fn:1]. And this essay is about Vim.
+
+   Some of Vim's niche:
+   - Vim has modal interface which makes editing text and navigation extremely efficient.
+   - Vim command can be composed: if you know how to delete and know how to jump n lines
+     you can combine these two commands to delete n lines. Know how to copy and now you
+     know how to copy n lines.
+   - Omnipresence: Whether you like or not, you will encounter Vim if you are working
+     with remote machines. It is pre-installed in almost all *NIX machines.
+   - Fast, not just to start up but also to use.
+   - Extensible: Vim was released in 1991 based on vi, which was first released in
+     1976. And still according to Stack Overflow 2015 survey[fn:2] it is 3rd most
+     popular text editor[fn:3]. This is possible due to great plugins developed by
+     individual contributors which keeps Vim competitive with newer editors.
+
+   If you are a power user of any other text editor-like Sublime, Notepad++,
+   atom-and you feel you do not need to learn anything new, that's okay, you are
+   better off spending your time in something else. Or maybe you want to know just
+   a few commands to make peace with Vim whiling sshing, or maybe want to hang around
+   to see what the hype about. There just a sincere request, please do not judge Vim
+   based on emulation done by other editors[fn:4]. All the Vim emulation that I
+   have used, except for Evil mode in Emacs, simply suck. Besides, Vim is much more
+   than the keyboard bindings.
+* Dive In, head first
+** Installation
+   There is a very good chance that Vim is pre-installed on your system, so head
+   over to your terminal and hit ~vim~. Unless you have already played around with
+   ~.vimrc~, you will be greeted with a black (or any other solid color), dull splash
+   screen which may force you to think that Vim was indeed made in 1991 and wasn't
+   updated after that, except for a few /bug fixes/. Don't worry about it just yet,
+   you can make your Vim look like any of [[http://vimcolors.com/][these]] quite easily.
+
+*** Lesson 0
+    You can quit Vim using ~:q~, yes, you need to press ~:~ too.
+
+[fn:1] but it does a very good job in enacting Vim: [[https://www.emacswiki.org/emacs/Evil][Evil Mode]]
+[fn:2] [[https://insights.stackoverflow.com/survey/2015#tech-editor][2015 Results]]
+[fn:3] slipping to 4th position in 2016 in /Development Environments/ which isn't actually text editor segment
+[fn:4] Trying Vintage mode in Sublime doesn't count as trying Vim.
