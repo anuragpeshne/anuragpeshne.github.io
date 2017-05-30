@@ -1,0 +1,18 @@
+#+TITLE: Vim: Modes
+#+DATE: 2017-05-29
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:modes:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+This is part 2 of a series of tutorial to Vim. You read [[./1.org][Part 1 here]].
+
+* Multiplexing Keys
+  Vim does different things on pressing the same key based on the mode enabled.
+  There are many /modes/ in Vim's /modal/ interface. We'll begin with just two
+  because these two are the ones which you are going to use the most. I'll introduce
+  other modes in later parts.
+
+** Normal Mode

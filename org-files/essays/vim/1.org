@@ -1,6 +1,6 @@
 #+TITLE: Vim: Introduction
 #+DATE: 2017-05-28
-#+OPTIONS: toc:nil num:nil creator:t author:t tex:t
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 #+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 #+FILETAGS:  :vim:tutorial:
@@ -40,7 +40,7 @@
    If you are a power user of any other text editor-like Sublime, Notepad++,
    atom-and you feel you do not need to learn anything new, that's okay, you are
    better off spending your time in something else. Or maybe you want to know just
-   a few commands to make peace with Vim whiling sshing, or maybe want to hang around
+   a few commands to make peace with Vim while sshing, or maybe want to hang around
    to see what the hype about. There just a sincere request, please do not judge Vim
    based on emulation done by other editors[fn:4]. All the Vim emulation that I
    have used, except for Evil mode in Emacs, simply suck. Besides, Vim is much more
@@ -54,10 +54,39 @@
    updated after that, except for a few /bug fixes/. Don't worry about it just yet,
    you can make your Vim look like any of [[http://vimcolors.com/][these]] quite easily.
 
-*** Lesson 0
-    You can quit Vim using ~:q~, yes, you need to press ~:~ too.
+   If you are using Windows, there are two simple options. The first one includes
+   wiping your OS and installing Linux, if that is not possible then I would recommend
+   installing [[https://vim.sourceforge.io/download.php/][gvim]].
+
+** Lesson 0
+   #+BEGIN_VERSE
+   You can quit Vim using ~:q~
+   yes, you need to press ~:~ too.
+   #+END_VERSE
+   ~:q~ is short form for ~:quit~, just like ~:w~ is short form for ~:write~ (writing
+   a file is same as /saving/ a file).
+
+** Lesson 1
+   Vim is our friend, it tries to save us from doing silly things like editing and
+   then writing a file which was meant to be /readonly/ or quitting without saving
+   a file. But sometimes we do want to quit without saving because we want to discard
+   the changes. In such cases, append ~!~ in front command to tell Vim that you know
+   what you are doing.
+   #+BEGIN_VERSE
+   Append ~!~ to override Vim.
+   #+END_VERSE
+   Thus you can type in ~:q!~ to discard the changes in the current file and quit
+   or ~:w!~ to write a readonly file[fn:5]
+
+ And that's it, you now know how to open Vim and close it. If you wondering if your life
+ has really changed, it's probably not, yet. But now, at least you are a little less
+ intimidated and know how to make your beast /sit/. Learning Vim takes time, like
+ all the good things in life.
+
+ [[./2.org][Click here for part 2]]
 
 [fn:1] but it does a very good job in enacting Vim: [[https://www.emacswiki.org/emacs/Evil][Evil Mode]]
 [fn:2] [[https://insights.stackoverflow.com/survey/2015#tech-editor][2015 Results]]
 [fn:3] slipping to 4th position in 2016 in /Development Environments/ which isn't actually text editor segment
 [fn:4] Trying Vintage mode in Sublime doesn't count as trying Vim.
+[fn:5] This will only succeed if Vim has permission to write the file and the file was opened in readonly mode.
