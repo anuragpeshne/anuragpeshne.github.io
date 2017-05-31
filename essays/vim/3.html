@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vim: Introduction</title>
+<title>Vim: Moving Around</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Anurag Peshne" />
 <style type="text/css">
@@ -226,177 +226,25 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/1.html" />
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/3.html" />
 </head>
 <body>
 <div id="content">
-<h1 class="title">Vim: Introduction</h1>
+<h1 class="title">Vim: Moving Around</h1>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-org9fae0a6" class="outline-2">
-<h2 id="org9fae0a6">Hello</h2>
-<div class="outline-text-2" id="text-org9fae0a6">
 <p>
-Quick, look at the calendar, because today, if you are someone who spends more
-than 6 hours a day in front of a text editor, your life is going to change. Let
-me repeat that, you won't look at editing text the same way; if you manage to
-hang around till the end, your brain will be rewired to demand nothing less than
-a powerful editor like Vim.
+This is part 3 of a series of tutorial to Vim. You can read <a href="./2.html">Part 2 here</a>.
 </p>
+
+<div id="outline-container-orgb478ab8" class="outline-2">
+<h2 id="orgb478ab8">Go Mouseless!</h2>
 </div>
-
-<div id="outline-container-org78c988d" class="outline-3">
-<h3 id="org78c988d">Why Vim</h3>
-<div class="outline-text-3" id="text-org78c988d">
-<p>
-There are really just 3 types of editors:
-</p>
-<ol class="org-ol">
-<li>Vim</li>
-<li>Emacs</li>
-<li>Everything else</li>
-</ol>
-<p>
-Emacs is an magnificient text editor, make no mistake. If you can think of doing
-any transformation of text&#x2013;writing code, sending emails, reading news, connecting
-to databases, creating websites<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, taking notes&#x2013;Emacs does a brilliant job. Emacs
-just isn't Vim<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. And this essay is about Vim.
-</p>
-
-<p>
-Some of Vim's niche:
-</p>
-<ul class="org-ul">
-<li>Vim has <b>modal interface</b> which makes editing text and navigation extremely efficient.</li>
-<li>Vim command can be <b>composed</b>: if you know how to delete and know how to jump n lines
-you can combine these two commands to delete n lines. Know how to copy and now you
-know how to copy n lines.</li>
-<li><b>Omnipresence</b>: Whether you like or not, you will encounter Vim if you are working
-with remote machines a lot. It is pre-installed in almost all *NIX machines.</li>
-<li><b>Fast</b>, not just to start up but also to use.</li>
-<li><b>Extensible</b>: Vim was released in 1991 based on vi, which was first released in 1976.
-And still according to Stack Overflow 2015 survey<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> it is 3rd most
-popular text editor<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>. This is possible due to great plugins developed by
-individual contributors which keeps Vim competitive with newer editors.</li>
-</ul>
-
-<p>
-If you are a power user of any other text editor-like Sublime, Notepad++,
-atom-and you feel you do not need to learn anything new, that's okay, you are
-better off spending your time in something else. You may want to read on if you
-want to know just a few commands to make peace with Vim while <i>sshing</i>, or maybe
-want to hang around to see what the hype about. There just a sincere request,
-please do not judge Vim based on emulation done by other editors<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>. All the
-Vim emulation that I have used, except for Evil mode in Emacs, simply suck.
-Besides, Vim is much more than the keyboard bindings.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org3d72452" class="outline-2">
-<h2 id="org3d72452">Dive In, head first</h2>
-<div class="outline-text-2" id="text-org3d72452">
-</div><div id="outline-container-org77bdb71" class="outline-3">
-<h3 id="org77bdb71">Installation</h3>
-<div class="outline-text-3" id="text-org77bdb71">
-<p>
-There is a very good chance that Vim is pre-installed on your system, so head
-over to your terminal and hit <code>vim</code>. Unless you have already played around with
-<code>.vimrc</code>, you will be greeted with a black (or any other solid color), dull splash
-screen which may force you to think that Vim was indeed made in 1991 and wasn't
-updated after that, except for a few <i>bug fixes</i>. Don't worry about it just yet,
-you can make your Vim look like any of <a href="http://vimcolors.com/">these</a> quite easily.
-</p>
-
-<p>
-If you are using Windows, there are two simple options. The first one includes
-wiping your OS and installing Linux, if that is not possible then I would recommend
-installing <a href="https://vim.sourceforge.io/download.php/">gvim</a>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org4735024" class="outline-3">
-<h3 id="org4735024">Lesson 0</h3>
-<div class="outline-text-3" id="text-org4735024">
-<p class="verse">
-You can quit Vim using <code>:q</code><br />
-yes, you need to press <code>:</code> too.<br />
-</p>
-<p>
-<code>:q</code> is short form for <code>:quit</code>, just like <code>:w</code> is short form for <code>:write</code> (writing
-a file is same as <i>saving</i> a file).
-</p>
-</div>
-</div>
-
-<div id="outline-container-org8d6155b" class="outline-3">
-<h3 id="org8d6155b">Lesson 1</h3>
-<div class="outline-text-3" id="text-org8d6155b">
-<p>
-Vim is our friend, it tries to save us from doing silly things like editing and
-then writing a file which was meant to be <i>readonly</i> or quitting without saving
-a file. But sometimes we do want to quit without saving because we want to discard
-the changes. In such cases, append <code>!</code> in front command to tell Vim that you know
-what you are doing.
-</p>
-<p class="verse">
-Append <code>!</code> to override Vim.<br />
-</p>
-<p>
-Thus you can type in <code>:q!</code> to discard the changes in the current file and quit
-or <code>:w!</code> to write a readonly file<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>
-</p>
-
-<p>
-And that's it, you now know how to open Vim and close it. If you wondering if your life
-has really changed, it's probably not, yet. But now, at least you are a little less
-intimidated and know how to make your beast <i>sit</i>. Learning Vim takes time, like
-all the good things in life.
-</p>
-
-<p>
-<a href="./2.html">Click here for part 2</a>
-</p>
-</div>
-</div>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-In fact, this website is build using Emacs. Emacs Rocks.
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-but it does a very good job in enacting Vim: <a href="https://www.emacswiki.org/emacs/Evil">Evil Mode</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://insights.stackoverflow.com/survey/2015#tech-editor">2015 Results</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
-slipping to 4th position in 2016 in <i>Development Environments</i> which isn't actually text editor segment
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
-Trying Vintage mode in Sublime doesn't count as trying Vim.
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
-This will only succeed if Vim has permission to write the file on disk.
-</p></div></div>
-
-
-</div>
-</div><div id="disqus_thread"></div>
+<div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-this.page.url = "https://anuragpeshne.github.io/essays/vim/1.html";
-this.page.identifier = "/essays/vim/1.html";
+this.page.url = "https://anuragpeshne.github.io/essays/vim/3.html";
+this.page.identifier = "/essays/vim/3.html";
 };
     (function() {  // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
@@ -409,7 +257,7 @@ this.page.identifier = "/essays/vim/1.html";
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
 <div id="postamble" class="status">
-<p class="date">Date: 2017-05-28</p>
+<p class="date">Date: 2017-05-30</p>
 <p class="author">Author: Anurag Peshne</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.6)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>

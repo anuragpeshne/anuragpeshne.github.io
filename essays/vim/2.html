@@ -234,12 +234,12 @@ for the JavaScript code in this tag.
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
 <p>
-This is part 2 of a series of tutorial to Vim. You read <a href="./1.html">Part 1 here</a>.
+This is part 2 of a series of tutorial to Vim. You can read <a href="./1.html">Part 1 here</a>.
 </p>
 
-<div id="outline-container-org5f9048e" class="outline-2">
-<h2 id="org5f9048e">Multiplexing Keys</h2>
-<div class="outline-text-2" id="text-org5f9048e">
+<div id="outline-container-org8e86279" class="outline-2">
+<h2 id="org8e86279">Multiplexing Keys</h2>
+<div class="outline-text-2" id="text-org8e86279">
 <p>
 Vim does different things on pressing the same key based on the mode enabled.
 There are many <i>modes</i> in Vim's <i>modal</i> interface. We'll begin with just two
@@ -248,11 +248,114 @@ other modes in later parts.
 </p>
 </div>
 
-<div id="outline-container-orgd3c09f3" class="outline-3">
-<h3 id="orgd3c09f3">Normal Mode</h3>
+<div id="outline-container-org4509c08" class="outline-3">
+<h3 id="org4509c08">Normal Mode</h3>
+<div class="outline-text-3" id="text-org4509c08">
+<p>
+In editors without modal interface, there are two sets of keys: the character
+keys which print characters on screen and control keys using which you give commands
+to the editor like <code>&lt;ctrl&gt;+s</code>, <code>&lt;pageup&gt;</code>, <code>&lt;ctrl&gt;+&lt;rightarrow&gt;</code>.
+In normal mode, character keys can be used to give control commands to Vim. This
+makes a variety of commands possible without having intricate key combination<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. By
+default Vim opens up in normal mode, that is why when you press <code>:q</code>, Vim interprets
+it as command rater than printing literal string ":q" on buffer.
+</p>
 </div>
 </div>
-<div id="disqus_thread"></div>
+
+<div id="outline-container-org8ec1bef" class="outline-3">
+<h3 id="org8ec1bef">Insert Mode</h3>
+<div class="outline-text-3" id="text-org8ec1bef">
+<p>
+When switched to <i>insert mode</i>, Vim behaves like any other conventional text
+editor you might have used. You can use character keys to input text and arrow
+keys to move around. Use the insert mode to enter text and nothing else.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcad6821" class="outline-3">
+<h3 id="orgcad6821">Lesson 3</h3>
+<div class="outline-text-3" id="text-orgcad6821">
+<p class="verse">
+Press <code>i</code> to switch to <i>insert mode</i>.<br />
+Press <code>&lt;Esc&gt;</code> to switch to <i>normal mode</i>.<br />
+</p>
+<p>
+Most of the magic in Vim happens in <b>normal mode</b>. Thus, unless you are actually
+entering text, be in normal mode. I can't stress this enough, actually I can,
+here's amendment to <b>Lesson 3</b>:
+</p>
+<p class="verse">
+Normally, be in <i>normal mode</i>.<br />
+</p>
+<p>
+Vim will tell you which mode you are in at bottom left corner of screen.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf7c80c" class="outline-3">
+<h3 id="orgcf7c80c">Achievement Unlocked: Nano Level</h3>
+<div class="outline-text-3" id="text-orgcf7c80c">
+<p>
+Congratulations, just like that you have gained enough skills to replace Nano
+(well almost, you still need to know how to search, cut and paste, but that's
+quite simple after this). You can now write commit message in Vim, do inline
+changes on production server<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> or set <code>crontab</code>. Here's a quick summary of
+what we have learned till now:
+</p>
+<ul class="org-ul">
+<li>hit <code>vim</code> to fire up Vim
+<ul class="org-ul">
+<li><code>vim &lt;filename&gt;</code> opens up the file to edit, if file doesn't exists, a new file
+is created.</li>
+</ul></li>
+<li>hit <code>i</code> to switch to insert mode</li>
+<li>In insert mode, Vim behaves like any other editor: use character keys to input
+text, arrow keys to move around.</li>
+<li>hit <code>&lt;Esc&gt;</code> to return back to <i>normal mode</i>.</li>
+<li>When not entering text, <b>be in normal mode</b>.</li>
+<li>hit
+<ul class="org-ul">
+<li><code>:q</code> to quit</li>
+<li><code>:q!</code> to quit discarding changes</li>
+<li><code>:w</code> to write file (save file)
+<ul class="org-ul">
+<li>writing file doesn't quit Vim, hit <code>:q</code> to quit after writing or <code>:wq</code>
+to write file and quit in one go.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>
+Go on, give Vim a spin. You may feel using it very cumbersome, but I assure after
+going through next couple of parts your productivity will be at par, if not more,
+than your current editor. You are going through a paradigm shift, it is not going
+to be easy.
+</p>
+
+<p>
+<a href="./3.html">Click here for part 3</a>
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+: Emacs took the path of having complex key combinations. Other editors decided either not to have those commands or hid them somewhere deep in menu.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+: This is never ever a good idea, do not do this. Use Vim for good, not stupid.
+</p></div></div>
+
+
+</div>
+</div><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/vim/2.html";

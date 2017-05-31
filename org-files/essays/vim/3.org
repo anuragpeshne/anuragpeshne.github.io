@@ -1,0 +1,12 @@
+#+TITLE: Vim: Moving Around
+#+DATE: 2017-05-30
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:modes:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 here]].
+
+* Go Mouseless!
