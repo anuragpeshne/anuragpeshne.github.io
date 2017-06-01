@@ -58,7 +58,7 @@ This is part 2 of a series of tutorial to Vim. You can read [[./1.org][Part 1 he
    - When not entering text, *be in normal mode*.
    - hit
      - ~:q~ to quit
-     - ~:q!~ to quit discarding changes
+     - ~:q!~ to quit, discarding changes
      - ~:w~ to write file (save file)
        - writing file doesn't quit Vim, hit ~:q~ to quit after writing or ~:wq~
          to write file and quit in one go.

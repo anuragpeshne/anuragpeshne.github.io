@@ -237,10 +237,219 @@ for the JavaScript code in this tag.
 This is part 3 of a series of tutorial to Vim. You can read <a href="./2.html">Part 2 here</a>.
 </p>
 
-<div id="outline-container-orgb478ab8" class="outline-2">
-<h2 id="orgb478ab8">Go Mouseless!</h2>
+<div id="outline-container-orgbb0b576" class="outline-2">
+<h2 id="orgbb0b576">Go Mouseless!</h2>
+<div class="outline-text-2" id="text-orgbb0b576">
+<p>
+Vim has hundreds of ways to navigate<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. You can move character by character, word
+by word, line, function, page among several other ways. You will soon release
+that you not only do not need mouse, in fact using mouse is expensive. It takes
+too much time to reach mouse, too much time to reach the precise location. Really,
+using mouse while programming is an anti-pattern.
+</p>
+
+<p>
+But not all editors are so keyboard friendly, there are shortcuts for common commands
+but for rest you need to use mouse to go deep into menu to find the button. You
+can use keyboard to do the same (using <code>&lt;alt&gt;+f</code>) but it is not a good experience.
+Vim treat keyboard as first class citizen. Every command is accessible via keyboard
+in an efficient way. Just press <code>:</code> and press tab for autocomplete.
+</p>
+
+<p>
+While Vim supports mouse too<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, I would highly encourage you to not enable
+those options and give mouseless operation a whole hearted try.
+</p>
 </div>
-<div id="disqus_thread"></div>
+</div>
+
+<div id="outline-container-org09b5737" class="outline-2">
+<h2 id="org09b5737">Be Lazy</h2>
+<div class="outline-text-2" id="text-org09b5737">
+</div><div id="outline-container-org76cdf0a" class="outline-3">
+<h3 id="org76cdf0a">Home Row</h3>
+<div class="outline-text-3" id="text-org76cdf0a">
+<p>
+Vim takes saving efforts to the extreme. It supports and encourages use of h, j,
+k, l to be used as arrow keys so that user do not have to leave home row.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">h</td>
+<td class="org-left">Left</td>
+</tr>
+
+<tr>
+<td class="org-left">j</td>
+<td class="org-left">Down</td>
+</tr>
+
+<tr>
+<td class="org-left">k</td>
+<td class="org-left">Up</td>
+</tr>
+
+<tr>
+<td class="org-left">l</td>
+<td class="org-left">Right</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgcd48651" class="outline-3">
+<h3 id="orgcd48651">Words</h3>
+<div class="outline-text-3" id="text-orgcd48651">
+<p>
+There is a better way to traverse a sentence than to go a character per stroke
+and that's word by word. Press <code>w</code> to jump to start of next <b>word</b>, <code>e</code> to go to
+<b>end</b> of word. If you want to jump complex word (word joined by a hyphen, like
+a super-word), use <code>W</code> and corresponding <code>E</code>.
+</p>
+
+<p>
+Going <b>back</b> is same using <code>b</code> and <code>B</code>.
+</p>
+</div>
+
+<div id="outline-container-org3ff36d2" class="outline-4">
+<h4 id="org3ff36d2">Composing</h4>
+<div class="outline-text-4" id="text-org3ff36d2">
+<p>
+Still, traversing a 20 word long sentence using <code>w</code> takes effort. Wouldn't
+it be better if we could directly jump to, say, 5th word. And that's where
+command composing comes into play. Simple press <code>5w</code> and you will jump 5 words.
+Of course, this is generic, you can put in any number followed by, as we'll see
+later, any command to execute that command that many times.
+So, <code>100b</code> takes use back 100 words.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba4fee2" class="outline-4">
+<h4 id="orgba4fee2">Some more line navigation</h4>
+<div class="outline-text-4" id="text-orgba4fee2">
+<ul class="org-ul">
+<li><code>$</code>: jump to end of line</li>
+<li><code>0</code>: jump to beginning of line (column 0)</li>
+<li><code>^</code>: jump to beginning of line skipping the whitespace
+<ul class="org-ul">
+<li><p>
+this one is especially useful while working with indented code.
+</p>
+<div class="org-src-container">
+<pre class="src src-javascript"><span class="linenr">1: </span><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">foo</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> (<span style="color: #DFAF8F;">arg</span>) {
+<span class="linenr">2: </span>    <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">fooClose</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> (<span style="color: #DFAF8F;">argClose</span>) {
+<span class="linenr">3: </span>        <span style="color: #F0DFAF; font-weight: bold;">if</span> (argClose == 2) {
+<span class="linenr">4: </span>            argClose += 2;
+<span class="linenr">5: </span>        }
+<span class="linenr">6: </span>    }
+<span class="linenr">7: </span>}
+</pre>
+</div>
+<p>
+Here pressing <code>^</code> anywhere on line 3 will take us to <code>if</code> rather than column 0.
+</p></li>
+</ul></li>
+</ul>
+</div>
+<ul class="org-ul"><li><a id="orgfba3fab"></a>Find<br /><div class="outline-text-5" id="text-orgfba3fab">
+<p>
+Even more power command if <code>f</code>. Hit <code>f</code> followed by character to directly jump
+to word starting with that character. Try this in Vim:
+</p>
+<pre class="example">
+humpty dumpty sat on a wall
+</pre>
+<p>
+Now while the cursor is on column 0<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, hit <code>fs</code>, your cursor should directly jump
+to "sat". What if there were multiple words with same start character:
+</p>
+<pre class="example">
+humpty dumpty sat on a west wall
+</pre>
+<p>
+No problem, you can compose find command: hit <code>2fw</code> to <b>find 2nd</b> <i>w</i>
+Also, to <i>find</i> a character backwards, use <code>F</code>. As, we'll see in future parts,
+this is a common style in Vim: to do something in reverse, use <code>&lt;shift&gt;</code> and
+the key.
+</p>
+</div></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org7e380c2" class="outline-3">
+<h3 id="org7e380c2">Jumpnig through the complete buffer</h3>
+<div class="outline-text-3" id="text-org7e380c2">
+<ul class="org-ul">
+<li><code>&lt;ctrl&gt;+u</code>: scroll <b>up</b></li>
+<li><code>&lt;ctrl&gt;+d</code>: scroll <b>down</b></li>
+<li><code>:&lt;number&gt;</code>: to jump to that line number
+<ul class="org-ul">
+<li>very handy while debugging or when compiler complaints about line number
+in source code, just hit <code>:31</code> to jump to line 31.</li>
+</ul></li>
+<li><code>gg</code>: go to beginning to buffer</li>
+<li><code>G</code>: go to end of buffer</li>
+<li><p>
+<code>gf</code>: go to file at path under cursor
+</p>
+<pre class="example">
+/etc/hosts
+</pre>
+<p>
+Just type those lines in Vim buffer, write file, and press <code>gf</code> while cursor
+is anywhere on path and see the magic.
+</p>
+<ul class="org-ul">
+<li>this is very handy while writing configuration scripts, or bash scripts.</li>
+</ul></li>
+<li><code>gd</code>: go to definition
+<ul class="org-ul">
+<li>poor man's jump to definition: use this to jump to first occurrence of a word.</li>
+</ul></li>
+</ul>
+
+<p>
+These are by no way comprehensive list of jumping commands. But a good point to
+start. You can find more ways of jumping easily online or, again, as we shall in
+future, in Vim help menu.
+</p>
+
+<p>
+<a href="./4.html">Click here for part 4</a>
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+I wouldn't be surprised if this is not actually an exaggeration
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://stackoverflow.com/questions/7225057/use-mouse-scroll-wheel-in-vim">Use mouse scroll wheel in Vim</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<code>f</code> starts <i>finding</i> from that location, so starting from column 0 gives us freedom of jumping to any word.
+</p></div></div>
+
+
+</div>
+</div><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/vim/3.html";

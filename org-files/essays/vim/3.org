@@ -10,3 +10,100 @@
 This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 here]].
 
 * Go Mouseless!
+  Vim has hundreds of ways to navigate[fn:1]. You can move character by character, word
+  by word, line, function, page among several other ways. You will soon release
+  that you not only do not need mouse, in fact using mouse is expensive. It takes
+  too much time to reach mouse, too much time to reach the precise location. Really,
+  using mouse while programming is an anti-pattern.
+
+  But not all editors are so keyboard friendly, there are shortcuts for common commands
+  but for rest you need to use mouse to go deep into menu to find the button. You
+  can use keyboard to do the same (using ~<alt>+f~) but it is not a good experience.
+  Vim treat keyboard as first class citizen. Every command is accessible via keyboard
+  in an efficient way. Just press ~:~ and press tab for autocomplete.
+
+  While Vim supports mouse too[fn:2], I would highly encourage you to not enable
+  those options and give mouseless operation a whole hearted try.
+
+* Be Lazy
+** Home Row
+  Vim takes saving efforts to the extreme. It supports and encourages use of h, j,
+  k, l to be used as arrow keys so that user do not have to leave home row.
+  | h | Left  |
+  | j | Down  |
+  | k | Up    |
+  | l | Right |
+
+** Words
+   There is a better way to traverse a sentence than to go a character per stroke
+   and that's word by word. Press ~w~ to jump to start of next *word*, ~e~ to go to
+   *end* of word. If you want to jump complex word (word joined by a hyphen, like
+   a super-word), use ~W~ and corresponding ~E~.
+
+   Going *back* is same using ~b~ and ~B~.
+
+*** Composing
+    Still, traversing a 20 word long sentence using ~w~ takes effort. Wouldn't
+    it be better if we could directly jump to, say, 5th word. And that's where
+    command composing comes into play. Simple press ~5w~ and you will jump 5 words.
+    Of course, this is generic, you can put in any number followed by, as we'll see
+    later, any command to execute that command that many times.
+    So, ~100b~ takes use back 100 words.
+
+*** Some more line navigation
+    - ~$~: jump to end of line
+    - ~0~: jump to beginning of line (column 0)
+    - ~^~: jump to beginning of line skipping the whitespace
+      - this one is especially useful while working with indented code.
+        #+BEGIN_SRC javascript -n
+        var foo = function (arg) {
+            var fooClose = function (argClose) {
+                if (argClose == 2) {
+                    argClose += 2;
+                }
+            }
+        }
+        #+END_SRC
+        Here pressing ~^~ anywhere on line 3 will take us to ~if~ rather than column 0.
+**** Find
+     Even more power command if ~f~. Hit ~f~ followed by character to directly jump
+     to word starting with that character. Try this in Vim:
+     #+BEGIN_EXAMPLE
+     humpty dumpty sat on a wall
+     #+END_EXAMPLE
+     Now while the cursor is on column 0[fn:3], hit ~fs~, your cursor should directly jump
+     to "sat". What if there were multiple words with same start character:
+     #+BEGIN_EXAMPLE
+     humpty dumpty sat on a west wall
+     #+END_EXAMPLE
+     No problem, you can compose find command: hit ~2fw~ to *find 2nd* /w/
+     Also, to /find/ a character backwards, use ~F~. As, we'll see in future parts,
+     this is a common style in Vim: to do something in reverse, use ~<shift>~ and
+     the key.
+
+** Jumpnig through the complete buffer
+   - ~<ctrl>+u~: scroll *up*
+   - ~<ctrl>+d~: scroll *down*
+   - ~:<number>~: to jump to that line number
+     - very handy while debugging or when compiler complaints about line number
+       in source code, just hit ~:31~ to jump to line 31.
+   - ~gg~: go to beginning to buffer
+   - ~G~: go to end of buffer
+   - ~gf~: go to file at path under cursor
+     #+BEGIN_EXAMPLE
+     /etc/hosts
+     #+END_EXAMPLE
+     Just type those lines in Vim buffer, write file, and press ~gf~ while cursor
+     is anywhere on path and see the magic.
+     - this is very handy while writing configuration scripts, or bash scripts.
+   - ~gd~: go to definition
+     - poor man's jump to definition: use this to jump to first occurrence of a word.
+
+  These are by no way comprehensive list of jumping commands. But a good point to
+  start. You can find more ways of jumping easily online or, again, as we shall in
+  future, in Vim help menu.
+
+   [[./4.org][Click here for part 4]]
+[fn:1] I wouldn't be surprised if this is not actually an exaggeration
+[fn:2] [[https://stackoverflow.com/questions/7225057/use-mouse-scroll-wheel-in-vim][Use mouse scroll wheel in Vim]]
+[fn:3] ~f~ starts /finding/ from that location, so starting from column 0 gives us freedom of jumping to any word.
