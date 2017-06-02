@@ -50,6 +50,12 @@ This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 he
     later, any command to execute that command that many times.
     So, ~100b~ takes use back 100 words.
 
+**** Lesson 4
+     #+BEGIN_VERSE
+     number followed by command executes the command that many times.
+     #+END_VERSE
+     Example:
+     - ~5j~ will traverse down 5 lines.
 *** Some more line navigation
     - ~$~: jump to end of line
     - ~0~: jump to beginning of line (column 0)
@@ -96,8 +102,40 @@ This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 he
      Just type those lines in Vim buffer, write file, and press ~gf~ while cursor
      is anywhere on path and see the magic.
      - this is very handy while writing configuration scripts, or bash scripts.
+     - This opens up a new /buffer/, we'll see how to manage buffers in later parts,
+       for now, you can use ~:bp~ (buffer previous) to return to previous buffer.
    - ~gd~: go to definition
      - poor man's jump to definition: use this to jump to first occurrence of a word.
+* Summary
+  | Command    | Comment                                                                         |
+  |------------+---------------------------------------------------------------------------------|
+  | h          | left                                                                            |
+  | j          | down                                                                            |
+  | k          | up                                                                              |
+  | l          | right                                                                           |
+  |------------+---------------------------------------------------------------------------------|
+  | w          | next *word*                                                                     |
+  | W          | next complex/big *Word*                                                         |
+  | b          | *back*: previous word                                                           |
+  | B          | *Back*: previous big/complex word                                               |
+  | f          | *find* character                                                                |
+  | F          | *find* character backwards                                                      |
+  |------------+---------------------------------------------------------------------------------|
+  | $          | end of line                                                                     |
+  | 0          | beginning of line, *column 0*                                                   |
+  | ^          | beginning of line ignoring whitespace                                           |
+  | A          | *Append*: goto end of line and switch to *insert mode*                          |
+  | I          | *Insert*: goto to start of line ignoring whitespace and switch to *insert mode* |
+  |------------+---------------------------------------------------------------------------------|
+  | <ctrl> + u | scroll *up* half page                                                           |
+  | <ctrl> + d | scroll *down* half page                                                         |
+  |------------+---------------------------------------------------------------------------------|
+  | ~:n~       | jump to *nth line*                                                              |
+  | ~gg~       | goto to *start of buffer*                                                       |
+  | ~G~        | goto to *end of buffer*                                                         |
+  | ~gf~       | goto file                                                                       |
+  | ~gd~       | goto definition                                                                 |
+  |------------+---------------------------------------------------------------------------------|
 
   These are by no way comprehensive list of jumping commands. But a good point to
   start. You can find more ways of jumping easily online or, again, as we shall in

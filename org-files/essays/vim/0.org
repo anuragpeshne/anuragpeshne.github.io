@@ -11,6 +11,7 @@
      - substitute
      - regex
        - capture
+     - Undo, redo
   5. ~vimrc~
      - config
      - Relative line number
@@ -19,22 +20,23 @@
      - Package Manager
      - A short note on VimL
   6. More moving around (~%~, ~[]~, ~[[]]~, ~ctrl+]~, TAGS, ~g + ctrl + ]~, ~ctrl + t~
-  7. Registers
+  7. Panes, windows, tabs, buffers
+  8. Registers
      - multiple paste
      - Marks
-  8. Insert Mode
+  9. Insert Mode
      - ~ctrl + o~
      - ~ctrl + r~ to paste
-  9. Macros
-     - ~q~
-     - ~10@q~
-     - ~.~
-     - ~@@~
-  10. Power of *g*, range, Visual Mode
-  11. Misc
+  10. Macros
+      - ~q~
+      - ~10@q~
+      - ~.~
+      - ~@@~
+  11. Power of *g*, range, Visual Mode
+  12. Misc
       - ~gf~
       - ~gd~
       - ~xxd!~
       - ~:r~
       - ~:!~
-  12. Vim Diff
+  13. Vim Diff

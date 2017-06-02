@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vim: Moving Around</title>
+<title>Vim: Text Manipulation</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Anurag Peshne" />
 <style type="text/css">
@@ -226,53 +226,77 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/3.html" />
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/4.html" />
 </head>
 <body>
 <div id="content">
-<h1 class="title">Vim: Moving Around</h1>
+<h1 class="title">Vim: Text Manipulation</h1>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
 <p>
-This is part 3 of a series of tutorial to Vim. You can read <a href="./2.html">Part 2 here</a>.
+This is part 4 of a series of tutorial to Vim. You can read <a href="./3.html">Part 3 here</a>.
 </p>
 
-<div id="outline-container-org8bb54f8" class="outline-2">
-<h2 id="org8bb54f8">Go Mouseless!</h2>
-<div class="outline-text-2" id="text-org8bb54f8">
+<div id="outline-container-orgd8ed54b" class="outline-2">
+<h2 id="orgd8ed54b">Copy and Paste</h2>
+<div class="outline-text-2" id="text-orgd8ed54b">
 <p>
-Vim has hundreds of ways to navigate<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. You can move character by character, word
-by word, line, function, page among several other ways. You will soon release
-that you not only do not need mouse, in fact using mouse is expensive. It takes
-too much time to reach mouse, too much time to reach the precise location. Really,
-using mouse while programming is an anti-pattern.
+Moving around text is probably the most used operation used in any text editor.
+As you might have guessed, there are couple of ways to do these operations in Vim.
 </p>
-
-<p>
-But not all editors are so keyboard friendly, there are shortcuts for common commands
-but for rest you need to use mouse to go deep into menu to find the button. You
-can use keyboard to do the same (using <code>&lt;alt&gt;+f</code>) but it is not a good experience.
-Vim treat keyboard as first class citizen. Every command is accessible via keyboard
-in an efficient way. Just press <code>:</code> and press tab for autocomplete.
+</div>
+<div id="outline-container-orge4a0f81" class="outline-3">
+<h3 id="orge4a0f81">Lesson 5</h3>
+<div class="outline-text-3" id="text-orge4a0f81">
+<p class="verse">
+In Vim's lingo copying is yanking.<br />
+You <i>yank</i> a line.<br />
 </p>
-
-<p>
-While Vim supports mouse too<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, I would highly encourage you to not enable
-those options and give mouseless operation a whole hearted try.
-</p>
+<ul class="org-ul">
+<li>Hit <code>y</code> to yank; Yank takes in range-characters, words or lines. Hit <code>y3w</code> to
+copy 3 words. <code>y10j</code> (or <code>y10&lt;downarrow&gt;</code>) to yank 10 below lines. All the motion
+commands which we learned <a href="./3.html">last time</a> can be combined with <code>y</code>.
+<ul class="org-ul">
+<li><code>yy</code> yanks the whole current line.</li>
+<li><code>y&lt;rightarrow&gt;</code> will yank just one character on the right.</li>
+</ul></li>
+<li><code>d</code> to delete stuff. Deleting not only removes text from buffer, it adds it to
+clipboard<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. So <code>d</code> can be used to delete as well as to <i>cut</i>.
+<ul class="org-ul">
+<li><code>dd</code> deletes current whole line.</li>
+<li><code>x</code> will delete one character below the cursor.</li>
+<li><code>xp</code> will exchange characters, try it to see what I mean.</li>
+</ul></li>
+<li><code>p</code> to paste stuff. You can use <code>p</code> to paste to right/below and <code>P</code> to paste
+above/before.</li>
+<li>All of them, <code>y</code>, <code>d</code>, <code>p</code>, can be combined with any motion commands.</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-orgda38261" class="outline-2">
-<h2 id="orgda38261">Be Lazy</h2>
-<div class="outline-text-2" id="text-orgda38261">
-</div><div id="outline-container-orgaa6ff72" class="outline-3">
-<h3 id="orgaa6ff72">Home Row</h3>
-<div class="outline-text-3" id="text-orgaa6ff72">
+<div id="outline-container-org2661646" class="outline-3">
+<h3 id="org2661646">Till, In and Around</h3>
+<div class="outline-text-3" id="text-org2661646">
 <p>
-Vim takes saving efforts to the extreme. It supports and encourages use of h, j,
-k, l to be used as arrow keys so that user do not have to leave home row.
+Let me tell you about 3 more motion commands which fit beautifully with yank and delete.
 </p>
+<div class="org-src-container">
+<pre class="src src-c"><span class="linenr">1: </span><span style="color: #6434A3;">int</span> <span style="color: #006699;">foo</span>(<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span>, <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">b</span>, <span style="color: #6434A3;">char</span> *<span style="color: #BA36A5;">str</span>) {
+<span class="linenr">2: </span>    a += b;
+<span class="linenr">3: </span>    str[0] = <span style="color: #008000;">'d'</span>;
+<span class="linenr">4: </span>    <span style="color: #0000FF;">return</span> a;
+<span class="linenr">5: </span>}
+</pre>
+</div>
+<ol class="org-ol">
+<li><code>t&lt;char&gt;</code> (<b>till</b>): it will give you text <i>till</i> the first character is encountered</li>
+<li><code>i&lt;bracket&gt;</code> (<b>in</b>): it will give you text in/inside the brackets
+<ul class="org-ul">
+<li>I've used this only with brackets, it may work with other characters which I'm
+unaware of.</li>
+</ul></li>
+<li><code>a&lt;bracket&gt;</code> (<b>a</b> / <b>around</b>): gives back text inside bracket <b>along</b> with the</li>
+</ol>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -280,163 +304,54 @@ k, l to be used as arrow keys so that user do not have to leave home row.
 <col  class="org-left" />
 
 <col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
 </colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Initial Position</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Comment</th>
+<th scope="col" class="org-left">Resulting line</th>
+<th scope="col" class="org-left">Clipboard</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="org-left">h</td>
-<td class="org-left">Left</td>
+<td class="org-left">line 1, column 0</td>
+<td class="org-left"><code>dta</code></td>
+<td class="org-left">delete <b>till</b> a</td>
+<td class="org-left"><code>a, int b, char *str) {</code></td>
+<td class="org-left"><code>int foo(int a</code></td>
 </tr>
 
 <tr>
-<td class="org-left">j</td>
-<td class="org-left">Down</td>
+<td class="org-left">line 1, inside '('</td>
+<td class="org-left"><code>yi(</code></td>
+<td class="org-left">yanks arguments inside '('</td>
+<td class="org-left"><i>not changed</i> since we are yanking</td>
+<td class="org-left"><code>int a, int b, char *str</code></td>
 </tr>
 
 <tr>
-<td class="org-left">k</td>
-<td class="org-left">Up</td>
-</tr>
-
-<tr>
-<td class="org-left">l</td>
-<td class="org-left">Right</td>
+<td class="org-left">anywhere in lines 2 to 4</td>
+<td class="org-left"><code>da{</code></td>
+<td class="org-left">deletes everything inside {&#x2026;} (body of function)</td>
+<td class="org-left"><code>int foo(int a, int b, char *str) {</code></td>
+<td class="org-left">complete function body</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-
-<div id="outline-container-orgc4ff405" class="outline-3">
-<h3 id="orgc4ff405">Words</h3>
-<div class="outline-text-3" id="text-orgc4ff405">
-<p>
-There is a better way to traverse a sentence than to go a character per stroke
-and that's word by word. Press <code>w</code> to jump to start of next <b>word</b>, <code>e</code> to go to
-<b>end</b> of word. If you want to jump complex word (word joined by a hyphen, like
-a super-word), use <code>W</code> and corresponding <code>E</code>.
-</p>
-
-<p>
-Going <b>back</b> is same using <code>b</code> and <code>B</code>.
-</p>
 </div>
-
-<div id="outline-container-org42344e2" class="outline-4">
-<h4 id="org42344e2">Composing</h4>
-<div class="outline-text-4" id="text-org42344e2">
-<p>
-Still, traversing a 20 word long sentence using <code>w</code> takes effort. Wouldn't
-it be better if we could directly jump to, say, 5th word. And that's where
-command composing comes into play. Simple press <code>5w</code> and you will jump 5 words.
-Of course, this is generic, you can put in any number followed by, as we'll see
-later, any command to execute that command that many times.
-So, <code>100b</code> takes use back 100 words.
-</p>
-</div>
-
-<ul class="org-ul"><li><a id="orgaaa990d"></a>Lesson 4<br /><div class="outline-text-5" id="text-orgaaa990d">
-<p class="verse">
-number followed by command executes the command that many times.<br />
-</p>
-<p>
-Example:
-</p>
-<ul class="org-ul">
-<li><code>5j</code> will traverse down 5 lines.</li>
-</ul>
-</div></li></ul>
-</div>
-<div id="outline-container-orgefd99dc" class="outline-4">
-<h4 id="orgefd99dc">Some more line navigation</h4>
-<div class="outline-text-4" id="text-orgefd99dc">
-<ul class="org-ul">
-<li><code>$</code>: jump to end of line</li>
-<li><code>0</code>: jump to beginning of line (column 0)</li>
-<li><code>^</code>: jump to beginning of line skipping the whitespace
-<ul class="org-ul">
-<li><p>
-this one is especially useful while working with indented code.
-</p>
-<div class="org-src-container">
-<pre class="src src-javascript"><span class="linenr">1: </span><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">foo</span> = <span style="color: #0000FF;">function</span> (<span style="color: #BA36A5;">arg</span>) {
-<span class="linenr">2: </span>    <span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">fooClose</span> = <span style="color: #0000FF;">function</span> (<span style="color: #BA36A5;">argClose</span>) {
-<span class="linenr">3: </span>        <span style="color: #0000FF;">if</span> (argClose == 2) {
-<span class="linenr">4: </span>            argClose += 2;
-<span class="linenr">5: </span>        }
-<span class="linenr">6: </span>    }
-<span class="linenr">7: </span>}
-</pre>
-</div>
-<p>
-Here pressing <code>^</code> anywhere on line 3 will take us to <code>if</code> rather than column 0.
-</p></li>
-</ul></li>
-</ul>
-</div>
-<ul class="org-ul"><li><a id="orge67feef"></a>Find<br /><div class="outline-text-5" id="text-orge67feef">
-<p>
-Even more power command if <code>f</code>. Hit <code>f</code> followed by character to directly jump
-to word starting with that character. Try this in Vim:
-</p>
-<pre class="example">
-humpty dumpty sat on a wall
-</pre>
-<p>
-Now while the cursor is on column 0<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, hit <code>fs</code>, your cursor should directly jump
-to "sat". What if there were multiple words with same start character:
-</p>
-<pre class="example">
-humpty dumpty sat on a west wall
-</pre>
-<p>
-No problem, you can compose find command: hit <code>2fw</code> to <b>find 2nd</b> <i>w</i>
-Also, to <i>find</i> a character backwards, use <code>F</code>. As, we'll see in future parts,
-this is a common style in Vim: to do something in reverse, use <code>&lt;shift&gt;</code> and
-the key.
-</p>
-</div></li></ul>
-</div>
-</div>
-
-<div id="outline-container-orgdef5f26" class="outline-3">
-<h3 id="orgdef5f26">Jumpnig through the complete buffer</h3>
-<div class="outline-text-3" id="text-orgdef5f26">
-<ul class="org-ul">
-<li><code>&lt;ctrl&gt;+u</code>: scroll <b>up</b></li>
-<li><code>&lt;ctrl&gt;+d</code>: scroll <b>down</b></li>
-<li><code>:&lt;number&gt;</code>: to jump to that line number
-<ul class="org-ul">
-<li>very handy while debugging or when compiler complaints about line number
-in source code, just hit <code>:31</code> to jump to line 31.</li>
-</ul></li>
-<li><code>gg</code>: go to beginning to buffer</li>
-<li><code>G</code>: go to end of buffer</li>
-<li><p>
-<code>gf</code>: go to file at path under cursor
-</p>
-<pre class="example">
-/etc/hosts
-</pre>
-<p>
-Just type those lines in Vim buffer, write file, and press <code>gf</code> while cursor
-is anywhere on path and see the magic.
-</p>
-<ul class="org-ul">
-<li>this is very handy while writing configuration scripts, or bash scripts.</li>
-<li>This opens up a new <i>buffer</i>, we'll see how to manage buffers in later parts,
-for now, you can use <code>:bp</code> (buffer previous) to return to previous buffer.</li>
-</ul></li>
-<li><code>gd</code>: go to definition
-<ul class="org-ul">
-<li>poor man's jump to definition: use this to jump to first occurrence of a word.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org164e588" class="outline-2">
-<h2 id="org164e588">Summary</h2>
-<div class="outline-text-2" id="text-org164e588">
+<div id="outline-container-org207bc3b" class="outline-2">
+<h2 id="org207bc3b">Summary</h2>
+<div class="outline-text-2" id="text-org207bc3b">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -453,130 +368,52 @@ for now, you can use <code>:bp</code> (buffer previous) to return to previous bu
 </thead>
 <tbody>
 <tr>
-<td class="org-left">h</td>
-<td class="org-left">left</td>
+<td class="org-left"><code>y</code></td>
+<td class="org-left"><b>yank</b>, copy</td>
 </tr>
 
 <tr>
-<td class="org-left">j</td>
-<td class="org-left">down</td>
+<td class="org-left"><code>d</code></td>
+<td class="org-left"><b>delete</b> to delete as well as <i>cut</i></td>
 </tr>
 
 <tr>
-<td class="org-left">k</td>
-<td class="org-left">up</td>
+<td class="org-left"><code>p</code></td>
+<td class="org-left"><b>paste</b></td>
 </tr>
 
 <tr>
-<td class="org-left">l</td>
-<td class="org-left">right</td>
+<td class="org-left"><code>P</code></td>
+<td class="org-left">paste above/before</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x</code></td>
+<td class="org-left">delete character below cursor</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left">w</td>
-<td class="org-left">next <b>word</b></td>
+<td class="org-left"><code>t&lt;char&gt;</code></td>
+<td class="org-left">do x <b>till</b> first instance of character 'char'</td>
 </tr>
 
 <tr>
-<td class="org-left">W</td>
-<td class="org-left">next complex/big <b>Word</b></td>
+<td class="org-left"><code>i&lt;brac&gt;</code></td>
+<td class="org-left">do x to text <b>inside</b> enclosing bracket 'brac', works with {, [, (, &lt;</td>
 </tr>
 
 <tr>
-<td class="org-left">b</td>
-<td class="org-left"><b>back</b>: previous word</td>
-</tr>
-
-<tr>
-<td class="org-left">B</td>
-<td class="org-left"><b>Back</b>: previous big/complex word</td>
-</tr>
-
-<tr>
-<td class="org-left">f</td>
-<td class="org-left"><b>find</b> character</td>
-</tr>
-
-<tr>
-<td class="org-left">F</td>
-<td class="org-left"><b>find</b> character backwards</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">$</td>
-<td class="org-left">end of line</td>
-</tr>
-
-<tr>
-<td class="org-left">0</td>
-<td class="org-left">beginning of line, <b>column 0</b></td>
-</tr>
-
-<tr>
-<td class="org-left">^</td>
-<td class="org-left">beginning of line ignoring whitespace</td>
-</tr>
-
-<tr>
-<td class="org-left">A</td>
-<td class="org-left"><b>Append</b>: goto end of line and switch to <b>insert mode</b></td>
-</tr>
-
-<tr>
-<td class="org-left">I</td>
-<td class="org-left"><b>Insert</b>: goto to start of line ignoring whitespace and switch to <b>insert mode</b></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">&lt;ctrl&gt; + u</td>
-<td class="org-left">scroll <b>up</b> half page</td>
-</tr>
-
-<tr>
-<td class="org-left">&lt;ctrl&gt; + d</td>
-<td class="org-left">scroll <b>down</b> half page</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>:n</code></td>
-<td class="org-left">jump to <b>nth line</b></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>gg</code></td>
-<td class="org-left">goto to <b>start of buffer</b></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>G</code></td>
-<td class="org-left">goto to <b>end of buffer</b></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>gf</code></td>
-<td class="org-left">goto file</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>gd</code></td>
-<td class="org-left">goto definition</td>
+<td class="org-left"><code>a&lt;brac&gt;</code></td>
+<td class="org-left">ditto as above, includes the bracket too in capture</td>
 </tr>
 </tbody>
 </table>
-
-<p>
-These are by no way comprehensive list of jumping commands. But a good point to
-start. You can find more ways of jumping easily online or, again, as we shall in
-future, in Vim help menu.
-</p>
-
-<p>
-<a href="./4.html">Click here for part 4</a>
-</p>
+<ul class="org-ul">
+<li>Yank, delete and paste can be combined with other motion commands</li>
+<li>'till', 'around', 'in' are your friends, remember them, specially when dealing
+with function arguments, HTML and languages which use '{' to enclose blocks.</li>
+</ul>
 </div>
 </div>
 <div id="footnotes">
@@ -584,15 +421,7 @@ future, in Vim help menu.
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-I wouldn't be surprised if this is not actually an exaggeration
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://stackoverflow.com/questions/7225057/use-mouse-scroll-wheel-in-vim">Use mouse scroll wheel in Vim</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-<code>f</code> starts <i>finding</i> from that location, so starting from column 0 gives us freedom of jumping to any word.
+not actually clipboard but registers, as we'll shall see.
 </p></div></div>
 
 
@@ -600,8 +429,8 @@ I wouldn't be surprised if this is not actually an exaggeration
 </div><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-this.page.url = "https://anuragpeshne.github.io/essays/vim/3.html";
-this.page.identifier = "/essays/vim/3.html";
+this.page.url = "https://anuragpeshne.github.io/essays/vim/4.html";
+this.page.identifier = "/essays/vim/4.html";
 };
     (function() {  // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
@@ -614,7 +443,7 @@ this.page.identifier = "/essays/vim/3.html";
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
 <div id="postamble" class="status">
-<p class="date">Date: 2017-05-30</p>
+<p class="date">Date: 2017-06-1</p>
 <p class="author">Author: Anurag Peshne</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.6)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
