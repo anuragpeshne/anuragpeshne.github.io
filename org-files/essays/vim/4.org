@@ -45,12 +45,12 @@ This is part 4 of a series of tutorial to Vim. You can read [[./3.org][Part 3 he
       - I've used this only with brackets, it may work with other characters which I'm
         unaware of.
    3. ~a<bracket>~ (*a* / *around*): gives back text inside bracket *along* with the
-   | Initial Position         | Command | Comment                                            | Resulting line                       | Clipboard                 |
-   |--------------------------+---------+----------------------------------------------------+--------------------------------------+---------------------------|
-   | line 1, column 0         | ~dta~   | delete *till* a                                    | ~a, int b, char *str) {~             | ~int foo(int a~           |
-   | line 1, inside '('       | ~yi(~   | yanks arguments inside '('                         | /not changed/ since we are yanking   | ~int a, int b, char *str~ |
-   | anywhere in lines 2 to 4 | ~da{~   | deletes everything inside {...} (body of function) | ~int foo(int a, int b, char *str) {~ | complete function body    |
-   |--------------------------+---------+----------------------------------------------------+--------------------------------------+---------------------------|
+   | Initial Position         | Command | Comment                                                          | Resulting line                      | Clipboard                  |
+   |--------------------------+---------+------------------------------------------------------------------+-------------------------------------+----------------------------|
+   | line 1, column 0         | ~dta~   | delete *till* a                                                  | ~a, int b, char *str) {~            | ~int foo(int a~            |
+   | line 1, inside '('       | ~yi(~   | yanks arguments inside '('                                       | /not changed/ since we are yanking  | ~int a, int b, char *str~  |
+   | anywhere in lines 2 to 4 | ~da{~   | deletes everything inside and including {...} (body of function) | ~int foo(int a, int b, char *str) ~ | { complete function body } |
+   |--------------------------+---------+------------------------------------------------------------------+-------------------------------------+----------------------------|
 * Summary
   | Command   | Comment                                                               |
   |-----------+-----------------------------------------------------------------------|
@@ -67,5 +67,7 @@ This is part 4 of a series of tutorial to Vim. You can read [[./3.org][Part 3 he
   - Yank, delete and paste can be combined with other motion commands
   - 'till', 'around', 'in' are your friends, remember them, specially when dealing
     with function arguments, HTML and languages which use '{' to enclose blocks.
+
+   [[./5.org][Click here for part 5]]
 
 [fn:1] not actually clipboard but registers, as we'll shall see.

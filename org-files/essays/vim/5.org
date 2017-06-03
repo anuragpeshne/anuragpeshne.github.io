@@ -1,0 +1,62 @@
+#+TITLE: Vim: Searching
+#+DATE: 2017-06-3
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:search:substitute:regex:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 here]].
+
+* ~/~ (Search)
+  If you ever found yourself using a program which shows text in terminal, and you
+  want to search something, the first guess you want to make is ~/~. The key ~/~
+  will work for several programs: less, more[fn:1], tmux[fn:2], even Firefox.
+  So, to put it formally, the way to search is press ~/~ (obviously in normal mode),
+  type in keywords you want to search for and hit return (enter).
+
+** Lesson 6
+  #+BEGIN_VERSE
+  ~/~ searches for keywords.
+
+  ~/~ works for searching in several other programs including less, more, ~git status~,
+  Firefox. When in doubt, press ~/~ to search in an unfamiliar program.
+  #+END_VERSE
+
+  - Very soon, we'll boost Vim to enable fancy features such as eager search-searching
+  as we enter keywords, highlighting all the matched words, etcetera.
+  - Press ~n~ to jump to next matched item.
+    - ~N~ to go to previous matched item (adding shift reverses the action)
+
+** Regex
+   No search system is worth its salt if doesn't support regex. Vim considers it's
+   user to be power users and enables regex by default. The symbols might be a different
+   from what you are used to but you will find them all. If you are unfamiliar with
+   Regular Expressions, also called 'regex', here's a 5 line crash course on regex:
+   1. Regex are patterns of characters used to match strings which conform to certain
+      well defined pattern.
+   2. ~*~ is a greedy quantifier, it will patch 0 or more character preceding it
+      - Example will illustrate this better:
+        - ~ba*~ will match 'b', 'ba', 'baa', 'baaa', 'baaaaaaaaaaaa', ...
+      - ~+~ is same as ~*~, instead it matches 1 or more
+        - ~ba+~ will match 'ba', 'baaa' but not 'b'
+   3. ~.~ will match any single character
+      - ~b.t~ will match any of 'bit', 'bat', 'but', 'bot', 'b4t', 'b%t', ...
+   4. Characters except quantifiers as shown above (there are more than these),
+      match to themself.
+      - ~help~ will match 'help', nothing else
+      - To search for characters which denote quantifiers, you have to /escape/ them
+        using a backslash ~\\~
+      - ~bit\.~ will match just 'bit.' and nothing else.
+   5. ~[...]~ will match any one of the characters inside '[' and ']'
+      - ~[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]~ will match any single digit
+      - above rule can be shorten as ~[0-9]~ similar to ~[a-zA-Z]~ to match characters
+        in range a-z.
+      - append a ~+~ and you have regex rule to search for numbers greater than 9.
+
+   If you are into Automata theory, Vim's supports regex which is more powerful
+   than Regular Languages-it supports positive look ahead, negative look behind etc.
+   It also supports capturing, which is discussed next.
+
+* Substitute on Steriods
