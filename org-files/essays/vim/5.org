@@ -56,22 +56,95 @@ This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 he
         in range a-z.
       - append a ~+~ and you have regex rule to search for numbers greater than 9.
 
-   Vim's supports regex which is more powerful than Regular Languages-it supports
-   positive look ahead, negative look behind etc. It also supports capturing and
-   back referencing, which is discussed next.
+   Vim supports much more regex rules than what's stated above, its language is bigger
+   than Regular Languages-it supports positive look ahead, negative look behind etc[fn:2].
+   It also supports capturing and back referencing, which is discussed next.
 
 * Substitute on Steriods
-  The way to replace ~foo~ with ~bar~ in Vim would be:
+  The way to replace ~foo~ with ~bar~ in Vim is:
   #+BEGIN_SRC viml
   :%s/foo/bar/gc
   #+END_SRC
-  Now, one might think that too much work for substituting in Vim since in other editors
+  Now, one might think that's too complex for substituting since in most of other editors
   you can simply press ~<ctrl>+r~, ~foo~ and ~bar~. But, if you spend enough time
   with Vim, you will realize Vim has generic command patterns and substitute is just
   following that. Once you get hang of the generic pattern, apply any command is actually
   very simply.
 
-  Here:
+  Let's dissect the substitute command:
+  #+BEGIN_SRC viml
+  :%s/foo/bar/gc
+  #+END_SRC
+  - ~:~ tells vim to accept command
+  - ~%~ runs command over the whole file
+    - we could have specified other range explicitly such as ~12,34~ (from line 12 to 34)
+    - stating range is very helpful in places where you want to target the substitution.
+      - it may help to eliminate the ~c~ flag, and thus the labor of pressing 'y'
+        for each subsitution
+  - ~s~ s stands for substitute, since that's what we are doing here
+    - we'll also look at more powerful command ~g~ later
+  - ~foo~ what we are searching for
+  - ~bar~ what to substitute with
+  - ~g~ and ~c~ are *optional* flags which mean
+    - ~g~ global: substitute multiple instances of ~foo~ on same line
+    - ~c~ confirm: prompt for confirmation before substituting.
+    - these flags one needs most of the time, but not always.
+
+*** Regex
+    - Regular Expression can be very helpful for substitution too. You can 'capture'
+      patterns and then later use them while substituting.
+    - Here's an example:
+      #+BEGIN_SRC javascript -n
+      var fun1 = function () {
+                    return "I am fun1";
+                 };
+      var fun2 = function () {
+                    return "I am fun2";
+                 };
+      var fun3 = function () {
+                    return "I am fun3";
+                 };
+      #+END_SRC
+      - suppose we want to refactor ~var funx = function () {~ to ~function funx() {~,
+        we could use regex to capture the varying part and use that in substitute.
+      - So, let's write regex for capturing funx: ~var (\w+) = function () {~
+        - by capturing a pattern, we can 'back reference' it later.
+        - we can back reference captured patterns, using \1 for first, \2 for second and so on.
+      - thus we can refactor by executing:
+        #+BEGIN_SRC viml
+        :%s/var \(\w\+\) = function () {/function \1 () {/
+               |←regex→|                          | |
+                                                   ↪ Backreference
+           |       ←    old   →        ||   ← new →      |
+        #+END_SRC
+        - Expression labeled as 'regex' is actually regex capturing pattern.
+        - In ~(\w+)~, we have to /escape/ ~(~, ~+~ and ~)~. Without escaping, Vim would
+          try to match them with literal characters '(', '+' and ')'.
+      - Just to illustrate the convenience of specifying the range, consider a slightly
+        different problem: we want to refactor the first two functions only. There
+        are two ways of doing it:
+        1. we can append ~c~ flag to prompt us before every substitution, so that we
+          can say 'no' when it tries to substitute the third time.
+          - but what happens if there are 100 functions before ~fun1~, we'll have
+            to hit ~n~ 100 times just to reach ~fun1~
+        2. we can specify the exact range.
+          - here, it will be ~1,6~[fn:3]. Thus the command can be re written as:
+            #+BEGIN_SRC viml
+            :1,6s/var \(\w\+\) = function () {/function \1 () {/
+            #+END_SRC
+*** Lesson 7
+    #+BEGIN_VERSE
+    Substitute command
+    ~:[range]s/<old>/<new>/[optional flags]~
+
+    Specifying precise range is better than ~c~ flag. It saves unintentional changes and manual work.
+
+    Remember to use regular expressing and capture the patterns which differ. Use back referencing to refer captured expression and then use them while substituting.
+    #+END_VERSE
+
+   [[./6.org][Click here for part 6]]
 
 [fn:0] I'm not entirely sure, if other programs have Vim's binding or Vim picked up famous bindings
 [fn:1] [[https://tmux.github.io/][tmux]] is Terminal Multiplexer, it pairs very well with Vim to make a complete Development environment.
+[fn:2] This site: [[http://www.vimregex.com/]], should satisfy all your hunger for advanced regex rules.
+[fn:3] ~1,4~ would have been more precise.
