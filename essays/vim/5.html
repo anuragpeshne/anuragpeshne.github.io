@@ -237,9 +237,9 @@ for the JavaScript code in this tag.
 This is part 5 of a series of tutorial to Vim. You can read <a href="./4.html">Part 4 here</a>.
 </p>
 
-<div id="outline-container-org7b5558f" class="outline-2">
-<h2 id="org7b5558f"><code>/</code></h2>
-<div class="outline-text-2" id="text-org7b5558f">
+<div id="outline-container-orgc3b0559" class="outline-2">
+<h2 id="orgc3b0559"><code>/</code></h2>
+<div class="outline-text-2" id="text-orgc3b0559">
 <p>
 If you ever found yourself using a program which shows text in terminal, and you
 want to search something, the first guess you want to make is <code>/</code>. The key <code>/</code>
@@ -249,9 +249,9 @@ followed by keywords you want to search for and then hit return (enter).
 </p>
 </div>
 
-<div id="outline-container-org23b61bf" class="outline-3">
-<h3 id="org23b61bf">Lesson 6</h3>
-<div class="outline-text-3" id="text-org23b61bf">
+<div id="outline-container-orgcf89867" class="outline-3">
+<h3 id="orgcf89867">Lesson 6</h3>
+<div class="outline-text-3" id="text-orgcf89867">
 <p class="verse">
 <code>/</code> searches for keywords.<br />
 <br />
@@ -270,9 +270,9 @@ as we enter keywords, highlighting all the matched words, etcetera.</li>
 </div>
 </div>
 
-<div id="outline-container-org2b899ec" class="outline-3">
-<h3 id="org2b899ec">Regex</h3>
-<div class="outline-text-3" id="text-org2b899ec">
+<div id="outline-container-org3ad9699" class="outline-3">
+<h3 id="org3ad9699">Regex</h3>
+<div class="outline-text-3" id="text-org3ad9699">
 <p>
 No search system is worth its salt if doesn't support regex. Vim considers it's
 user to be power users and enables regex by default. The symbols might be a different
@@ -324,9 +324,9 @@ It also supports capturing and back referencing, which is discussed next.
 </div>
 </div>
 
-<div id="outline-container-orgf5fca6d" class="outline-2">
-<h2 id="orgf5fca6d">Substitute on Steriods</h2>
-<div class="outline-text-2" id="text-orgf5fca6d">
+<div id="outline-container-orgb25e29a" class="outline-2">
+<h2 id="orgb25e29a">Substitute on Steriods</h2>
+<div class="outline-text-2" id="text-orgb25e29a">
 <p>
 The way to replace <code>foo</code> with <code>bar</code> in Vim is:
 </p>
@@ -375,9 +375,9 @@ for each subsitution</li>
 </ul>
 </div>
 
-<div id="outline-container-org7b630e1" class="outline-4">
-<h4 id="org7b630e1">Regex</h4>
-<div class="outline-text-4" id="text-org7b630e1">
+<div id="outline-container-orgc081e5e" class="outline-4">
+<h4 id="orgc081e5e">Regex</h4>
+<div class="outline-text-4" id="text-orgc081e5e">
 <ul class="org-ul">
 <li>Regular Expression can be very helpful for substitution too. You can 'capture'
 patterns and then later use them while substituting.</li>
@@ -395,10 +395,25 @@ Here's an example:
 <span class="linenr">8: </span>              <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun3"</span>;
 <span class="linenr">9: </span>           };
 </pre>
-</div>
-<ul class="org-ul">
-<li>suppose we want to refactor <code>var funx = function () {</code> to <code>function funx() {</code>,
-we could use regex to capture the varying part and use that in substitute.</li>
+</div></li>
+<li><p>
+suppose we want to refactor <code>var funx = function () {</code> to <code>function funx() {</code>,
+that is:
+</p>
+<div class="org-src-container">
+<pre class="src src-javascript"><span style="color: #0000FF;">function</span> <span style="color: #006699;">fun1</span> () {
+  <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun1"</span>;
+};
+<span style="color: #0000FF;">function</span> <span style="color: #006699;">fun2</span> () {
+  <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun2"</span>;
+};
+<span style="color: #0000FF;">function</span> <span style="color: #006699;">fun3</span> () {
+  <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun3"</span>;
+};
+</pre>
+</div></li>
+<li>Clearly, just a small part of line is different- the function name, rest is
+same. We can use regex to capture the varying part and use that in substitute.</li>
 <li>So, let's write regex for capturing funx: <code>var (\w+) = function () {</code>
 <ul class="org-ul">
 <li>by capturing a pattern, we can 'back reference' it later.</li>
@@ -415,9 +430,11 @@ thus we can refactor by executing:
 </pre>
 </div>
 <ul class="org-ul">
-<li>Expression labeled as 'regex' is actually regex capturing pattern.</li>
+<li>Expression labeled as 'regex' is actually regex capturing pattern.
+<ul class="org-ul">
 <li>In <code>(\w+)</code>, we have to <i>escape</i> <code>(</code>, <code>+</code> and <code>)</code>. Without escaping, Vim would
 try to match them with literal characters '(', '+' and ')'.</li>
+</ul></li>
 </ul></li>
 <li>Just to illustrate the convenience of specifying the range, consider a slightly
 different problem: we want to refactor the first two functions only. There
@@ -440,13 +457,12 @@ here, it will be <code>1,6</code><sup><a id="fnr.4" class="footref" href="#fn.4"
 </div></li>
 </ul></li>
 </ol></li>
-</ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0017616" class="outline-4">
-<h4 id="org0017616">Lesson 7</h4>
-<div class="outline-text-4" id="text-org0017616">
+<div id="outline-container-org08ac6d3" class="outline-4">
+<h4 id="org08ac6d3">Lesson 7</h4>
+<div class="outline-text-4" id="text-org08ac6d3">
 <p class="verse">
 Substitute command<br />
 <code>:[range]s/&lt;old&gt;/&lt;new&gt;/[optional flags]</code><br />
@@ -454,6 +470,29 @@ Substitute command<br />
 Specifying precise range is better than <code>c</code> flag. It saves unintentional changes and manual work.<br />
 <br />
 Remember to use regular expressing and capture the patterns which differ. Use back referencing to refer captured expression and then use them while substituting.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org0e73a1e" class="outline-4">
+<h4 id="org0e73a1e">One More thing</h4>
+<div class="outline-text-4" id="text-org0e73a1e">
+<p>
+If you have followed along the refactoring example by trying out in Vim, which
+BTW you should do, you will notice that the code indentation became very messy.
+Let me introduce to you a little operator <code>=</code>, this does an amazing job of auto
+aligning the code. <code>=</code> is composable as any other commands, you can say
+</p>
+<ul class="org-ul">
+<li><code>=G</code> to auto indent till end of buffer, thus if you are at beginning this will
+auto indent whole buffer.</li>
+<li><code>==</code> to indent current line or</li>
+<li><code>=4&lt;downarrow&gt;</code> to indent next 4 lines.</li>
+</ul>
+
+<p>
+If that doesn't work as expected, you can manually, but effortlessly, indent lines
+using <code>&gt;</code> and <code>&lt;</code> operator to indent and outdent lines respectively. And of couse
+these guys are composable too.
 </p>
 
 <p>

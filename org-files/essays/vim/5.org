@@ -105,33 +105,46 @@ This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 he
                     return "I am fun3";
                  };
       #+END_SRC
-      - suppose we want to refactor ~var funx = function () {~ to ~function funx() {~,
-        we could use regex to capture the varying part and use that in substitute.
-      - So, let's write regex for capturing funx: ~var (\w+) = function () {~
-        - by capturing a pattern, we can 'back reference' it later.
-        - we can back reference captured patterns, using \1 for first, \2 for second and so on.
-      - thus we can refactor by executing:
-        #+BEGIN_SRC viml
-        :%s/var \(\w\+\) = function () {/function \1 () {/
-               |←regex→|                          | |
-                                                   ↪ Backreference
-           |       ←    old   →        ||   ← new →      |
-        #+END_SRC
-        - Expression labeled as 'regex' is actually regex capturing pattern.
+    - suppose we want to refactor ~var funx = function () {~ to ~function funx() {~,
+      that is:
+      #+BEGIN_SRC javascript
+      function fun1 () {
+        return "I am fun1";
+      };
+      function fun2 () {
+        return "I am fun2";
+      };
+      function fun3 () {
+        return "I am fun3";
+      };
+      #+END_SRC
+    - Clearly, just a small part of line is different- the function name, rest is
+      same. We can use regex to capture the varying part and use that in substitute.
+    - So, let's write regex for capturing funx: ~var (\w+) = function () {~
+      - by capturing a pattern, we can 'back reference' it later.
+      - we can back reference captured patterns, using \1 for first, \2 for second and so on.
+    - thus we can refactor by executing:
+      #+BEGIN_SRC viml
+      :%s/var \(\w\+\) = function () {/function \1 () {/
+             |←regex→|                          | |
+                                                 ↪ Backreference
+         |       ←    old   →        ||   ← new →      |
+      #+END_SRC
+      - Expression labeled as 'regex' is actually regex capturing pattern.
         - In ~(\w+)~, we have to /escape/ ~(~, ~+~ and ~)~. Without escaping, Vim would
           try to match them with literal characters '(', '+' and ')'.
-      - Just to illustrate the convenience of specifying the range, consider a slightly
-        different problem: we want to refactor the first two functions only. There
-        are two ways of doing it:
-        1. we can append ~c~ flag to prompt us before every substitution, so that we
-          can say 'no' when it tries to substitute the third time.
-          - but what happens if there are 100 functions before ~fun1~, we'll have
-            to hit ~n~ 100 times just to reach ~fun1~
-        2. we can specify the exact range.
-          - here, it will be ~1,6~[fn:3]. Thus the command can be re written as:
-            #+BEGIN_SRC viml
-            :1,6s/var \(\w\+\) = function () {/function \1 () {/
-            #+END_SRC
+    - Just to illustrate the convenience of specifying the range, consider a slightly
+      different problem: we want to refactor the first two functions only. There
+      are two ways of doing it:
+      1. we can append ~c~ flag to prompt us before every substitution, so that we
+         can say 'no' when it tries to substitute the third time.
+         - but what happens if there are 100 functions before ~fun1~, we'll have
+           to hit ~n~ 100 times just to reach ~fun1~
+      2. we can specify the exact range.
+         - here, it will be ~1,6~[fn:3]. Thus the command can be re written as:
+           #+BEGIN_SRC viml
+           :1,6s/var \(\w\+\) = function () {/function \1 () {/
+           #+END_SRC
 *** Lesson 7
     #+BEGIN_VERSE
     Substitute command
@@ -141,6 +154,19 @@ This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 he
 
     Remember to use regular expressing and capture the patterns which differ. Use back referencing to refer captured expression and then use them while substituting.
     #+END_VERSE
+*** One More thing
+    If you have followed along the refactoring example by trying out in Vim, which
+    BTW you should do, you will notice that the code indentation became very messy.
+    Let me introduce to you a little operator ~=~, this does an amazing job of auto
+    aligning the code. ~=~ is composable as any other commands, you can say
+    - ~=G~ to auto indent till end of buffer, thus if you are at beginning this will
+      auto indent whole buffer.
+    - ~==~ to indent current line or
+    - ~=4<downarrow>~ to indent next 4 lines.
+
+    If that doesn't work as expected, you can manually, but effortlessly, indent lines
+    using ~>~ and ~<~ operator to indent and outdent lines respectively. And of couse
+    these guys are composable too.
 
    [[./6.org][Click here for part 6]]
 
