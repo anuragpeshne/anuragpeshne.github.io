@@ -60,18 +60,21 @@ This is part 4 of a series of tutorial to Vim. You can read [[./3.org][Part 3 he
   which can be very helpful in case you want to redo something you've over written.
   You can read more about undo branches [[http://vim.wikia.com/wiki/Using_undo_branches][here]].
 * Summary
-  | Command   | Comment                                                               |
-  |-----------+-----------------------------------------------------------------------|
-  | ~y~       | *yank*, copy                                                          |
-  | ~d~       | *delete* to delete as well as /cut/                                   |
-  | ~p~       | *paste*                                                               |
-  | ~P~       | paste above/before                                                    |
-  | ~x~       | delete character below cursor                                         |
-  |-----------+-----------------------------------------------------------------------|
-  | ~t<char>~ | do x *till* first instance of character 'char'                        |
-  | ~i<brac>~ | do x to text *inside* enclosing bracket 'brac', works with {, [, (, < |
-  | ~a<brac>~ | ditto as above, includes the bracket too in capture                   |
-  |-----------+-----------------------------------------------------------------------|
+  | Command    | Comment                                                               |
+  |------------+-----------------------------------------------------------------------|
+  | ~y~        | *yank*, copy                                                          |
+  | ~d~        | *delete* to delete as well as /cut/                                   |
+  | ~p~        | *paste*                                                               |
+  | ~P~        | paste above/before                                                    |
+  | ~x~        | delete character below cursor                                         |
+  |------------+-----------------------------------------------------------------------|
+  | ~t<char>~  | do x *till* first instance of character 'char'                        |
+  | ~i<brac>~  | do x to text *inside* enclosing bracket 'brac', works with {, [, (, < |
+  | ~a<brac>~  | ditto as above, includes the bracket too in capture                   |
+  |------------+-----------------------------------------------------------------------|
+  | ~u~        | undo                                                                  |
+  | ~<ctrl>+r~ | redo                                                                  |
+  |------------+-----------------------------------------------------------------------|
   - Yank, delete and paste can be combined with other motion commands
   - 'till', 'around', 'in' are your friends, remember them, specially when dealing
     with function arguments, HTML and languages which use '{' to enclose blocks.
