@@ -51,6 +51,14 @@ This is part 4 of a series of tutorial to Vim. You can read [[./3.org][Part 3 he
    | line 1, inside '('       | ~yi(~   | yanks arguments inside '('                                       | /not changed/ since we are yanking  | ~int a, int b, char *str~  |
    | anywhere in lines 2 to 4 | ~da{~   | deletes everything inside and including {...} (body of function) | ~int foo(int a, int b, char *str) ~ | { complete function body } |
    |--------------------------+---------+------------------------------------------------------------------+-------------------------------------+----------------------------|
+* One more thing: Time Travel
+  From this part onwards you will be doing complex manipulation to text. It would
+  be nice to have another important feature in our arsenal: Undo.
+  - You can undo your last action by hitting ~u~.
+  - And, you can undo your undo (redo) by hitting ~<ctrl>+r~
+  Vim stores all your changes along with timestamp. In fact, Vim stores undo branches,
+  which can be very helpful in case you want to redo something you've over written.
+  You can read more about undo branches [[http://vim.wikia.com/wiki/Using_undo_branches][here]].
 * Summary
   | Command   | Comment                                                               |
   |-----------+-----------------------------------------------------------------------|

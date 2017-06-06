@@ -30,9 +30,10 @@ This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 he
     - ~N~ to go to previous matched item (adding shift reverses the action)
 
 ** Regex
-   No search system is worth its salt if doesn't support regex. Vim considers it's
-   user to be power users and enables regex by default. The symbols might be a different
-   from what you are used to but you will find them all. If you are unfamiliar with
+   No search system is worth its salt if doesn't support regex. Vim considers its
+   users to be power users and enables regex by default. The symbols might be a
+   little different, from what you are used to, but you will find support for all
+   the rules you demand. If you are unfamiliar with
    Regular Expressions, also called as 'regex', here's a 5 line crash course on regex:
    1. Regex are patterns of characters used to match strings which conform to certain
       well defined patterns or rules.
@@ -60,15 +61,15 @@ This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 he
    than Regular Languages-it supports positive look ahead, negative look behind etc[fn:2].
    It also supports capturing and back referencing, which is discussed next.
 
-* Substitute on Steriods
+* Substitution on Steriods
   The way to replace ~foo~ with ~bar~ in Vim is:
   #+BEGIN_SRC viml
   :%s/foo/bar/gc
   #+END_SRC
   Now, one might think that's too complex for substituting since in most of other editors
   you can simply press ~<ctrl>+r~, ~foo~ and ~bar~. But, if you spend enough time
-  with Vim, you will realize Vim has generic command patterns and substitute is just
-  following that. Once you get hang of the generic pattern, apply any command is actually
+  with Vim, you will realize Vim has generic command pattern and substitute is just
+  following that. Once you get hang of the generic pattern, applying any command is actually
   very simply.
 
   Let's dissect the substitute command:
@@ -88,7 +89,7 @@ This is part 5 of a series of tutorial to Vim. You can read [[./4.org][Part 4 he
   - ~g~ and ~c~ are *optional* flags which mean
     - ~g~ global: substitute multiple instances of ~foo~ on same line
     - ~c~ confirm: prompt for confirmation before substituting.
-    - these flags one needs most of the time, but not always.
+    - these flags are needed most of the time, but not always.
 
 *** Regex
     - Regular Expression can be very helpful for substitution too. You can 'capture'

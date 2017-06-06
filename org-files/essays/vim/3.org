@@ -11,7 +11,7 @@ This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 he
 
 * Go Mouseless!
   Vim has hundreds of ways to navigate[fn:1]. You can move character by character, word
-  by word, line, function, page among several other ways. You will soon release
+  by word, line, function, page among several other ways. You will soon realize
   that you not only do not need mouse, in fact using mouse is expensive. It takes
   too much time to reach mouse, too much time to reach the precise location. Really,
   using mouse while programming is an anti-pattern.
@@ -87,7 +87,7 @@ This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 he
      this is a common style in Vim: to do something in reverse, use ~<shift>~ and
      the key.
 
-** Jumpnig through the complete buffer
+** Jumping through the complete buffer[fn:4]
    - ~<ctrl>+u~: scroll *up*
    - ~<ctrl>+d~: scroll *down*
    - ~:<number>~: to jump to that line number
@@ -145,3 +145,4 @@ This is part 3 of a series of tutorial to Vim. You can read [[./2.org][Part 2 he
 [fn:1] I wouldn't be surprised if this is not actually an exaggeration
 [fn:2] [[https://stackoverflow.com/questions/7225057/use-mouse-scroll-wheel-in-vim][Use mouse scroll wheel in Vim]]
 [fn:3] ~f~ starts /finding/ from that location, so starting from column 0 gives us freedom of jumping to any word.
+[fn:4] [[http://vim.wikia.com/wiki/Vim_buffer_FAQ][Vim Buffer]] is file loaded into memory. We'll return to this in future part when we discuss handling multiple buffers.

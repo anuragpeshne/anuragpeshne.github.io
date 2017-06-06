@@ -237,12 +237,12 @@ for the JavaScript code in this tag.
 This is part 3 of a series of tutorial to Vim. You can read <a href="./2.html">Part 2 here</a>.
 </p>
 
-<div id="outline-container-org8bb54f8" class="outline-2">
-<h2 id="org8bb54f8">Go Mouseless!</h2>
-<div class="outline-text-2" id="text-org8bb54f8">
+<div id="outline-container-orgce82869" class="outline-2">
+<h2 id="orgce82869">Go Mouseless!</h2>
+<div class="outline-text-2" id="text-orgce82869">
 <p>
 Vim has hundreds of ways to navigate<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. You can move character by character, word
-by word, line, function, page among several other ways. You will soon release
+by word, line, function, page among several other ways. You will soon realize
 that you not only do not need mouse, in fact using mouse is expensive. It takes
 too much time to reach mouse, too much time to reach the precise location. Really,
 using mouse while programming is an anti-pattern.
@@ -263,12 +263,12 @@ those options and give mouseless operation a whole hearted try.
 </div>
 </div>
 
-<div id="outline-container-orgda38261" class="outline-2">
-<h2 id="orgda38261">Be Lazy</h2>
-<div class="outline-text-2" id="text-orgda38261">
-</div><div id="outline-container-orgaa6ff72" class="outline-3">
-<h3 id="orgaa6ff72">Home Row</h3>
-<div class="outline-text-3" id="text-orgaa6ff72">
+<div id="outline-container-org4f55ccb" class="outline-2">
+<h2 id="org4f55ccb">Be Lazy</h2>
+<div class="outline-text-2" id="text-org4f55ccb">
+</div><div id="outline-container-org7470b42" class="outline-3">
+<h3 id="org7470b42">Home Row</h3>
+<div class="outline-text-3" id="text-org7470b42">
 <p>
 Vim takes saving efforts to the extreme. It supports and encourages use of h, j,
 k, l to be used as arrow keys so that user do not have to leave home row.
@@ -306,9 +306,9 @@ k, l to be used as arrow keys so that user do not have to leave home row.
 </div>
 </div>
 
-<div id="outline-container-orgc4ff405" class="outline-3">
-<h3 id="orgc4ff405">Words</h3>
-<div class="outline-text-3" id="text-orgc4ff405">
+<div id="outline-container-org72373e0" class="outline-3">
+<h3 id="org72373e0">Words</h3>
+<div class="outline-text-3" id="text-org72373e0">
 <p>
 There is a better way to traverse a sentence than to go a character per stroke
 and that's word by word. Press <code>w</code> to jump to start of next <b>word</b>, <code>e</code> to go to
@@ -321,9 +321,9 @@ Going <b>back</b> is same using <code>b</code> and <code>B</code>.
 </p>
 </div>
 
-<div id="outline-container-org42344e2" class="outline-4">
-<h4 id="org42344e2">Composing</h4>
-<div class="outline-text-4" id="text-org42344e2">
+<div id="outline-container-org2c38fbf" class="outline-4">
+<h4 id="org2c38fbf">Composing</h4>
+<div class="outline-text-4" id="text-org2c38fbf">
 <p>
 Still, traversing a 20 word long sentence using <code>w</code> takes effort. Wouldn't
 it be better if we could directly jump to, say, 5th word. And that's where
@@ -334,7 +334,7 @@ So, <code>100b</code> takes use back 100 words.
 </p>
 </div>
 
-<ul class="org-ul"><li><a id="orgaaa990d"></a>Lesson 4<br /><div class="outline-text-5" id="text-orgaaa990d">
+<ul class="org-ul"><li><a id="orgc352b53"></a>Lesson 4<br /><div class="outline-text-5" id="text-orgc352b53">
 <p class="verse">
 number followed by command executes the command that many times.<br />
 </p>
@@ -346,9 +346,9 @@ Example:
 </ul>
 </div></li></ul>
 </div>
-<div id="outline-container-orgefd99dc" class="outline-4">
-<h4 id="orgefd99dc">Some more line navigation</h4>
-<div class="outline-text-4" id="text-orgefd99dc">
+<div id="outline-container-org513415f" class="outline-4">
+<h4 id="org513415f">Some more line navigation</h4>
+<div class="outline-text-4" id="text-org513415f">
 <ul class="org-ul">
 <li><code>$</code>: jump to end of line</li>
 <li><code>0</code>: jump to beginning of line (column 0)</li>
@@ -358,9 +358,9 @@ Example:
 this one is especially useful while working with indented code.
 </p>
 <div class="org-src-container">
-<pre class="src src-javascript"><span class="linenr">1: </span><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">foo</span> = <span style="color: #0000FF;">function</span> (<span style="color: #BA36A5;">arg</span>) {
-<span class="linenr">2: </span>    <span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">fooClose</span> = <span style="color: #0000FF;">function</span> (<span style="color: #BA36A5;">argClose</span>) {
-<span class="linenr">3: </span>        <span style="color: #0000FF;">if</span> (argClose == 2) {
+<pre class="src src-javascript"><span class="linenr">1: </span><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">foo</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> (<span style="color: #DFAF8F;">arg</span>) {
+<span class="linenr">2: </span>    <span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">fooClose</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> (<span style="color: #DFAF8F;">argClose</span>) {
+<span class="linenr">3: </span>        <span style="color: #F0DFAF; font-weight: bold;">if</span> (argClose == 2) {
 <span class="linenr">4: </span>            argClose += 2;
 <span class="linenr">5: </span>        }
 <span class="linenr">6: </span>    }
@@ -373,7 +373,7 @@ Here pressing <code>^</code> anywhere on line 3 will take us to <code>if</code> 
 </ul></li>
 </ul>
 </div>
-<ul class="org-ul"><li><a id="orge67feef"></a>Find<br /><div class="outline-text-5" id="text-orge67feef">
+<ul class="org-ul"><li><a id="org810fc8d"></a>Find<br /><div class="outline-text-5" id="text-org810fc8d">
 <p>
 Even more power command if <code>f</code>. Hit <code>f</code> followed by character to directly jump
 to word starting with that character. Try this in Vim:
@@ -398,9 +398,9 @@ the key.
 </div>
 </div>
 
-<div id="outline-container-orgdef5f26" class="outline-3">
-<h3 id="orgdef5f26">Jumpnig through the complete buffer</h3>
-<div class="outline-text-3" id="text-orgdef5f26">
+<div id="outline-container-org09ded02" class="outline-3">
+<h3 id="org09ded02">Jumping through the complete buffer<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h3>
+<div class="outline-text-3" id="text-org09ded02">
 <ul class="org-ul">
 <li><code>&lt;ctrl&gt;+u</code>: scroll <b>up</b></li>
 <li><code>&lt;ctrl&gt;+d</code>: scroll <b>down</b></li>
@@ -434,9 +434,9 @@ for now, you can use <code>:bp</code> (buffer previous) to return to previous bu
 </div>
 </div>
 </div>
-<div id="outline-container-org164e588" class="outline-2">
-<h2 id="org164e588">Summary</h2>
-<div class="outline-text-2" id="text-org164e588">
+<div id="outline-container-org2883a54" class="outline-2">
+<h2 id="org2883a54">Summary</h2>
+<div class="outline-text-2" id="text-org2883a54">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -593,6 +593,10 @@ I wouldn't be surprised if this is not actually an exaggeration
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
 <code>f</code> starts <i>finding</i> from that location, so starting from column 0 gives us freedom of jumping to any word.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://vim.wikia.com/wiki/Vim_buffer_FAQ">Vim Buffer</a> is file loaded into memory. We'll return to this in future part when we discuss handling multiple buffers.
 </p></div></div>
 
 

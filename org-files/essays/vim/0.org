@@ -21,6 +21,9 @@
      - A short note on VimL
   6. More moving around (~%~, ~[]~, ~[[]]~, ~ctrl+]~, TAGS, ~g + ctrl + ]~, ~ctrl + t~
   7. Panes, windows, tabs, buffers
+     - file management
+     - project management
+     - ctrl + p, nerd tree
   8. Registers
      - multiple paste
      - Marks
