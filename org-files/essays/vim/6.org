@@ -1,3 +1,28 @@
-* ~*~: some more searching
-* Time Travel
-  - undo, redo
+#+TITLE: Vim: .vimrc
+#+DATE: 2017-06-5
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:vimrc:configuration:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+* ~*~
+  Before we get to our main topic, let me show you one more humble, but tremendously
+  useful command. Hit ~*~ to search the word currently under cursor and jump to
+  its next occurrence. This is, as I said tremendously useful[fn:0], to find where a
+  variable/function is used/called. The analogous command to search backwards is
+  ~#~.
+
+* DNA
+  Like your DNA, which defines you, your appearance, hair color, eye color, strength
+  and weakness; ~.vimrc~ defines your Vim's appearance, behavior, strength and weakness.
+  /Your/ Vim will be very different from /my/ Vim and not just in outer superficial
+  appearance, like color of cursor or background, but also how it responds. For
+  example, you can, if you want, make your Vim to not respond to arrow keys to force
+  yourself to use 'h, k, j, l'.
+  You can save your ~.vimrc~ somewhere accessible from everywhere, like say Github,
+  and when you want to setup new system, or a remote server, you can simply drop
+  your ~.vimrc~ in home folder (~\~~) and make yourself home.
+
+[fn:0] if you were to read this webpage in Vim, you could have used ~*~ to jump back to previous occurrence of 'tremendously'
