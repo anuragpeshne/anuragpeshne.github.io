@@ -12,7 +12,7 @@ This is part 6 of a series of tutorial to Vim. You can read [[./5.org][Part 5 he
 * ~*~
   Before we get to our main topic, let me show you one more humble, but tremendously
   useful command. Hit ~*~ to search the word currently under cursor and jump to
-  its next occurrence. This is, as I said previously, is tremendously useful[fn:0],
+  its next occurrence. This is, as I said previously, tremendously useful[fn:0],
   to find where a variable/function is used/called. The analogous command to search
   backwards is ~#~.
 
@@ -46,7 +46,8 @@ This is part 6 of a series of tutorial to Vim. You can read [[./5.org][Part 5 he
    Vim has amazing ecosystem of plugins. Plugins for Vim can be created using VimL-
    Vim's own scripting language and there is support for Python, Lua too. It is highly
    likely that your favorite feature, like the folder tree view in Sublime[fn:1],
-   automatic syntax checker[fn:2]; are available in Vim via plugins.
+   automatic syntax checker[fn:2] or a fuzzy file finder[fn:3]; are available in
+   Vim via plugins[fn:4].
 
 *** Plugin to manage Plugins
     There are plugins which makes installing, updating and removing plugins very easy.
@@ -56,5 +57,90 @@ This is part 6 of a series of tutorial to Vim. You can read [[./5.org][Part 5 he
     ~.vimrc~ and say ~:PluginInstall~.
 
 ** My ~.vimrc~
+   Here's a part of my ~.vimrc~ which might be a good starting point for building
+   your own. You can check the complete version here: [[https://github.com/anuragpeshne/dot_files/blob/master/.vimrc][github.com/anuragpeshne/dot_files/.vimrc]].
+   #+BEGIN_SRC viml
+   syntax on
+
+   " indentation related and coding style
+   set tabstop=2       " The width of a TAB is set to 2.
+   set expandtab       " Expand TABs to spaces
+   set softtabstop=2
+   set shiftwidth=2    " when indenting with '>', use 2 spaces width
+   set autoindent
+
+   " display related stuff
+   set relativenumber
+   set number
+   colorscheme wombat256mod
+   set foldenable
+   set colorcolumn=80
+   set cursorline
+
+   " search related
+   set hlsearch
+   set ignorecase
+   set smartcase
+   set incsearch
+
+   " misc
+   set hidden              " Hide buffers when they are abandoned
+   set wildmenu
+   set showcmd             " Show (partial) command in status line.
+   set showmatch           " Show matching brackets.
+
+   set nocompatible              " be iMproved, required
+   filetype off                  " required
+
+   set tags=./tags;/      " search for tags in pwd and go up until found
+   map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> " open tag in vsplit
+   #+END_SRC
+   A Few Comments:
+   - First few lines deal with tabs and space, you may want to change it.
+   - ~relativenumber~ is a very helpful feature while working with Vim. You can easily
+     specify ranges to yank, delete or jump by glancing at the line.
+     - If you rather have simple line numers, delete the line ~set relativenumber~ and
+       keep ~set number~.
+   - We'll see folds soon, which is enabled by ~set foldenable~.
+   - ~colorcolumn~ creates a vertical line on buffer which reminds us to restrict
+     width of lines. Some projects have hard rules to keep split lines more than
+     80 columns into two. I highly recommend you to set this limit to 80 to
+     120 columns.
+   - Next come some handy flags for better searching:
+     - ~hlsearch~ highlights all matched items
+     - ~ignorecase~ does exactly what it says
+     - ~smartcase~ is an interesting option, it ignores case until you type a capital
+       letter and as soon as you do it, it starts matching case too.
+   - You can check how to specify plugins in my [[https://github.com/anuragpeshne/dot_files/blob/master/.vimrc][~.vimrc~]].
+
+   #+CAPTION: Vim after loading the above ~.vimrc~. [[../../assets/vim/vimrc.png][Click here]] to see full size image
+   #+ATTR_HTML: :width 800px
+   [[file:../../assets/vim/vimrc.png]]
+
+* One More Thing
+  You might by hopping around buffer using ~*~, searching and jumping to lines. Sometimes
+  we are working on certain line, we want to check something and then return to
+  original position. And with all this hops, it might be cumbersome to remember how
+  many times you jumped, but have no fear, there is an easy way to return back.
+  Pressing ~<ctrl>+o~ will take you back to previous position where you jumped from,
+  just like /back/ button on browser. ~<ctrl>+i~ will take you forward, once you have
+  jumped back.
+
+* Summary
+  A small summary of commands we have seen in this part
+  | Key          | Comment                                                  |
+  |--------------+----------------------------------------------------------|
+  | ~*~          | searches for the word under cursor                       |
+  | ~#~          | same as above, in reverse direction                      |
+  |--------------+----------------------------------------------------------|
+  | ~<ctrl> + o~ | jump back to previous position (mnemonic: o → old)       |
+  | ~<ctrl> + i~ | jump forward to previous position from which jumped back |
+  |--------------+----------------------------------------------------------|
+
+   [[./7.org][Click here for part 7]]
 
 [fn:0] if you were to read this webpage in Vim, you could have used ~*~ to jump back to previous occurrence of 'tremendously', since ~*~ wraps around.
+[fn:1] [[https://github.com/scrooloose/nerdtree][Nerdtree]]
+[fn:2] [[https://github.com/vim-syntastic/syntastic][Syntastic]]
+[fn:3] [[https://github.com/kien/ctrlp.vim][ctrlp]]
+[fn:4] One of the good places to hunt for plugins is [[http://vimawesome.com/][Vim Awesome]]

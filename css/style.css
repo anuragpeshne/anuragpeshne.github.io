@@ -60,8 +60,10 @@ blockquote p {
   display: inline;
 }
 
-pre.src, code {
+pre, pre.src, code {
     font-family: 'Inconsolata', monospace;
     background-color: rgba(0,0,0,0.04);
     font-size: 0.9em;
+    border: none;
+    border-radius: 3px;
 }

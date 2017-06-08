@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vim: .vimrc</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/6.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Vim: .vimrc</h1>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+
+<p>
+This is part 6 of a series of tutorial to Vim. You can read <a href="./5.html">Part 5 here</a>.
+</p>
+
+<div id="outline-container-orge8ae2af" class="outline-2">
+<h2 id="orge8ae2af"><code>*</code></h2>
+<div class="outline-text-2" id="text-orge8ae2af">
+<p>
+Before we get to our main topic, let me show you one more humble, but tremendously
+useful command. Hit <code>*</code> to search the word currently under cursor and jump to
+its next occurrence. This is, as I said previously, tremendously useful<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>,
+to find where a variable/function is used/called. The analogous command to search
+backwards is <code>#</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org073dd18" class="outline-2">
+<h2 id="org073dd18">DNA</h2>
+<div class="outline-text-2" id="text-org073dd18">
+<p>
+Like your DNA, which defines you, your appearance, hair color, eye color, strength
+and weakness; <code>.vimrc</code> defines your Vim's appearance, behavior, strength and weakness.
+<i>Your</i> Vim will be very different from <i>my</i> Vim and not just in outer superficial
+appearance, like color of cursor or background, but also how it responds. For
+example, you can, if you want, make your Vim to not respond to arrow keys to force
+yourself to use 'h, k, j, l'.
+</p>
+
+<p>
+You can save your <code>.vimrc</code> somewhere accessible from everywhere, like say Github,
+and when you want to setup new system, or a remote server, you can simply drop
+your <code>.vimrc</code> in home folder (<code>~</code>) and make yourself home.
+</p>
+</div>
+
+<div id="outline-container-orgc25d38f" class="outline-3">
+<h3 id="orgc25d38f">Bells and Whistles</h3>
+<div class="outline-text-3" id="text-orgc25d38f">
+<p>
+Let's start with configuring how Vim looks. Vim supports color schemes, which can
+be set using command <code>:colorscheme &lt;scheme name&gt;</code>, or via <code>.vimrc</code>. There are some
+basic colorschemes preinstalled, but you can add more. Vim colorschemes are
+nothing more than a <code>.vim</code> file, like Vim plugins. Download them and place them
+in <code>~/.vim/colors/</code>. Once files are placed, you can use the command <code>:colorscheme</code>
+to enable it. You can directly search for your favorite color scheme or browse
+them <a href="http://www.vim.org/scripts/script_search_results.php?keywords=&amp;script_type=color+scheme&amp;order_by=rating&amp;direction=descending&amp;search=search">here</a> or <a href="http://vimcolors.com">here</a>.
+</p>
+
+<p>
+If you don't like something with a colorscheme, you are encouraged to open it
+up, and play around with it. And then, contribute it back to the main repository.
+If you didn't like something, chances are there are many other who didn't like it
+too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org41d17c0" class="outline-3">
+<h3 id="org41d17c0">Plugins</h3>
+<div class="outline-text-3" id="text-org41d17c0">
+<p>
+Vim has amazing ecosystem of plugins. Plugins for Vim can be created using VimL-
+Vim's own scripting language and there is support for Python, Lua too. It is highly
+likely that your favorite feature, like the folder tree view in Sublime<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>,
+automatic syntax checker<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> or a fuzzy file finder<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>; are available in
+Vim via plugins<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>.
+</p>
+</div>
+
+<div id="outline-container-orgce83733" class="outline-4">
+<h4 id="orgce83733">Plugin to manage Plugins</h4>
+<div class="outline-text-4" id="text-orgce83733">
+<p>
+There are plugins which makes installing, updating and removing plugins very easy.
+I personally like <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a>, but there are other plugins managers too. You can find
+how to install at the home page, but to describe it in a line, you have to install
+Vundle by cloning the repository into <code>~/.vim/bundle/Vundle.vim</code>, add plugin to
+<code>.vimrc</code> and say <code>:PluginInstall</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc74c1d" class="outline-3">
+<h3 id="orgcc74c1d">My <code>.vimrc</code></h3>
+<div class="outline-text-3" id="text-orgcc74c1d">
+<p>
+Here's a part of my <code>.vimrc</code> which might be a good starting point for building
+your own. You can check the complete version here: <a href="https://github.com/anuragpeshne/dot_files/blob/master/.vimrc">github.com/anuragpeshne/dot<sub>files</sub>/.vimrc</a>.
+</p>
+<div class="org-src-container">
+<pre class="src src-viml">syntax on
+
+" indentation related and coding style
+set tabstop=2       " The width of a TAB is set to 2.
+set expandtab       " Expand TABs to spaces
+set softtabstop=2
+set shiftwidth=2    " when indenting with '&gt;', use 2 spaces width
+set autoindent
+
+" display related stuff
+set relativenumber
+set number
+colorscheme wombat256mod
+set foldenable
+set colorcolumn=80
+set cursorline
+
+" search related
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+
+" misc
+set hidden              " Hide buffers when they are abandoned
+set wildmenu
+set showcmd             " Show (partial) command in status line.
+set showmatch           " Show matching brackets.
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set tags=./tags;/      " search for tags in pwd and go up until found
+map &lt;A-]&gt; :vsp &lt;CR&gt;:exec("tag ".expand("&lt;cword&gt;"))&lt;CR&gt; " open tag in vsplit
+</pre>
+</div>
+<p>
+A Few Comments:
+</p>
+<ul class="org-ul">
+<li>First few lines deal with tabs and space, you may want to change it.</li>
+<li><code>relativenumber</code> is a very helpful feature while working with Vim. You can easily
+specify ranges to yank, delete or jump by glancing at the line.
+<ul class="org-ul">
+<li>If you rather have simple line numers, delete the line <code>set relativenumber</code> and
+keep <code>set number</code>.</li>
+</ul></li>
+<li>We'll see folds soon, which is enabled by <code>set foldenable</code>.</li>
+<li><code>colorcolumn</code> creates a vertical line on buffer which reminds us to restrict
+width of lines. Some projects have hard rules to keep split lines more than
+80 columns into two. I highly recommend you to set this limit to 80 to
+120 columns.</li>
+<li>Next come some handy flags for better searching:
+<ul class="org-ul">
+<li><code>hlsearch</code> highlights all matched items</li>
+<li><code>ignorecase</code> does exactly what it says</li>
+<li><code>smartcase</code> is an interesting option, it ignores case until you type a capital
+letter and as soon as you do it, it starts matching case too.</li>
+</ul></li>
+<li>You can check how to specify plugins in my <a href="https://github.com/anuragpeshne/dot_files/blob/master/.vimrc"><code>.vimrc</code></a>.</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="../../assets/vim/vimrc.png" alt="vimrc.png" width="800px" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Vim after loading the above <code>.vimrc</code>. <a href="../../assets/vim/vimrc.png">Click here</a> to see full size image</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org86ed93c" class="outline-2">
+<h2 id="org86ed93c">One More Thing</h2>
+<div class="outline-text-2" id="text-org86ed93c">
+<p>
+You might by hopping around buffer using <code>*</code>, searching and jumping to lines. Sometimes
+we are working on certain line, we want to check something and then return to
+original position. And with all this hops, it might be cumbersome to remember how
+many times you jumped, but have no fear, there is an easy way to return back.
+Pressing <code>&lt;ctrl&gt;+o</code> will take you back to previous position where you jumped from,
+just like <i>back</i> button on browser. <code>&lt;ctrl&gt;+i</code> will take you forward, once you have
+jumped back.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf1bd0eb" class="outline-2">
+<h2 id="orgf1bd0eb">Summary</h2>
+<div class="outline-text-2" id="text-orgf1bd0eb">
+<p>
+A small summary of commands we have seen in this part
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>*</code></td>
+<td class="org-left">searches for the word under cursor</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>#</code></td>
+<td class="org-left">same as above, in reverse direction</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>&lt;ctrl&gt; + o</code></td>
+<td class="org-left">jump back to previous position (mnemonic: o → old)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&lt;ctrl&gt; + i</code></td>
+<td class="org-left">jump forward to previous position from which jumped back</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<a href="./7.html">Click here for part 7</a>
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+if you were to read this webpage in Vim, you could have used <code>*</code> to jump back to previous occurrence of 'tremendously', since <code>*</code> wraps around.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/scrooloose/nerdtree">Nerdtree</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/vim-syntastic/syntastic">Syntastic</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://github.com/kien/ctrlp.vim">ctrlp</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+One of the good places to hunt for plugins is <a href="http://vimawesome.com/">Vim Awesome</a>
+</p></div></div>
+
+
+</div>
+</div><div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/vim/6.html";
+this.page.identifier = "/essays/vim/6.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-06-5</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
