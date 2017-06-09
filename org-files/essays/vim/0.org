@@ -19,6 +19,7 @@
      - tabs and spaces
      - Package Manager
      - A short note on VimL
+     - Leader key
   6. More moving around (~%~, ~[]~, ~[[]]~, ~ctrl+]~, TAGS, ~g + ctrl + ]~, ~ctrl + t~
   7. Panes, windows, tabs, buffers
      - file management

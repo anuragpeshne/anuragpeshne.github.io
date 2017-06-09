@@ -11,6 +11,7 @@ pamphlet, and a short story.
 |------------+-----------------------------------------|
 |       Date | Essay                                   |
 |------------+-----------------------------------------|
+| 2017-05-28 | [[file:./vim/1.org][Vim Tutorial]]                            |
 | 2016-12-01 | [[file:./reduction-direction.org][Reduction Direction]]                     |
 | 2016-10-30 | [[file:./tcp2c10k.org][TCP to C10k: HTTP Server Implementation]] |
 | 2016-07-20 | [[file:./gitTutorial.org][Git Tutorial]]                            |
