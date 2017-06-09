@@ -1,0 +1,16 @@
+#+TITLE: Vim: Customization
+#+DATE: 2017-06-8
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:vimrc:customization:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+This is part 7 of a series of tutorial to Vim. You can read [[./6.org][Part 6 here]].
+
+* My Vim
+** Leader Key
+** VimL
+
+   [[./8.org][Click here for part 8]]
