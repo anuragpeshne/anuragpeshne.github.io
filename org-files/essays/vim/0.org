@@ -43,4 +43,6 @@
       - ~xxd!~
       - ~:r~
       - ~:!~
+      - =~=: capitalize
+      - ~c~: change
   13. Vim Diff

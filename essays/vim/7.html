@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vim: Customization-Mapping keys</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/7.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Vim: Customization-Mapping keys</h1>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+
+<p>
+This is part 7 of a series of tutorial to Vim. You can read <a href="./6.html">Part 6 here</a>.
+</p>
+
+<div id="outline-container-orgc9f1b71" class="outline-2">
+<h2 id="orgc9f1b71">My Vim</h2>
+<div class="outline-text-2" id="text-orgc9f1b71">
+<p>
+In <a href="./6.html">last part</a>, we changed a lot of options, like setting up the line
+numbers, autoindent etc. Let's briefly consider 3 operations on the flags:
+</p>
+<ul class="org-ul">
+<li>All of these can be turned off by prepending 'no'. So, <code>set nonumber</code> will
+turn off line numbers. This command can be executed using <code>:</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> in normal mode to
+turn off features temporarily.</li>
+<li>Another way of <b>toggling</b> an option is by appending <code>!</code>. So whatever is the
+present value of the flag, it will get toggled. <code>set cursorline!</code> will toggle
+the highlighting of cursor line.</li>
+<li>Similarly you can <b>query</b> status of a flag by appending <code>?</code>. If we execute
+<code>set cursorline?</code>, we can expect reply <code>cursorline</code> or <code>nocursorline</code> depending
+on the status of the flag.</li>
+</ul>
+</div>
+<div id="outline-container-org3719548" class="outline-3">
+<h3 id="org3719548">Mapping</h3>
+<div class="outline-text-3" id="text-org3719548">
+<p>
+You can add or even edit the key mappings to personalize your Vim. You may want
+to, for example, map <code>&lt;ctrl&gt;+t</code> to <code>di&lt;</code> (delete everything in a &lt;..&gt; region),
+if you work on a lot of HTML files. The way to do this would be:
+</p>
+<div class="org-src-container">
+<pre class="src src-viml">imap &lt;c-t&gt; &lt;esc&gt;di&lt;
+</pre>
+</div>
+<ul class="org-ul">
+<li>The way we represent control keys in VimL is little different than what is
+used here till now. <code>&lt;ctrl&gt;</code> is represented simply as <code>&lt;c&gt;</code>. The keys which
+are to be pressed simultaneously are enclosed in <code>&lt;</code>. Thus <code>&lt;c-s&gt;</code> corresponds
+to <code>&lt;ctrl&gt;+s</code>.</li>
+<li>The <code>i</code> in <code>imap</code> stands for mapping in insert mode. Thus pressing <code>&lt;c-t&gt;</code> will
+delete everything in <code>&lt;</code> only in insert mode. You need to use <code>nmap</code>, <code>imap</code>
+and <code>vmap</code> to map keys in <i>normal</i> mode, <i>insert</i> mode and, a new mode which we
+are going to see very soon, <i>visual</i> mode.</li>
+<li>So we are saying that, map <code>&lt;c-t&gt;</code> in insert mode to sequence of keys <code>&lt;esc&gt;</code>,
+<code>d</code>, <code>i</code>, <code>&lt;</code>. Since we are in insert mode, we need to get to normal mode
+before we can <code>di&lt;</code> and that's why we need <code>&lt;esc&gt;</code>.
+<ul class="org-ul">
+<li>Other control characters are represented in similar way: <code>&lt;space&gt;</code>, <code>&lt;cr&gt;</code>,
+<code>&lt;enter&gt;</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-org58b8bbb" class="outline-4">
+<h4 id="org58b8bbb">Recursive Mapping (is evil)</h4>
+<div class="outline-text-4" id="text-org58b8bbb">
+<p>
+Say you want to change the way yanking a line works, instead of yanking just
+one line, you want it to yank and paste two lines. One way to do this would
+be <code>nmap yy yypkkyyp</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>: yank a line, paste, go up twice, yank previous
+line and paste. Try this and execute your newly mapped key <code>yy</code> from the last
+line, you will see a beautiful animation of your mapping duplicating everything
+in your buffer.
+</p>
+
+<p>
+So what really happened is, since we mapped <code>yy</code> and used the same combination
+while defining it, the mapping got called recursively. What we wanted was, to
+use the default mapping for <code>yy</code> while we use it in definition of mapping. The
+way to do this is to use <code>noremap</code> (no recursive map). This combines with <code>i</code>,
+<code>n</code> and <code>v</code> to form <code>noreimap</code>, <code>norenmap</code> and <code>norevmap</code> respectively.
+</p>
+
+<p>
+One last word on recursive mapping, one maybe tempted to think he/she will
+be careful to not use mapping recursively and get away with simple <code>map</code>. This
+doesn't work always, since there might be other mapping by plugins which might
+get called unintentionally.
+</p>
+</div>
+<ul class="org-ul"><li><a id="org2d836bd"></a>Lesson 8<br /><div class="outline-text-5" id="text-org2d836bd">
+<p class="verse">
+Always use non recursive mapping. (<code>noremap</code>)<br />
+</p>
+</div></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgbbf0c15" class="outline-3">
+<h3 id="orgbbf0c15">Leader Key</h3>
+<div class="outline-text-3" id="text-orgbbf0c15">
+<p>
+You might have preference for certain key combinations which might used by
+Vim or other plugin you installed. If you mapped that combination, which conflicts
+with other mapping, your mapping will simply shadow the previous binding. You
+may not want this.
+</p>
+
+<p>
+The way to get around this is having a prefix key, a namespace. Remember the days
+when you were just starting to program, and you would name your function <code>my_sort</code>
+to get around the standard function <code>sort</code>, using a leader key is the exact same
+thing.
+</p>
+
+<p>
+You can map <code>&lt;leader&gt;yy</code> to map your personal way of yanking a line, or two, and
+leave <code>yy</code> for the default one. Leader key is a variable, you can map the leader
+key itself to some other key. The key <code>\</code> acts as leader key in default case.
+Thus, in above example, you would press <code>\yy</code> to invoke <i>your yank</i>.
+</p>
+
+<p>
+You can change your leader key, say to <code>,</code>, a popular option, by executing
+<code>let mapleader = ","</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4c5446f" class="outline-2">
+<h2 id="org4c5446f">VimL</h2>
+<div class="outline-text-2" id="text-org4c5446f">
+<p>
+VimL or Vim Script, (both are actually the same) is a fully featured turing
+complete<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> language. It has support for functions, if else condition, exception
+handling etc. VimL is used to customize Vim as well to develop plugins which extends
+the features of Vim.
+</p>
+
+<p>
+Details of VimL is well beyond this tutorial. But if you are interested in reading
+more about it and all the things we talked about in this essay and much more, please
+have a look at <a href="http://learnvimscriptthehardway.stevelosh.com/">Learn Vim Script the Hard Way</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb748509" class="outline-2">
+<h2 id="orgb748509">One more thing</h2>
+<div class="outline-text-2" id="text-orgb748509">
+<p>
+Let's look at couple of modes more:
+</p>
+<ol class="org-ol">
+<li><b>command-line</b>: We've seen this mode before, but haven't talked about it formally.
+When we hit <code>:</code> while in normal mode, we enter command-line mode. All the stuff
+which we can do in <code>.vimrc</code> can be executed from command line mode. But the
+changes are not permanent, things will get back to what is defined in <code>.vimrc</code>
+next time Vim is opened.</li>
+<li><b>Replace mode</b>: Hitting <code>R</code> switches Vim to a altogether different mode, in which
+characters are replaced by entered characters. This can be very helpful while
+editing configuration files.
+<ul class="org-ul">
+<li><code>&lt;esc&gt;</code> puts back to normal mode.</li>
+<li><code>r</code>: replace, it's like putting momentarily into replace mode. It replaces
+single character under cursor.
+<ul class="org-ul">
+<li><code>r-&lt;enter&gt;</code>: Executing <code>r-&lt;enter&gt;</code> will over a space character will replace
+space with a newline, effectively breaking line into two lines.</li>
+<li><code>&lt;shift&gt;-j</code>: works as complementary to above action. It joins lines. Takes
+the line below the current line and joins it to current line, by replacing
+newline with a space.</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org78313c7" class="outline-2">
+<h2 id="org78313c7">Summary</h2>
+<div class="outline-text-2" id="text-org78313c7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>imap</code></td>
+<td class="org-left">Maps key combination in <b>insert</b> mode</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>nmap</code></td>
+<td class="org-left">Maps key combination in <b>normal</b> mode</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>vmap</code></td>
+<td class="org-left">Maps key combination in <b>visual</b> mode</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>noremap</code></td>
+<td class="org-left">Maps keys in <b>non recursive</b> way, you <b>always</b> want to have this.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&lt;leader&gt;</code></td>
+<td class="org-left">A prefix key to avoid shadowing already defined key combinations.</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>:</code></td>
+<td class="org-left">switches to command line mode. VimL statements can be executed in this mode directly</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>R</code></td>
+<td class="org-left">Replace Mode: replaces character under cursor with entered characters</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>r</code></td>
+<td class="org-left">replaces single character</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&lt;shift&gt;-j</code></td>
+<td class="org-left">joins lines</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<a href="./8.html">Click here for part 8</a>
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Pressing <code>:</code> in normal mode, gets us into <a href="https://en.wikibooks.org/wiki/Learning_the_vi_Editor/Vim/Modes#command-line">command-line mode</a>. After execution of command, we get back to normal mode.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+Longer list of control characters <a href="http://how-to.wikia.com/wiki/How_to_map_keys_in_vim">here</a>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+this is inefficient way of yanking two lines, better way would be <code>ykp</code>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+In layman terms, turing complete languages are those which can do everything the most powerful programming language can do.
+</p></div></div>
+
+
+</div>
+</div><div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/vim/7.html";
+this.page.identifier = "/essays/vim/7.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-06-8</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
