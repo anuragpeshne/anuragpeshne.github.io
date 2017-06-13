@@ -1,0 +1,17 @@
+#+TITLE: Vim: Buffers, Windows and Tabs
+#+DATE: 2017-06-12
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:buffers:windows:tabs:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+This is part 8 of a series of tutorial to Vim. You can read [[./7.org][Part 7 here]].
+
+* Buffers
+* Windows
+** 80 Column Rule
+* Tabs
+
+[[./9.org][Click here for part 9]]

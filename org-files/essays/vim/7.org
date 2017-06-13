@@ -10,7 +10,7 @@
 This is part 7 of a series of tutorial to Vim. You can read [[./6.org][Part 6 here]].
 
 * My Vim
-  In [[./6.org][last part]], we changed a lot of options, like setting up the line
+  In the [[./6.org][last part]], we changed a lot of options, like setting up the line
   numbers, autoindent etc. Let's briefly consider 3 operations on the flags:
   - All of these can be turned off by prepending 'no'. So, ~set nonumber~ will
     turn off line numbers. This command can be executed using ~:~[fn:0] in normal mode to
@@ -66,17 +66,17 @@ This is part 7 of a series of tutorial to Vim. You can read [[./6.org][Part 6 he
     #+END_VERSE
 
 ** Leader Key
-   You might have preference for certain key combinations which might used by
-   Vim or other plugin you installed. If you mapped that combination, which conflicts
-   with other mapping, your mapping will simply shadow the previous binding. You
-   may not want this.
+   You might have preference for certain key combinations which might be already in
+   use by Vim or other plugin you installed. If you map that combination, which
+   conflicts with other pre defined mapping, your mapping will simply shadow the
+   previous binding. You may not want to have this.
 
    The way to get around this is having a prefix key, a namespace. Remember the days
    when you were just starting to program, and you would name your function ~my_sort~
    to get around the standard function ~sort~, using a leader key is the exact same
    thing.
 
-   You can map ~<leader>yy~ to map your personal way of yanking a line, or two, and
+   You can map ~<leader>yy~ to map to your personal way of yanking a line, or two, and
    leave ~yy~ for the default one. Leader key is a variable, you can map the leader
    key itself to some other key. The key ~\~ acts as leader key in default case.
    Thus, in above example, you would press ~\yy~ to invoke /your yank/.
@@ -92,10 +92,10 @@ This is part 7 of a series of tutorial to Vim. You can read [[./6.org][Part 6 he
 
   Details of VimL is well beyond this tutorial. But if you are interested in reading
   more about it and all the things we talked about in this essay and much more, please
-  have a look at [[http://learnvimscriptthehardway.stevelosh.com/][Learn Vim Script the Hard Way]]
+  have a look at [[http://learnvimscriptthehardway.stevelosh.com/][Learn Vim Script the Hard Way]].
 
 * One more thing
-  Let's look at couple of modes more:
+  Let's look at couple of more modes:
   1. *command-line*: We've seen this mode before, but haven't talked about it formally.
      When we hit ~:~ while in normal mode, we enter command-line mode. All the stuff
      which we can do in ~.vimrc~ can be executed from command line mode. But the
@@ -105,11 +105,11 @@ This is part 7 of a series of tutorial to Vim. You can read [[./6.org][Part 6 he
      characters are replaced by entered characters. This can be very helpful while
      editing configuration files.
      - ~<esc>~ puts back to normal mode.
-     - ~r~: replace, it's like putting momentarily into replace mode. It replaces
-       single character under cursor.
+     - ~r~: replace, is like switching momentarily to replace mode. It replaces
+       /single/ character under cursor with new character.
        - ~r-<enter>~: Executing ~r-<enter>~ will over a space character will replace
          space with a newline, effectively breaking line into two lines.
-       - ~<shift>-j~: works as complementary to above action. It joins lines. Takes
+       - ~<shift>-j~: works as complementary to above action. It joins lines. It takes
          the line below the current line and joins it to current line, by replacing
          newline with a space.
 

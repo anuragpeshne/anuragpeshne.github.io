@@ -237,11 +237,11 @@ for the JavaScript code in this tag.
 This is part 7 of a series of tutorial to Vim. You can read <a href="./6.html">Part 6 here</a>.
 </p>
 
-<div id="outline-container-orgc9f1b71" class="outline-2">
-<h2 id="orgc9f1b71">My Vim</h2>
-<div class="outline-text-2" id="text-orgc9f1b71">
+<div id="outline-container-orga52e91f" class="outline-2">
+<h2 id="orga52e91f">My Vim</h2>
+<div class="outline-text-2" id="text-orga52e91f">
 <p>
-In <a href="./6.html">last part</a>, we changed a lot of options, like setting up the line
+In the <a href="./6.html">last part</a>, we changed a lot of options, like setting up the line
 numbers, autoindent etc. Let's briefly consider 3 operations on the flags:
 </p>
 <ul class="org-ul">
@@ -256,9 +256,9 @@ the highlighting of cursor line.</li>
 on the status of the flag.</li>
 </ul>
 </div>
-<div id="outline-container-org3719548" class="outline-3">
-<h3 id="org3719548">Mapping</h3>
-<div class="outline-text-3" id="text-org3719548">
+<div id="outline-container-orgb292431" class="outline-3">
+<h3 id="orgb292431">Mapping</h3>
+<div class="outline-text-3" id="text-orgb292431">
 <p>
 You can add or even edit the key mappings to personalize your Vim. You may want
 to, for example, map <code>&lt;ctrl&gt;+t</code> to <code>di&lt;</code> (delete everything in a &lt;..&gt; region),
@@ -287,9 +287,9 @@ before we can <code>di&lt;</code> and that's why we need <code>&lt;esc&gt;</code
 </ul>
 </div>
 
-<div id="outline-container-org58b8bbb" class="outline-4">
-<h4 id="org58b8bbb">Recursive Mapping (is evil)</h4>
-<div class="outline-text-4" id="text-org58b8bbb">
+<div id="outline-container-org9f80902" class="outline-4">
+<h4 id="org9f80902">Recursive Mapping (is evil)</h4>
+<div class="outline-text-4" id="text-org9f80902">
 <p>
 Say you want to change the way yanking a line works, instead of yanking just
 one line, you want it to yank and paste two lines. One way to do this would
@@ -314,7 +314,7 @@ doesn't work always, since there might be other mapping by plugins which might
 get called unintentionally.
 </p>
 </div>
-<ul class="org-ul"><li><a id="org2d836bd"></a>Lesson 8<br /><div class="outline-text-5" id="text-org2d836bd">
+<ul class="org-ul"><li><a id="orge6dbf8a"></a>Lesson 8<br /><div class="outline-text-5" id="text-orge6dbf8a">
 <p class="verse">
 Always use non recursive mapping. (<code>noremap</code>)<br />
 </p>
@@ -322,14 +322,14 @@ Always use non recursive mapping. (<code>noremap</code>)<br />
 </div>
 </div>
 
-<div id="outline-container-orgbbf0c15" class="outline-3">
-<h3 id="orgbbf0c15">Leader Key</h3>
-<div class="outline-text-3" id="text-orgbbf0c15">
+<div id="outline-container-orgc31a912" class="outline-3">
+<h3 id="orgc31a912">Leader Key</h3>
+<div class="outline-text-3" id="text-orgc31a912">
 <p>
-You might have preference for certain key combinations which might used by
-Vim or other plugin you installed. If you mapped that combination, which conflicts
-with other mapping, your mapping will simply shadow the previous binding. You
-may not want this.
+You might have preference for certain key combinations which might be already in
+use by Vim or other plugin you installed. If you map that combination, which
+conflicts with other pre defined mapping, your mapping will simply shadow the
+previous binding. You may not want to have this.
 </p>
 
 <p>
@@ -340,7 +340,7 @@ thing.
 </p>
 
 <p>
-You can map <code>&lt;leader&gt;yy</code> to map your personal way of yanking a line, or two, and
+You can map <code>&lt;leader&gt;yy</code> to map to your personal way of yanking a line, or two, and
 leave <code>yy</code> for the default one. Leader key is a variable, you can map the leader
 key itself to some other key. The key <code>\</code> acts as leader key in default case.
 Thus, in above example, you would press <code>\yy</code> to invoke <i>your yank</i>.
@@ -354,9 +354,9 @@ You can change your leader key, say to <code>,</code>, a popular option, by exec
 </div>
 </div>
 
-<div id="outline-container-org4c5446f" class="outline-2">
-<h2 id="org4c5446f">VimL</h2>
-<div class="outline-text-2" id="text-org4c5446f">
+<div id="outline-container-orgbc8f7bd" class="outline-2">
+<h2 id="orgbc8f7bd">VimL</h2>
+<div class="outline-text-2" id="text-orgbc8f7bd">
 <p>
 VimL or Vim Script, (both are actually the same) is a fully featured turing
 complete<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> language. It has support for functions, if else condition, exception
@@ -367,16 +367,16 @@ the features of Vim.
 <p>
 Details of VimL is well beyond this tutorial. But if you are interested in reading
 more about it and all the things we talked about in this essay and much more, please
-have a look at <a href="http://learnvimscriptthehardway.stevelosh.com/">Learn Vim Script the Hard Way</a>
+have a look at <a href="http://learnvimscriptthehardway.stevelosh.com/">Learn Vim Script the Hard Way</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb748509" class="outline-2">
-<h2 id="orgb748509">One more thing</h2>
-<div class="outline-text-2" id="text-orgb748509">
+<div id="outline-container-orgd377438" class="outline-2">
+<h2 id="orgd377438">One more thing</h2>
+<div class="outline-text-2" id="text-orgd377438">
 <p>
-Let's look at couple of modes more:
+Let's look at couple of more modes:
 </p>
 <ol class="org-ol">
 <li><b>command-line</b>: We've seen this mode before, but haven't talked about it formally.
@@ -389,12 +389,12 @@ characters are replaced by entered characters. This can be very helpful while
 editing configuration files.
 <ul class="org-ul">
 <li><code>&lt;esc&gt;</code> puts back to normal mode.</li>
-<li><code>r</code>: replace, it's like putting momentarily into replace mode. It replaces
-single character under cursor.
+<li><code>r</code>: replace, is like switching momentarily to replace mode. It replaces
+<i>single</i> character under cursor with new character.
 <ul class="org-ul">
 <li><code>r-&lt;enter&gt;</code>: Executing <code>r-&lt;enter&gt;</code> will over a space character will replace
 space with a newline, effectively breaking line into two lines.</li>
-<li><code>&lt;shift&gt;-j</code>: works as complementary to above action. It joins lines. Takes
+<li><code>&lt;shift&gt;-j</code>: works as complementary to above action. It joins lines. It takes
 the line below the current line and joins it to current line, by replacing
 newline with a space.</li>
 </ul></li>
@@ -403,9 +403,9 @@ newline with a space.</li>
 </div>
 </div>
 
-<div id="outline-container-org78313c7" class="outline-2">
-<h2 id="org78313c7">Summary</h2>
-<div class="outline-text-2" id="text-org78313c7">
+<div id="outline-container-org93df8b5" class="outline-2">
+<h2 id="org93df8b5">Summary</h2>
+<div class="outline-text-2" id="text-org93df8b5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
