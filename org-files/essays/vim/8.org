@@ -9,9 +9,56 @@
 
 This is part 8 of a series of tutorial to Vim. You can read [[./7.org][Part 7 here]].
 
-* Buffers
+* One Elephant and Many Men
+** Buffer
+   A *buffer* is just a file loaded up in Vim. You can open multiple files simultaneously
+   in Vim, either by passing multiple file path as arguments to Vim, if you launch
+   it from command line, or using ~:e~ (or ~:edit~) for editing or ~:view~ to view
+   the file (readonly mode).
+
+   You can list the open buffers using ~:ls~ or ~:buffers~. You can cycle through
+   the buffers using ~:bn~ (~:bnext~ (buffer next)) and ~:bp~ (~:bN~, ~bprevious~
+   (buffer previous)). Or you can jump to specific buffer using ~:b~ followed by
+   file path (you can type in initial characters and press ~<tab>~ for autocomplete).
+   You can also jump to specific buffer using its ID[fn:1], ID is listed in output of ~:ls~,
+   using ~:b~ followed by ID.
+
+*** Buffer Philosophy
+    Vim uses buffers the way we are used to have multiple things open in Tabs, like
+    in Internet Browsers. Newer text editors and IDEs have taken this approach,
+    each file opens in a new tab. I would recommend to use buffers in Vim for this.
+
 * Windows
-** 80 Column Rule
+  Before we jump to windows, let me remind you of the story of [[https://en.wikipedia.org/wiki/Blind_men_and_an_elephant][Elephant and blind men]]:
+  There are 7 blind men, who have never encountered elephant before and try to learn
+  about it by touching it. The elephant, as we know, is huge and the men could only
+  feel a small part of the elephant. They draw conclusion about it poles apart depending
+  on the part which they touched.
+
+  The elephant represents the /buffer/-a huge body of matter. /Windows/ show a part
+  of the buffer, just like the way blind men experienced the elephant. Windows can
+  show different buffers or same buffer. They are just perspectives.
+
+  Keys:
+  - You can split current window horizontally using ~<c-w> s~. Every command concerning
+    windows will start with ~<c-w>~, ~s~ here may be stands for split.
+  - Similarly ~<c-w> v~ will make a /vertical/ split.
+  - ~<c-w> <c-w>~ will toggle focus in windows.
+  - ~<c-w>~ followed by arrow keys will get focus to the direction of arrow key pressed.
+  - ~<c-w> q~ will close or /quit/ the window currently in focus.
+
+** A side note: 80 Column Rule
 * Tabs
+* One more thing: Help!
+* Summary
+  | Command             | Comment                        |
+  |---------------------+--------------------------------|
+  | ~:e~ or ~:edit~     | open file for edit             |
+  | ~:view~             | open file for view (read only) |
+  | ~:ls~ or ~:buffers~ | list loaded buffers            |
+  |                     |                                |
 
 [[./9.org][Click here for part 9]]
+
+
+[fn:1] Vim Documentation calls this ID as /unique number/ which will never change.
