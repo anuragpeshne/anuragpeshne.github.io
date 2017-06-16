@@ -26,39 +26,104 @@ This is part 8 of a series of tutorial to Vim. You can read [[./7.org][Part 7 he
 *** Buffer Philosophy
     Vim uses buffers the way we are used to have multiple things open in Tabs, like
     in Internet Browsers. Newer text editors and IDEs have taken this approach,
-    each file opens in a new tab. I would recommend to use buffers in Vim for this.
+    each file opens in a new tab. I would recommend to use buffers in Vim for this[fn:4].
 
-* Windows
-  Before we jump to windows, let me remind you of the story of [[https://en.wikipedia.org/wiki/Blind_men_and_an_elephant][Elephant and blind men]]:
-  There are 7 blind men, who have never encountered elephant before and try to learn
-  about it by touching it. The elephant, as we know, is huge and the men could only
-  feel a small part of the elephant. They draw conclusion about it poles apart depending
-  on the part which they touched.
+** Windows
+   Before we jump to windows, let me remind you of the story of [[https://en.wikipedia.org/wiki/Blind_men_and_an_elephant][Elephant and blind men]]:
+   There were 7 blind men, who had never encountered elephant before and tried to learn
+   about it by touching it. The elephant, as we know, is huge and the men could only
+   feel a small part of the elephant. They drew conclusion about it, poles apart, depending
+   on the part which they touched.
 
-  The elephant represents the /buffer/-a huge body of matter. /Windows/ show a part
-  of the buffer, just like the way blind men experienced the elephant. Windows can
-  show different buffers or same buffer. They are just perspectives.
+   The elephant represents the /buffer/-a huge body of matter. /Windows/ show a part
+   of the buffer, just like the way blind men experienced the same elephant. Windows can
+   show different buffers or same buffer. They are just perspectives.
 
-  Keys:
-  - You can split current window horizontally using ~<c-w> s~. Every command concerning
-    windows will start with ~<c-w>~, ~s~ here may be stands for split.
-  - Similarly ~<c-w> v~ will make a /vertical/ split.
-  - ~<c-w> <c-w>~ will toggle focus in windows.
-  - ~<c-w>~ followed by arrow keys will get focus to the direction of arrow key pressed.
-  - ~<c-w> q~ will close or /quit/ the window currently in focus.
+   It is also useful to have multiple views of same file side by side to refer some
+   code which is not visible in current window. For example, I'm using one window to
+   write the main content and other to write the summary by looking at the same file.
 
-** A side note: 80 Column Rule
-* Tabs
+   Keys:
+   - You can split current window horizontally using ~<c-w> s~, ~s~ here stands for /split/.
+     - Every command concerning windows will start with ~<c-w>~
+   - Similarly ~<c-w> v~ will make a /vertical/ split.
+   - ~<c-w> <c-w>~ will toggle focus among windows.
+   - ~<c-w>~ followed by arrow keys will get focus to the direction of arrow key pressed.
+   - ~<c-w> q~ will close or /quit/ the window currently in focus.
+
+*** A side note: 80 Column Rule
+    For those who have never heard of 80 column rule, the rule says that no line
+    should be longer than 80 characters, and that includes indentation space. In
+    modern times, the rationale[fn:2] behind the rule is, it is difficult to read
+    long lines[fn:3].
+
+    Having vertical split makes even more sense in light of this rule and wide monitors.
+    Instead of having one monolithic fat file opened, it is better to have multiple
+    windows (perspective) displaying different files or different part of same file.
+
+** Tabs
+   Vim also has /tabs/ but these tabs are different from the tabs which you might
+   be familiar with. In Vim, you can think of tabs as arrangement of windows, instead
+   of representing open files. Thus, in one arrangement, you can have 4 splits--2 vertical
+   , 2 horizontal--and just 2 splits in other. These windows may or may not show
+   same files. The main idea behind this is to save the configuration of splits.
+   Thus, you might have a tab which is optimized for developing code and other
+   designed for debugging.
+
+   Keys:
+   - ~:tabnew~ to create new tab
+   - ~:tabn~ or ~gt~ to goto next tab
+   - ~:tabp~ or ~gT~ to goto previous tab
+
+** Lesson 9
+   #+BEGIN_VERSE
+   A buffer is the in-memory text of a file.
+   A window is a viewport on a buffer.
+   A tab page is a collection of windows
+   #+END_VERSE
+   - This summary is taken directly from Vim's documentation.
+
 * One more thing: Help!
+  You now have seen a lot of commands and terms of Vim. Keeping up with so many things
+  , even for a seasoned Vim user, can be tough. Fortunately, Vim has a very helpful
+  , inbuilt and easy to use documentation. And, it is available offline too!
+
+  The way to summon Vim's documentation system is by hitting ~:help~ followed by
+  command or concept. For example, you can read more about /buffer/ switching
+  by typing ~:help :bn~ or more about /window/ using ~:help window~. Vim will
+  open up another window showing a buffer of Vim's documentation.
+
+  Try it! it is really that simple.
+
 * Summary
-  | Command             | Comment                        |
-  |---------------------+--------------------------------|
-  | ~:e~ or ~:edit~     | open file for edit             |
-  | ~:view~             | open file for view (read only) |
-  | ~:ls~ or ~:buffers~ | list loaded buffers            |
-  |                     |                                |
+  | Command                | Comment                                              |
+  |------------------------+------------------------------------------------------|
+  | ~:e~ or ~:edit~        | open file for edit                                   |
+  | ~:view~                | open file for view (read only)                       |
+  |------------------------+------------------------------------------------------|
+  | ~:ls~ or ~:buffers~    | list loaded buffers                                  |
+  | ~:bn~ or ~:bnext~      | switch to /next/ buffer                              |
+  | ~:bp~ or ~:bprevious~  | switch to /previous/ buffer                          |
+  | ~:b<id>~               | switch to ~id~ buffer                                |
+  |------------------------+------------------------------------------------------|
+  | ~<c-w> s~              | horizontal /split/                                   |
+  | ~<c-w> v~              | /vertical/ split                                     |
+  | ~<c-w> <c-w>~          | cycle focus through window                           |
+  | ~<c-w> <arrow keys>~   | shift focus to window in direction of arrow key      |
+  | ~<c-w> q~              | /quit/ window                                        |
+  | ~<c-w> =~              | make each split of same size                         |
+  |------------------------+------------------------------------------------------|
+  | ~:tabnew~              | create /new/ tab                                     |
+  | ~:tabn~ or ~gt~        | cycle through tabs (tab /next/)                      |
+  | ~:tabp~ or ~gT~        | cycle through tabs backwards (tab /previous/)        |
+  |------------------------+------------------------------------------------------|
+  | ~:help <command/term>~ | searches for ~<command/term>~ in Vim's documentation |
+  |------------------------+------------------------------------------------------|
 
 [[./9.org][Click here for part 9]]
 
 
 [fn:1] Vim Documentation calls this ID as /unique number/ which will never change.
+[fn:2] If you [[https://duckduckgo.com/?q=80+column+rule+reason&t=ffab&ia=qa][search around]] you'll find plenty of discussion about this.
+[fn:3] [[https://en.wikipedia.org/wiki/Column_%28typography%29][Wiki: Column]]
+[fn:4] In [[./3.org][Part 3]], we talked about ~gf~ (goto file) which opens file, ie opens a new buffer. You can go back to previous buffer using ~:bp~
