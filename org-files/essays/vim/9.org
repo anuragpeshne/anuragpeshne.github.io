@@ -1,0 +1,91 @@
+#+TITLE: Vim: Macro
+#+DATE: 2017-06-19
+#+OPTIONS: toc:nil num:nil creator:t author:t tex:t timestamp:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+#+HTML_HEAD: <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+#+FILETAGS:  :vim:tutorial:macro:automation:
+
+#+INCLUDE: "../../../assets/ga.org"
+
+This is part 9 of a series of tutorial to Vim. You can read [[./8.org][Part 8 here]].
+
+* Grunt Work
+  If you are reading this series from the very beginning, you have read about several
+  ways to navigate, couple of modes which help in multiplexing keys, bunch of commands
+  and VimL scripting language, which is, as mentioned before, a fully fledged
+  programming language. After reading all this, one might think, these features of
+  Vim are neat but not really extraordinary. One can still do things without these
+  features, albeit slowly. But the things I'll show today and in next couple of
+  installments are very difficult, if not impossible, to do without these fundamental
+  Vim operations.
+
+  You *will* encounter mundane, repetitive, silly work while working with text. And
+  this doesn't apply just to code developers, it may be possible that a non
+  coder, depending on his role, may in fact face more grunt work. This work comes
+  in all shapes and sizes- a misaligned csv file, a database dump or a code to be
+  refactored. All this work can be and should be automated. Writing code using a
+  verbose language, having a huge boiler plate code, is also grunt work which must
+  be automated.
+
+** Lesson 10
+   #+BEGIN_VERSE
+   Everything that can be automated, *should* be automated.
+   #+END_VERSE
+
+* Now /Recording/
+  #+BEGIN_QUOTE
+  A macro (short for "macroinstruction", from Greek μακρός 'long') in computer science is a rule or pattern that specifies how a certain input sequence (often a sequence of characters) should be mapped to a replacement output sequence (also often a sequence of characters) according to a defined procedure.
+
+  -[[https://en.wikipedia.org/wiki/Macro_(computer_science)][Wiki]]
+  #+END_QUOTE
+  In other words, you type in a few keystrokes and computer will type a lot for you
+  based on what you taught it. A small example will illustrate this better, before
+  we get to the exaple, let me introduce to you another handy operator.
+
+** =~=
+   =~= will toggle the case of character below cursor. Can be very handy while writing
+   camel case variable names.
+
+*** ~title~-lize
+    Suppose we are given a prose like this:
+    #+BEGIN_EXAMPLE
+    you will encounter mundane, repetitive, silly work while working with text. and
+    this doesn't apply just to code developers, it may be possible that a non
+    coder, depending on his role, may in fact face more grunt work. this work comes
+    in all shapes and sizes- a misaligned csv file, a database dump or a code to be
+    refactored. all this work can be and should be automated. writing code using a
+    verbose language, having a huge boiler plate code, is also grunt work which must
+    be automated.
+    #+END_EXAMPLE
+    And you are asked to correct the case--the first character after a '.' should
+    be uppercase and rest lower case. Pretty boring but important task. Let's try
+    to automate it.
+
+**** Using ~substitute~
+     One way is to use ~substitute~. We can /capture/ the next character, using ~.~,
+     after a '.' and make it uppercase.  You can pass in ~\L~ to make a character
+     lower case in substitute:
+     #+BEGIN_SRC viml
+     :%s/\. \(.\)/\L\1/g
+     #+END_SRC
+     - the ~\.~ will match literal '.'
+     - ~\(.\)~ will match and capture any character.
+
+**** Using Macro
+     There's another way, the way of macros. We'll record how to title-lize one instance
+     and run that macro repeatedly.
+     - Goto the first line of text which we want to transform and search for '.'.
+       Now whenever we type ~n~, we'll jump to next position where we want to edit
+       text. Reset your position to any position before first '.', so that when we
+       press ~n~ we get to the first instance of '.'.
+     - Use ~q~, followed by any key ~a~ to ~z~ to start recording.
+       - here the key which is used to record the macro will hold the macro. These
+         are called as registers. Registers can store much more than macros, we'll
+         see more about them in later parts.
+     - Press ~n~ to jump to position where we want to edit.
+     - ~w~ to jump to start of first word.
+     - =~= to toggle the case, in this case uppercase.
+     - Hit ~q~ again to stop recording.
+
+
+[[./9.org][Click here for part 9]]
