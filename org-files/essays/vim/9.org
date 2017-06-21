@@ -32,60 +32,143 @@ This is part 9 of a series of tutorial to Vim. You can read [[./8.org][Part 8 he
    Everything that can be automated, *should* be automated.
    #+END_VERSE
 
-* Now /Recording/
+* Macro
   #+BEGIN_QUOTE
   A macro (short for "macroinstruction", from Greek μακρός 'long') in computer science is a rule or pattern that specifies how a certain input sequence (often a sequence of characters) should be mapped to a replacement output sequence (also often a sequence of characters) according to a defined procedure.
 
   -[[https://en.wikipedia.org/wiki/Macro_(computer_science)][Wiki]]
   #+END_QUOTE
-  In other words, you type in a few keystrokes and computer will type a lot for you
-  based on what you taught it. A small example will illustrate this better, before
-  we get to the exaple, let me introduce to you another handy operator.
+  Here we'll see keyboard macros: you type in a few keystrokes and computer will type
+  a lot for you based on what you taught it. A small example will illustrate this better,
+  but before we get to the exaple, let me introduce to you another handy operator.
 
-** =~=
+** =~= (Tilde)
    =~= will toggle the case of character below cursor. Can be very handy while writing
    camel case variable names.
 
-*** ~title~-lize
-    Suppose we are given a prose like this:
+** ~title~-lize
+   Suppose we are given a prose like this:
+   #+BEGIN_EXAMPLE
+   you will encounter mundane, repetitive, silly work while working with text. and
+   this doesn't apply just to code developers, it may be possible that a non
+   coder, depending on his role, may in fact face more grunt work. this work comes
+   in all shapes and sizes- a misaligned csv file, a database dump or a code to be
+   refactored. all this work can be and should be automated. writing code using a
+   verbose language, having a huge boiler plate code, is also grunt work which must
+   be automated.
+   #+END_EXAMPLE
+   And you are asked to correct the case--the first character after a '.' should
+   be uppercase and rest lower case. Pretty boring but important task. Let's try
+   to automate it.
+
+*** Using ~substitute~
+    One way is to use ~substitute~. We can /capture/ the next character, using ~.~,
+    after a '.' and make it uppercase.  You can pass in ~\L~ to make a character
+    lower case in substitute:
+    #+BEGIN_SRC viml
+    :%s/\. \(.\)/\L\1/g
+    #+END_SRC
+    - the ~\.~ will match literal '.'
+    - ~\(.\)~ will match and capture any character.
+
+*** Now /Recording/
+    There's another way, the way of macros. We'll record how to title-lize one instance
+    and run that macro repeatedly.
+    - Use ~q~, followed by any key ~a~ to ~z~ to start recording.
+      - here the key which is used to record the macro will hold the macro. These
+        are called as *registers*. Registers can store much more than macros, we'll
+        see more about them in later parts.
+      - say we use ~t~.
+    - Press ~/\.~ to search for next instance of ~\.~ (again, '\.' will match literal '.'
+      fullstop, we need to escape it to differentiate from regex wild card ~.~)
+    - ~w~ to jump to start of next word.
+    - =~= to toggle the case, in this case, it will make it uppercase.
+    - Hit ~q~ again to stop recording.
+    - ~@t~ to play the macro.
+      #+CAPTION: Macro for /titlelizing/ the paragraph
+      [[file:../../assets/vim/macro1.gif]]
+
+    - You can execute macro stored in ~t~ 100 number of times using ~100@t~
+    - You can also execute last macro again using ~@@~.
+
+*** One more time
+    Let's consider one more example where macros can prove very handy. Say we have
+    a 25 line csv file and we want to combine 2nd and 4th column.
     #+BEGIN_EXAMPLE
-    you will encounter mundane, repetitive, silly work while working with text. and
-    this doesn't apply just to code developers, it may be possible that a non
-    coder, depending on his role, may in fact face more grunt work. this work comes
-    in all shapes and sizes- a misaligned csv file, a database dump or a code to be
-    refactored. all this work can be and should be automated. writing code using a
-    verbose language, having a huge boiler plate code, is also grunt work which must
-    be automated.
+    1,Aba,931 872,Nigeria
+    2,Abeokuta,612 277,Nigeria
+    3,Abidjan,3 796 677,Ivory Coast
+    4,Abu Dhabi,619 316,United Arab Emirates
+    5,Acapulco,658 347,Mexico
+    6,Accra,2 029 143,Ghana
+    7,Adana,1 271 894,Turkey
+    8,ad-Dammam,793 553,Saudi Arabia
+    9,Addis Abeba,2 823 167,Ethiopia
+    10,Adelaide,1 076 969,Australia
+    11,Aden,625 361,Yemen
+    12,Agadir,718 498,Morocco
+    13,Agra,1 475 091,India
+    14,Aguascalientes,671 584,Mexico
+    15,Ahmadabad,3 769 846,India
+    16,Ahvaz,841 145,Iran
+    17,Ajmer,525 927,India
+    18,al-Basrah,2 141 270,Iraq
+    19,Aleppo,1 626 218,Syria
+    20,Alexandria,3 865 502,Egypt
+    21,Algiers,2 029 936,Algeria
+    22,al-H_artum Bah?ri,1 626 638,Sudan
+    23,al-H?udaydah,677 315,Yemen
+    24,Aligarh,775 694,India
+    25,Allahabad,1 094 199,India
     #+END_EXAMPLE
-    And you are asked to correct the case--the first character after a '.' should
-    be uppercase and rest lower case. Pretty boring but important task. Let's try
-    to automate it.
 
-**** Using ~substitute~
-     One way is to use ~substitute~. We can /capture/ the next character, using ~.~,
-     after a '.' and make it uppercase.  You can pass in ~\L~ to make a character
-     lower case in substitute:
-     #+BEGIN_SRC viml
-     :%s/\. \(.\)/\L\1/g
-     #+END_SRC
-     - the ~\.~ will match literal '.'
-     - ~\(.\)~ will match and capture any character.
+    One way of doing it would be:
+    - ~qt~ to start recording macro in register ~t~.
+    - With cursor on line 1, column 1, press ~3f,~ to jump to last column of csv file.
+    - ~w~ to read first character
+    - ~d$~ to delete till /end of line/
+      - ~dw~ would have worked if the country name were single word. (~dw~ won't
+        work for /Saudi Arabia/)
+    - ~0~ to get to start of line
+    - ~2f,~ to get to end of 2nd column
+    - ~i~ to get to insert mode
+    - ~<space>~
+    - ~<esc>~ to get into normal mode.
+    - ~p~ to paste the fourth column.
+    - ~$~ to goto end of line
+    - ~x~ to delete the trailing ','
+    - and finally ~j~ or ~<down arrow>~ to come to next line
+    - ~0~ to reset position to 0th column in new line
+    - ~q~ to stop recording
+    - ~24@t~ to play the macro 24 times.
 
-**** Using Macro
-     There's another way, the way of macros. We'll record how to title-lize one instance
-     and run that macro repeatedly.
-     - Goto the first line of text which we want to transform and search for '.'.
-       Now whenever we type ~n~, we'll jump to next position where we want to edit
-       text. Reset your position to any position before first '.', so that when we
-       press ~n~ we get to the first instance of '.'.
-     - Use ~q~, followed by any key ~a~ to ~z~ to start recording.
-       - here the key which is used to record the macro will hold the macro. These
-         are called as registers. Registers can store much more than macros, we'll
-         see more about them in later parts.
-     - Press ~n~ to jump to position where we want to edit.
-     - ~w~ to jump to start of first word.
-     - =~= to toggle the case, in this case uppercase.
-     - Hit ~q~ again to stop recording.
+      #+CAPTION: Macro for merging csv column
+      [[file:../../assets/vim/macro2.gif]]
 
+    - This is not the most efficient way of doing it, but this illustrates
+      that you can record everything in a macro: right from every motion command
+      to changing modes.
+    - In fact, you can have nested macros that is, while recording a macro you can
+      summon another macro.
 
-[[./9.org][Click here for part 9]]
+** Achievement Unlocked: Sublime
+   And thus, withing 9 parts you have reached a /sublime/ level. You are now slowly
+   , without noticing, becoming a power user of Vim. All the basic operations which
+   you perform daily must have been already covered. Macros in Vim are one the most
+   powerful features which you will encounter in any editor, partly because of the
+   extensive keyboard mappings available in Vim. We won't stop here, in next parts
+   we will cover more features which will demonstrate why Vim is not your average
+   text editor.
+
+* Summary
+  | Command       | Comment                                       |
+  |---------------+-----------------------------------------------|
+  | ~q<register>~ | start recording macro in register specified   |
+  | ~q~           | stop recording macro                          |
+  | ~@<register>~ | play macro store in specified register        |
+  | ~@@~          | play last played macro                        |
+  |---------------+-----------------------------------------------|
+  | =~=           | toggle the case of the character below cursor |
+  |---------------+-----------------------------------------------|
+
+[[./10.org][Click here for part 10]]
