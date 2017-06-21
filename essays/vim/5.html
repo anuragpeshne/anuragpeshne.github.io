@@ -237,9 +237,9 @@ for the JavaScript code in this tag.
 This is part 5 of a series of tutorial to Vim. You can read <a href="./4.html">Part 4 here</a>.
 </p>
 
-<div id="outline-container-orgc3b0559" class="outline-2">
-<h2 id="orgc3b0559"><code>/</code></h2>
-<div class="outline-text-2" id="text-orgc3b0559">
+<div id="outline-container-org940ac70" class="outline-2">
+<h2 id="org940ac70"><code>/</code></h2>
+<div class="outline-text-2" id="text-org940ac70">
 <p>
 If you ever found yourself using a program which shows text in terminal, and you
 want to search something, the first guess you want to make is <code>/</code>. The key <code>/</code>
@@ -249,9 +249,9 @@ followed by keywords you want to search for and then hit return (enter).
 </p>
 </div>
 
-<div id="outline-container-orgcf89867" class="outline-3">
-<h3 id="orgcf89867">Lesson 6</h3>
-<div class="outline-text-3" id="text-orgcf89867">
+<div id="outline-container-orgeb071dd" class="outline-3">
+<h3 id="orgeb071dd">Lesson 6</h3>
+<div class="outline-text-3" id="text-orgeb071dd">
 <p class="verse">
 <code>/</code> searches for keywords.<br />
 <br />
@@ -270,13 +270,14 @@ as we enter keywords, highlighting all the matched words, etcetera.</li>
 </div>
 </div>
 
-<div id="outline-container-org3ad9699" class="outline-3">
-<h3 id="org3ad9699">Regex</h3>
-<div class="outline-text-3" id="text-org3ad9699">
+<div id="outline-container-orgad8de4c" class="outline-3">
+<h3 id="orgad8de4c">Regex</h3>
+<div class="outline-text-3" id="text-orgad8de4c">
 <p>
-No search system is worth its salt if doesn't support regex. Vim considers it's
-user to be power users and enables regex by default. The symbols might be a different
-from what you are used to but you will find them all. If you are unfamiliar with
+No search system is worth its salt if doesn't support regex. Vim considers its
+users to be power users and enables regex by default. The symbols might be a
+little different, from what you are used to, but you will find support for all
+the rules you demand. If you are unfamiliar with
 Regular Expressions, also called as 'regex', here's a 5 line crash course on regex:
 </p>
 <ol class="org-ol">
@@ -308,7 +309,7 @@ using a backslash <code>\</code></li>
 </ul></li>
 <li><code>[...]</code> will match any one of the characters inside '[' and ']'
 <ul class="org-ul">
-<li><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</code> will match any single digit</li>
+<li><code>[1234567890]</code> will match any single digit</li>
 <li>above rule can be shorten as <code>[0-9]</code> similar to <code>[a-zA-Z]</code> to match characters
 in range a-z.</li>
 <li>append a <code>+</code> and you have regex rule to search for numbers greater than 9.</li>
@@ -324,9 +325,9 @@ It also supports capturing and back referencing, which is discussed next.
 </div>
 </div>
 
-<div id="outline-container-orgb25e29a" class="outline-2">
-<h2 id="orgb25e29a">Substitute on Steriods</h2>
-<div class="outline-text-2" id="text-orgb25e29a">
+<div id="outline-container-org8f99270" class="outline-2">
+<h2 id="org8f99270">Substitution on Steriods</h2>
+<div class="outline-text-2" id="text-org8f99270">
 <p>
 The way to replace <code>foo</code> with <code>bar</code> in Vim is:
 </p>
@@ -337,8 +338,8 @@ The way to replace <code>foo</code> with <code>bar</code> in Vim is:
 <p>
 Now, one might think that's too complex for substituting since in most of other editors
 you can simply press <code>&lt;ctrl&gt;+r</code>, <code>foo</code> and <code>bar</code>. But, if you spend enough time
-with Vim, you will realize Vim has generic command patterns and substitute is just
-following that. Once you get hang of the generic pattern, apply any command is actually
+with Vim, you will realize Vim has generic command pattern and substitute is just
+following that. Once you get hang of the generic pattern, applying any command is actually
 very simply.
 </p>
 
@@ -370,14 +371,14 @@ for each subsitution</li>
 <ul class="org-ul">
 <li><code>g</code> global: substitute multiple instances of <code>foo</code> on same line</li>
 <li><code>c</code> confirm: prompt for confirmation before substituting.</li>
-<li>these flags one needs most of the time, but not always.</li>
+<li>these flags are needed most of the time, but not always.</li>
 </ul></li>
 </ul>
 </div>
 
-<div id="outline-container-orgc081e5e" class="outline-4">
-<h4 id="orgc081e5e">Regex</h4>
-<div class="outline-text-4" id="text-orgc081e5e">
+<div id="outline-container-orgc10825a" class="outline-4">
+<h4 id="orgc10825a">Regex</h4>
+<div class="outline-text-4" id="text-orgc10825a">
 <ul class="org-ul">
 <li>Regular Expression can be very helpful for substitution too. You can 'capture'
 patterns and then later use them while substituting.</li>
@@ -385,14 +386,14 @@ patterns and then later use them while substituting.</li>
 Here's an example:
 </p>
 <div class="org-src-container">
-<pre class="src src-javascript"><span class="linenr">1: </span><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">fun1</span> = <span style="color: #0000FF;">function</span> () {
-<span class="linenr">2: </span>              <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun1"</span>;
+<pre class="src src-javascript"><span class="linenr">1: </span><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">fun1</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> () {
+<span class="linenr">2: </span>              <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"I am fun1"</span>;
 <span class="linenr">3: </span>           };
-<span class="linenr">4: </span><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">fun2</span> = <span style="color: #0000FF;">function</span> () {
-<span class="linenr">5: </span>              <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun2"</span>;
+<span class="linenr">4: </span><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">fun2</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> () {
+<span class="linenr">5: </span>              <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"I am fun2"</span>;
 <span class="linenr">6: </span>           };
-<span class="linenr">7: </span><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">fun3</span> = <span style="color: #0000FF;">function</span> () {
-<span class="linenr">8: </span>              <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun3"</span>;
+<span class="linenr">7: </span><span style="color: #F0DFAF; font-weight: bold;">var</span> <span style="color: #DFAF8F;">fun3</span> = <span style="color: #F0DFAF; font-weight: bold;">function</span> () {
+<span class="linenr">8: </span>              <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"I am fun3"</span>;
 <span class="linenr">9: </span>           };
 </pre>
 </div></li>
@@ -401,14 +402,14 @@ suppose we want to refactor <code>var funx = function () {</code> to <code>funct
 that is:
 </p>
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #0000FF;">function</span> <span style="color: #006699;">fun1</span> () {
-  <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun1"</span>;
+<pre class="src src-javascript"><span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">fun1</span> () {
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"I am fun1"</span>;
 };
-<span style="color: #0000FF;">function</span> <span style="color: #006699;">fun2</span> () {
-  <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun2"</span>;
+<span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">fun2</span> () {
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"I am fun2"</span>;
 };
-<span style="color: #0000FF;">function</span> <span style="color: #006699;">fun3</span> () {
-  <span style="color: #0000FF;">return</span> <span style="color: #008000;">"I am fun3"</span>;
+<span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">fun3</span> () {
+  <span style="color: #F0DFAF; font-weight: bold;">return</span> <span style="color: #CC9393;">"I am fun3"</span>;
 };
 </pre>
 </div></li>
@@ -460,9 +461,9 @@ here, it will be <code>1,6</code><sup><a id="fnr.4" class="footref" href="#fn.4"
 </ul>
 </div>
 </div>
-<div id="outline-container-org08ac6d3" class="outline-4">
-<h4 id="org08ac6d3">Lesson 7</h4>
-<div class="outline-text-4" id="text-org08ac6d3">
+<div id="outline-container-org20037c3" class="outline-4">
+<h4 id="org20037c3">Lesson 7</h4>
+<div class="outline-text-4" id="text-org20037c3">
 <p class="verse">
 Substitute command<br />
 <code>:[range]s/&lt;old&gt;/&lt;new&gt;/[optional flags]</code><br />
@@ -473,9 +474,9 @@ Remember to use regular expressing and capture the patterns which differ. Use ba
 </p>
 </div>
 </div>
-<div id="outline-container-org0e73a1e" class="outline-4">
-<h4 id="org0e73a1e">One More thing</h4>
-<div class="outline-text-4" id="text-org0e73a1e">
+<div id="outline-container-orgd6cdda3" class="outline-4">
+<h4 id="orgd6cdda3">One More thing</h4>
+<div class="outline-text-4" id="text-orgd6cdda3">
 <p>
 If you have followed along the refactoring example by trying out in Vim, which
 BTW you should do, you will notice that the code indentation became very messy.
@@ -542,7 +543,7 @@ this.page.identifier = "/essays/vim/5.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2017-06-3</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.6)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
