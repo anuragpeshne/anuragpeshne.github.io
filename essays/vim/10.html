@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vim: Registers</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/vim/10.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Vim: Registers</h1>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+
+<p>
+This is part 10 of a series of tutorial to Vim. You can read <a href="./9.html">Part 9 here</a>.
+</p>
+
+<div id="outline-container-orgdaf0d34" class="outline-2">
+<h2 id="orgdaf0d34">Two Buckets</h2>
+<div class="outline-text-2" id="text-orgdaf0d34">
+<p>
+I bet you always wanted this. Even if you didn't know it existed, you secretly
+desired something like this.
+</p>
+
+<p>
+Imagine you are editing some text, moving around some lines. You copied some text
+into your clipboard, came to the target location and realized before you can
+paste and empty your buffer, you want to remove some lines. And not just remove,
+you actually want to shift them somewhere else. Now you need the clipboard space
+for moving but it is already filled with previous text.
+</p>
+
+<p>
+Consider another scenario, you have two distinct lines which you want to paste
+at different location based on the surrounding lines, that is, sometimes you
+want to paste line 1 and sometimes line 2.
+</p>
+
+<p>
+Consider yet another scenario, you copied some lines and you realized, you want
+to access the text which was there in clipboard before you yanked. Wouldn't it be
+nice if there were 2 clipboards, 2 buckets, where in you could place two things
+at once.
+</p>
+</div>
+
+<div id="outline-container-orga2c1975" class="outline-3">
+<h3 id="orga2c1975">Even better: Stack</h3>
+<div class="outline-text-3" id="text-orga2c1975">
+<p>
+Vim gives you even better facility: it gives you clipboard as a stack, along with
+several other general and special purpose buckets. It remembers last 10 items
+you yanked or deleted. These buckets are called as <i>registers</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. There are
+several categories of them, here we'll see some of them.
+</p>
+</div>
+</div>
+<div id="outline-container-org25e7adc" class="outline-3">
+<h3 id="org25e7adc">Lesson 11</h3>
+<div class="outline-text-3" id="text-org25e7adc">
+<p class="verse">
+Vim has multiple <i>registers</i> which are used for yanking/deleting/putting stuff into and from.<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf740f87" class="outline-2">
+<h2 id="orgf740f87">Registers</h2>
+<div class="outline-text-2" id="text-orgf740f87">
+<p>
+Whenever you yank or delete characters you need to specify a register which you
+want to put into; similarly while pasting (or putting), you need to specify which
+register to get characters from. Registers are specified by prefixing <code>"</code>. And
+the way you specify a register to yank/delete/put from is by prefixing register
+before the command. Thus, to yank into register <code>"a</code>, you'd say <code>"ay&lt;motion command&gt;</code>.
+</p>
+</div>
+
+<div id="outline-container-org30cca2e" class="outline-3">
+<h3 id="org30cca2e">Named registers <code>"a</code> to <code>"z</code></h3>
+<div class="outline-text-3" id="text-org30cca2e">
+<p>
+These are general purpose registers which you can use to store text<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. When
+you use <code>d</code>, <code>x</code>, <code>c</code> or <code>y</code> along with register name, the content of the register is
+overwritten<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. Storing text in named register is a good idea when you have
+same text to be paste multiple times along with some editing.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge825c06" class="outline-3">
+<h3 id="orge825c06">The Stack: registers <code>"0</code> to <code>"9</code></h3>
+<div class="outline-text-3" id="text-orge825c06">
+<p>
+But, if you didn't specify any register, like we did till now, Vim will use the
+stack formed by registers <code>"0</code> to <code>"9</code>. There is a slight difference in stack for
+delete and change commands and yank command:
+</p>
+<ul class="org-ul">
+<li>Stack for yank command starts with register <code>"0</code>: If you do not specify a register,
+<code>"0</code> will be used for storing yanked content. Previous content of <code>"0</code> will shift
+to <code>"1</code>, <code>"1</code> to <code>"2</code> and so on, forming a stack.</li>
+<li>Stacks for delete and change command starts with register <code>"1</code>. The stack grows
+<code>"1</code> to <code>"9</code>.</li>
+<li>It is worth noting that although the stack starts with different register for
+yank and delete commands, they share the same stack. So content of delete
+command will be shifted by a yank command. But last content of yank command
+<b>will not</b> be shifted by a delete command.
+<ul class="org-ul">
+<li>This can be helpful when you want to paste the last yanked text since it
+will not be disturbed by delete or change command.</li>
+</ul></li>
+</ul>
+
+<p>
+If by reading this, you get a feeling that it is convoluted, I suggest you to
+see the stack in action for yourself. Yank and delete some text and observe
+the state of the stack (and all the registers used) by executing <code>:registers</code>
+or <code>:reg</code> for short.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f14e31" class="outline-3">
+<h3 id="org1f14e31">Default Register</h3>
+<div class="outline-text-3" id="text-org1f14e31">
+<p>
+Unnamed register <code>""</code><sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> acts like a pointer to recently used register. Thus if you
+didn't specify a register while yanking, <code>""</code> will point to <code>"0</code> and <code>"1</code> in
+case of delete command.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71f41cd" class="outline-3">
+<h3 id="org71f41cd">Black hole Register: <code>"_</code></h3>
+<div class="outline-text-3" id="text-org71f41cd">
+<p>
+This is analogous to Unix's <code>/dev/null</code>, whatever is written to it is lost.
+This can be helpful when you want to delete/change something without disturbing
+the stack. For example: <code>"_di{</code> will delete everything inside <code>{...}</code> without
+storing it in register.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4f285a" class="outline-3">
+<h3 id="orgc4f285a">Other Registers</h3>
+<div class="outline-text-3" id="text-orgc4f285a">
+<p>
+There are several more registers which we haven't looked here. Some of the more
+interesting ones which you might want to look up would be:
+</p>
+<ol class="org-ol">
+<li><code>"*</code>, <code>"+</code> and <code>"~</code> which help in pasting content copied from other GUI programs
+like web browsers and pasting in Vim using put (<code>p</code>) command.</li>
+<li><code>"%</code>: contains name of current file</li>
+<li><code>":</code>: contains recently executed command-line.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org59bbdfd" class="outline-2">
+<h2 id="org59bbdfd">Editing Macro</h2>
+<div class="outline-text-2" id="text-org59bbdfd">
+<p>
+If you remember, in the <a href="./9.html">previous part</a>, we discussed how we can store sequences of
+keys in a register as a keyboard macro. If you lookup registers used (by executing
+<code>:reg</code>), you'll see all the macros recorded as text. Not only you can view them
+as text, you can edit them too. You can put them (<code>p</code>), edit the sequence of keys
+and yank the macro back into the same or different register.
+</p>
+
+<p>
+Let's look at a macro edit in action. Suppose you recorded a macro to append 'w'
+end of line:
+</p>
+<ol class="org-ol">
+<li><code>qw</code>: start recording macro in register <code>w</code></li>
+<li><code>A</code>: append to end of line (goto end of line and switch to insert mode)</li>
+<li><code>w</code>: insert 'w' into buffer</li>
+<li><code>&lt;esc&gt;</code>: go back to normal mode</li>
+<li><code>j</code>: go down one line</li>
+<li><code>q</code>: stop recording</li>
+</ol>
+
+<p>
+You can see how it works by playing it couple of times using <code>@w</code>. Now, say instead
+of appending 'w' you want to append 'd' or even 'Donald Duck'. To do that we can
+edit existing macro rather than recording a new one:
+</p>
+<ol class="org-ol">
+<li>Paste the macro using <code>"wp</code> (paste the content of register <code>"w</code>)</li>
+<li>Edit the key sequences: replace 'w' with 'Donald Duck'</li>
+<li>Yank it back to register <code>"w</code>: <code>"wyy</code> assuming the content was in its own line.
+<ul class="org-ul">
+<li>We could have yanked it into another register and then use either of macros
+to append 'w' or 'Donald Duck'.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org022edf7" class="outline-2">
+<h2 id="org022edf7">Summary</h2>
+<div class="outline-text-2" id="text-org022edf7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>"reg[ydxc]</code></td>
+<td class="org-left">You can specify a register by prefixing <code>"</code> and specify register before a yank, delete or change command</td>
+</tr>
+
+<tr>
+<td class="org-left">Registers <code>"a</code> to <code>"z</code></td>
+<td class="org-left">Named registers</td>
+</tr>
+
+<tr>
+<td class="org-left">Registers <code>"0</code> to <code>"9</code></td>
+<td class="org-left">Stack: yank starts with <code>"0</code> and delete with <code>"1</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Register <code>"_</code></td>
+<td class="org-left">Black hole register</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>:reg</code> or <code>:registers</code></td>
+<td class="org-left">Lists all the registers in use</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>A</code></td>
+<td class="org-left">Goto end of line and switches to <i>insert mode</i>. Similar to <code>a</code>. Both usually used to <i>append</i> text.</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<a href="./11.html">Click here for part 11</a>
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<code>:help registers</code> to read official documentation
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+Macros are sequence of keys, which can be stored and manipulated as text
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+You can use upper case characters to append to the registers.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+Here the register is <code>"</code> and the way to access register is by prefixing a <code>"</code>, hence we access the default register by <code>""</code>
+</p></div></div>
+
+
+</div>
+</div><div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/vim/10.html";
+this.page.identifier = "/essays/vim/10.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-06-26</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
