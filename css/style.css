@@ -28,6 +28,7 @@ code {
 
 #content {
     max-width: 800px;
+    min-width: 400px;
     margin: 0 auto;
 }
 
@@ -66,4 +67,8 @@ pre, pre.src, code {
     font-size: 0.9em;
     border: none;
     border-radius: 3px;
+}
+
+div.org-src-container + pre.example {
+    color: #00aa00;
 }

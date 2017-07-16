@@ -3,12 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-14 Fri 18:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>1 Arrays and Strings</title>
+<title>Arrays and Strings</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Anurag Peshne" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -181,6 +179,78 @@
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="../../../js/org-info.js">
+/**
+ *
+ * @source: ../../../js/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in ../../../js/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in ../../../js/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -231,44 +301,111 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">1 Arrays and Strings</h1>
+<h1 class="title">Arrays and Strings</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc93fb32">1. Hash Tables</a>
+<li><a href="#org864096c">1. Hash Tables</a>
 <ul>
-<li><a href="#org86f2357">1.1. Using arrays</a></li>
-<li><a href="#org7e33b28">1.2. Using Balanced Binary Search Tree</a></li>
+<li><a href="#org56bb75c">1.1. Using arrays</a></li>
+<li><a href="#org6049b6c">1.2. Using Balanced Binary Search Tree</a></li>
 </ul>
 </li>
-<li><a href="#org6639eb7">2. String Builder</a></li>
-<li><a href="#org2bb524d">3. Questions</a>
+<li><a href="#org4d43f98">2. String Builder</a></li>
+<li><a href="#org08b2d3a">3. Questions</a>
 <ul>
-<li><a href="#orgeafe612">3.1. IsUnique</a>
+<li><a href="#orgaf8082e">3.1. IsUnique</a>
 <ul>
-<li><a href="#org903b054">3.1.1. Ans1: Hash Table</a></li>
-<li><a href="#org84429e2">3.1.2. Ans2: ASCII array</a></li>
+<li><a href="#org02ef815">3.1.1. Ans1: Hash Table</a></li>
+<li><a href="#org53c90a5">3.1.2. Ans2: ASCII array</a></li>
+<li><a href="#org104a11b">3.1.3. Introspection</a></li>
+<li><a href="#org46a4a72">3.1.4. Ans3: Without additional data structure</a></li>
+</ul>
+</li>
+<li><a href="#org03b42ef">3.2. IsPermutation</a>
+<ul>
+<li><a href="#org5fd2239">3.2.1. Understanding the problem</a></li>
+<li><a href="#org84a72d1">3.2.2. Devise a plan</a></li>
+<li><a href="#orgd52085f">3.2.3. Carry out the plan</a></li>
+<li><a href="#org742f0d0">3.2.4. Looking Back</a></li>
+</ul>
+</li>
+<li><a href="#orgee7f9c4">3.3. URLify</a>
+<ul>
+<li><a href="#org2229579">3.3.1. Understanding the problem</a></li>
+<li><a href="#org95675c4">3.3.2. Devise a plan</a></li>
+<li><a href="#org4fecfb2">3.3.3. Carry out the plan</a></li>
+<li><a href="#org5fa88ee">3.3.4. Looking Back</a></li>
+</ul>
+</li>
+<li><a href="#org788246a">3.4. Palindrome Permutation</a>
+<ul>
+<li><a href="#orgc408fc3">3.4.1. Understanding the problem</a></li>
+<li><a href="#org2b6c14b">3.4.2. Devising a plan</a></li>
+<li><a href="#org21d2262">3.4.3. Execute the Plan</a></li>
+<li><a href="#orge4deb1b">3.4.4. Looking Back</a></li>
+</ul>
+</li>
+<li><a href="#orga289682">3.5. One Away</a>
+<ul>
+<li><a href="#orgd519e61">3.5.1. Understanding the Problem</a></li>
+<li><a href="#org826e6ce">3.5.2. Devising a plan</a></li>
+<li><a href="#orga96d4a1">3.5.3. Carry out the plan</a></li>
+<li><a href="#org445cf0b">3.5.4. Looking Back</a></li>
+</ul>
+</li>
+<li><a href="#org7b3559c">3.6. String Compression</a>
+<ul>
+<li><a href="#orgf9bb9c1">3.6.1. Understanding the problem</a></li>
+<li><a href="#org69cab02">3.6.2. Devising a plan</a></li>
+<li><a href="#orge23aa5f">3.6.3. Carry out the plan</a></li>
+<li><a href="#orgcdf8d34">3.6.4. Looking Back</a></li>
+</ul>
+</li>
+<li><a href="#org7f01ead">3.7. Rotate Matrix</a>
+<ul>
+<li><a href="#org7bb52bb">3.7.1. Understanding the problem</a></li>
+<li><a href="#orgcb70eb9">3.7.2. Devising a plan</a></li>
+<li><a href="#orgb591b52">3.7.3. Carrying out the plan</a></li>
+<li><a href="#org5b90960">3.7.4. Looking back</a></li>
+</ul>
+</li>
+<li><a href="#orgf998c38">3.8. Zero Matrix</a>
+<ul>
+<li><a href="#org5962875">3.8.1. Understanding the problem</a></li>
+<li><a href="#orgdcfb580">3.8.2. Devising a plan</a></li>
+<li><a href="#orge9d481e">3.8.3. Carrying out the plan</a></li>
+<li><a href="#orge6a841b">3.8.4. Looking Back</a></li>
+</ul>
+</li>
+<li><a href="#orgdb18cef">3.9. String Rotation</a>
+<ul>
+<li><a href="#orgda45302">3.9.1. Understanding the problem</a></li>
+<li><a href="#orgfc30a81">3.9.2. Devising a plan</a></li>
+<li><a href="#org9cab2a9">3.9.3. Carrying out the plan</a></li>
+<li><a href="#orgf980b48">3.9.4. Looking Back</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#orgcd03e6f">4. End Chapter Notes:</a></li>
 </ul>
 </div>
 </div>
 <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-orgc93fb32" class="outline-2">
-<h2 id="orgc93fb32"><span class="section-number-2">1</span> Hash Tables</h2>
+<div id="outline-container-org864096c" class="outline-2">
+<h2 id="org864096c"><span class="section-number-2">1</span> Hash Tables</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org86f2357" class="outline-3">
-<h3 id="org86f2357"><span class="section-number-3">1.1</span> Using arrays</h3>
+</div><div id="outline-container-org56bb75c" class="outline-3">
+<h3 id="org56bb75c"><span class="section-number-3">1.1</span> Using arrays</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Create hash, which is <code>int</code> or <code>long</code> using a hashing function.
 <ul class="org-ul">
-<li>since number of ints is less than the keys, multiple keys will map to same
-integer</li>
+<li>since number of ints is less than the total possible keys, multiple keys
+<b>will</b> map to same integer</li>
 </ul></li>
 <li>Calculate index into array using the hash modulo size of array.
 <ul class="org-ul">
@@ -282,18 +419,18 @@ integer</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7e33b28" class="outline-3">
-<h3 id="org7e33b28"><span class="section-number-3">1.2</span> Using Balanced Binary Search Tree</h3>
+<div id="outline-container-org6049b6c" class="outline-3">
+<h3 id="org6049b6c"><span class="section-number-3">1.2</span> Using Balanced Binary Search Tree</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Search complexity: O(log₂ N)</li>
-<li>Can iterate entries in order.</li>
+<li>Can iterate over entries in order.</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org6639eb7" class="outline-2">
-<h2 id="org6639eb7"><span class="section-number-2">2</span> String Builder</h2>
+<div id="outline-container-org4d43f98" class="outline-2">
+<h2 id="org4d43f98"><span class="section-number-2">2</span> String Builder</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><p>
@@ -332,26 +469,26 @@ sentence.toString(); <span style="color: #8D8D84;">//</span><span style="color: 
 </div>
 </div>
 
-<div id="outline-container-org2bb524d" class="outline-2">
-<h2 id="org2bb524d"><span class="section-number-2">3</span> Questions</h2>
+<div id="outline-container-org08b2d3a" class="outline-2">
+<h2 id="org08b2d3a"><span class="section-number-2">3</span> Questions</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgeafe612" class="outline-3">
-<h3 id="orgeafe612"><span class="section-number-3">3.1</span> IsUnique</h3>
+</div><div id="outline-container-orgaf8082e" class="outline-3">
+<h3 id="orgaf8082e"><span class="section-number-3">3.1</span> IsUnique</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-determine if string has all unique characters. What if cannot use additional
+Determine if a string has all unique characters. What if we cannot use additional
 data structures.
 </p>
 </div>
-<div id="outline-container-org903b054" class="outline-4">
-<h4 id="org903b054"><span class="section-number-4">3.1.1</span> Ans1: Hash Table</h4>
+<div id="outline-container-org02ef815" class="outline-4">
+<h4 id="org02ef815"><span class="section-number-4">3.1.1</span> Ans1: Hash Table</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 We <i>memorize</i> the characters seens so far using a hash table. For each character
 in string, we mark the spot. If we encounter same character again, we return <code>false</code>.
 </p>
 </div>
-<ol class="org-ol"><li><a id="org1e50e75"></a>Python<br /><div class="outline-text-5" id="text-3-1-1-1">
+<ol class="org-ol"><li><a id="org484b155"></a>Python<br /><div class="outline-text-5" id="text-3-1-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">all_unique_char</span>(inp):
    <span style="color: #BA36A5;">memory</span> = {}
@@ -368,20 +505,19 @@ in string, we mark the spot. If we encounter same character again, we return <co
 <span style="color: #0000FF;">print</span>(all_unique_char(inp))
 </pre>
 </div>
+
+<pre class="example">
+False
+
+</pre>
 </div></li>
-<li><a id="orgbad8265"></a>C++<br /><div class="outline-text-5" id="text-3-1-1-2">
+
+<li><a id="org0a6a1fc"></a>C++<br /><div class="outline-text-5" id="text-3-1-1-2">
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
 <span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;unordered_map&gt;</span>
 
-<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span> () {
-    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp</span> (<span style="color: #008000;">"test input string"</span>);
-
-    <span style="color: #D0372D;">std</span>::cout &lt;&lt; all_unique_char (inp) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
-    <span style="color: #0000FF;">return</span> 0;
-}
-
-<span style="color: #6434A3;">bool</span> <span style="color: #006699;">all_unique_char</span> (<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span>&amp; <span style="color: #BA36A5;">inp</span>) {
+<span style="color: #6434A3;">bool</span> <span style="color: #006699;">all_unique_char</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span>&amp; <span style="color: #BA36A5;">inp</span>) {
     <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">unordered_map</span>&lt;<span style="color: #6434A3;">char</span>, <span style="color: #6434A3;">bool</span>&gt; <span style="color: #BA36A5;">memory</span>;
     <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> &amp; <span style="color: #BA36A5;">c</span> : inp) {
         <span style="color: #0000FF;">if</span> (memory.find(c) == memory.end()) {
@@ -392,8 +528,22 @@ in string, we mark the spot. If we encounter same character again, we return <co
     }
     <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">true</span>;
 }
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span> () {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp1</span>(<span style="color: #008000;">"test input string"</span>), <span style="color: #BA36A5;">inp2</span>(<span style="color: #008000;">"qwerty"</span>);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; all_unique_char(inp1) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; all_unique_char(inp2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #0000FF;">return</span> 0;
+}
 </pre>
 </div>
+
+<pre class="example">
+0
+1
+
+</pre>
+
 <p>
 Notes:
 </p>
@@ -405,8 +555,8 @@ Notes:
 </ul>
 </div></li></ol>
 </div>
-<div id="outline-container-org84429e2" class="outline-4">
-<h4 id="org84429e2"><span class="section-number-4">3.1.2</span> Ans2: ASCII array</h4>
+<div id="outline-container-org53c90a5" class="outline-4">
+<h4 id="org53c90a5"><span class="section-number-4">3.1.2</span> Ans2: ASCII array</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Instead of using a hash function to map characters, we can use a integer array
@@ -416,7 +566,7 @@ character.
 </p>
 </div>
 
-<ol class="org-ol"><li><a id="org55cf86a"></a>Python<br /><div class="outline-text-5" id="text-3-1-2-1">
+<ol class="org-ol"><li><a id="org50a85d8"></a>Python<br /><div class="outline-text-5" id="text-3-1-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">all_unique_char</span>(inp):
     <span style="color: #BA36A5;">memory</span> = [0] * 256
@@ -431,10 +581,16 @@ character.
 <span style="color: #0000FF;">print</span>(all_unique_char(<span style="color: #008000;">"this is test"</span>))
 </pre>
 </div>
+
+<pre class="example">
+False
+
+</pre>
 </div></li>
-<li><a id="org34a08a6"></a>C++<br /><div class="outline-text-5" id="text-3-1-2-2">
+
+<li><a id="org50fd0bd"></a>C++<br /><div class="outline-text-5" id="text-3-1-2-2">
 <div class="org-src-container">
-<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<pre class="src src-C++"><span class="linenr"> 1: </span><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #6434A3;">bool</span> <span style="color: #006699;">all_unique_char</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">inp</span>) {
 <span class="linenr"> 4: </span>    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">memory</span>[256] = {0};
@@ -450,11 +606,19 @@ character.
 <span class="linenr">14: </span>}
 <span class="linenr">15: </span>
 <span class="linenr">16: </span><span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
-<span class="linenr">17: </span>    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp</span>(<span style="color: #008000;">"this is test"</span>);
-<span class="linenr">18: </span>    <span style="color: #D0372D;">std</span>::cout &lt;&lt; all_unique_char(inp) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
-<span class="linenr">19: </span>}
+<span class="linenr">17: </span>    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp1</span>(<span style="color: #008000;">"this is test"</span>), <span style="color: #BA36A5;">inp2</span>(<span style="color: #008000;">"qwerty"</span>);
+<span class="linenr">18: </span>    <span style="color: #D0372D;">std</span>::cout &lt;&lt; all_unique_char(inp1) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+<span class="linenr">19: </span>    <span style="color: #D0372D;">std</span>::cout &lt;&lt; all_unique_char(inp2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+<span class="linenr">20: </span>}
 </pre>
 </div>
+
+<pre class="example">
+0
+1
+
+</pre>
+
 <p>
 Notes:
 </p>
@@ -463,29 +627,1778 @@ Notes:
 </ul>
 </div></li></ol>
 </div>
+<div id="outline-container-org104a11b" class="outline-4">
+<h4 id="org104a11b"><span class="section-number-4">3.1.3</span> Introspection</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+To determine if string has unique character, we have to know for given character,
+have we <i>seen</i> the character before. For that either we can:
+</p>
+<ol class="org-ol">
+<li><i>remember</i> the characters seen so far in a datastructure in which we can
+check <i>fast</i>, or the situation is degraded to choice 2.
+<ul class="org-ul">
+<li>Hash table is useful to map or remember arbitrary range of keys. But if
+the domain is well defined, we can map the keys to integers and use a array.
+<ul class="org-ul">
+<li>an array is, after all, a map, which maps natural number to values.</li>
+</ul></li>
+</ul></li>
+<li>if we do not remember, we'll have to check each character to characters seen
+so far by traversing over the input list. This is the case even if we remember
+using a linear search complexity data structure.</li>
+<li>Intuitively lower bound is O(n)</li>
+</ol>
+<p class="verse">
+We can generalize the complexity as:<br />
+O(n × (lookup time))<br />
+<br />
+∴ for hash table implemented using arrays and ASCII arrays:<br />
+O(n)<br />
+<br />
+For tree based hash tables:<br />
+O(n × log₂ n)<br />
+<br />
+For list with linear search:<br />
+O(n × n) = O(n²)<br />
+</p>
 </div>
 </div>
-<div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-this.page.url = "https://anuragpeshne.github.io/notes/interview-prep/1.arrays_and_strings.html";
-this.page.identifier = "/notes/interview-prep/1.arrays_and_strings.html";
-};
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
+<div id="outline-container-org46a4a72" class="outline-4">
+<h4 id="org46a4a72"><span class="section-number-4">3.1.4</span> Ans3: Without additional data structure</h4>
+<div class="outline-text-4" id="text-3-1-4">
+</div><ol class="org-ol"><li><a id="orge89a168"></a>Python<br /><div class="outline-text-5" id="text-3-1-4-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">all_unique_char</span>(inp):
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(i):
+            <span style="color: #0000FF;">if</span> inp[i] == inp[j]:
+                <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">False</span>
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span>
 
-        s.src = '//anuragpeshne.disqus.com/embed.js';
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"Test1"</span>, all_unique_char(<span style="color: #008000;">"this is test"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"Test2"</span>, all_unique_char(<span style="color: #008000;">"al string"</span>))
+</pre>
+</div>
 
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
-<div id="postamble" class="status">
-<p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2017-07-14 Fri 18:39</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<pre class="example">
+('Test1', False)
+('Test2', True)
+
+</pre>
+</div></li>
+
+<li><a id="orgaf98744"></a>C++<br /><div class="outline-text-5" id="text-3-1-4-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+
+<span style="color: #6434A3;">bool</span> <span style="color: #006699;">all_unique_char</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; inp.length(); i++) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; i; j++) {
+            <span style="color: #0000FF;">if</span> (inp[i] == inp[j])
+                <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">false</span>;
+        }
+    }
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">true</span>;
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp1</span>(<span style="color: #008000;">"this is test"</span>), <span style="color: #BA36A5;">inp2</span>(<span style="color: #008000;">"al string"</span>);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"Test1:"</span> &lt;&lt; all_unique_char(inp1) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"Test2:"</span> &lt;&lt; all_unique_char(inp2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+Test1:0
+Test2:1
+
+</pre>
+</div></li></ol>
+</div>
+</div>
+<div id="outline-container-org03b42ef" class="outline-3">
+<h3 id="org03b42ef"><span class="section-number-3">3.2</span> IsPermutation</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Given two strings, determine if one is a permutation of the other.
+</p>
+</div>
+<div id="outline-container-org5fd2239" class="outline-4">
+<h4 id="org5fd2239"><span class="section-number-4">3.2.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>Given a string 'abc', its permutations are {'abc', 'acb', 'bac', 'bca'&#x2026;}.</li>
+<li>The characters in each permutation are same, position is irrelevant.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org84a72d1" class="outline-4">
+<h4 id="org84a72d1"><span class="section-number-4">3.2.2</span> Devise a plan</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<ul class="org-ul">
+<li>⇒ we need to <i>remember</i> characters in string 'a' and see if same characters
+appear in string 'b'.
+<ul class="org-ul">
+<li>We need to keep count of characters, to handle multiple occurrence of
+same character</li>
+</ul></li>
+<li>Use an ASCII array to keep count of characters in string A and then decrement
+the count when character in b is encountered. If no count goes negative (no
+character in string b which is not present in string a) and all counters become
+zero at the end (all characters in string a are matched up with characters
+in string b) then they have same characters.
+<ul class="org-ul">
+<li>Compare length of a and b, return <code>false</code> if length mis match. This will help
+to eliminate the need to check if all counters are 0 at the end. If length
+is same, and suppose there is one character mismatch, then there will be
+one instance where counter will go negative.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd52085f" class="outline-4">
+<h4 id="orgd52085f"><span class="section-number-4">3.2.3</span> Carry out the plan</h4>
+<div class="outline-text-4" id="text-3-2-3">
+</div><ol class="org-ol"><li><a id="org3ac3304"></a>Python<br /><div class="outline-text-5" id="text-3-2-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">is_permutation</span>(str1, str2):
+    <span style="color: #0000FF;">if</span> <span style="color: #006FE0; font-weight: bold;">len</span>(str1) != <span style="color: #006FE0; font-weight: bold;">len</span>(str2):
+        <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">False</span>
+
+    <span style="color: #BA36A5;">mem</span> = [0] * 256
+    <span style="color: #0000FF;">for</span> c <span style="color: #0000FF;">in</span> str1:
+        <span style="color: #BA36A5;">mem</span>[<span style="color: #006FE0; font-weight: bold;">ord</span>(c)] = mem[<span style="color: #006FE0; font-weight: bold;">ord</span>(c)] + 1
+
+    <span style="color: #0000FF;">for</span> c <span style="color: #0000FF;">in</span> str2:
+        <span style="color: #BA36A5;">old_val</span> = mem[<span style="color: #006FE0; font-weight: bold;">ord</span>(c)]
+        <span style="color: #0000FF;">if</span> old_val &lt; 1: <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">there should be at least one instance in a</span>
+            <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">False</span>
+        <span style="color: #0000FF;">else</span>:
+            <span style="color: #BA36A5;">mem</span>[<span style="color: #006FE0; font-weight: bold;">ord</span>(c)] = old_val - 1
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span>
+
+<span style="color: #0000FF;">print</span>(is_permutation(<span style="color: #008000;">"abc"</span>, <span style="color: #008000;">"bca"</span>))
+<span style="color: #0000FF;">print</span>(is_permutation(<span style="color: #008000;">"abc"</span>, <span style="color: #008000;">"abv"</span>))
+</pre>
+</div>
+
+<pre class="example">
+True
+False
+
+</pre>
+</div></li>
+
+<li><a id="orgb75cd4b"></a>C++<br /><div class="outline-text-5" id="text-3-2-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span class="linenr"> 1: </span><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #6434A3;">bool</span> <span style="color: #006699;">is_permutation</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">str1</span>, <span style="color: #D0372D;">std</span>::<span style="color: #BA36A5;">string</span> &amp;str2) {
+<span class="linenr"> 4: </span>    <span style="color: #0000FF;">if</span> (str1.length() != str2.length())
+<span class="linenr"> 5: </span>        <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">false</span>;
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">mem</span>[256] = {0}; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">this is important!</span>
+<span class="linenr"> 8: </span>    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">c</span> : str1) {
+<span class="linenr"> 9: </span>        mem[c]++;
+<span class="linenr">10: </span>    }
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">c</span> : str2) {
+<span class="linenr">13: </span>        <span style="color: #0000FF;">if</span> (mem[c] &lt; 1) {
+<span class="linenr">14: </span>            <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">false</span>;
+<span class="linenr">15: </span>        } <span style="color: #0000FF;">else</span> {
+<span class="linenr">16: </span>            mem[c]--;
+<span class="linenr">17: </span>        }
+<span class="linenr">18: </span>    }
+<span class="linenr">19: </span>    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">true</span>;
+<span class="linenr">20: </span>}
+<span class="linenr">21: </span>
+<span class="linenr">22: </span><span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+<span class="linenr">23: </span>    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">i1str1</span>(<span style="color: #008000;">"abc"</span>), <span style="color: #BA36A5;">i1str2</span>(<span style="color: #008000;">"bac"</span>), <span style="color: #BA36A5;">i2str2</span>(<span style="color: #008000;">"abv"</span>);
+<span class="linenr">24: </span>    <span style="color: #D0372D;">std</span>::cout &lt;&lt; is_permutation(i1str1, i1str2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+<span class="linenr">25: </span>    <span style="color: #D0372D;">std</span>::cout &lt;&lt; is_permutation(i1str1, i2str2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+<span class="linenr">26: </span>}
+</pre>
+</div>
+
+<pre class="example">
+1
+0
+
+</pre>
+<p>
+Notes:
+</p>
+<ul class="org-ul">
+<li>On line 13, be careful to check if counter is at least 1, and not positive.
+This is because, we are checking before subtracting, thus there need to be
+at least one instance.</li>
+</ul>
+</div></li></ol>
+</div>
+<div id="outline-container-org742f0d0" class="outline-4">
+<h4 id="org742f0d0"><span class="section-number-4">3.2.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<ul class="org-ul">
+<li>This can also be useful to find if permutation of string α is substring of
+string β, where <code>α.length() &lt; β.length()</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgee7f9c4" class="outline-3">
+<h3 id="orgee7f9c4"><span class="section-number-3">3.3</span> URLify</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Given a string and its real length, replace all the spaces with '%20'. The input
+string is padded with enough spaces to accommodate the expanded string.
+Example: ('I am a teapot         ', 13)  → 'I%20am%20a%20teapot'.
+</p>
+</div>
+<div id="outline-container-org2229579" class="outline-4">
+<h4 id="org2229579"><span class="section-number-4">3.3.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>We have to replace space with '%20'. To do this in place, we'll have to <i>shift</i>
+next characters.</li>
+<li>Doing this using extra space (O(n)) is trivial (similar to fizz buzz).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org95675c4" class="outline-4">
+<h4 id="org95675c4"><span class="section-number-4">3.3.2</span> Devise a plan</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>Using extra space (O(n)), it's trivial: <code>if c == ' ': append('%20') else: append(c)</code></li>
+<li>Let's try to solve it using constant space buffer:
+<ul class="org-ul">
+<li>buffer of size 2: queue.</li>
+<li>when we encounter ' ', we enqueue next characters in queue</li>
+<li>This won't work: if we encounter another ' ' before we empty the buffer, we'll
+need more space. If ' ' = O(n), then we'll need space = O(n)</li>
+</ul></li>
+<li>If we start from right end, we need to shift characters to right which never
+over write other characters since enough space is appended in given string.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4fecfb2" class="outline-4">
+<h4 id="org4fecfb2"><span class="section-number-4">3.3.3</span> Carry out the plan</h4>
+<div class="outline-text-4" id="text-3-3-3">
+</div><ol class="org-ol"><li><a id="orgfcf841a"></a>Python<br /><div class="outline-text-5" id="text-3-3-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">urlify</span>(inp):
+    <span style="color: #BA36A5;">result</span> = []
+    <span style="color: #BA36A5;">runner</span> = <span style="color: #006FE0; font-weight: bold;">len</span>(inp) - 1
+    <span style="color: #0000FF;">while</span> inp[runner] == <span style="color: #008000;">' '</span>:
+        <span style="color: #BA36A5;">runner</span> = runner - 1
+
+    <span style="color: #BA36A5;">worker</span> = <span style="color: #006FE0; font-weight: bold;">len</span>(inp) - 1
+    <span style="color: #0000FF;">while</span> runner &gt;= 0:
+        <span style="color: #0000FF;">if</span> inp[runner] == <span style="color: #008000;">' '</span>:
+            result.insert(0, <span style="color: #008000;">'0'</span>)
+            <span style="color: #BA36A5;">worker</span> = worker - 1
+            result.insert(0, <span style="color: #008000;">'2'</span>)
+            <span style="color: #BA36A5;">worker</span> = worker - 1
+            result.insert(0, <span style="color: #008000;">'%'</span>)
+            <span style="color: #BA36A5;">worker</span> = worker - 1
+        <span style="color: #0000FF;">else</span>:
+            result.insert(0, inp[runner])
+            <span style="color: #BA36A5;">worker</span> = worker - 1
+        <span style="color: #BA36A5;">runner</span> = runner - 1
+    <span style="color: #0000FF;">return</span> <span style="color: #008000;">''</span>.join(result)
+
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"test1"</span>, urlify(<span style="color: #008000;">"I am a teapot      "</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"test2"</span>, urlify(<span style="color: #008000;">"nospace"</span>))
+</pre>
+</div>
+
+<pre class="example">
+('test1', 'I%20am%20a%20teapot')
+('test2', 'nospace')
+
+</pre>
+</div></li>
+
+<li><a id="orgc5e0149"></a>C++<br /><div class="outline-text-5" id="text-3-3-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">urlify</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">runner</span> = inp.length() - 1;
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">worker</span> = inp.length() - 1;
+
+    <span style="color: #0000FF;">while</span> (inp[runner] == <span style="color: #008000;">' '</span>) runner--;
+
+    <span style="color: #0000FF;">while</span> (runner &gt;= 0) {
+        <span style="color: #0000FF;">if</span> (inp[runner] == <span style="color: #008000;">' '</span>) {
+            inp[worker--] = <span style="color: #008000;">'0'</span>;
+            inp[worker--] = <span style="color: #008000;">'2'</span>;
+            inp[worker--] = <span style="color: #008000;">'%'</span>;
+            runner--;
+        } <span style="color: #0000FF;">else</span> {
+            inp[worker--] = inp[runner--];
+        }
+    }
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp1</span>(<span style="color: #008000;">"I am a teapot      "</span>), <span style="color: #BA36A5;">inp2</span>(<span style="color: #008000;">"nospace"</span>);
+    urlify(inp1);
+    urlify(inp2);
+
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp1 &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp2 &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+}
+</pre>
+</div>
+
+<pre class="example">
+I%20am%20a%20teapot
+nospace
+
+</pre>
+</div></li></ol>
+</div>
+<div id="outline-container-org5fa88ee" class="outline-4">
+<h4 id="org5fa88ee"><span class="section-number-4">3.3.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<ul class="org-ul">
+<li>Looping from right end proved to be easy in case of shifting characters.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org788246a" class="outline-3">
+<h3 id="org788246a"><span class="section-number-3">3.4</span> Palindrome Permutation</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Given a string, write a function to check if it is a permutation of a palindrome.
+</p>
+<pre class="example">
+Ex: "anastasta" → true
+    (aastntsaa)
+</pre>
+</div>
+<div id="outline-container-orgc408fc3" class="outline-4">
+<h4 id="orgc408fc3"><span class="section-number-4">3.4.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li>What is permutation: rearrangement of letters
+<ul class="org-ul">
+<li>order is unimportant</li>
+</ul></li>
+<li>What is Palindrome: a string which is same forward and backward
+<ul class="org-ul">
+<li>each character, except one in the middle, should appear even number of times.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2b6c14b" class="outline-4">
+<h4 id="org2b6c14b"><span class="section-number-4">3.4.2</span> Devising a plan</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<ul class="org-ul">
+<li>The obvious way of generating all permutation (O(n!)) and checking if it is palindrome
+(O(n)) is very expensive.</li>
+<li>In previous problem, 3.2, we observed that <b>in a permutation, both strings have</b>
+<b>same characters and order is not important</b>
+<ul class="org-ul">
+<li>Palindrome string imposes a new condition that all characters except one
+in the middle should appear even number of times.</li>
+</ul></li>
+<li>Count the number of times each character appear, all, except one, should appear
+even number of times.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org21d2262" class="outline-4">
+<h4 id="org21d2262"><span class="section-number-4">3.4.3</span> Execute the Plan</h4>
+<div class="outline-text-4" id="text-3-4-3">
+</div><ol class="org-ol"><li><a id="orgdb851eb"></a>Python<br /><div class="outline-text-5" id="text-3-4-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">is_palindrome_permute</span>(inp):
+    <span style="color: #BA36A5;">store</span> = [0] * (26 * 2)
+    <span style="color: #0000FF;">for</span> c <span style="color: #0000FF;">in</span> inp:
+        <span style="color: #0000FF;">if</span> <span style="color: #006FE0; font-weight: bold;">ord</span>(c) &gt;= <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'A'</span>) <span style="color: #0000FF;">and</span> <span style="color: #006FE0; font-weight: bold;">ord</span>(c) &lt;= <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'Z'</span>):
+            <span style="color: #BA36A5;">store</span>[<span style="color: #006FE0; font-weight: bold;">ord</span>(c) - <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'A'</span>)] = store[<span style="color: #006FE0; font-weight: bold;">ord</span>(c) - <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'A'</span>)] + 1
+        <span style="color: #0000FF;">elif</span> <span style="color: #006FE0; font-weight: bold;">ord</span>(c) &gt;= <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'a'</span>) <span style="color: #0000FF;">and</span> <span style="color: #006FE0; font-weight: bold;">ord</span>(c) &lt;= <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'z'</span>):
+            <span style="color: #BA36A5;">store</span>[<span style="color: #006FE0; font-weight: bold;">ord</span>(c) - <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'a'</span>) + 26] = store[<span style="color: #006FE0; font-weight: bold;">ord</span>(c) - <span style="color: #006FE0; font-weight: bold;">ord</span>(<span style="color: #008000;">'a'</span>) + 26] + 1
+
+    <span style="color: #BA36A5;">found_middle_char</span> = <span style="color: #D0372D;">False</span>
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> store:
+        <span style="color: #0000FF;">if</span> (i % 2 == 1):
+            <span style="color: #0000FF;">if</span> found_middle_char:
+                <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">False</span>
+            <span style="color: #0000FF;">else</span>:
+                <span style="color: #BA36A5;">found_middle_char</span> = <span style="color: #D0372D;">True</span>
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span>
+
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"anastasta"</span>, is_palindrome_permute(<span style="color: #008000;">"anastasta"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"notpalim"</span>, is_palindrome_permute(<span style="color: #008000;">"notpalim"</span>))
+</pre>
+</div>
+
+<pre class="example">
+('anastasta', True)
+('notpalim', False)
+
+</pre>
+</div></li>
+<li><a id="org6ff6d57"></a>C++<br /><div class="outline-text-5" id="text-3-4-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+
+<span style="color: #6434A3;">bool</span> <span style="color: #006699;">is_palindrome_permute</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">store</span>[(26*2)] = {0};
+
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">c</span> : inp) {
+        <span style="color: #0000FF;">if</span> (c &gt;= <span style="color: #008000;">'a'</span> &amp;&amp; c &lt;= <span style="color: #008000;">'z'</span>) {
+            store[c - <span style="color: #008000;">'a'</span>]++;
+        } <span style="color: #0000FF;">else</span> <span style="color: #0000FF;">if</span>(c &gt;= <span style="color: #008000;">'A'</span> &amp;&amp; c &lt;= <span style="color: #008000;">'Z'</span>) {
+            store[c - <span style="color: #008000;">'A'</span> + 26]++;
+        }
+    }
+
+    <span style="color: #6434A3;">bool</span> <span style="color: #BA36A5;">found_middle_char</span> = <span style="color: #D0372D;">false</span>;
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">i</span> : store) {
+        <span style="color: #0000FF;">if</span> (i % 2 == 1) { <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">odd number</span>
+            <span style="color: #0000FF;">if</span> (found_middle_char) {
+                <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">false</span>;
+            } <span style="color: #0000FF;">else</span> {
+                found_middle_char = <span style="color: #D0372D;">true</span>;
+            }
+        }
+    }
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">true</span>;
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp1</span>(<span style="color: #008000;">"anast asta"</span>), <span style="color: #BA36A5;">inp2</span>(<span style="color: #008000;">"notpalim"</span>);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp1 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_palindrome_permute(inp1) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_palindrome_permute(inp2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+anast asta:1
+notpalim:0
+
+</pre>
+</div></li></ol>
+</div>
+<div id="outline-container-orge4deb1b" class="outline-4">
+<h4 id="orge4deb1b"><span class="section-number-4">3.4.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<ul class="org-ul">
+<li>In string permutation, the characters should be the same, order of character
+doesn't matter.
+<ul class="org-ul">
+<li>Usually you can get through with a <code>ASCIIArray</code></li>
+</ul></li>
+<li>Palindrome word contains only <code>[A-Za-z]</code>
+<ul class="org-ul">
+<li>note the word 'word'</li>
+</ul></li>
+<li><p>
+Having an idea of ASCII code can help to design <code>if</code> better.
+</p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"A:"</span> &lt;&lt; <span style="color: #6434A3;">int</span>(<span style="color: #008000;">'A'</span>) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"Z:"</span> &lt;&lt; <span style="color: #6434A3;">int</span>(<span style="color: #008000;">'Z'</span>) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"a:"</span> &lt;&lt; <span style="color: #6434A3;">int</span>(<span style="color: #008000;">'a'</span>) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"z:"</span> &lt;&lt; <span style="color: #6434A3;">int</span>(<span style="color: #008000;">'z'</span>) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"0:"</span> &lt;&lt; <span style="color: #6434A3;">int</span>(<span style="color: #008000;">'0'</span>) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">"9:"</span> &lt;&lt; <span style="color: #6434A3;">int</span>(<span style="color: #008000;">'9'</span>) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+A:65
+Z:90
+a:97
+z:122
+0:48
+9:57
+
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orga289682" class="outline-3">
+<h3 id="orga289682"><span class="section-number-3">3.5</span> One Away</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+There are three types of edits that can be performed on text: insert, remove
+or replace. Given two strings write a function to check if they are one edit
+or less away.
+</p>
+<pre class="example">
+(app, appl) → true
+(appl, app) → true
+(appl, appr) → true
+</pre>
+</div>
+<div id="outline-container-orgd519e61" class="outline-4">
+<h4 id="orgd519e61"><span class="section-number-4">3.5.1</span> Understanding the Problem</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<ul class="org-ul">
+<li>Determine if two strings are 1 edit apart. Or 0 edits ie same.</li>
+<li>Given two string either they are same or just by inserting, deleting or
+replacing one character we can make them equal.</li>
+<li>Since we are interested in just one edit apart, then after fixing one edit,
+if we encounter another mismatch we can return <code>false</code>.</li>
+<li>By insert or delete the length changes at most by one, replace keeps the length
+same.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org826e6ce" class="outline-4">
+<h4 id="org826e6ce"><span class="section-number-4">3.5.2</span> Devising a plan</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<ul class="org-ul">
+<li>It is difficult to come up with an algorithm if we take small example:
+<ul class="org-ul">
+<li>since we can <i>see</i> the answer, coming up with an algorithm is difficult.</li>
+</ul></li>
+<li>Since we are interested in knowing if strings are one or less edit apart,
+after fixing one mismatch if we face another, then we can return <code>false</code>
+<ul class="org-ul">
+<li>be careful of the options: insert, delete and replace.
+<ul class="org-ul">
+<li>insert and delete can shift the characters and make subsequent characters
+match.</li>
+<li>we can try all 3 options to see if any one works.</li>
+</ul></li>
+</ul></li>
+<li><p>
+Pseudocode
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #BA36A5;">smaller</span>, <span style="color: #BA36A5;">larger</span> = magic(str1, str2)
+<span style="color: #0000FF;">if</span> <span style="color: #006FE0; font-weight: bold;">len</span>(longer) - <span style="color: #006FE0; font-weight: bold;">len</span>(smaller) &gt; 1: <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">False</span>
+
+<span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(smaller)):
+    <span style="color: #0000FF;">if</span> smaller[i] != longer[i]:
+        <span style="color: #0000FF;">return</span> ((insert unmatched into smaller == longer) <span style="color: #0000FF;">or</span>
+                (delete <span style="color: #0000FF;">from</span> longer == smaller) <span style="color: #0000FF;">or</span>
+                (replace smaller[i] <span style="color: #0000FF;">with</span> longer == longer))
+<span style="color: #0000FF;">if</span> <span style="color: #006FE0; font-weight: bold;">len</span>(shorter) != longer:
+    shorter + longer[-1] == longer
+<span style="color: #0000FF;">else</span>:
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga96d4a1" class="outline-4">
+<h4 id="orga96d4a1"><span class="section-number-4">3.5.3</span> Carry out the plan</h4>
+<div class="outline-text-4" id="text-3-5-3">
+</div><ol class="org-ol"><li><a id="org85c245a"></a>Python<br /><div class="outline-text-5" id="text-3-5-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">is_one_away</span>(str1, str2):
+    <span style="color: #0000FF;">if</span> <span style="color: #006FE0; font-weight: bold;">len</span>(str1) &gt; <span style="color: #006FE0; font-weight: bold;">len</span>(str2):
+        <span style="color: #BA36A5;">shorter</span>, <span style="color: #BA36A5;">longer</span> = str2, str1
+    <span style="color: #0000FF;">else</span>:
+        <span style="color: #BA36A5;">shorter</span>, <span style="color: #BA36A5;">longer</span> = str1, str2
+
+    <span style="color: #0000FF;">if</span> <span style="color: #006FE0; font-weight: bold;">len</span>(longer) - <span style="color: #006FE0; font-weight: bold;">len</span>(shorter) &gt; 1:
+        <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">False</span>
+
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(shorter)):
+        <span style="color: #0000FF;">if</span> shorter[i] != longer[i]:
+            <span style="color: #0000FF;">if</span> longer[i] + shorter[i + 1:] == longer: <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">this covers both insert and delete</span>
+                <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span>
+            <span style="color: #0000FF;">else</span>:
+                <span style="color: #0000FF;">return</span> shorter[i + 1:] == longer[i + 1:] <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">replace</span>
+
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">True</span> <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">no mismatch and either same len or off by 1</span>
+
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"app"</span>, <span style="color: #008000;">"appl"</span>, is_one_away(<span style="color: #008000;">"app"</span>, <span style="color: #008000;">"appl"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"pp"</span>, <span style="color: #008000;">"app"</span>, is_one_away(<span style="color: #008000;">"pp"</span>, <span style="color: #008000;">"ppl"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"app"</span>, <span style="color: #008000;">"apr"</span>, is_one_away(<span style="color: #008000;">"app"</span>, <span style="color: #008000;">"apr"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"papp"</span>, <span style="color: #008000;">"appla"</span>, is_one_away(<span style="color: #008000;">"papp"</span>, <span style="color: #008000;">"appla"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"app"</span>, <span style="color: #008000;">"aprl"</span>, is_one_away(<span style="color: #008000;">"app"</span>, <span style="color: #008000;">"aprl"</span>))
+</pre>
+</div>
+
+<pre class="example">
+('app', 'appl', True)
+('pp', 'app', True)
+('app', 'apr', True)
+('papp', 'appla', False)
+('app', 'aprl', False)
+
+</pre>
+</div></li>
+
+<li><a id="orgc775854"></a>C++<br /><div class="outline-text-5" id="text-3-5-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+
+<span style="color: #6434A3;">bool</span> <span style="color: #006699;">is_one_away</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">str1</span>, <span style="color: #D0372D;">std</span>::<span style="color: #BA36A5;">string</span> &amp;str2) {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">shorter</span> = (str1.length() &lt; str2.length()) ? str1 : str2;
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">longer</span> = (str1.length() &gt; str2.length()) ? str1 : str2;
+
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; shorter.length(); i++) {
+        <span style="color: #0000FF;">if</span> (shorter[i] != longer[i]) {
+            <span style="color: #0000FF;">if</span> (shorter.substr(i) == longer.substr(i + 1)) {
+                <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">true</span>;
+            } <span style="color: #0000FF;">else</span> {
+                <span style="color: #0000FF;">return</span> (shorter.substr(i + 1) == longer.substr(i + 1));
+            }
+        }
+    }
+
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">true</span>; <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">shorter is substring of longer and len is same</span>
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">t1i1</span>(<span style="color: #008000;">"app"</span>), <span style="color: #BA36A5;">t1i2</span>(<span style="color: #008000;">"appl"</span>);
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">t2i1</span>(<span style="color: #008000;">"app"</span>), <span style="color: #BA36A5;">t2i2</span>(<span style="color: #008000;">"aopp"</span>);
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">t3i1</span>(<span style="color: #008000;">"app"</span>), <span style="color: #BA36A5;">t3i2</span>(<span style="color: #008000;">"apr"</span>);
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">t4i1</span>(<span style="color: #008000;">"app"</span>), <span style="color: #BA36A5;">t4i2</span>(<span style="color: #008000;">"aprl"</span>);
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">t5i1</span>(<span style="color: #008000;">"apr"</span>), <span style="color: #BA36A5;">t5i2</span>(<span style="color: #008000;">"appl"</span>);
+
+    <span style="color: #D0372D;">std</span>::cout&lt;&lt; t1i1 &lt;&lt; <span style="color: #008000;">" "</span> &lt;&lt; t1i2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_one_away(t1i1, t1i2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout&lt;&lt; t2i1 &lt;&lt; <span style="color: #008000;">" "</span> &lt;&lt; t2i2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_one_away(t2i1, t2i2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout&lt;&lt; t3i1 &lt;&lt; <span style="color: #008000;">" "</span> &lt;&lt; t3i2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_one_away(t3i1, t3i2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout&lt;&lt; t4i1 &lt;&lt; <span style="color: #008000;">" "</span> &lt;&lt; t4i2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_one_away(t4i1, t4i2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout&lt;&lt; t5i1 &lt;&lt; <span style="color: #008000;">" "</span> &lt;&lt; t5i2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; is_one_away(t5i1, t5i2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+app appl:1
+app aopp:1
+app apr:1
+app aprl:0
+apr appl:0
+
+</pre>
+</div></li></ol>
+</div>
+
+<div id="outline-container-org445cf0b" class="outline-4">
+<h4 id="org445cf0b"><span class="section-number-4">3.5.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-5-4">
+<ul class="org-ul">
+<li>Insert and delete operation turned out to be same:
+<ul class="org-ul">
+<li>remove a character from longer str is same as adding character to shorter one.</li>
+</ul></li>
+<li>If we were interested in know arbitrary edits or edit distance, then we may
+had to consider all 3 operations at each comparison in this algorithm. In fact
+each character would have to be compared with each character from other string.</li>
+<li>You can assign C++ reference conditionally using ternary operator</li>
+<li>C++ <code>substr</code> has similar interface to python <code>[]</code> operator.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b3559c" class="outline-3">
+<h3 id="org7b3559c"><span class="section-number-3">3.6</span> String Compression</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Implement a string compression using counts of repeated characters. Assume string
+has only uppercase and lowercase letters.
+</p>
+<pre class="example">
+aabcddd → a2bcd3
+</pre>
+</div>
+
+<div id="outline-container-orgf9bb9c1" class="outline-4">
+<h4 id="orgf9bb9c1"><span class="section-number-4">3.6.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<p>
+Count number of contiguous characters, append character with the count and print.
+If count is 1, no need to print the count.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org69cab02" class="outline-4">
+<h4 id="org69cab02"><span class="section-number-4">3.6.2</span> Devising a plan</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<ol class="org-ol">
+<li>Remember the current character, increment the count if same character encountered,
+output the count when character mismatches. Print the count only if count &gt; 1.
+<ul class="org-ul">
+<li>Time: O(n)</li>
+<li>Space: constant</li>
+</ul></li>
+<li>In first iteration count all the characters in a ASCII array, in second iteration
+dump the count from array.
+<ul class="org-ul">
+<li>Time: O(n)</li>
+<li>Space: constant (26*2)</li>
+<li>This won't work if there are multiple occurrence of same characters (Eg: 'aabaa')</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orge23aa5f" class="outline-4">
+<h4 id="orge23aa5f"><span class="section-number-4">3.6.3</span> Carry out the plan</h4>
+<div class="outline-text-4" id="text-3-6-3">
+</div><ol class="org-ol"><li><a id="org1061b25"></a>Python<br /><div class="outline-text-5" id="text-3-6-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">compress</span>(inp):
+    <span style="color: #BA36A5;">ans</span> = []
+
+    <span style="color: #BA36A5;">last_char</span> = inp[0]
+    <span style="color: #BA36A5;">count</span> = 0
+    <span style="color: #0000FF;">for</span> c <span style="color: #0000FF;">in</span> inp:
+        <span style="color: #0000FF;">if</span> c == last_char:
+            <span style="color: #BA36A5;">count</span> = count + 1
+        <span style="color: #0000FF;">else</span>:
+            ans.append(last_char)
+            <span style="color: #0000FF;">if</span> count &gt; 1:
+               ans.append(<span style="color: #006FE0; font-weight: bold;">str</span>(count))
+            <span style="color: #BA36A5;">last_char</span> = c
+            <span style="color: #BA36A5;">count</span> = 1
+
+    ans.append(last_char)
+    <span style="color: #0000FF;">if</span> count &gt; 1:
+        ans.append(<span style="color: #006FE0; font-weight: bold;">str</span>(count))
+    <span style="color: #0000FF;">return</span> <span style="color: #008000;">''</span>.join(ans)
+
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"aabcddd"</span>, compress(<span style="color: #008000;">"aabcddd"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"aabbbbbcddde"</span>, compress(<span style="color: #008000;">"aabbbbbcddde"</span>))
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">"abcd"</span>, compress(<span style="color: #008000;">"abcd"</span>))
+</pre>
+</div>
+
+<pre class="example">
+('aabcddd', 'a2bcd3')
+('aabbbbbcddde', 'a2b5cd3e')
+('abcd', 'abcd')
+
+</pre>
+</div></li>
+<li><a id="org2b77e7e"></a>C++<br /><div class="outline-text-5" id="text-3-6-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;sstream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;string&gt;</span>
+
+<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #006699;">compress</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #6434A3;">char</span> <span style="color: #BA36A5;">last_char</span> = inp[0];
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">count</span> = 0;
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">stringstream</span> <span style="color: #BA36A5;">ans</span>;
+
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">c</span> : inp) {
+        <span style="color: #0000FF;">if</span> (c == last_char) {
+            count++;
+        } <span style="color: #0000FF;">else</span> {
+            ans &lt;&lt; last_char;
+            <span style="color: #0000FF;">if</span> (count &gt; 1)
+                ans &lt;&lt; count;
+
+            last_char = c;
+            count = 1;
+        }
+    }
+    ans &lt;&lt; last_char;
+    <span style="color: #0000FF;">if</span> (count &gt; 1)
+        ans &lt;&lt; count;
+    <span style="color: #0000FF;">return</span> ans.str();
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">inp1</span>(<span style="color: #008000;">"aabcdddaaa"</span>), <span style="color: #BA36A5;">inp2</span>(<span style="color: #008000;">"aabbbbbcddde"</span>), <span style="color: #BA36A5;">inp3</span>(<span style="color: #008000;">"abcd"</span>);
+
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp1 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; compress(inp1) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; compress(inp2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; inp3 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; compress(inp3) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+aabcdddaaa:a2bcd3a3
+aabbbbbcddde:a2b5cd3e
+abcd:abcd
+
+</pre>
+</div></li></ol>
+</div>
+
+<div id="outline-container-orgcdf8d34" class="outline-4">
+<h4 id="orgcdf8d34"><span class="section-number-4">3.6.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-6-4">
+<ul class="org-ul">
+<li>The main point here was to print character when the character under observation
+changes and in the end print the last character</li>
+<li>Counting all the character would not work because of multiple occurrence or
+same character would mix up the count</li>
+<li>Include <code>&lt;sstream&gt;</code> to use <code>stringstream</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7f01ead" class="outline-3">
+<h3 id="org7f01ead"><span class="section-number-3">3.7</span> Rotate Matrix</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+Given an image represented by an N×N matrix, rotate the image by 90. Each pixel
+is 4 bytes. Can it be done in place.
+</p>
+</div>
+
+<div id="outline-container-org7bb52bb" class="outline-4">
+<h4 id="org7bb52bb"><span class="section-number-4">3.7.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-7-1">
+<p>
+To rotate the image, we have to shift the pixel (<b>not</b> transpose) clockwise/anticlockwise.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">→</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">7</td>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-left">→</td>
+<td class="org-right">8</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-right">9</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">9</td>
+<td class="org-right">6</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">13</td>
+<td class="org-right">9</td>
+<td class="org-right">5</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14</td>
+<td class="org-right">10</td>
+<td class="org-right">6</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">9</td>
+<td class="org-right">10</td>
+<td class="org-right">11</td>
+<td class="org-right">12</td>
+<td class="org-left">→</td>
+<td class="org-right">15</td>
+<td class="org-right">11</td>
+<td class="org-right">7</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-right">14</td>
+<td class="org-right">15</td>
+<td class="org-right">16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16</td>
+<td class="org-right">12</td>
+<td class="org-right">8</td>
+<td class="org-right">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgcb70eb9" class="outline-4">
+<h4 id="orgcb70eb9"><span class="section-number-4">3.7.2</span> Devising a plan</h4>
+<div class="outline-text-4" id="text-3-7-2">
+<ul class="org-ul">
+<li>What if we don't have to do it in place (auxiliary space allowed):
+<ul class="org-ul">
+<li><p>
+we start with first row and fill up last column
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(A)):
+    <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(A[0])):
+        B[<span style="color: #006FE0; font-weight: bold;">len</span>(A[0]) - i][j] = A[i][j]
+</pre>
+</div></li>
+</ul></li>
+<li>In place:
+<ul class="org-ul">
+<li>If we start with 1:
+<ul class="org-ul">
+<li>1 →  4 (0, 0 → 0, 3)</li>
+<li>4 → 16 (0, 3 → 3, 3)</li>
+<li>16 → 13 (3, 3 → 3, 0)</li>
+<li>13 →  1 (3, 0 → 0, 0)</li>
+<li>Next round starts with offset 1
+<ul class="org-ul">
+<li>everyone moves one closer to center</li>
+<li>total rounds = length / 2</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb591b52" class="outline-4">
+<h4 id="orgb591b52"><span class="section-number-4">3.7.3</span> Carrying out the plan</h4>
+<div class="outline-text-4" id="text-3-7-3">
+</div><ol class="org-ol"><li><a id="orgef18478"></a>Using auxiliary space<br /><ol class="org-ol"><li><a id="org8585fd6"></a>Python<br /><div class="outline-text-6" id="text-3-7-3-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">import</span> sys
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">rotate</span>(inp):
+    <span style="color: #BA36A5;">ans</span> = []
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp[0])):
+        ans.append([0] * <span style="color: #006FE0; font-weight: bold;">len</span>(inp))
+
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp[0])):
+            ans[j][<span style="color: #006FE0; font-weight: bold;">len</span>(ans) - 1 - i] = inp[i][j]
+
+    <span style="color: #0000FF;">return</span> ans
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">pprint_list</span>(l):
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(l)):
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(l[0])):
+            sys.stdout.write(<span style="color: #006FE0; font-weight: bold;">str</span>(l[i][j]) + <span style="color: #008000;">' '</span>)
+        sys.stdout.write(<span style="color: #008000;">"\n"</span>)
+
+<span style="color: #BA36A5;">inp</span> = [[1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]]
+pprint_list(inp)
+<span style="color: #0000FF;">print</span> <span style="color: #008000;">""</span>
+pprint_list(rotate(inp))
+</pre>
+</div>
+
+<pre class="example">
+1 2 3
+4 5 6
+7 8 9
+
+7 4 1
+8 5 2
+9 6 3
+
+</pre>
+</div></li>
+<li><a id="org9f3f981"></a>C++<br /><div class="outline-text-6" id="text-3-7-3-1-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;vector&gt;</span>
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">rotate</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>, <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">out</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; inp.size(); i++) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; inp[0].size(); j++) {
+            out[j][inp[0].size() - 1 - i] = inp[i][j];
+        }
+    }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">pprint</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">arr</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">v</span> : arr) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">i</span> : v) {
+            <span style="color: #D0372D;">std</span>::cout &lt;&lt; i &lt;&lt; <span style="color: #008000;">" "</span>;
+        }
+        <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    }
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #BA36A5;">inp</span>;
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; 3; i++) {
+        <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">row</span>;
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; 3; j++)
+            row.push_back((<span style="color: #6434A3;">i</span> * 3) + j + 1);
+        inp.push_back(row);
+    }
+
+    pprint(inp);
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #BA36A5;">out</span>(3, <span style="color: #D0372D;">std</span>::vector&lt;<span style="color: #6434A3;">int</span>&gt;(3, 0));
+    rotate(inp, out);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    pprint(out);
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+1 2 3
+4 5 6
+7 8 9
+
+7 4 1
+8 5 2
+9 6 3
+
+</pre>
+</div></li></ol></li>
+<li><a id="orgb22e8ec"></a>In Place<br /><ol class="org-ol"><li><a id="org36a2916"></a>Python<br /><div class="outline-text-6" id="text-3-7-3-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">import</span> sys
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">rotate</span>(inp):
+    <span style="color: #BA36A5;">tmp</span> = 0
+
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>((<span style="color: #006FE0; font-weight: bold;">len</span>(inp) / 2) + 1):
+        <span style="color: #BA36A5;">left</span> = i
+        <span style="color: #BA36A5;">right</span> = <span style="color: #006FE0; font-weight: bold;">len</span>(inp) - 1 - i
+        <span style="color: #BA36A5;">top</span> = i
+        <span style="color: #BA36A5;">down</span> = <span style="color: #006FE0; font-weight: bold;">len</span>(inp) - 1 - i
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(i, <span style="color: #006FE0; font-weight: bold;">len</span>(inp) - 1 - i):
+            <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">top right</span>
+            <span style="color: #BA36A5;">temp</span> = inp[j][right]
+            inp[j][right] = inp[top][j]
+
+            <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">bottom right</span>
+            <span style="color: #BA36A5;">temp1</span> = inp[down][right - j]
+            inp[down][right - j] = temp
+            <span style="color: #BA36A5;">temp</span> = temp1
+
+            <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">bottom left</span>
+            <span style="color: #BA36A5;">temp1</span> = inp[down - j][left]
+            inp[down - j][left] = temp
+            <span style="color: #BA36A5;">temp</span> = temp1
+
+            <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">top left</span>
+            inp[top][left + j] = temp
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">pprint</span>(arr):
+    <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(arr)):
+        <span style="color: #0000FF;">for</span> e <span style="color: #0000FF;">in</span> arr[j]:
+            <span style="color: #BA36A5;">p</span> = <span style="color: #008000;">' '</span> + <span style="color: #006FE0; font-weight: bold;">str</span>(e) + <span style="color: #008000;">' '</span> <span style="color: #0000FF;">if</span> e &lt; 10 <span style="color: #0000FF;">else</span> <span style="color: #006FE0; font-weight: bold;">str</span>(e) + <span style="color: #008000;">' '</span>
+            sys.stdout.write(p)
+        <span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+
+<span style="color: #BA36A5;">inp</span> = [[1,2,3],
+       [4,5,6],
+       [7,8,9]]
+pprint(inp)
+rotate(inp)
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+pprint(inp)
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+
+<span style="color: #BA36A5;">inp</span> = [[ 1, 2, 3, 4],
+       [ 5, 6, 7, 8],
+       [ 9,10,11,12],
+       [13,14,15,16]]
+pprint(inp)
+rotate(inp)
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+pprint(inp)
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+
+<span style="color: #BA36A5;">inp</span> = [[ 1, 2, 3, 4, 5],
+       [ 6, 7, 8, 9,10],
+       [11,12,13,14,15],
+       [16,17,18,19,20],
+       [21,22,23,24,25]]
+pprint(inp)
+rotate(inp)
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+pprint(inp)
+</pre>
+</div>
+
+<pre class="example">
+ 1  2  3
+ 4  5  6
+ 7  8  9
+
+ 7  4  1
+ 8  5  2
+ 9  6  3
+
+ 1  2  3  4
+ 5  6  7  8
+ 9 10 11 12
+13 14 15 16
+
+13  9  5  1
+14 10  6  2
+15  7 11  3
+16 12  8  4
+
+ 1  2  3  4  5
+ 6  7  8  9 10
+11 12 13 14 15
+16 17 18 19 20
+21 22 23 24 25
+
+21 16 11  6  1
+22 17 12  7  2
+23 18 13 12  3
+24 14  9 19  4
+25 20 15 10  5
+</pre>
+</div></li>
+
+<li><a id="orgf637da0"></a>C++<br /><div class="outline-text-6" id="text-3-7-3-2-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;vector&gt;</span>
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">rotate</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; (inp.size() / 2) + 1; i++) {
+        <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">top</span> = i;
+        <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">right</span> = inp[0].size() - 1 - i;
+        <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">bottom</span> = inp.size() - 1 - i;
+        <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">left</span> = i;
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = i; j &lt; inp[0].size() - 1 - i; j++) {
+            <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">top right</span>
+            <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">temp</span> = inp[top + j][right];
+            inp[top + j][right] = inp[top][left + j];
+
+            <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">bottom right</span>
+            <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">temp1</span> = inp[bottom][right - j];
+            inp[bottom][right - j] = temp;
+            temp = temp1;
+
+            <span style="color: #8D8D84;">//</span><span style="color: #8D8D84; font-style: italic;">bottom left</span>
+            temp1 = inp[bottom - j][left];
+            inp[bottom - j][left] = temp;
+            temp = temp1;
+
+            <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">top left</span>
+            inp[top][left + j] = temp;
+        }
+    }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">pprint</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">v</span> : inp) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">e</span> : v) {
+            <span style="color: #0000FF;">if</span> (e &lt; 10)
+                <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">" "</span>;
+            <span style="color: #D0372D;">std</span>::cout &lt;&lt; e &lt;&lt; <span style="color: #008000;">" "</span>;
+        }
+        <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    }
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">feed</span> = 1;
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #BA36A5;">inp1</span>;
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; 3; i++) {
+        <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">aux</span>;
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; 3; j++) {
+            aux.push_back(feed++);
+        }
+        inp1.push_back(aux);
+    }
+
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #BA36A5;">inp2</span>;
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0, <span style="color: #BA36A5;">feed</span> = 1; i &lt; 5; i++) {
+        <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">aux</span>;
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; 5; j++) {
+            aux.push_back(feed++);
+        }
+        inp2.push_back(aux);
+    }
+    pprint(inp1);
+    rotate(inp1);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    pprint(inp1);
+
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    pprint(inp2);
+    rotate(inp2);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    pprint(inp2);
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+1  2  3
+ 4  5  6
+ 7  8  9
+
+ 7  4  1
+ 8  5  2
+ 9  6  3
+
+ 1  2  3  4  5
+ 6  7  8  9 10
+11 12 13 14 15
+16 17 18 19 20
+21 22 23 24 25
+
+21 16 11  6  1
+22 17 12  7  2
+23 18 13  8  3
+24 19 14  9  4
+25 20 15 10  5
+</pre>
+</div></li></ol></li></ol>
+</div>
+
+<div id="outline-container-org5b90960" class="outline-4">
+<h4 id="org5b90960"><span class="section-number-4">3.7.4</span> Looking back</h4>
+<div class="outline-text-4" id="text-3-7-4">
+<ul class="org-ul">
+<li>Rotating elements was about swapping elements of matrix.
+<ul class="org-ul">
+<li>Using O(n) space, this problem was quite easy.</li>
+</ul></li>
+<li>For doing it in place, we had to identify a pattern in the way of swapping
+elements.</li>
+<li>We did it layer by layer. Outer loop iterated over layer and inner loop iterated
+over elements in same layer.
+<ul class="org-ul">
+<li>for elements in same layer, we sequentially swapped elements.</li>
+<li>while changing the layer, the variables <code>top</code>, <code>right</code>, <code>bottom</code>, <code>down</code>
+proved very handy.</li>
+</ul></li>
+<li>For problems like this, draw some examples, identify the pattern in which
+we should swap the elements and automate it.</li>
+<li>Use variables to define new limits/constraints. Use these variable to loop.
+<ul class="org-ul">
+<li>Notice how we used these variables as constants in inner loop and <code>j</code> as
+variable.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf998c38" class="outline-3">
+<h3 id="orgf998c38"><span class="section-number-3">3.8</span> Zero Matrix</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+if an element of matrix is 0, set entire row and column to 0.
+</p>
+</div>
+
+<div id="outline-container-org5962875" class="outline-4">
+<h4 id="org5962875"><span class="section-number-4">3.8.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-8-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">10</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-right">11</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-right">0</td>
+<td class="org-right">11</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-right">0</td>
+<td class="org-right">12</td>
+<td class="org-left">→</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">12</td>
+<td class="org-right">13</td>
+<td class="org-right">56</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">11</td>
+<td class="org-right">12</td>
+<td class="org-right">0</td>
+<td class="org-right">56</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgdcfb580" class="outline-4">
+<h4 id="orgdcfb580"><span class="section-number-4">3.8.2</span> Devising a plan</h4>
+<div class="outline-text-4" id="text-3-8-2">
+<ul class="org-ul">
+<li>We can iterate over the array and as soon as we find '0', we'll set the whole
+row and column to '0'.</li>
+<li>Problem with this approach is, it would be difficult to differentiate the
+original 0 from the ones we set.</li>
+<li>we can set elements to '-1' and after reach the end, again iterate to convert
+-1 to 0.
+<ul class="org-ul">
+<li>Be careful to change to -1 only if it is not 0. (don't change 0 to -1)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge9d481e" class="outline-4">
+<h4 id="orge9d481e"><span class="section-number-4">3.8.3</span> Carrying out the plan</h4>
+<div class="outline-text-4" id="text-3-8-3">
+</div><ol class="org-ol"><li><a id="org17c0ee5"></a>Python<br /><div class="outline-text-5" id="text-3-8-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">import</span> sys
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">zerofy</span>(inp):
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp[0])):
+            <span style="color: #0000FF;">if</span> inp[i][j] == 0:
+                mark_row(inp, i)
+                mark_col(inp, j)
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+            <span style="color: #0000FF;">if</span> inp[i][j] == -1:
+                inp[i][j] = 0
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">mark_row</span>(inp, row):
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp[0])):
+        <span style="color: #0000FF;">if</span> inp[row][i] != 0:
+            inp[row][i] = -1
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">mark_col</span>(inp, col):
+    <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+        <span style="color: #0000FF;">if</span> inp[j][col] != 0:
+            inp[j][col] = -1
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">pprint</span>(inp):
+    <span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp)):
+        <span style="color: #0000FF;">for</span> j <span style="color: #0000FF;">in</span> <span style="color: #006FE0; font-weight: bold;">range</span>(<span style="color: #006FE0; font-weight: bold;">len</span>(inp[0])):
+            <span style="color: #BA36A5;">out</span> = <span style="color: #008000;">' '</span> + <span style="color: #006FE0; font-weight: bold;">str</span>(inp[i][j]) + <span style="color: #008000;">' '</span> <span style="color: #0000FF;">if</span> inp[i][j] &lt; 10 <span style="color: #0000FF;">else</span> <span style="color: #006FE0; font-weight: bold;">str</span>(inp[i][j]) + <span style="color: #008000;">' '</span>
+            sys.stdout.write(out)
+        <span style="color: #0000FF;">print</span> <span style="color: #008000;">""</span>
+
+<span style="color: #BA36A5;">inp</span> = [[ 1, 2, 0, 4],
+       [ 5, 6, 7, 8],
+       [ 9,10, 0,12],
+       [13,14,16,17]]
+
+pprint(inp)
+zerofy(inp)
+<span style="color: #0000FF;">print</span>(<span style="color: #008000;">""</span>)
+pprint(inp)
+</pre>
+</div>
+
+<pre class="example">
+ 1  2  0  4
+ 5  6  7  8
+ 9 10  0 12
+13 14 16 17
+
+ 0  0  0  0
+ 5  6  0  8
+ 0  0  0  0
+13 14  0 17
+
+</pre>
+</div></li>
+<li><a id="orgd6eae68"></a>C++<br /><div class="outline-text-5" id="text-3-8-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;vector&gt;</span>
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">mark_row</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>, <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">row</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">col</span> = 0; col &lt; inp[0].size(); col++) {
+        <span style="color: #0000FF;">if</span> (inp[row][col] != 0)
+            inp[row][col] = -1;
+    }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">mark_col</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>, <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">col</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">row</span> = 0; row &lt; inp.size(); row++) {
+        <span style="color: #0000FF;">if</span> (inp[row][col] != 0)
+            inp[row][col] = -1;
+    }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">zerofy</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; inp.size(); i++) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; inp[0].size(); j++) {
+            <span style="color: #0000FF;">if</span> (inp[i][j] == 0) {
+                mark_row(inp, i);
+                mark_col(inp, j);
+            }
+        }
+    }
+
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; inp.size(); i++) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; inp[0].size(); j++) {
+            <span style="color: #0000FF;">if</span> (inp[i][j] == -1) {
+                inp[i][j] = 0;
+            }
+        }
+    }
+}
+
+<span style="color: #6434A3;">void</span> <span style="color: #006699;">pprint</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; &amp;<span style="color: #BA36A5;">inp</span>) {
+    <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">v</span> : inp) {
+        <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">auto</span> <span style="color: #BA36A5;">i</span> : v) {
+            <span style="color: #0000FF;">if</span> (i &lt; 10)
+                <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #008000;">' '</span>;
+            <span style="color: #D0372D;">std</span>::cout &lt;&lt; i &lt;&lt; <span style="color: #008000;">' '</span>;
+        }
+        <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    }
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">feeder</span> = 1;
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; &gt; <span style="color: #BA36A5;">inp</span>;
+
+    <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; 4; i++) {
+        <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">vector</span>&lt;<span style="color: #6434A3;">int</span>&gt; <span style="color: #BA36A5;">aux</span>;
+        <span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; 4; j++)
+            aux.push_back(feeder++);
+        inp.push_back(aux);
+    }
+    inp[0][2] = 0;
+    inp[2][2] = 0;
+
+    pprint(inp);
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    zerofy(inp);
+    pprint(inp);
+
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+ 1  2  0  4
+ 5  6  7  8
+ 9 10  0 12
+13 14 15 16
+
+ 0  0  0  0
+ 5  6  0  8
+ 0  0  0  0
+13 14  0 16
+
+</pre>
+</div></li></ol>
+</div>
+
+<div id="outline-container-orge6a841b" class="outline-4">
+<h4 id="orge6a841b"><span class="section-number-4">3.8.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-8-4">
+<ul class="org-ul">
+<li>When we need to iterate over sub matrix, set some variables to mark end points.
+<ul class="org-ul">
+<li>this makes iteration simpler</li>
+</ul></li>
+<li>While iterating note which index is constant and which is changing.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdb18cef" class="outline-3">
+<h3 id="orgdb18cef"><span class="section-number-3">3.9</span> String Rotation</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+Assume we have <code>isSubstring</code>, find where a string is rotation of another string.
+</p>
+</div>
+<div id="outline-container-orgda45302" class="outline-4">
+<h4 id="orgda45302"><span class="section-number-4">3.9.1</span> Understanding the problem</h4>
+<div class="outline-text-4" id="text-3-9-1">
+<ul class="org-ul">
+<li>Say the given strings are <code>reboot</code> and <code>bootre</code>.</li>
+<li>Rotation of string is a permutation of string such that relative order (mod len)
+is preserved.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc30a81" class="outline-4">
+<h4 id="orgfc30a81"><span class="section-number-4">3.9.2</span> Devising a plan</h4>
+<div class="outline-text-4" id="text-3-9-2">
+<ul class="org-ul">
+<li>Treating rotation as permutation is a good start.</li>
+<li>Along with permutation, order is also important. So our definition of ration
+becomes, two strings with same characters in same relative order.
+<ul class="org-ul">
+<li>Thus just counting the characters won't solve the problem.</li>
+<li>On other hand, if we check relative ordering of all characters we have essentially
+checked if all characters are present.</li>
+</ul></li>
+<li>For checking relative ordering, we can start with first character of a string
+and find it in second string. Then once aligned we can start comparing. If
+we reach end of string, loop around.</li>
+<li>Other hint given in question is about using <code>isSubstring</code>, this would what
+we discussed above but would not loop around.
+<ul class="org-ul">
+<li>→ double the string and apply <code>isSubstring</code>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9cab2a9" class="outline-4">
+<h4 id="org9cab2a9"><span class="section-number-4">3.9.3</span> Carrying out the plan</h4>
+<div class="outline-text-4" id="text-3-9-3">
+</div><ol class="org-ol"><li><a id="org515d90e"></a>Python<br /><div class="outline-text-5" id="text-3-9-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">isRotate</span>(str1, str2):
+    <span style="color: #BA36A5;">double_str</span> = str1 * 2
+    <span style="color: #0000FF;">return</span> str2 <span style="color: #0000FF;">in</span> double_str
+
+<span style="color: #BA36A5;">inp1</span> = (<span style="color: #008000;">"reboot"</span>, <span style="color: #008000;">"bootre"</span>)
+<span style="color: #BA36A5;">inp2</span> = (<span style="color: #008000;">"reboot"</span>, <span style="color: #008000;">"noboot"</span>)
+<span style="color: #0000FF;">print</span>(inp1, isRotate(inp1[0], inp1[1]))
+<span style="color: #0000FF;">print</span>(inp2, isRotate(inp2[0], inp2[1]))
+</pre>
+</div>
+
+<pre class="example">
+(('reboot', 'bootre'), True)
+(('reboot', 'noboot'), False)
+
+</pre>
+</div></li>
+<li><a id="org55494b7"></a>C++<br /><div class="outline-text-5" id="text-3-9-3-2">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;iostream&gt;</span>
+<span style="color: #808080;">#include</span> <span style="color: #008000;">&lt;string&gt;</span>
+
+<span style="color: #6434A3;">bool</span> <span style="color: #006699;">isRotate</span>(<span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> &amp;<span style="color: #BA36A5;">str1</span>, <span style="color: #D0372D;">std</span>::<span style="color: #BA36A5;">string</span> &amp;str2) {
+    <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">len</span> = str1.size();
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #006699;">double_str</span>(str1);
+    double_str.append(str1);
+
+    <span style="color: #0000FF;">return</span> double_str.find(str2) != <span style="color: #D0372D;">std</span>::<span style="color: #D0372D;">string</span>::npos;
+}
+
+<span style="color: #6434A3;">int</span> <span style="color: #006699;">main</span>() {
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">i1s1</span>(<span style="color: #008000;">"reboot"</span>), <span style="color: #BA36A5;">i1s2</span>(<span style="color: #008000;">"bootre"</span>);
+    <span style="color: #D0372D;">std</span>::<span style="color: #6434A3;">string</span> <span style="color: #BA36A5;">i2s1</span>(<span style="color: #008000;">"reboot"</span>), <span style="color: #BA36A5;">i2s2</span>(<span style="color: #008000;">"noboot"</span>);
+
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; i1s1 &lt;&lt; <span style="color: #008000;">","</span> &lt;&lt; i1s2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; isRotate(i1s1, i1s2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+    <span style="color: #D0372D;">std</span>::cout &lt;&lt; i2s1 &lt;&lt; <span style="color: #008000;">","</span> &lt;&lt; i2s2 &lt;&lt; <span style="color: #008000;">":"</span> &lt;&lt; isRotate(i2s1, i2s2) &lt;&lt; <span style="color: #D0372D;">std</span>::endl;
+
+    <span style="color: #0000FF;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+reboot,bootre:1
+reboot,noboot:0
+
+</pre>
+</div></li></ol>
+</div>
+<div id="outline-container-orgf980b48" class="outline-4">
+<h4 id="orgf980b48"><span class="section-number-4">3.9.4</span> Looking Back</h4>
+<div class="outline-text-4" id="text-3-9-4">
+<ul class="org-ul">
+<li>Our definition of permutation: both strings have same character and order
+is not significant was a good start.</li>
+<li>Go over understanding the problem mechanically word by word. This will give
+hints: in this case, 'what is rotation?'</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd03e6f" class="outline-2">
+<h2 id="orgcd03e6f"><span class="section-number-2">4</span> End Chapter Notes:</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li>When doing <code>a++</code> or <code>a--</code> always think of previous value in <code>a</code>
+<ul class="org-ul">
+<li>make sure it is not garbage.</li>
+</ul></li>
+<li>In string permutation, the characters should be same. Order is unimportant.
+<ul class="org-ul">
+<li>Usually you can get through with a <code>ASCIIArray</code></li>
+</ul></li>
+<li><p>
+Knowing ASCII code for some is helpful while designing algorithms that deal
+with string:
+</p>
+<pre class="example">
+A:65
+Z:90
+a:97
+z:122
+0:48
+9:57
+</pre></li>
+<li>If you try to develop an algorithm using small example size, then it becomes
+very difficult to come up with an idea since, we can <i>see</i> the answer. Take
+a uncomfortably large example, so that mind is forced to think step by step
+instead of jumping to answer.</li>
+<li>Understanding the problem is important. Understanding by example skips the
+mechanical step of thinking about question, word by word. For example, in question
+about finding if string is rotation of another string, if we go by example,
+it is clear instantly but if we go over question and ask, what is to find,
+what is rotation, then we may arrive at definition that rotation is a special
+case of permutation such that relative order of elements is preserved.</li>
+</ol>
+</div>
+</div>
 </div>
 </body>
 </html>
