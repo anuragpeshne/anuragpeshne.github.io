@@ -237,9 +237,9 @@ for the JavaScript code in this tag.
 This is part 10 of a series of tutorial to Vim. You can read <a href="./9.html">Part 9 here</a>.
 </p>
 
-<div id="outline-container-orgdaf0d34" class="outline-2">
-<h2 id="orgdaf0d34">Two Buckets</h2>
-<div class="outline-text-2" id="text-orgdaf0d34">
+<div id="outline-container-org9745cca" class="outline-2">
+<h2 id="org9745cca">Two Buckets</h2>
+<div class="outline-text-2" id="text-org9745cca">
 <p>
 I bet you always wanted this. Even if you didn't know it existed, you secretly
 desired something like this.
@@ -267,9 +267,9 @@ at once.
 </p>
 </div>
 
-<div id="outline-container-orga2c1975" class="outline-3">
-<h3 id="orga2c1975">Even better: Stack</h3>
-<div class="outline-text-3" id="text-orga2c1975">
+<div id="outline-container-org2806669" class="outline-3">
+<h3 id="org2806669">Even better: Stack</h3>
+<div class="outline-text-3" id="text-org2806669">
 <p>
 Vim gives you even better facility: it gives you clipboard as a stack, along with
 several other general and special purpose buckets. It remembers last 10 items
@@ -278,9 +278,9 @@ several categories of them, here we'll see some of them.
 </p>
 </div>
 </div>
-<div id="outline-container-org25e7adc" class="outline-3">
-<h3 id="org25e7adc">Lesson 11</h3>
-<div class="outline-text-3" id="text-org25e7adc">
+<div id="outline-container-org6e67da8" class="outline-3">
+<h3 id="org6e67da8">Lesson 11</h3>
+<div class="outline-text-3" id="text-org6e67da8">
 <p class="verse">
 Vim has multiple <i>registers</i> which are used for yanking/deleting/putting stuff into and from.<br />
 </p>
@@ -288,9 +288,9 @@ Vim has multiple <i>registers</i> which are used for yanking/deleting/putting st
 </div>
 </div>
 
-<div id="outline-container-orgf740f87" class="outline-2">
-<h2 id="orgf740f87">Registers</h2>
-<div class="outline-text-2" id="text-orgf740f87">
+<div id="outline-container-org400fc72" class="outline-2">
+<h2 id="org400fc72">Registers</h2>
+<div class="outline-text-2" id="text-org400fc72">
 <p>
 Whenever you yank or delete characters you need to specify a register which you
 want to put into; similarly while pasting (or putting), you need to specify which
@@ -300,9 +300,9 @@ before the command. Thus, to yank into register <code>"a</code>, you'd say <code
 </p>
 </div>
 
-<div id="outline-container-org30cca2e" class="outline-3">
-<h3 id="org30cca2e">Named registers <code>"a</code> to <code>"z</code></h3>
-<div class="outline-text-3" id="text-org30cca2e">
+<div id="outline-container-org3f7efcd" class="outline-3">
+<h3 id="org3f7efcd">Named registers <code>"a</code> to <code>"z</code></h3>
+<div class="outline-text-3" id="text-org3f7efcd">
 <p>
 These are general purpose registers which you can use to store text<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. When
 you use <code>d</code>, <code>x</code>, <code>c</code> or <code>y</code> along with register name, the content of the register is
@@ -312,9 +312,9 @@ same text to be paste multiple times along with some editing.
 </div>
 </div>
 
-<div id="outline-container-orge825c06" class="outline-3">
-<h3 id="orge825c06">The Stack: registers <code>"0</code> to <code>"9</code></h3>
-<div class="outline-text-3" id="text-orge825c06">
+<div id="outline-container-org4021af0" class="outline-3">
+<h3 id="org4021af0">The Stack: registers <code>"0</code> to <code>"9</code></h3>
+<div class="outline-text-3" id="text-org4021af0">
 <p>
 But, if you didn't specify any register, like we did till now, Vim will use the
 stack formed by registers <code>"0</code> to <code>"9</code>. There is a slight difference in stack for
@@ -345,9 +345,9 @@ or <code>:reg</code> for short.
 </div>
 </div>
 
-<div id="outline-container-org1f14e31" class="outline-3">
-<h3 id="org1f14e31">Default Register</h3>
-<div class="outline-text-3" id="text-org1f14e31">
+<div id="outline-container-org7d67910" class="outline-3">
+<h3 id="org7d67910">Default Register</h3>
+<div class="outline-text-3" id="text-org7d67910">
 <p>
 Unnamed register <code>""</code><sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> acts like a pointer to recently used register. Thus if you
 didn't specify a register while yanking, <code>""</code> will point to <code>"0</code> and <code>"1</code> in
@@ -356,9 +356,9 @@ case of delete command.
 </div>
 </div>
 
-<div id="outline-container-org71f41cd" class="outline-3">
-<h3 id="org71f41cd">Black hole Register: <code>"_</code></h3>
-<div class="outline-text-3" id="text-org71f41cd">
+<div id="outline-container-org308ebb8" class="outline-3">
+<h3 id="org308ebb8">Black hole Register: <code>"_</code></h3>
+<div class="outline-text-3" id="text-org308ebb8">
 <p>
 This is analogous to Unix's <code>/dev/null</code>, whatever is written to it is lost.
 This can be helpful when you want to delete/change something without disturbing
@@ -368,9 +368,9 @@ storing it in register.
 </div>
 </div>
 
-<div id="outline-container-orgc4f285a" class="outline-3">
-<h3 id="orgc4f285a">Other Registers</h3>
-<div class="outline-text-3" id="text-orgc4f285a">
+<div id="outline-container-org2056f4f" class="outline-3">
+<h3 id="org2056f4f">Other Registers</h3>
+<div class="outline-text-3" id="text-org2056f4f">
 <p>
 There are several more registers which we haven't looked here. Some of the more
 interesting ones which you might want to look up would be:
@@ -385,9 +385,9 @@ like web browsers and pasting in Vim using put (<code>p</code>) command.</li>
 </div>
 </div>
 
-<div id="outline-container-org59bbdfd" class="outline-2">
-<h2 id="org59bbdfd">Editing Macro</h2>
-<div class="outline-text-2" id="text-org59bbdfd">
+<div id="outline-container-orgb955520" class="outline-2">
+<h2 id="orgb955520">Editing Macro</h2>
+<div class="outline-text-2" id="text-orgb955520">
 <p>
 If you remember, in the <a href="./9.html">previous part</a>, we discussed how we can store sequences of
 keys in a register as a keyboard macro. If you lookup registers used (by executing
@@ -426,9 +426,9 @@ to append 'w' or 'Donald Duck'.</li>
 </div>
 </div>
 
-<div id="outline-container-org022edf7" class="outline-2">
-<h2 id="org022edf7">Summary</h2>
-<div class="outline-text-2" id="text-org022edf7">
+<div id="outline-container-orgc6160d5" class="outline-2">
+<h2 id="orgc6160d5">Summary</h2>
+<div class="outline-text-2" id="text-orgc6160d5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -504,7 +504,7 @@ Here the register is <code>"</code> and the way to access register is by prefixi
 
 
 </div>
-</div><div id="disqus_thread"></div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/vim/10.html";
