@@ -67,6 +67,7 @@ pre, pre.src, code {
     font-size: 0.9em;
     border: none;
     border-radius: 3px;
+    min-width: 80ex;
 }
 
 div.org-src-container + pre.example {
