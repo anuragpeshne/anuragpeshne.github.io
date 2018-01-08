@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Understanding GenServer</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/understanding-genserver.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Understanding GenServer</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2b13c41">1. Basics</a></li>
+<li><a href="#org93819a3">2. <code>OddServer</code> using <code>GenServer</code></a></li>
+<li><a href="#orgca7ec42">3. <code>SimServer</code></a></li>
+</ul>
+</div>
+</div>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
+
+<p>
+This article is about how Elixir <code>GenServer</code> <i>work</i> rather than how <i>to use</i> it.
+If you are interested in knowing how to use <code>GenServer</code>, I would highly
+recommend the <a href="https://elixir-lang.org/getting-started/mix-otp/genserver.html">getting started guide</a> and <a href="https://www.goodreads.com/book/show/17971957-programming-elixir">Programming Elixir</a> by Dave Thomas.
+</p>
+
+<p>
+Recently my friend came up with a very interesting question about <code>GenServer</code>: why the
+server functions (<code>handle_call</code>, <code>handle_cast</code> etc) are called as <i>callbacks</i>.
+This sounded simple at first -they are invoked when the <code>GenServer</code> receives a
+message- but when I tried to explain this to him, I realized there's lot more
+than meets the eye and I don't understand it all. So I decided to try to write<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+my own version of <code>GenServer</code> to learn how Elixir <code>GenServer</code> could have been
+implemented.
+</p>
+<div id="outline-container-org2b13c41" class="outline-2">
+<h2 id="org2b13c41"><span class="section-number-2">1</span> Basics</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Let's start with a simple sender-receiver process setup, after all <code>GenServer</code>
+is just a shiny interface on top of state storing process along with some more
+features such as tracing and ability to fit in nicely with supervision tree.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">OddServer</span> <span style="color: #0000FF;">do</span>
+
+  <span style="color: #5d478b;">@doc</span> <span style="color: #036A07;">"""</span>
+<span style="color: #036A07;">  Spawns server and initializes current number to 1.</span>
+<span style="color: #036A07;">  """</span>
+  <span style="color: #5d478b;">@spec</span> init<span style="color: #707183;">()</span> :: pid
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">init</span><span style="color: #707183;">()</span> <span style="color: #0000FF;">do</span>
+    spawn<span style="color: #707183;">(</span><span style="color: #D0372D;">__MODULE__</span>, <span style="color: #27408b;">:run</span>, <span style="color: #7388D6;">[</span><span style="color: #D0372D;">1</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #5d478b;">@doc</span> <span style="color: #036A07;">"""</span>
+<span style="color: #036A07;">  Provided as callback to spawn, stores state and calls itself recursively.</span>
+<span style="color: #036A07;">  """</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">run</span><span style="color: #707183;">(</span>current<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      <span style="color: #707183;">{</span><span style="color: #27408b;">:next</span>, pid<span style="color: #707183;">}</span> -&gt;
+        <span style="color: #0000FF;">send</span> pid, current
+        run<span style="color: #707183;">(</span>current + <span style="color: #D0372D;">2</span><span style="color: #707183;">)</span>
+
+      <span style="color: #707183;">{</span><span style="color: #27408b;">:skip</span><span style="color: #707183;">}</span> -&gt;
+        run<span style="color: #707183;">(</span>current + <span style="color: #D0372D;">2</span><span style="color: #707183;">)</span>
+
+      <span style="color: #D0372D;">_</span> -&gt;
+        <span style="color: #6434A3;">IO</span>.puts <span style="color: #008000;">"Non sense message received."</span>
+        run<span style="color: #707183;">(</span>current<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+<code>OddServer</code> is a simple process which replies with <i>next</i> odd integer to the <code>pid</code>
+which is sent to it. It will also skip a odd integer if message <code>{:skip}</code> is received.
+Let's quickly check if it does what we hope it does:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">you can save the above snippet as oddserver.ex and fire up `iex oddserver.ex`</span>
+
+<span style="color: #BA36A5;">oddserver</span> = <span style="color: #6434A3;">OddServer</span>.init<span style="color: #707183;">()</span>
+<span style="color: #0000FF;">send</span> oddserver, <span style="color: #707183;">{</span><span style="color: #27408b;">:next</span>, self<span style="color: #7388D6;">()</span><span style="color: #707183;">}</span>
+<span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+  n -&gt; <span style="color: #6434A3;">IO</span>.puts <span style="color: #008000;">"Received </span><span style="color: #BA36A5;">#{n}</span><span style="color: #008000;">"</span>
+<span style="color: #0000FF;">end</span>
+
+</pre>
+</div>
+
+<pre class="example">
+Received 1
+:ok
+
+</pre>
+
+<p>
+To check if this really works, we should get next integer as <code>3</code>. But interacting
+with our <code>OddServer</code> is very cumbersome. Let's pack this interaction into our
+<code>OddServer</code> as client API, similar to what we write for <code>GenServer</code>. This will
+not only make using <code>OddServer</code> easier, it will also hide internal working of
+<code>OddServer</code> for good, so that we can safely change how odd integers are generated
+if we want to.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">APIOddServer</span> <span style="color: #0000FF;">do</span>
+  <span style="color: #8D8D84;">## </span><span style="color: #8D8D84; font-style: italic;">Client API</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">next</span><span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">send</span> oddserver, <span style="color: #707183;">{</span><span style="color: #27408b;">:next</span>, self<span style="color: #7388D6;">()</span><span style="color: #707183;">}</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      n -&gt; n
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">skip</span><span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">send</span> oddserver, <span style="color: #707183;">{</span><span style="color: #27408b;">:skip</span><span style="color: #707183;">}</span>
+    <span style="color: #27408b;">:ok</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">rest of the functions remain same as `OddServer`</span>
+
+  <span style="color: #5d478b;">@doc</span> <span style="color: #036A07;">"""</span>
+<span style="color: #036A07;">  Spawns server and initializes current number to 1.</span>
+<span style="color: #036A07;">  """</span>
+  <span style="color: #5d478b;">@spec</span> init<span style="color: #707183;">()</span> :: pid
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">init</span><span style="color: #707183;">()</span> <span style="color: #0000FF;">do</span>
+    spawn<span style="color: #707183;">(</span><span style="color: #D0372D;">__MODULE__</span>, <span style="color: #27408b;">:run</span>, <span style="color: #7388D6;">[</span><span style="color: #D0372D;">1</span><span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #5d478b;">@doc</span> <span style="color: #036A07;">"""</span>
+<span style="color: #036A07;">  Provided as callback to spawn, stores state and calls itself recursively.</span>
+<span style="color: #036A07;">  """</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">run</span><span style="color: #707183;">(</span>current<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      <span style="color: #707183;">{</span><span style="color: #27408b;">:next</span>, pid<span style="color: #707183;">}</span> -&gt;
+        <span style="color: #0000FF;">send</span> pid, current
+        run<span style="color: #707183;">(</span>current + <span style="color: #D0372D;">2</span><span style="color: #707183;">)</span>
+
+      <span style="color: #707183;">{</span><span style="color: #27408b;">:skip</span><span style="color: #707183;">}</span> -&gt;
+        run<span style="color: #707183;">(</span>current + <span style="color: #D0372D;">2</span><span style="color: #707183;">)</span>
+
+      <span style="color: #D0372D;">_</span> -&gt;
+        <span style="color: #6434A3;">IO</span>.puts <span style="color: #008000;">"Non sense message received."</span>
+        run<span style="color: #707183;">(</span>current<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+Let's see if consequent integers are odd:
+</p>
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #BA36A5;">oddserver</span> = <span style="color: #6434A3;">APIOddServer</span>.init<span style="color: #707183;">()</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">APIOddServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">APIOddServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">APIOddServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">APIOddServer</span>.skip<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">APIOddServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+5
+:ok
+9
+
+</pre>
+
+<p>
+Much better!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org93819a3" class="outline-2">
+<h2 id="org93819a3"><span class="section-number-2">2</span> <code>OddServer</code> using <code>GenServer</code></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Now that we have a simple state storing process that has a nice interface, let's
+write similar server using <code>GenServer</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">OddGenServer</span> <span style="color: #0000FF;">do</span>
+  <span style="color: #0000FF;">use</span> <span style="color: #6434A3;">GenServer</span>
+
+  <span style="color: #8D8D84;">## </span><span style="color: #8D8D84; font-style: italic;">Client API</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">next</span><span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">GenServer</span>.call<span style="color: #707183;">(</span>oddserver, <span style="color: #27408b;">:next</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">skip</span><span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">GenServer</span>.cast<span style="color: #707183;">(</span>oddserver, <span style="color: #27408b;">:skip</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">start_link</span><span style="color: #707183;">()</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">GenServer</span>.start_link<span style="color: #707183;">(</span><span style="color: #D0372D;">__MODULE__</span>, <span style="color: #D0372D;">1</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #8D8D84;">## </span><span style="color: #8D8D84; font-style: italic;">Callbacks</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">handle_call</span><span style="color: #707183;">(</span><span style="color: #27408b;">:next</span>, <span style="color: #8D8D84; font-style: italic;">_from</span>, current<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #707183;">{</span><span style="color: #27408b;">:reply</span>, current, current + <span style="color: #D0372D;">2</span><span style="color: #707183;">}</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">handle_cast</span><span style="color: #707183;">(</span><span style="color: #27408b;">:skip</span>, current<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #707183;">{</span><span style="color: #27408b;">:noreply</span>, current + <span style="color: #D0372D;">2</span><span style="color: #707183;">}</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+Note that <code>OddGenServer</code> has same API as <code>APIOddServer</code>; so we can use exact same
+lines of code to test <code>OddGenServer</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #707183;">{</span><span style="color: #27408b;">:ok</span>, oddserver<span style="color: #707183;">}</span> = <span style="color: #6434A3;">OddGenServer</span>.start_link<span style="color: #707183;">()</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddGenServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddGenServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddGenServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddGenServer</span>.skip<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddGenServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+5
+:ok
+9
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgca7ec42" class="outline-2">
+<h2 id="orgca7ec42"><span class="section-number-2">3</span> <code>SimServer</code></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+You may have already noticed striking similarities between the basic process
+<code>APIOddServer</code> and <code>OddGenServer</code>. If we just compare what code we had to write
+to get an interface to <code>APIOddServer</code>, we can guess code for <code>GenServer.call</code>
+and <code>GenServer.cast</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">def</span> <span style="color: #006699;">call</span><span style="color: #707183;">(</span>pid, msg<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+  <span style="color: #0000FF;">send</span> pid, <span style="color: #707183;">{</span>msg, self<span style="color: #7388D6;">()</span><span style="color: #707183;">}</span>
+  <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+    result -&gt; result
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">cast</span><span style="color: #707183;">(</span>pid, msg<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+  <span style="color: #0000FF;">send</span> pid, msg
+  <span style="color: #27408b;">:ok</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+And now we just have to find out how the <code>receive</code> loop is implemented. Let's
+start with <code>:next</code>: when the process receives <code>:next</code>, it should invoke the
+callback, send the result and continue. Where as in the case of <code>:skip</code>, the
+process doesn't need to send anything back. The message given by user is not
+enough to know if the client is waiting for a reply, <code>call</code> and <code>cast</code> should
+add more information to the message.
+</p>
+
+<p>
+We can easily find out what message is sent by <code>GenServer.call</code> and <code>GenServer.cast</code>,
+by making it send message to an <i>echoing</i> process.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">Echo</span> <span style="color: #0000FF;">do</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">run</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      msg -&gt; <span style="color: #6434A3;">IO</span>.inspect msg
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+
+<span style="color: #BA36A5;">echo_pid</span> = spawn<span style="color: #707183;">(</span><span style="color: #6434A3;">Echo</span>, <span style="color: #27408b;">:run</span>, <span style="color: #7388D6;">[]</span><span style="color: #707183;">)</span>
+<span style="color: #6434A3;">GenServer</span>.cast<span style="color: #707183;">(</span>echo_pid, <span style="color: #27408b;">:skip</span><span style="color: #707183;">)</span>
+<span style="color: #6434A3;">GenServer</span>.call<span style="color: #707183;">(</span>echo_pid, <span style="color: #27408b;">:next</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+{:"$gen_cast", :skip}
+{:"$gen_call", {#PID&lt;0.130.0&gt;, #Reference&lt;0.1258433368.354680834.72997&gt;}, :next}
+
+</pre>
+
+<p>
+And that's it! we have enough ingredients to bake our own <code>GenServer</code>, let's call
+it <code>SimServer</code> -if <code>GenServer</code> is general, <code>SimServer</code> is simple!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">SimServer</span> <span style="color: #0000FF;">do</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">call</span><span style="color: #707183;">(</span>pid, msg<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">send</span> pid, <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_call"</span>, self<span style="color: #7388D6;">()</span>, msg<span style="color: #707183;">}</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      reply -&gt; reply
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">cast</span><span style="color: #707183;">(</span>pid, msg<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">send</span> pid, <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_cast"</span>, msg<span style="color: #707183;">}</span>
+    <span style="color: #27408b;">:ok</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">start</span><span style="color: #707183;">(</span>start_state<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    spawn<span style="color: #707183;">(</span><span style="color: #D0372D;">__MODULE__</span>, <span style="color: #27408b;">:run</span>, <span style="color: #7388D6;">[</span>start_state<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">run</span><span style="color: #707183;">(</span>state<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_call"</span>, from, msg<span style="color: #707183;">}</span> -&gt;
+        <span style="color: #707183;">{</span>reply, new_state<span style="color: #707183;">}</span> = handle_call<span style="color: #707183;">(</span>msg, from, state<span style="color: #707183;">)</span>
+        <span style="color: #0000FF;">send</span> from, reply
+        run<span style="color: #707183;">(</span>new_state<span style="color: #707183;">)</span>
+
+      <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_cast"</span>, msg<span style="color: #707183;">}</span> -&gt;
+        <span style="color: #707183;">{</span>new_state<span style="color: #707183;">}</span> = handle_cast<span style="color: #707183;">(</span>msg, state<span style="color: #707183;">)</span>
+        run<span style="color: #707183;">(</span>new_state<span style="color: #707183;">)</span>
+
+      <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">everything else handled as `handle_info`</span>
+      msg -&gt;
+        <span style="color: #707183;">{</span>new_state<span style="color: #707183;">}</span> = handle_info<span style="color: #707183;">(</span>msg, state<span style="color: #707183;">)</span>
+        run<span style="color: #707183;">(</span>new_state<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+It might look that we are done with the implementation, but there is still one
+last thing left: providing default implementation for <code>handle_call</code>, <code>handle_cast</code>
+and <code>handle_info</code>. At this point I did some cheating and looked into <a href="https://github.com/elixir-lang/elixir/blob/v1.5.3/lib/elixir/lib/gen_server.ex#L564">source code</a>
+of <code>GenServer</code> to see how default implementations are provided. That is done is
+<code>using</code> hook and <code>quote</code> which helps in treating code as data. Since this looks
+a bit our of scope of what we set out to do, I'm going to skip that.
+</p>
+
+<p>
+Along with the <code>__using__</code> hook which is invoked when <code>use</code> is called, I saw
+<code>@callback</code> directive, which is used to define <a href="https://hexdocs.pm/elixir/behaviours.html">behaviours</a>. According to the documentation:
+</p>
+<p class="verse">
+Behaviours in Elixir (and Erlang) are a way to separate and abstract the generic part of a component (which becomes the behaviour module) from the specific part (which becomes the callback module).<br />
+<br />
+A behaviour module defines a set of functions and macros (referred to as callbacks) that callback modules implementing that behaviour must export&#x2026;<br />
+</p>
+
+<p>
+So, this explains our original question: why the functions <code>handle_call</code>, <code>handle_cast</code>
+are called as <i>callbacks</i> -because they have to be implemented in the callback 
+modules. This has nothing to do with function being passed!
+</p>
+
+<p>
+Anyhow, we should complete the task we started and complete our toy <code>GenServer</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">SimServer</span> <span style="color: #0000FF;">do</span>
+
+  <span style="color: #5d478b;">@callback</span> handle_call<span style="color: #707183;">(</span>any, pid, any<span style="color: #707183;">)</span> :: <span style="color: #707183;">{</span>atom, any<span style="color: #707183;">}</span>
+  <span style="color: #5d478b;">@callback</span> handle_cast<span style="color: #707183;">(</span>any, any<span style="color: #707183;">)</span> :: <span style="color: #707183;">{</span>any<span style="color: #707183;">}</span>
+  <span style="color: #5d478b;">@callback</span> handle_info<span style="color: #707183;">(</span>any, any<span style="color: #707183;">)</span> :: <span style="color: #707183;">{</span>any<span style="color: #707183;">}</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">call</span><span style="color: #707183;">(</span>pid, msg<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">send</span> pid, <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_call"</span>, self<span style="color: #7388D6;">()</span>, msg<span style="color: #707183;">}</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      reply -&gt; reply
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">cast</span><span style="color: #707183;">(</span>pid, msg<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">send</span> pid, <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_cast"</span>, msg<span style="color: #707183;">}</span>
+    <span style="color: #27408b;">:ok</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">start</span><span style="color: #707183;">(</span>module, start_state<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    spawn<span style="color: #707183;">(</span><span style="color: #D0372D;">__MODULE__</span>, <span style="color: #27408b;">:run</span>, <span style="color: #7388D6;">[</span>module, start_state<span style="color: #7388D6;">]</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">run</span><span style="color: #707183;">(</span>module, state<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #0000FF;">receive</span> <span style="color: #0000FF;">do</span>
+      <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_call"</span>, from, msg<span style="color: #707183;">}</span> -&gt;
+        <span style="color: #707183;">{</span>reply, new_state<span style="color: #707183;">}</span> = module.handle_call<span style="color: #707183;">(</span>msg, from, state<span style="color: #707183;">)</span>
+        <span style="color: #0000FF;">send</span> from, reply
+        run<span style="color: #707183;">(</span>module, new_state<span style="color: #707183;">)</span>
+
+      <span style="color: #707183;">{</span>:<span style="color: #008000;">"$gen_cast"</span>, msg<span style="color: #707183;">}</span> -&gt;
+        <span style="color: #707183;">{</span>new_state<span style="color: #707183;">}</span> = module.handle_cast<span style="color: #707183;">(</span>msg, state<span style="color: #707183;">)</span>
+        run<span style="color: #707183;">(</span>module, new_state<span style="color: #707183;">)</span>
+
+      <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">everything else handled as `handle_info`</span>
+      msg -&gt;
+        <span style="color: #707183;">{</span>new_state<span style="color: #707183;">}</span> = module.handle_info<span style="color: #707183;">(</span>msg, state<span style="color: #707183;">)</span>
+        run<span style="color: #707183;">(</span>module, new_state<span style="color: #707183;">)</span>
+    <span style="color: #0000FF;">end</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+Now let's implement a <code>OddServer</code> using <code>SimServer</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #0000FF;">defmodule</span> <span style="color: #6434A3;">OddSimServer</span> <span style="color: #0000FF;">do</span>
+  <span style="color: #5d478b;">@behaviour</span> <span style="color: #6434A3;">SimServer</span>
+
+  <span style="color: #8D8D84;">## </span><span style="color: #8D8D84; font-style: italic;">Client API</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">next</span><span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">SimServer</span>.call<span style="color: #707183;">(</span>oddserver, <span style="color: #27408b;">:next</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">skip</span><span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">SimServer</span>.cast<span style="color: #707183;">(</span>oddserver, <span style="color: #27408b;">:skip</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">start</span><span style="color: #707183;">()</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">SimServer</span>.start<span style="color: #707183;">(</span><span style="color: #D0372D;">__MODULE__</span>, <span style="color: #D0372D;">1</span><span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #8D8D84;">## </span><span style="color: #8D8D84; font-style: italic;">callbacks</span>
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">handle_call</span><span style="color: #707183;">(</span><span style="color: #27408b;">:next</span>, <span style="color: #8D8D84; font-style: italic;">_from</span>, current<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #707183;">{</span>current, current + <span style="color: #D0372D;">2</span><span style="color: #707183;">}</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">handle_cast</span><span style="color: #707183;">(</span><span style="color: #27408b;">:skip</span>, current<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #707183;">{</span>current + <span style="color: #D0372D;">2</span><span style="color: #707183;">}</span>
+  <span style="color: #0000FF;">end</span>
+
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">handle_info</span><span style="color: #707183;">(</span><span style="color: #8D8D84; font-style: italic;">_msg</span>, state<span style="color: #707183;">)</span> <span style="color: #0000FF;">do</span>
+    <span style="color: #6434A3;">IO</span>.puts <span style="color: #008000;">"Non sense message received"</span>
+    <span style="color: #707183;">{</span>state<span style="color: #707183;">}</span>
+  <span style="color: #0000FF;">end</span>
+<span style="color: #0000FF;">end</span>
+</pre>
+</div>
+
+<p>
+And finally let test our implementation using the same lines of code:
+</p>
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="color: #BA36A5;">oddserver</span> = <span style="color: #6434A3;">OddSimServer</span>.start<span style="color: #707183;">()</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddSimServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddSimServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddSimServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddSimServer</span>.skip<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+
+<span style="color: #6434A3;">IO</span>.inspect <span style="color: #6434A3;">OddSimServer</span>.next<span style="color: #707183;">(</span>oddserver<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+5
+:ok
+9
+
+</pre>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Another way is to read how exactly it is implemented <a href="https://github.com/elixir-lang/elixir/blob/v1.5.3/lib/elixir/lib/gen_server.ex#L1">on Github</a> (which is conviniently point to by the <a href="https://hexdocs.pm/elixir/GenServer.html">documentation)</a>
+</p></div></div>
+
+
+</div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/understanding-genserver.html";
+this.page.identifier = "/essays/understanding-genserver.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2018-01-07</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 9.1.6)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
