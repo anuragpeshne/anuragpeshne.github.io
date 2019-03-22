@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -231,15 +231,13 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Vim: Macro</h1>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-
 <p>
 This is part 9 of a series of tutorial to Vim. You can read <a href="./8.html">Part 8 here</a>.
 </p>
 
-<div id="outline-container-orgd4e3333" class="outline-2">
-<h2 id="orgd4e3333">Grunt Work</h2>
-<div class="outline-text-2" id="text-orgd4e3333">
+<div id="outline-container-org5fe0d5c" class="outline-2">
+<h2 id="org5fe0d5c">Grunt Work</h2>
+<div class="outline-text-2" id="text-org5fe0d5c">
 <p>
 If you are reading this series from the very beginning, you have read about several
 ways to navigate, couple of modes which help in multiplexing keys, bunch of commands
@@ -262,9 +260,9 @@ be automated.
 </p>
 </div>
 
-<div id="outline-container-org39e4e00" class="outline-3">
-<h3 id="org39e4e00">Lesson 10</h3>
-<div class="outline-text-3" id="text-org39e4e00">
+<div id="outline-container-org5909d0e" class="outline-3">
+<h3 id="org5909d0e">Lesson 10</h3>
+<div class="outline-text-3" id="text-org5909d0e">
 <p class="verse">
 Everything that can be automated, <b>should</b> be automated.<br />
 </p>
@@ -272,9 +270,9 @@ Everything that can be automated, <b>should</b> be automated.<br />
 </div>
 </div>
 
-<div id="outline-container-org99acf13" class="outline-2">
-<h2 id="org99acf13">Macro</h2>
-<div class="outline-text-2" id="text-org99acf13">
+<div id="outline-container-orgcff0391" class="outline-2">
+<h2 id="orgcff0391">Macro</h2>
+<div class="outline-text-2" id="text-orgcff0391">
 <blockquote>
 <p>
 A macro (short for "macroinstruction", from Greek μακρός 'long') in computer science is a rule or pattern that specifies how a certain input sequence (often a sequence of characters) should be mapped to a replacement output sequence (also often a sequence of characters) according to a defined procedure.
@@ -291,9 +289,9 @@ but before we get to the example, let me introduce to you another handy operator
 </p>
 </div>
 
-<div id="outline-container-orgd47a3b7" class="outline-3">
-<h3 id="orgd47a3b7"><code>~</code> (Tilde)</h3>
-<div class="outline-text-3" id="text-orgd47a3b7">
+<div id="outline-container-org9eb6179" class="outline-3">
+<h3 id="org9eb6179"><code>~</code> (Tilde)</h3>
+<div class="outline-text-3" id="text-org9eb6179">
 <p>
 <code>~</code> will toggle the case of character below cursor. Can be very handy while writing
 camel case variable names.
@@ -301,9 +299,9 @@ camel case variable names.
 </div>
 </div>
 
-<div id="outline-container-org16779ee" class="outline-3">
-<h3 id="org16779ee"><code>title</code>-lize</h3>
-<div class="outline-text-3" id="text-org16779ee">
+<div id="outline-container-org2553733" class="outline-3">
+<h3 id="org2553733"><code>title</code>-lize</h3>
+<div class="outline-text-3" id="text-org2553733">
 <p>
 Suppose we are given a prose like this:
 </p>
@@ -323,9 +321,9 @@ to automate it.
 </p>
 </div>
 
-<div id="outline-container-org60a483f" class="outline-4">
-<h4 id="org60a483f">Using <code>substitute</code></h4>
-<div class="outline-text-4" id="text-org60a483f">
+<div id="outline-container-orge77338d" class="outline-4">
+<h4 id="orge77338d">Using <code>substitute</code></h4>
+<div class="outline-text-4" id="text-orge77338d">
 <p>
 One way is to use <code>substitute</code>. We can <i>capture</i> the next character, using <code>.</code>,
 after a '.' and make it uppercase.  You can pass in <code>\L</code> to make a character
@@ -342,9 +340,9 @@ lower case and <code>\U</code> to make it upper case in substitute:
 </div>
 </div>
 
-<div id="outline-container-org6ba1a20" class="outline-4">
-<h4 id="org6ba1a20">Now <i>Recording</i></h4>
-<div class="outline-text-4" id="text-org6ba1a20">
+<div id="outline-container-orgcc4e88d" class="outline-4">
+<h4 id="orgcc4e88d">Now <i>Recording</i></h4>
+<div class="outline-text-4" id="text-orgcc4e88d">
 <p>
 There's another way, the way of macros. We'll record how to title-lize one instance
 and run that macro repeatedly.
@@ -379,9 +377,9 @@ fullstop, we need to escape it to differentiate from regex wild card <code>.</co
 </div>
 </div>
 
-<div id="outline-container-orgec418d4" class="outline-3">
-<h3 id="orgec418d4">One more time</h3>
-<div class="outline-text-3" id="text-orgec418d4">
+<div id="outline-container-orgb9fd6f3" class="outline-3">
+<h3 id="orgb9fd6f3">One more time</h3>
+<div class="outline-text-3" id="text-orgb9fd6f3">
 <p>
 Let's consider one more example where macros can prove very handy. Say we have
 a 25 line csv file and we want to combine 2nd and 4th column.
@@ -457,9 +455,9 @@ summon another macro.</li>
 </div>
 </div>
 
-<div id="outline-container-orgfd2c869" class="outline-3">
-<h3 id="orgfd2c869">Achievement Unlocked: Sublime</h3>
-<div class="outline-text-3" id="text-orgfd2c869">
+<div id="outline-container-org92b7dd1" class="outline-3">
+<h3 id="org92b7dd1">Achievement Unlocked: Sublime</h3>
+<div class="outline-text-3" id="text-org92b7dd1">
 <p>
 And thus, within 9 parts you have reached a <i>sublime</i> level. You are now slowly
 , without noticing, becoming a power user of Vim. All the basic operations which
@@ -472,9 +470,9 @@ text editor.
 </div>
 </div>
 
-<div id="outline-container-orga14961b" class="outline-3">
-<h3 id="orga14961b">One more thing: <code>.</code> (Repeat Command)</h3>
-<div class="outline-text-3" id="text-orga14961b">
+<div id="outline-container-org61c2c9e" class="outline-3">
+<h3 id="org61c2c9e">One more thing: <code>.</code> (Repeat Command)</h3>
+<div class="outline-text-3" id="text-org61c2c9e">
 <p>
 Repeat command is similar to macro, in the sense that it repeats the last change
 when <code>.</code> is pressed. It's like every change is stored in <code>.</code> register as a macro.
@@ -492,9 +490,9 @@ way of switching to <i>insert</i> mode.
 </p>
 </div>
 
-<div id="outline-container-org93bb7e9" class="outline-4">
-<h4 id="org93bb7e9"><code>c</code></h4>
-<div class="outline-text-4" id="text-org93bb7e9">
+<div id="outline-container-orgcc06d96" class="outline-4">
+<h4 id="orgcc06d96"><code>c</code></h4>
+<div class="outline-text-4" id="text-orgcc06d96">
 <p>
 <code>c</code> takes in motion key, like <code>w</code> or <code>$</code>, deletes the range specified and puts
 us into insert mode. It is essentially combination of <code>d</code> and <code>i</code>. You can remember
@@ -525,9 +523,9 @@ repeat the last change.
 </div>
 </div>
 
-<div id="outline-container-orgbc87bf2" class="outline-2">
-<h2 id="orgbc87bf2">Summary</h2>
-<div class="outline-text-2" id="text-orgbc87bf2">
+<div id="outline-container-org4c77ab8" class="outline-2">
+<h2 id="org4c77ab8">Summary</h2>
+<div class="outline-text-2" id="text-org4c77ab8">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -607,7 +605,7 @@ this.page.identifier = "/essays/vim/9.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2017-06-19</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

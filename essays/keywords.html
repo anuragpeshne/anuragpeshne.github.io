@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,7 +180,6 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <script src="/js/keywords/drawGraph.js"></script>
 <script type="text/javascript">
@@ -187,7 +187,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,7 +233,6 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Keywords</h1>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 <div id="draftTag">DRAFT</div>
 
 <p>
@@ -241,7 +240,7 @@ Recently while browsing through 'answer' list on quora.com, I stumbled upon a
 <a href="https://www.quora.com/About-how-many-keywords-do-most-programming-languages-contain">question</a>:
 </p>
 <p class="verse">
-About how many keywords do most programming languages contain?
+About how many keywords do most programming languages contain?<br />
 </p>
 <p>
 While at first the question seemed uninteresting and dry, after giving it a thought,
@@ -255,9 +254,9 @@ languages.
 are interested just in glancing over the result, head over to the end of page.
 </p>
 
-<div id="outline-container-orgbaeabc5" class="outline-2">
-<h2 id="orgbaeabc5">Word Count</h2>
-<div class="outline-text-2" id="text-orgbaeabc5">
+<div id="outline-container-orga3000cb" class="outline-2">
+<h2 id="orga3000cb">Word Count</h2>
+<div class="outline-text-2" id="text-orga3000cb">
 <p>
 The first thought that came to my mind was to get a file containing all the keywords
 in a language and pass it to <code>wc -w</code> to get the word count. And to procure such
@@ -269,9 +268,9 @@ parsable. Fortunately I found a source of such files easily on the web &#x2013;
 <a href="https://github.com/IDMComputerSolutions/wordfiles">IDMComputerSolutions/wordfiles</a>
 </p>
 </div>
-<div id="outline-container-orge50912a" class="outline-3">
-<h3 id="orge50912a">Parsing Wordfiles</h3>
-<div class="outline-text-3" id="text-orge50912a">
+<div id="outline-container-org8bfcec1" class="outline-3">
+<h3 id="org8bfcec1">Parsing Wordfiles</h3>
+<div class="outline-text-3" id="text-org8bfcec1">
 <p>
 The wordfiles from UltraEdit project are of the format:
 </p>
@@ -307,9 +306,9 @@ do the job and a <code>awk</code> <a href="https://github.com/anuragpeshne/keywo
 </p>
 </div>
 
-<div id="outline-container-orgef11c04" class="outline-4">
-<h4 id="orgef11c04">One last thing</h4>
-<div class="outline-text-4" id="text-orgef11c04">
+<div id="outline-container-orgf9e2465" class="outline-4">
+<h4 id="orgf9e2465">One last thing</h4>
+<div class="outline-text-4" id="text-orgf9e2465">
 <p>
 The complete repository of wordfiles contains over 600 files which contains
 several esoteric languages/DSL which have abnormally high number of reserved
@@ -321,7 +320,7 @@ number. Hence I picked around 60 well known languages and calculated the mean.
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">!/bin/</span><span style="color: #0000FF;">bash</span>
 
-<span style="color: #BA36A5;">interestingFiles</span>=(<span style="color: #008000;">'JSON'</span> <span style="color: #008000;">'acl'</span> <span style="color: #008000;">'actionscript'</span> <span style="color: #008000;">'ada95'</span> <span style="color: #008000;">'c'</span> <span style="color: #008000;">'c-winapi'</span>
+<span style="color: #BA36A5;">interestingFiles</span>=<span style="color: #707183;">(</span><span style="color: #008000;">'JSON'</span> <span style="color: #008000;">'acl'</span> <span style="color: #008000;">'actionscript'</span> <span style="color: #008000;">'ada95'</span> <span style="color: #008000;">'c'</span> <span style="color: #008000;">'c-winapi'</span>
                   <span style="color: #008000;">'c-os2'</span> <span style="color: #008000;">'csharp'</span> <span style="color: #008000;">'e'</span> <span style="color: #008000;">'eiffel'</span> <span style="color: #008000;">'escript'</span> <span style="color: #008000;">'euphoria'</span> <span style="color: #008000;">'falcon'</span>
                   <span style="color: #008000;">'fortran'</span> <span style="color: #008000;">'fortran90'</span> <span style="color: #008000;">'fortran95'</span> <span style="color: #008000;">'go'</span> <span style="color: #008000;">'groovy'</span> <span style="color: #008000;">'hugo'</span>
                   <span style="color: #008000;">'java122'</span> <span style="color: #008000;">'java13'</span> <span style="color: #008000;">'java14'</span> <span style="color: #008000;">'java14jsp'</span> <span style="color: #008000;">'javascript'</span> <span style="color: #008000;">'js20'</span>
@@ -329,11 +328,11 @@ number. Hence I picked around 60 well known languages and calculated the mean.
                   <span style="color: #008000;">'pascal'</span> <span style="color: #008000;">'perl'</span> <span style="color: #008000;">'php5'</span> <span style="color: #008000;">'pl1'</span> <span style="color: #008000;">'plsql'</span> <span style="color: #008000;">'python26'</span> <span style="color: #008000;">'python35'</span>
                   <span style="color: #008000;">'qbasic'</span> <span style="color: #008000;">'ruby'</span> <span style="color: #008000;">'rust'</span> <span style="color: #008000;">'sap'</span> <span style="color: #008000;">'schema'</span> <span style="color: #008000;">'scheme'</span> <span style="color: #008000;">'small'</span> <span style="color: #008000;">'sql'</span>
                   <span style="color: #008000;">'swift'</span> <span style="color: #008000;">'symbian'</span> <span style="color: #008000;">'tcl-tk'</span> <span style="color: #008000;">'turboc'</span> <span style="color: #008000;">'uniscript'</span> <span style="color: #008000;">'vb'</span> <span style="color: #008000;">'vbdotnet'</span>
-                  <span style="color: #008000;">'vbscript'</span> <span style="color: #008000;">'verilog2001'</span> <span style="color: #008000;">'vhdl93'</span> <span style="color: #008000;">'yaml'</span> <span style="color: #008000;">'zillions'</span>)
+                  <span style="color: #008000;">'vbscript'</span> <span style="color: #008000;">'verilog2001'</span> <span style="color: #008000;">'vhdl93'</span> <span style="color: #008000;">'yaml'</span> <span style="color: #008000;">'zillions'</span><span style="color: #707183;">)</span>
 
 <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">for filename in ./wordfiles/*.uew; do</span>
-<span style="color: #0000FF;">for</span> filename<span style="color: #0000FF;"> in</span> ${<span style="color: #BA36A5;">interestingFiles</span>[@]}; <span style="color: #0000FF;">do</span>
-    <span style="color: #006FE0; font-weight: bold;">echo</span> -n <span style="color: #008000;">"$filename"</span>
+<span style="color: #0000FF;">for</span> filename<span style="color: #0000FF;"> in</span> $<span style="color: #707183;">{</span><span style="color: #BA36A5;">interestingFiles</span><span style="color: #7388D6;">[</span>@<span style="color: #7388D6;">]</span><span style="color: #707183;">}</span>; <span style="color: #0000FF;">do</span>
+    <span style="color: #006FE0;">echo</span> -n <span style="color: #008000;">"$filename"</span>
     ./capture.py ./wordfiles/<span style="color: #008000;">"$filename"</span>.uew | wc -w
 <span style="color: #0000FF;">done</span>
 </pre>
@@ -341,9 +340,9 @@ number. Hence I picked around 60 well known languages and calculated the mean.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd7b9e35" class="outline-3">
-<h3 id="orgd7b9e35">Result</h3>
-<div class="outline-text-3" id="text-orgd7b9e35">
+<div id="outline-container-orge6f87ac" class="outline-3">
+<h3 id="orge6f87ac">Result</h3>
+<div class="outline-text-3" id="text-orge6f87ac">
 <p>
 Piping everything together, the average number of keywords in 60 languages came
 out to be:
@@ -355,9 +354,9 @@ out to be:
 </div>
 </div>
 
-<div id="outline-container-orgf1a52b1" class="outline-4">
-<h4 id="orgf1a52b1">Charts</h4>
-<div class="outline-text-4" id="text-orgf1a52b1">
+<div id="outline-container-org4b88ac1" class="outline-4">
+<h4 id="org4b88ac1">Charts</h4>
+<div class="outline-text-4" id="text-org4b88ac1">
 <canvas id="keywordChart" width="800" height="600"></canvas>
 <script> drawGraph(); </script>
 
@@ -367,9 +366,9 @@ View the graph in bigger size <a href="./keywords-chart.html">here</a>.
 </div>
 </div>
 
-<div id="outline-container-orge2a4709" class="outline-4">
-<h4 id="orge2a4709">Caveats</h4>
-<div class="outline-text-4" id="text-orge2a4709">
+<div id="outline-container-orgdaa132f" class="outline-4">
+<h4 id="orgdaa132f">Caveats</h4>
+<div class="outline-text-4" id="text-orgdaa132f">
 <p>
 As it is evident from the results, the number of words to be highlighted <b>do
 not</b> accurately reflect the actual number of keywords. For example, keywords
@@ -398,7 +397,7 @@ located under <code>/Applications/MacVim.app/Contents/Resources/vim/runtime/synt
 
 
 </div>
-</div><div id="disqus_thread"></div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/keywords.html";
@@ -417,7 +416,7 @@ this.page.identifier = "/essays/keywords.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-30</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

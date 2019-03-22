@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -231,8 +231,6 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Vim: File Navigation</h1>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-
 <p>
 This is part 11 of a series of tutorial to Vim. You can read <a href="./10.html">Part 10 here</a>.
 </p>
@@ -243,9 +241,9 @@ we'll see how we can move across files, how to jump directly to function or vari
 definitions and jumping right in middle of a file at a predefined place.
 </p>
 
-<div id="outline-container-orgc9573fc" class="outline-2">
-<h2 id="orgc9573fc"><code>:e</code> on steroids</h2>
-<div class="outline-text-2" id="text-orgc9573fc">
+<div id="outline-container-org7611427" class="outline-2">
+<h2 id="org7611427"><code>:e</code> on steroids</h2>
+<div class="outline-text-2" id="text-org7611427">
 <p>
 You want to open a file, your file is deep down in the folder hierarchy, you don't
 want to type in full path and of course, you want to open it fast. Vim can help
@@ -274,12 +272,13 @@ typing <code>:e /etc/lampp/config/**/file-name</code>, followed by <code>&lt;tab
 </div>
 </div>
 
-<div id="outline-container-orgc0da874" class="outline-2">
-<h2 id="orgc0da874"><code>TAGS</code></h2>
-<div class="outline-text-2" id="text-orgc0da874">
-</div><div id="outline-container-orgdc2c0bc" class="outline-3">
-<h3 id="orgdc2c0bc"><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix Philosophy</a></h3>
-<div class="outline-text-3" id="text-orgdc2c0bc">
+<div id="outline-container-orgfb38cc4" class="outline-2">
+<h2 id="orgfb38cc4"><code>TAGS</code></h2>
+<div class="outline-text-2" id="text-orgfb38cc4">
+</div>
+<div id="outline-container-org3a51250" class="outline-3">
+<h3 id="org3a51250"><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix Philosophy</a></h3>
+<div class="outline-text-3" id="text-org3a51250">
 <blockquote>
 <ul class="org-ul">
 <li>Write programs that do one thing and do it well.</li>
@@ -325,9 +324,9 @@ all the options press <code>g</code> followed by <code>&lt;ctrl&gt;+]</code>.</l
 </div>
 </div>
 
-<div id="outline-container-org6ed3982" class="outline-2">
-<h2 id="org6ed3982">(Book)Marks</h2>
-<div class="outline-text-2" id="text-org6ed3982">
+<div id="outline-container-orge9300dd" class="outline-2">
+<h2 id="orge9300dd">(Book)Marks</h2>
+<div class="outline-text-2" id="text-orge9300dd">
 <p>
 Marks does exactly what you might expect, it references specific location in file
 so that you can jump directly to that position. You can set marks using <code>m[a-zA-Z]</code>
@@ -372,9 +371,9 @@ We'll conclude discussing marks with couple of special marks:
 </div>
 
 
-<div id="outline-container-org585b88a" class="outline-2">
-<h2 id="org585b88a">Summary</h2>
-<div class="outline-text-2" id="text-org585b88a">
+<div id="outline-container-orgd644160" class="outline-2">
+<h2 id="orgd644160">Summary</h2>
+<div class="outline-text-2" id="text-orgd644160">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -520,7 +519,7 @@ this.page.identifier = "/essays/vim/11.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2017-07-02</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

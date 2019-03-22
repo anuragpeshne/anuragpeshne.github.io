@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -231,39 +231,38 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Intro to Git
-<br>
+<br />
 <span class="subtitle">A non comprehensive guide to `git`</span>
 </h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf23f3f7">Preface</a></li>
-<li><a href="#org7747558">VCS</a>
+<li><a href="#org5b2c3d4">Preface</a></li>
+<li><a href="#orgfd57f17">VCS</a>
 <ul>
-<li><a href="#org1eb0d15">Video Games</a></li>
-<li><a href="#org7738e29">Save As</a></li>
-<li><a href="#org6289892">Distributed VCS</a></li>
+<li><a href="#org7ae1d31">Video Games</a></li>
+<li><a href="#orgab85400">Save As</a></li>
+<li><a href="#org1cbaa24">Distributed VCS</a></li>
 </ul>
 </li>
-<li><a href="#orgbc9e705">Git</a>
+<li><a href="#org185669f">Git</a>
 <ul>
-<li><a href="#org10e25c5">Linus, Linux and Git</a></li>
-<li><a href="#org011797d">Basics</a></li>
-<li><a href="#org060441f">The three states</a></li>
+<li><a href="#org4ec100f">Linus, Linux and Git</a></li>
+<li><a href="#org8a7b2e6">Basics</a></li>
+<li><a href="#org3c30b8a">The three states</a></li>
 </ul>
 </li>
-<li><a href="#org2cabc2e">Basic Commands</a></li>
-<li><a href="#org7744982">Not So Basic Commands</a></li>
+<li><a href="#org561543e">Basic Commands</a></li>
+<li><a href="#orgd462d60">Not So Basic Commands</a></li>
 </ul>
 </div>
 </div>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 <div id="draftTag">DRAFT</div>
 
-<div id="outline-container-orgf23f3f7" class="outline-2">
-<h2 id="orgf23f3f7">Preface</h2>
-<div class="outline-text-2" id="text-orgf23f3f7">
+<div id="outline-container-org5b2c3d4" class="outline-2">
+<h2 id="org5b2c3d4">Preface</h2>
+<div class="outline-text-2" id="text-org5b2c3d4">
 <p>
 This essay is based upon a presentation I gave to the new recruits at my
 (<i>former</i>) employer <a href="https://coupondunia.in">CouponDunia</a>. While preparing this presentation I went through
@@ -275,7 +274,7 @@ help to grok Git and solve some of the common problems.
 <p>
 Since this presentation was made for folks without any prior experience of working
 with version control system, it starts with the very basics. If you find it too
-trivial, feel free to jump to the topic <a href="#org7744982">advanced commands</a>. Folks with limited or
+trivial, feel free to jump to the topic <a href="#orgd462d60">advanced commands</a>. Folks with limited or
 no prior knowledge of VCS may find the topics at the end a bit heavy to digest
 in a single read. Nevertheless, I recommend reading till the end so that when
 any non trivial problem arise, you know what to google for.
@@ -283,12 +282,13 @@ any non trivial problem arise, you know what to google for.
 </div>
 </div>
 
-<div id="outline-container-org7747558" class="outline-2">
-<h2 id="org7747558">VCS</h2>
-<div class="outline-text-2" id="text-org7747558">
-</div><div id="outline-container-org1eb0d15" class="outline-3">
-<h3 id="org1eb0d15">Video Games</h3>
-<div class="outline-text-3" id="text-org1eb0d15">
+<div id="outline-container-orgfd57f17" class="outline-2">
+<h2 id="orgfd57f17">VCS</h2>
+<div class="outline-text-2" id="text-orgfd57f17">
+</div>
+<div id="outline-container-org7ae1d31" class="outline-3">
+<h3 id="org7ae1d31">Video Games</h3>
+<div class="outline-text-3" id="text-org7ae1d31">
 <p>
 The very first question to be answered is what is a version control system and
 what is the need of using it. Think of writing your code or document as playing
@@ -307,9 +307,9 @@ crashes the system, there is no way of going back to the previous sane state.
 </div>
 </div>
 
-<div id="outline-container-org7738e29" class="outline-3">
-<h3 id="org7738e29">Save As</h3>
-<div class="outline-text-3" id="text-org7738e29">
+<div id="outline-container-orgab85400" class="outline-3">
+<h3 id="orgab85400">Save As</h3>
+<div class="outline-text-3" id="text-orgab85400">
 <p>
 Using <i>save as</i>, we can have multiple copies of our work which is similar to
 saving the game progress in multiple slots. Even better we can organize these
@@ -334,9 +334,9 @@ work on same part of the code. Git is one of such Version Control Systems.
 </div>
 </div>
 
-<div id="outline-container-org6289892" class="outline-3">
-<h3 id="org6289892">Distributed VCS</h3>
-<div class="outline-text-3" id="text-org6289892">
+<div id="outline-container-org1cbaa24" class="outline-3">
+<h3 id="org1cbaa24">Distributed VCS</h3>
+<div class="outline-text-3" id="text-org1cbaa24">
 <p>
 When you clone a git repository, you have an exact copy of the original repository.
 There is no central or canonical repository. When you want to work on a file,
@@ -348,12 +348,13 @@ Due to this nature most of the commands<sup><a id="fnr.3" class="footref" href="
 </div>
 </div>
 
-<div id="outline-container-orgbc9e705" class="outline-2">
-<h2 id="orgbc9e705">Git</h2>
-<div class="outline-text-2" id="text-orgbc9e705">
-</div><div id="outline-container-org10e25c5" class="outline-3">
-<h3 id="org10e25c5">Linus, Linux and Git</h3>
-<div class="outline-text-3" id="text-org10e25c5">
+<div id="outline-container-org185669f" class="outline-2">
+<h2 id="org185669f">Git</h2>
+<div class="outline-text-2" id="text-org185669f">
+</div>
+<div id="outline-container-org4ec100f" class="outline-3">
+<h3 id="org4ec100f">Linus, Linux and Git</h3>
+<div class="outline-text-3" id="text-org4ec100f">
 <p>
 Git was created out of need to manage Linux kernel project by Linus Torvalds<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>.
 It was designed keeping in mind the complexities of the Linux project (large
@@ -368,9 +369,9 @@ number of contributers). Some of the goals of the system are:
 </ul>
 </div>
 </div>
-<div id="outline-container-org011797d" class="outline-3">
-<h3 id="org011797d">Basics</h3>
-<div class="outline-text-3" id="text-org011797d">
+<div id="outline-container-org8a7b2e6" class="outline-3">
+<h3 id="org8a7b2e6">Basics</h3>
+<div class="outline-text-3" id="text-org8a7b2e6">
 <ul class="org-ul">
 <li><p>
 Snapshots, not Differences
@@ -403,7 +404,7 @@ To save space, the VCS will calculate the lines modified and store only the
 difference.
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">2a3
+<pre class="src src-shell"><span style="color: #D0372D;">2a3</span>
 &gt; <span style="color: #8D8D84;">#</span><span style="color: #8D8D84; font-style: italic;">include &lt;math.h&gt; &lt;-- line inserted</span>
 </pre>
 </div>
@@ -435,9 +436,9 @@ refer the snapshots. Thus, data can't get corrupt without git knowing it.
 </ul>
 </div>
 </div>
-<div id="outline-container-org060441f" class="outline-3">
-<h3 id="org060441f">The three states</h3>
-<div class="outline-text-3" id="text-org060441f">
+<div id="outline-container-org3c30b8a" class="outline-3">
+<h3 id="org3c30b8a">The three states</h3>
+<div class="outline-text-3" id="text-org3c30b8a">
 <p>
 Everything that is tracked using git is in one of these 3 states:
 </p>
@@ -465,13 +466,13 @@ what will go into the next commit.</li>
 </div>
 </div>
 
-<div id="outline-container-org2cabc2e" class="outline-2">
-<h2 id="org2cabc2e">Basic Commands</h2>
+<div id="outline-container-org561543e" class="outline-2">
+<h2 id="org561543e">Basic Commands</h2>
 </div>
 
-<div id="outline-container-org7744982" class="outline-2">
-<h2 id="org7744982">Not So Basic Commands</h2>
-<div class="outline-text-2" id="text-org7744982">
+<div id="outline-container-orgd462d60" class="outline-2">
+<h2 id="orgd462d60">Not So Basic Commands</h2>
+<div class="outline-text-2" id="text-orgd462d60">
 </div>
 </div>
 <div id="footnotes">
@@ -496,7 +497,7 @@ what will go into the next commit.</li>
 
 
 </div>
-</div><div id="disqus_thread"></div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/gitTutorial.html";
@@ -515,7 +516,7 @@ this.page.identifier = "/essays/gitTutorial.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-07-22</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

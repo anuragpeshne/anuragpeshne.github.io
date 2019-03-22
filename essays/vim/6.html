@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -231,15 +231,13 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Vim: .vimrc</h1>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-
 <p>
 This is part 6 of a series of tutorial to Vim. You can read <a href="./5.html">Part 5 here</a>.
 </p>
 
-<div id="outline-container-org56ef036" class="outline-2">
-<h2 id="org56ef036"><code>*</code></h2>
-<div class="outline-text-2" id="text-org56ef036">
+<div id="outline-container-org2c411b6" class="outline-2">
+<h2 id="org2c411b6"><code>*</code></h2>
+<div class="outline-text-2" id="text-org2c411b6">
 <p>
 Before we get to our main topic, let me show you one more humble, but tremendously
 useful command. Hit <code>*</code> to search the word currently under cursor and jump to
@@ -250,9 +248,9 @@ backwards is <code>#</code>.
 </div>
 </div>
 
-<div id="outline-container-org0ce1bab" class="outline-2">
-<h2 id="org0ce1bab">DNA</h2>
-<div class="outline-text-2" id="text-org0ce1bab">
+<div id="outline-container-orgae1300a" class="outline-2">
+<h2 id="orgae1300a">DNA</h2>
+<div class="outline-text-2" id="text-orgae1300a">
 <p>
 Like your DNA, which defines you, your appearance, hair color, eye color, strength
 and weakness; <code>.vimrc</code> defines your Vim's appearance, behavior, strength and weakness.
@@ -269,9 +267,9 @@ your <code>.vimrc</code> in home folder (<code>~</code>) and make yourself home.
 </p>
 </div>
 
-<div id="outline-container-orgcb8302f" class="outline-3">
-<h3 id="orgcb8302f">Bells and Whistles</h3>
-<div class="outline-text-3" id="text-orgcb8302f">
+<div id="outline-container-org2efaddc" class="outline-3">
+<h3 id="org2efaddc">Bells and Whistles</h3>
+<div class="outline-text-3" id="text-org2efaddc">
 <p>
 Let's start with configuring how Vim looks. Vim supports color schemes, which can
 be set using command <code>:colorscheme &lt;scheme name&gt;</code>, or via <code>.vimrc</code>. There are some
@@ -291,9 +289,9 @@ too.
 </div>
 </div>
 
-<div id="outline-container-orgaf2d925" class="outline-3">
-<h3 id="orgaf2d925">Plugins</h3>
-<div class="outline-text-3" id="text-orgaf2d925">
+<div id="outline-container-org1105bfc" class="outline-3">
+<h3 id="org1105bfc">Plugins</h3>
+<div class="outline-text-3" id="text-org1105bfc">
 <p>
 Vim has amazing ecosystem of plugins. Plugins for Vim can be created using VimL-
 Vim's own scripting language and there is support for Python, Lua too. It is highly
@@ -303,9 +301,9 @@ Vim via plugins<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>.
 </p>
 </div>
 
-<div id="outline-container-org6f268e1" class="outline-4">
-<h4 id="org6f268e1">Plugin to manage Plugins</h4>
-<div class="outline-text-4" id="text-org6f268e1">
+<div id="outline-container-org4fca90c" class="outline-4">
+<h4 id="org4fca90c">Plugin to manage Plugins</h4>
+<div class="outline-text-4" id="text-org4fca90c">
 <p>
 There are plugins which makes installing, updating and removing plugins very easy.
 I personally like <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a>, but there are other plugins managers too. You can find
@@ -317,9 +315,9 @@ Vundle by cloning the repository into <code>~/.vim/bundle/Vundle.vim</code>, add
 </div>
 </div>
 
-<div id="outline-container-org6c4a113" class="outline-3">
-<h3 id="org6c4a113">My <code>.vimrc</code></h3>
-<div class="outline-text-3" id="text-org6c4a113">
+<div id="outline-container-org17bb355" class="outline-3">
+<h3 id="org17bb355">My <code>.vimrc</code></h3>
+<div class="outline-text-3" id="text-org17bb355">
 <p>
 Here's a part of my <code>.vimrc</code> which might be a good starting point for building
 your own. You can check the complete version here: <a href="https://github.com/anuragpeshne/dot_files/blob/master/.vimrc">github.com/anuragpeshne/dot<sub>files</sub>/.vimrc</a>.
@@ -397,9 +395,9 @@ letter and as soon as you do it, it starts matching case too.</li>
 </div>
 </div>
 
-<div id="outline-container-org4f2c4ec" class="outline-2">
-<h2 id="org4f2c4ec">One More Thing</h2>
-<div class="outline-text-2" id="text-org4f2c4ec">
+<div id="outline-container-orgf603b0f" class="outline-2">
+<h2 id="orgf603b0f">One More Thing</h2>
+<div class="outline-text-2" id="text-orgf603b0f">
 <p>
 You might by hopping around buffer using <code>*</code>, searching and jumping to lines. Sometimes
 we are working on certain line, we want to check something and then return to
@@ -412,9 +410,9 @@ jumped back.
 </div>
 </div>
 
-<div id="outline-container-org1fac2b7" class="outline-2">
-<h2 id="org1fac2b7">Summary</h2>
-<div class="outline-text-2" id="text-org1fac2b7">
+<div id="outline-container-org114274b" class="outline-2">
+<h2 id="org114274b">Summary</h2>
+<div class="outline-text-2" id="text-org114274b">
 <p>
 A small summary of commands we have seen in this part
 </p>
@@ -506,7 +504,7 @@ this.page.identifier = "/essays/vim/6.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2017-06-5</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

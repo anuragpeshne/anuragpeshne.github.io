@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-22 Sat 10:04 -->
+<!-- 2019-03-22 Fri 16:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Asynchronous Programing</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -180,13 +181,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -249,7 +249,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -258,46 +258,45 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org170b5a7">1. Motivation</a></li>
-<li><a href="#orgf3539f2">2. What</a>
+<li><a href="#orgbaf96fb">1. Motivation</a></li>
+<li><a href="#orgfb6fbad">2. What</a>
 <ul>
-<li><a href="#orgf79a0f6">2.1. The synchronous way</a>
+<li><a href="#orgbeaa197">2.1. The synchronous way</a>
 <ul>
-<li><a href="#org4db9377">2.1.1. Anatomy</a></li>
-<li><a href="#org939c297">2.1.2. The infinite space between words</a></li>
-<li><a href="#orga695010">2.1.3. Blocking IO</a></li>
+<li><a href="#org40c1402">2.1.1. Anatomy</a></li>
+<li><a href="#orge645416">2.1.2. The infinite space between words</a></li>
+<li><a href="#orgd60ec0a">2.1.3. Blocking IO</a></li>
 </ul>
 </li>
-<li><a href="#orgde37d69">2.2. The Asynchronous way</a>
+<li><a href="#orgc69b6cd">2.2. The Asynchronous way</a>
 <ul>
-<li><a href="#org5480149">2.2.1. Callbacks</a></li>
-<li><a href="#orgdf4bc4a">2.2.2. Async-effect</a></li>
+<li><a href="#org03b759a">2.2.1. Callbacks</a></li>
+<li><a href="#org10d1d42">2.2.2. Async-effect</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org93ea537">3. How</a>
+<li><a href="#org6e7f7be">3. How</a>
 <ul>
-<li><a href="#org79d7ff6">3.1. <span class="todo TODO">TODO</span> Read more about Event Loop</a></li>
-<li><a href="#org0c4bd0d">3.2. <span class="todo TODO">TODO</span> Read about multi threading/thread pool in Python</a></li>
-<li><a href="#orgd8122ed">3.3. <span class="todo TODO">TODO</span> Non Blocking system calls:</a>
+<li><a href="#orgabfcd8c">3.1. <span class="todo TODO">TODO</span> Read more about Event Loop</a></li>
+<li><a href="#org7fd8acf">3.2. <span class="todo TODO">TODO</span> Read about multi threading/thread pool in Python</a></li>
+<li><a href="#orgb7dd059">3.3. <span class="todo TODO">TODO</span> Non Blocking system calls:</a>
 <ul>
-<li><a href="#org4c99fe7">3.3.1. <span class="todo TODO">TODO</span> <code>select</code></a></li>
-<li><a href="#orgbf930af">3.3.2. <span class="todo TODO">TODO</span> <code>poll</code></a></li>
+<li><a href="#org61312a1">3.3.1. <span class="todo TODO">TODO</span> <code>select</code></a></li>
+<li><a href="#org333f2f6">3.3.2. <span class="todo TODO">TODO</span> <code>poll</code></a></li>
 </ul>
 </li>
-<li><a href="#orga8058bd">3.4. <span class="todo TODO">TODO</span> SO question</a></li>
-<li><a href="#org1a9ec28">3.5. <span class="todo TODO">TODO</span> Talk</a></li>
+<li><a href="#org451a135">3.4. <span class="todo TODO">TODO</span> SO question</a></li>
+<li><a href="#orga79842b">3.5. <span class="todo TODO">TODO</span> Talk</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 <div id="draftTag">DRAFT</div>
 
-<div id="outline-container-org170b5a7" class="outline-2">
-<h2 id="org170b5a7"><span class="section-number-2">1</span> Motivation</h2>
+<div id="outline-container-orgbaf96fb" class="outline-2">
+<h2 id="orgbaf96fb"><span class="section-number-2">1</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I have stumbled upon <a href="https://www.quora.com/My-code-works-as-intended-on-Online-HTML-Editor-but-not-exactly-on-github-pages-or-jsfiddle-What-can-I-do">several</a> <a href="https://www.quora.com/How-would-you-explain-the-concept-of-asynchronous-programming-to-a-10-year-old">instances</a> while answering on quora/SO, where someone
@@ -315,15 +314,15 @@ callbacks.
 </div>
 </div>
 
-<div id="outline-container-orgf3539f2" class="outline-2">
-<h2 id="orgf3539f2"><span class="section-number-2">2</span> What</h2>
+<div id="outline-container-orgfb6fbad" class="outline-2">
+<h2 id="orgfb6fbad"><span class="section-number-2">2</span> What</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Let's start with what we already know and what this post is not about:
 </p>
 </div>
-<div id="outline-container-orgf79a0f6" class="outline-3">
-<h3 id="orgf79a0f6"><span class="section-number-3">2.1</span> The synchronous way</h3>
+<div id="outline-container-orgbeaa197" class="outline-3">
+<h3 id="orgbeaa197"><span class="section-number-3">2.1</span> The synchronous way</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Here's a contrived example, which opens up a file and checks if first character
@@ -331,17 +330,17 @@ is a vowel. If it is a vowel then it calculates \(\sqrt[3]{2}\) else it calculat
 \(\sqrt{2}\). And finally it calculates result 3<sup>2</sup>
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0; font-weight: bold;">open</span>(<span style="color: #008000;">'/home/user/rndFile.txt'</span>, <span style="color: #008000;">'r'</span>)
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0;">open</span><span style="color: #707183;">(</span><span style="color: #008000;">'/home/user/rndFile.txt'</span>, <span style="color: #008000;">'r'</span><span style="color: #707183;">)</span>
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span><span style="color: #BA36A5;">first_line</span> = f.readline()
-<span class="linenr"> 4: </span><span style="color: #BA36A5;">first_char</span> = first_line[0]
+<span class="linenr"> 3: </span><span style="color: #BA36A5;">first_line</span> = f.readline<span style="color: #707183;">()</span>
+<span class="linenr"> 4: </span><span style="color: #BA36A5;">first_char</span> = first_line<span style="color: #707183;">[</span><span style="color: #D0372D;">0</span><span style="color: #707183;">]</span>
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #0000FF;">if</span> first_char <span style="color: #0000FF;">in</span> [<span style="color: #008000;">'a'</span>, <span style="color: #008000;">'e'</span>, <span style="color: #008000;">'i'</span>, <span style="color: #008000;">'o'</span>, <span style="color: #008000;">'u'</span>]:
-<span class="linenr"> 7: </span>    <span style="color: #BA36A5;">result1</span> = 2 ** (1/3.0)
+<span class="linenr"> 6: </span><span style="color: #0000FF;">if</span> first_char <span style="color: #0000FF;">in</span> <span style="color: #707183;">[</span><span style="color: #008000;">'a'</span>, <span style="color: #008000;">'e'</span>, <span style="color: #008000;">'i'</span>, <span style="color: #008000;">'o'</span>, <span style="color: #008000;">'u'</span><span style="color: #707183;">]</span>:
+<span class="linenr"> 7: </span>    <span style="color: #BA36A5;">result1</span> = <span style="color: #D0372D;">2</span> ** <span style="color: #707183;">(</span><span style="color: #D0372D;">1</span>/<span style="color: #D0372D;">3</span>.<span style="color: #D0372D;">0</span><span style="color: #707183;">)</span>
 <span class="linenr"> 8: </span><span style="color: #0000FF;">else</span>:
-<span class="linenr"> 9: </span>    <span style="color: #BA36A5;">result1</span> = 2 ** (1/2.0)
+<span class="linenr"> 9: </span>    <span style="color: #BA36A5;">result1</span> = <span style="color: #D0372D;">2</span> ** <span style="color: #707183;">(</span><span style="color: #D0372D;">1</span>/<span style="color: #D0372D;">2</span>.<span style="color: #D0372D;">0</span><span style="color: #707183;">)</span>
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #BA36A5;">result2</span> = 3 ** 2
+<span class="linenr">11: </span><span style="color: #BA36A5;">result2</span> = <span style="color: #D0372D;">3</span> ** <span style="color: #D0372D;">2</span>
 </pre>
 </div>
 <p>
@@ -350,8 +349,8 @@ We can easily guess what code is doing by looking at it. It goes over each line
 and see what is going on behind the scenes.
 </p>
 </div>
-<div id="outline-container-org4db9377" class="outline-4">
-<h4 id="org4db9377"><span class="section-number-4">2.1.1</span> Anatomy</h4>
+<div id="outline-container-org40c1402" class="outline-4">
+<h4 id="org40c1402"><span class="section-number-4">2.1.1</span> Anatomy</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li><code>f = open('/home/user/rndFile.txt', 'r')</code>: requests Operating System to lookup a file using specified path in <i>read-only</i> mode.</li>
@@ -363,8 +362,8 @@ and see what is going on behind the scenes.
 </ul>
 </div>
 </div>
-<div id="outline-container-org939c297" class="outline-4">
-<h4 id="org939c297"><span class="section-number-4">2.1.2</span> The infinite space between words<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h4>
+<div id="outline-container-orge645416" class="outline-4">
+<h4 id="orge645416"><span class="section-number-4">2.1.2</span> The infinite space between words<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 Reading files, making network calls and doing CPU intensive work is
@@ -456,8 +455,8 @@ Now with this perspective, let's revisit our earlier example.
 </div>
 </div>
 
-<div id="outline-container-orga695010" class="outline-4">
-<h4 id="orga695010"><span class="section-number-4">2.1.3</span> Blocking IO</h4>
+<div id="outline-container-orgd60ec0a" class="outline-4">
+<h4 id="orgd60ec0a"><span class="section-number-4">2.1.3</span> Blocking IO</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 Since we have seen in the reference frame of processor, IO takes forever to
@@ -478,8 +477,8 @@ file, yet its computation is blocked due to sequencial execution of intructions.
 </div>
 </div>
 
-<div id="outline-container-orgde37d69" class="outline-3">
-<h3 id="orgde37d69"><span class="section-number-3">2.2</span> The Asynchronous way</h3>
+<div id="outline-container-orgc69b6cd" class="outline-3">
+<h3 id="orgc69b6cd"><span class="section-number-3">2.2</span> The Asynchronous way</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Instead of waiting for the blocking operation, we can proceed with the computation
@@ -488,8 +487,8 @@ this by providing a <i>callback</i> which is executed whenever the operation suc
 </p>
 </div>
 
-<div id="outline-container-org5480149" class="outline-4">
-<h4 id="org5480149"><span class="section-number-4">2.2.1</span> Callbacks</h4>
+<div id="outline-container-org03b759a" class="outline-4">
+<h4 id="org03b759a"><span class="section-number-4">2.2.1</span> Callbacks</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 These callbacks can be provided as anonymous functions (&lambda;) or named functions.
@@ -498,17 +497,17 @@ operations.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #0000FF;">def</span> <span style="color: #006699;">calculateResult1</span>(first_char):
-<span class="linenr"> 2: </span>    <span style="color: #0000FF;">if</span> first_char <span style="color: #0000FF;">in</span> [<span style="color: #008000;">'a'</span>, <span style="color: #008000;">'e'</span>, <span style="color: #008000;">'i'</span>, <span style="color: #008000;">'o'</span>, <span style="color: #008000;">'u'</span>]:
-<span class="linenr"> 3: </span>        <span style="color: #BA36A5;">result1</span> = 2 ** (1/3.0)
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #0000FF;">def</span> <span style="color: #006699;">calculateResult1</span><span style="color: #707183;">(</span>first_char<span style="color: #707183;">)</span>:
+<span class="linenr"> 2: </span>    <span style="color: #0000FF;">if</span> first_char <span style="color: #0000FF;">in</span> <span style="color: #707183;">[</span><span style="color: #008000;">'a'</span>, <span style="color: #008000;">'e'</span>, <span style="color: #008000;">'i'</span>, <span style="color: #008000;">'o'</span>, <span style="color: #008000;">'u'</span><span style="color: #707183;">]</span>:
+<span class="linenr"> 3: </span>        <span style="color: #BA36A5;">result1</span> = <span style="color: #D0372D;">2</span> ** <span style="color: #707183;">(</span><span style="color: #D0372D;">1</span>/<span style="color: #D0372D;">3</span>.<span style="color: #D0372D;">0</span><span style="color: #707183;">)</span>
 <span class="linenr"> 4: </span>    <span style="color: #0000FF;">else</span>:
-<span class="linenr"> 5: </span>        <span style="color: #BA36A5;">result1</span> = 2 ** (1/2.0)
+<span class="linenr"> 5: </span>        <span style="color: #BA36A5;">result1</span> = <span style="color: #D0372D;">2</span> ** <span style="color: #707183;">(</span><span style="color: #D0372D;">1</span>/<span style="color: #D0372D;">2</span>.<span style="color: #D0372D;">0</span><span style="color: #707183;">)</span>
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0; font-weight: bold;">open</span>(<span style="color: #008000;">'/home/user/rndFile.txt'</span>,
+<span class="linenr"> 7: </span><span style="color: #BA36A5;">f</span> = <span style="color: #006FE0;">open</span><span style="color: #707183;">(</span><span style="color: #008000;">'/home/user/rndFile.txt'</span>,
 <span class="linenr"> 8: </span>         <span style="color: #008000;">'r'</span>,
-<span class="linenr"> 9: </span>         <span style="color: #0000FF;">lambda</span> f: f.readline(<span style="color: #0000FF;">lambda</span> first_line: calculateResult1(first_line[0])))
+<span class="linenr"> 9: </span>         <span style="color: #0000FF;">lambda</span> f: f.readline<span style="color: #7388D6;">(</span><span style="color: #0000FF;">lambda</span> first_line: calculateResult1<span style="color: #909183;">(</span>first_line<span style="color: #709870;">[</span><span style="color: #D0372D;">0</span><span style="color: #709870;">]</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #BA36A5;">result2</span> = 3 ** 2
+<span class="linenr">11: </span><span style="color: #BA36A5;">result2</span> = <span style="color: #D0372D;">3</span> ** <span style="color: #D0372D;">2</span>
 <span class="linenr">12: </span>
 <span class="linenr">13: </span><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Note: this is not a valid Python code, 'open' is not asynchronous in Python.</span>
 <span class="linenr">14: </span><span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Do Not Try this at home.</span>
@@ -525,8 +524,8 @@ Here's the <i>diff</i> between the two examples in English:
 </div>
 </div>
 
-<div id="outline-container-orgdf4bc4a" class="outline-4">
-<h4 id="orgdf4bc4a"><span class="section-number-4">2.2.2</span> Async-effect</h4>
+<div id="outline-container-org10d1d42" class="outline-4">
+<h4 id="org10d1d42"><span class="section-number-4">2.2.2</span> Async-effect</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Now instead of blocking on <code>open</code> call, our execution proceeds to execute line 11
@@ -540,24 +539,24 @@ paste the following code.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">request</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">XMLHttpRequest</span>();
-request.open(<span style="color: #008000;">'GET'</span>, <span style="color: #008000;">'https://anuragpeshne.github.io/essays/index.html'</span>, <span style="color: #D0372D;">true</span>)
+<pre class="src src-javascript"><span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">request</span> = <span style="color: #0000FF;">new</span> <span style="color: #6434A3;">XMLHttpRequest</span><span style="color: #707183;">()</span>;
+request.open<span style="color: #707183;">(</span><span style="color: #008000;">'GET'</span>, <span style="color: #008000;">'https://anuragpeshne.github.io/essays/index.html'</span>, <span style="color: #D0372D;">true</span><span style="color: #707183;">)</span>
 
-request.onload = <span style="color: #0000FF;">function</span>() {
-    <span style="color: #0000FF;">if</span> (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
-        console.log(<span style="color: #008000;">"Success! "</span> + request.responseText.length + <span style="color: #008000;">" characters received"</span>);
-    } <span style="color: #0000FF;">else</span> {
-        console.log(<span style="color: #008000;">"Server returned error "</span> + request.status);
-    }
-}
+request.onload = <span style="color: #0000FF;">function</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    <span style="color: #0000FF;">if</span> <span style="color: #7388D6;">(</span>request.status &gt;= <span style="color: #D0372D;">200</span> &amp;&amp; request.status &lt; <span style="color: #D0372D;">400</span><span style="color: #7388D6;">)</span> <span style="color: #7388D6;">{</span>
+        console.log<span style="color: #909183;">(</span><span style="color: #008000;">"Success! "</span> + request.responseText.length + <span style="color: #008000;">" characters received"</span><span style="color: #909183;">)</span>;
+    <span style="color: #7388D6;">}</span> <span style="color: #0000FF;">else</span> <span style="color: #7388D6;">{</span>
+        console.log<span style="color: #909183;">(</span><span style="color: #008000;">"Server returned error "</span> + request.status<span style="color: #909183;">)</span>;
+    <span style="color: #7388D6;">}</span>
+<span style="color: #707183;">}</span>
 
-request.onerror = <span style="color: #0000FF;">function</span>() {
-    console.log(<span style="color: #008000;">"Connection Error"</span>);
-}
+request.onerror = <span style="color: #0000FF;">function</span><span style="color: #707183;">()</span> <span style="color: #707183;">{</span>
+    console.log<span style="color: #7388D6;">(</span><span style="color: #008000;">"Connection Error"</span><span style="color: #7388D6;">)</span>;
+<span style="color: #707183;">}</span>
 
-console.log(<span style="color: #008000;">"before making the call"</span>);
-request.send();
-console.log(<span style="color: #008000;">"after making the call"</span>);
+console.log<span style="color: #707183;">(</span><span style="color: #008000;">"before making the call"</span><span style="color: #707183;">)</span>;
+request.send<span style="color: #707183;">()</span>;
+console.log<span style="color: #707183;">(</span><span style="color: #008000;">"after making the call"</span><span style="color: #707183;">)</span>;
 </pre>
 </div>
 
@@ -587,35 +586,36 @@ from internet. This is something you should definitely try at home.
 </div>
 </div>
 
-<div id="outline-container-org93ea537" class="outline-2">
-<h2 id="org93ea537"><span class="section-number-2">3</span> How</h2>
+<div id="outline-container-org6e7f7be" class="outline-2">
+<h2 id="org6e7f7be"><span class="section-number-2">3</span> How</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 And now we can turn our attention to how asynchronous callbacks can be implemented.
 This can be really useful in getting deep knowledge about asynchronous programming.
 </p>
 </div>
-<div id="outline-container-org79d7ff6" class="outline-3">
-<h3 id="org79d7ff6"><span class="section-number-3">3.1</span> <span class="todo TODO">TODO</span> Read more about Event Loop</h3>
+<div id="outline-container-orgabfcd8c" class="outline-3">
+<h3 id="orgabfcd8c"><span class="section-number-3">3.1</span> <span class="todo TODO">TODO</span> Read more about Event Loop</h3>
 </div>
-<div id="outline-container-org0c4bd0d" class="outline-3">
-<h3 id="org0c4bd0d"><span class="section-number-3">3.2</span> <span class="todo TODO">TODO</span> Read about multi threading/thread pool in Python</h3>
+<div id="outline-container-org7fd8acf" class="outline-3">
+<h3 id="org7fd8acf"><span class="section-number-3">3.2</span> <span class="todo TODO">TODO</span> Read about multi threading/thread pool in Python</h3>
 </div>
-<div id="outline-container-orgd8122ed" class="outline-3">
-<h3 id="orgd8122ed"><span class="section-number-3">3.3</span> <span class="todo TODO">TODO</span> Non Blocking system calls:</h3>
+<div id="outline-container-orgb7dd059" class="outline-3">
+<h3 id="orgb7dd059"><span class="section-number-3">3.3</span> <span class="todo TODO">TODO</span> Non Blocking system calls:</h3>
 <div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-org4c99fe7" class="outline-4">
-<h4 id="org4c99fe7"><span class="section-number-4">3.3.1</span> <span class="todo TODO">TODO</span> <code>select</code></h4>
 </div>
-<div id="outline-container-orgbf930af" class="outline-4">
-<h4 id="orgbf930af"><span class="section-number-4">3.3.2</span> <span class="todo TODO">TODO</span> <code>poll</code></h4>
+<div id="outline-container-org61312a1" class="outline-4">
+<h4 id="org61312a1"><span class="section-number-4">3.3.1</span> <span class="todo TODO">TODO</span> <code>select</code></h4>
+</div>
+<div id="outline-container-org333f2f6" class="outline-4">
+<h4 id="org333f2f6"><span class="section-number-4">3.3.2</span> <span class="todo TODO">TODO</span> <code>poll</code></h4>
 </div>
 </div>
-<div id="outline-container-orga8058bd" class="outline-3">
-<h3 id="orga8058bd"><span class="section-number-3">3.4</span> <span class="todo TODO">TODO</span> <a href="http://stackoverflow.com/questions/21607692/understanding-the-event-loop">SO question</a></h3>
+<div id="outline-container-org451a135" class="outline-3">
+<h3 id="org451a135"><span class="section-number-3">3.4</span> <span class="todo TODO">TODO</span> <a href="http://stackoverflow.com/questions/21607692/understanding-the-event-loop">SO question</a></h3>
 </div>
-<div id="outline-container-org1a9ec28" class="outline-3">
-<h3 id="org1a9ec28"><span class="section-number-3">3.5</span> <span class="todo TODO">TODO</span> <a href="http://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html">Talk</a></h3>
+<div id="outline-container-orga79842b" class="outline-3">
+<h3 id="orga79842b"><span class="section-number-3">3.5</span> <span class="todo TODO">TODO</span> <a href="http://2014.jsconf.eu/speakers/philip-roberts-what-the-heck-is-the-event-loop-anyway.html">Talk</a></h3>
 <div class="outline-text-3" id="text-3-5">
 </div>
 </div>
@@ -650,7 +650,7 @@ page and click 'Inspect [Element]'. Now head over the 'Console' tab.
 
 
 </div>
-</div><div id="disqus_thread"></div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/asynchronous.html";
@@ -669,8 +669,8 @@ this.page.identifier = "/essays/asynchronous.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-02-07</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="date">Created: 2017-04-22 Sat 10:04</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="date">Created: 2019-03-22 Fri 16:16</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -231,23 +231,21 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Vim: Text Manipulation</h1>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-
 <p>
 This is part 4 of a series of tutorial to Vim. You can read <a href="./3.html">Part 3 here</a>.
 </p>
 
-<div id="outline-container-orgd3be857" class="outline-2">
-<h2 id="orgd3be857">Copy and Paste</h2>
-<div class="outline-text-2" id="text-orgd3be857">
+<div id="outline-container-orgf7f2324" class="outline-2">
+<h2 id="orgf7f2324">Copy and Paste</h2>
+<div class="outline-text-2" id="text-orgf7f2324">
 <p>
 Moving around text is probably the most used operation used in any text editor.
 As you might have guessed, there are couple of ways to do these operations in Vim.
 </p>
 </div>
-<div id="outline-container-org79c1ea9" class="outline-3">
-<h3 id="org79c1ea9">Lesson 5</h3>
-<div class="outline-text-3" id="text-org79c1ea9">
+<div id="outline-container-org604e586" class="outline-3">
+<h3 id="org604e586">Lesson 5</h3>
+<div class="outline-text-3" id="text-org604e586">
 <p class="verse">
 In Vim's lingo copying is yanking.<br />
 You <i>yank</i> a line.<br />
@@ -274,18 +272,18 @@ above/before.</li>
 </div>
 </div>
 
-<div id="outline-container-org217d031" class="outline-3">
-<h3 id="org217d031">Till, In and Around</h3>
-<div class="outline-text-3" id="text-org217d031">
+<div id="outline-container-org5978fac" class="outline-3">
+<h3 id="org5978fac">Till, In and Around</h3>
+<div class="outline-text-3" id="text-org5978fac">
 <p>
 Let me tell you about 3 more motion commands which fit beautifully with yank and delete.
 </p>
 <div class="org-src-container">
-<pre class="src src-c"><span class="linenr">1: </span><span style="color: #6434A3;">int</span> <span style="color: #006699;">foo</span>(<span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span>, <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">b</span>, <span style="color: #6434A3;">char</span> *<span style="color: #BA36A5;">str</span>) {
+<pre class="src src-c"><span class="linenr">1: </span><span style="color: #6434A3;">int</span> <span style="color: #006699;">foo</span><span style="color: #707183;">(</span><span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">a</span>, <span style="color: #6434A3;">int</span> <span style="color: #BA36A5;">b</span>, <span style="color: #6434A3;">char</span> *<span style="color: #BA36A5;">str</span><span style="color: #707183;">)</span> <span style="color: #707183;">{</span>
 <span class="linenr">2: </span>    a += b;
-<span class="linenr">3: </span>    str[0] = <span style="color: #008000;">'d'</span>;
+<span class="linenr">3: </span>    str<span style="color: #7388D6;">[</span><span style="color: #D0372D;">0</span><span style="color: #7388D6;">]</span> = <span style="color: #008000;">'d'</span>;
 <span class="linenr">4: </span>    <span style="color: #0000FF;">return</span> a;
-<span class="linenr">5: </span>}
+<span class="linenr">5: </span><span style="color: #707183;">}</span>
 </pre>
 </div>
 <ol class="org-ol">
@@ -349,9 +347,9 @@ unaware of.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgee8a0d7" class="outline-2">
-<h2 id="orgee8a0d7">One more thing: Time Travel</h2>
-<div class="outline-text-2" id="text-orgee8a0d7">
+<div id="outline-container-org8ee425f" class="outline-2">
+<h2 id="org8ee425f">One more thing: Time Travel</h2>
+<div class="outline-text-2" id="text-org8ee425f">
 <p>
 From this part onwards you will be doing complex manipulation to text. It would
 be nice to have another important feature in our arsenal: Undo.
@@ -367,9 +365,9 @@ You can read more about undo branches <a href="http://vim.wikia.com/wiki/Using_u
 </p>
 </div>
 </div>
-<div id="outline-container-org81109a9" class="outline-2">
-<h2 id="org81109a9">Summary</h2>
-<div class="outline-text-2" id="text-org81109a9">
+<div id="outline-container-org112f72a" class="outline-2">
+<h2 id="org112f72a">Summary</h2>
+<div class="outline-text-2" id="text-org112f72a">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -480,7 +478,7 @@ this.page.identifier = "/essays/vim/4.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2017-06-1</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

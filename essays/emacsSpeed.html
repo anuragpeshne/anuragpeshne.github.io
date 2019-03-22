@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -235,31 +235,31 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2c884c8">1. Motivation</a></li>
-<li><a href="#org93e9e0b">2. Attempts</a>
+<li><a href="#org7f2852a">1. Motivation</a></li>
+<li><a href="#orgbac8d50">2. Attempts</a>
 <ul>
-<li><a href="#org2df4ddd">2.1. Garbage Collection Threshold (<code>gc-cons-threshold</code>)</a>
+<li><a href="#org34ed439">2.1. Garbage Collection Threshold (<code>gc-cons-threshold</code>)</a>
 <ul>
-<li><a href="#org4442545">2.1.1. GC Caveats</a></li>
+<li><a href="#orgd76d770">2.1.1. GC Caveats</a></li>
 </ul>
 </li>
-<li><a href="#org0c9ff7c">2.2. <code>use-package</code></a></li>
-<li><a href="#org13a3225">2.3. <span class="todo TODO">TODO</span> <code>emacs --daemon</code></a></li>
+<li><a href="#org534e5fa">2.2. <code>use-package</code></a></li>
+<li><a href="#orgf14e08d">2.3. <span class="todo TODO">TODO</span> <code>emacs --daemon</code></a></li>
 </ul>
 </li>
-<li><a href="#org58c9757">3. Conclusion</a>
+<li><a href="#org28fd032">3. Conclusion</a>
 <ul>
-<li><a href="#org898acf7">3.1. Macbook Pro (Late 2013 Model) SSD with 8GB Memory</a></li>
-<li><a href="#org0146ff0">3.2. Macbook Pro (Mid 2012 Model) HDD with 10GB Memory</a></li>
+<li><a href="#org0330f53">3.1. Macbook Pro (Late 2013 Model) SSD with 8GB Memory</a></li>
+<li><a href="#orgdead939">3.2. Macbook Pro (Mid 2012 Model) HDD with 10GB Memory</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 
-<div id="outline-container-org2c884c8" class="outline-2">
-<h2 id="org2c884c8"><span class="section-number-2">1</span> Motivation</h2>
+
+<div id="outline-container-org7f2852a" class="outline-2">
+<h2 id="org7f2852a"><span class="section-number-2">1</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I've being using Emacs for quite some time now. After picking up several modes and
@@ -277,8 +277,8 @@ crawled on the Mac at work, having rotating hard drive, taking whooping
 </div>
 </div>
 
-<div id="outline-container-org93e9e0b" class="outline-2">
-<h2 id="org93e9e0b"><span class="section-number-2">2</span> Attempts</h2>
+<div id="outline-container-orgbac8d50" class="outline-2">
+<h2 id="orgbac8d50"><span class="section-number-2">2</span> Attempts</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 I found several solutions to speed up Emacs start on the web. Since I'm fairly
@@ -289,7 +289,7 @@ improving startup time. To benchmark that, I'm using inbuilt function <code>emac
 <div class="org-src-container">
 <pre class="src src-lisp">emacs-init-time is an interactive autoloaded compiled Lisp function in `<span style="color: #D0372D;">time.el</span>'.
 
-(emacs-init-time)
+<span style="color: #707183;">(</span>emacs-init-time<span style="color: #707183;">)</span>
 
 Return a string giving the duration of the Emacs initialization.
 </pre>
@@ -301,8 +301,8 @@ benchmark loading time gives inaccurate results. To get around that, I'm using
 <code>purge</code> call to flush cached memory.
 </p>
 </div>
-<div id="outline-container-org2df4ddd" class="outline-3">
-<h3 id="org2df4ddd"><span class="section-number-3">2.1</span> Garbage Collection Threshold (<code>gc-cons-threshold</code>)</h3>
+<div id="outline-container-org34ed439" class="outline-3">
+<h3 id="org34ed439"><span class="section-number-3">2.1</span> Garbage Collection Threshold (<code>gc-cons-threshold</code>)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 I found <a href="https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/">this reddit thread</a> which claims to speedup by increasing the threshold
@@ -311,7 +311,7 @@ of the bytes consumed before garbage collector is invoked.
 
 <div class="org-src-container">
 <pre class="src src-lisp">gc-cons-threshold is a variable defined in `C source code'.
-Its value is 800000
+Its value is <span style="color: #D0372D;">800000</span>
 
 Documentation:
 Number of bytes of consing between garbage collections.
@@ -335,15 +335,15 @@ not sure which all files are purged).
 </p>
 </div>
 
-<div id="outline-container-org4442545" class="outline-4">
-<h4 id="org4442545"><span class="section-number-4">2.1.1</span> GC Caveats</h4>
+<div id="outline-container-orgd76d770" class="outline-4">
+<h4 id="orgd76d770"><span class="section-number-4">2.1.1</span> GC Caveats</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 As noted by <i>RobThorpe</i> on the same thread,
 </p>
 <p class="verse">
-Be aware that the GC pause gets longer as you raise the cons-threshold.
-If you raise it a lot it may become irritatingly long and you'll begin to notice it while editing.
+Be aware that the GC pause gets longer as you raise the cons-threshold.<br />
+If you raise it a lot it may become irritatingly long and you'll begin to notice it while editing.<br />
 </p>
 
 <p>
@@ -356,8 +356,8 @@ this solution again after implementing <code>use-package</code>.
 </div>
 </div>
 
-<div id="outline-container-org0c9ff7c" class="outline-3">
-<h3 id="org0c9ff7c"><span class="section-number-3">2.2</span> <code>use-package</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div id="outline-container-org534e5fa" class="outline-3">
+<h3 id="org534e5fa"><span class="section-number-3">2.2</span> <code>use-package</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 There are two main motivation for me to try <code>use-package</code>:
@@ -403,44 +403,46 @@ My startup time reduced to <b>3.5 seconds</b> and <b>2.1 seconds</b> on Mac with
 Here's a snippet from my <code>init.el</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-lisp">(use-package evil
-             <span style="color: #006FE0; font-weight: bold;">:ensure</span> t
-             <span style="color: #006FE0; font-weight: bold;">:demand</span>
-             <span style="color: #006FE0; font-weight: bold;">:init</span>
-             (<span style="color: #0000FF;">progn</span>
-               (setq evil-want-C-u-scroll t)
+<pre class="src src-lisp"><span style="color: #707183;">(</span>use-package evil
+             <span style="color: #006FE0;">:ensure</span> t
+             <span style="color: #006FE0;">:demand</span>
+             <span style="color: #006FE0;">:init</span>
+             <span style="color: #7388D6;">(</span><span style="color: #0000FF;">progn</span>
+               <span style="color: #909183;">(</span>setq evil-want-C-u-scroll t<span style="color: #909183;">)</span>
                <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Change cursor color depending on mode</span>
-               (setq evil-emacs-state-cursor '(<span style="color: #008000;">"red"</span> box)
-                     evil-normal-state-cursor '(<span style="color: #008000;">"green"</span> box)
-                     evil-visual-state-cursor '(<span style="color: #008000;">"orange"</span> box)
-                     evil-insert-state-cursor '(<span style="color: #008000;">"red"</span> bar)
-                     evil-replace-state-cursor '(<span style="color: #008000;">"red"</span> bar)
-                     evil-operator-state-cursor '(<span style="color: #008000;">"red"</span> hollow))
-               (evil-mode 1)))
+               <span style="color: #909183;">(</span>setq evil-emacs-state-cursor '<span style="color: #709870;">(</span><span style="color: #008000;">"red"</span> box<span style="color: #709870;">)</span>
+                     evil-normal-state-cursor '<span style="color: #709870;">(</span><span style="color: #008000;">"green"</span> box<span style="color: #709870;">)</span>
+                     evil-visual-state-cursor '<span style="color: #709870;">(</span><span style="color: #008000;">"orange"</span> box<span style="color: #709870;">)</span>
+                     evil-insert-state-cursor '<span style="color: #709870;">(</span><span style="color: #008000;">"red"</span> bar<span style="color: #709870;">)</span>
+                     evil-replace-state-cursor '<span style="color: #709870;">(</span><span style="color: #008000;">"red"</span> bar<span style="color: #709870;">)</span>
+                     evil-operator-state-cursor '<span style="color: #709870;">(</span><span style="color: #008000;">"red"</span> hollow<span style="color: #709870;">)</span><span style="color: #909183;">)</span>
+               <span style="color: #909183;">(</span>evil-mode <span style="color: #D0372D;">1</span><span style="color: #909183;">)</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
 
-(use-package magit <span style="color: #006FE0; font-weight: bold;">:ensure</span> t <span style="color: #006FE0; font-weight: bold;">:defer</span> 5)
+<span style="color: #707183;">(</span>use-package magit <span style="color: #006FE0;">:ensure</span> t <span style="color: #006FE0;">:defer</span> <span style="color: #D0372D;">5</span><span style="color: #707183;">)</span>
 
 <span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">highlight changes</span>
-(use-package git-gutter-fringe
-  <span style="color: #006FE0; font-weight: bold;">:ensure</span> t
-  <span style="color: #006FE0; font-weight: bold;">:diminish</span> git-gutter-mode
-  <span style="color: #006FE0; font-weight: bold;">:config</span> (global-git-gutter-mode))
+<span style="color: #707183;">(</span>use-package git-gutter-fringe
+  <span style="color: #006FE0;">:ensure</span> t
+  <span style="color: #006FE0;">:diminish</span> git-gutter-mode
+  <span style="color: #006FE0;">:config</span> <span style="color: #7388D6;">(</span>global-git-gutter-mode<span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org13a3225" class="outline-3">
-<h3 id="org13a3225"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> <code>emacs --daemon</code></h3>
+<div id="outline-container-orgf14e08d" class="outline-3">
+<h3 id="orgf14e08d"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> <code>emacs --daemon</code></h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
 </div>
 </div>
 
-<div id="outline-container-org58c9757" class="outline-2">
-<h2 id="org58c9757"><span class="section-number-2">3</span> Conclusion</h2>
+<div id="outline-container-org28fd032" class="outline-2">
+<h2 id="org28fd032"><span class="section-number-2">3</span> Conclusion</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org898acf7" class="outline-3">
-<h3 id="org898acf7"><span class="section-number-3">3.1</span> Macbook Pro (Late 2013 Model) SSD with 8GB Memory</h3>
+</div>
+<div id="outline-container-org0330f53" class="outline-3">
+<h3 id="org0330f53"><span class="section-number-3">3.1</span> Macbook Pro (Late 2013 Model) SSD with 8GB Memory</h3>
 <div class="outline-text-3" id="text-3-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -476,8 +478,8 @@ Here's a snippet from my <code>init.el</code>:
 </div>
 </div>
 
-<div id="outline-container-org0146ff0" class="outline-3">
-<h3 id="org0146ff0"><span class="section-number-3">3.2</span> Macbook Pro (Mid 2012 Model) HDD with 10GB Memory</h3>
+<div id="outline-container-orgdead939" class="outline-3">
+<h3 id="orgdead939"><span class="section-number-3">3.2</span> Macbook Pro (Mid 2012 Model) HDD with 10GB Memory</h3>
 <div class="outline-text-3" id="text-3-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -523,7 +525,7 @@ Here's a snippet from my <code>init.el</code>:
 
 
 </div>
-</div><div id="disqus_thread"></div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/emacsSpeed.html";
@@ -542,7 +544,7 @@ this.page.identifier = "/essays/emacsSpeed.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-03-19</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

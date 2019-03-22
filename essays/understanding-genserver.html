@@ -180,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -236,14 +235,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2b13c41">1. Basics</a></li>
-<li><a href="#org93819a3">2. <code>OddServer</code> using <code>GenServer</code></a></li>
-<li><a href="#orgca7ec42">3. <code>SimServer</code></a></li>
+<li><a href="#orgd9d8e8c">1. Basics</a></li>
+<li><a href="#org4025fd4">2. <code>OddServer</code> using <code>GenServer</code></a></li>
+<li><a href="#org6b6317e">3. <code>SimServer</code></a></li>
 </ul>
 </div>
 </div>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-
 <p>
 This article is about how Elixir <code>GenServer</code> <i>work</i> rather than how <i>to use</i> it.
 If you are interested in knowing how to use <code>GenServer</code>, I would highly
@@ -259,8 +256,8 @@ than meets the eye and I don't understand it all. So I decided to try to write<s
 my own version of <code>GenServer</code> to learn how Elixir <code>GenServer</code> could have been
 implemented.
 </p>
-<div id="outline-container-org2b13c41" class="outline-2">
-<h2 id="org2b13c41"><span class="section-number-2">1</span> Basics</h2>
+<div id="outline-container-orgd9d8e8c" class="outline-2">
+<h2 id="orgd9d8e8c"><span class="section-number-2">1</span> Basics</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Let's start with a simple sender-receiver process setup, after all <code>GenServer</code>
@@ -410,8 +407,8 @@ Much better!
 </div>
 </div>
 
-<div id="outline-container-org93819a3" class="outline-2">
-<h2 id="org93819a3"><span class="section-number-2">2</span> <code>OddServer</code> using <code>GenServer</code></h2>
+<div id="outline-container-org4025fd4" class="outline-2">
+<h2 id="org4025fd4"><span class="section-number-2">2</span> <code>OddServer</code> using <code>GenServer</code></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Now that we have a simple state storing process that has a nice interface, let's
@@ -475,8 +472,8 @@ lines of code to test <code>OddGenServer</code>:
 </div>
 </div>
 
-<div id="outline-container-orgca7ec42" class="outline-2">
-<h2 id="orgca7ec42"><span class="section-number-2">3</span> <code>SimServer</code></h2>
+<div id="outline-container-org6b6317e" class="outline-2">
+<h2 id="org6b6317e"><span class="section-number-2">3</span> <code>SimServer</code></h2>
 <div class="outline-text-2" id="text-3">
 <p>
 You may have already noticed striking similarities between the basic process
@@ -601,7 +598,7 @@ A behaviour module defines a set of functions and macros (referred to as callbac
 
 <p>
 So, this explains our original question: why the functions <code>handle_call</code>, <code>handle_cast</code>
-are called as <i>callbacks</i> -because they have to be implemented in the callback 
+are called as <i>callbacks</i> -because they have to be implemented in the callback
 modules. This has nothing to do with function being passed!
 </p>
 
@@ -744,7 +741,7 @@ this.page.identifier = "/essays/understanding-genserver.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2018-01-07</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 9.1.6)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

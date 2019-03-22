@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -235,36 +235,35 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb68b1b8">1. Multiple servers, multiple configs</a>
+<li><a href="#orgcc487f3">1. Multiple servers, multiple configs</a>
 <ul>
-<li><a href="#org67f7980">1.1. Debugging</a></li>
-<li><a href="#org136c25d">1.2. Analysis</a></li>
+<li><a href="#org1e4ca69">1.1. Debugging</a></li>
+<li><a href="#orgeda4aaf">1.2. Analysis</a></li>
 </ul>
 </li>
-<li><a href="#orga506c9c">2. <code>sudo</code></a>
+<li><a href="#orgde2ff8c">2. <code>sudo</code></a>
 <ul>
-<li><a href="#orgd3cf050">2.1. <code>sudo</code> justExecuteThis</a></li>
-<li><a href="#org80f21bb">2.2. <code>sudo</code> mode</a></li>
+<li><a href="#org67ef08c">2.1. <code>sudo</code> justExecuteThis</a></li>
+<li><a href="#org552fcf3">2.2. <code>sudo</code> mode</a></li>
 </ul>
 </li>
-<li><a href="#org36cc062">3. Unix Permissions 101</a></li>
+<li><a href="#org24bada8">3. Unix Permissions 101</a></li>
 </ul>
 </div>
 </div>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
 <div id="draftTag">DRAFT</div>
 
-<div id="outline-container-orgb68b1b8" class="outline-2">
-<h2 id="orgb68b1b8"><span class="section-number-2">1</span> Multiple servers, multiple configs</h2>
+<div id="outline-container-orgcc487f3" class="outline-2">
+<h2 id="orgcc487f3"><span class="section-number-2">1</span> Multiple servers, multiple configs</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Couple of days ago we discovered a nasty bug in one of our systems. Before
 getting to the bug let me explain the setup very briefly:
 </p>
 <p class="verse">
-We have a master node which wakes up several AWS instances, delegates series of jobs, from a queue, to them and after all of the jobs are completed switches them off. Each slave node, after completing a job, stores the result in a common database.
-
-Each of the event is logged in the same common database.
+We have a master node which wakes up several AWS instances, delegates series of jobs, from a queue, to them and after all of the jobs are completed switches them off. Each slave node, after completing a job, stores the result in a common database.<br />
+<br />
+Each of the event is logged in the same common database.<br />
 </p>
 <p>
 The system was working as expected until we found that the results calculated
@@ -283,8 +282,8 @@ mentioned anywhere about the Dev DB.
 </p>
 </div>
 
-<div id="outline-container-org67f7980" class="outline-3">
-<h3 id="org67f7980"><span class="section-number-3">1.1</span> Debugging</h3>
+<div id="outline-container-org1e4ca69" class="outline-3">
+<h3 id="org1e4ca69"><span class="section-number-3">1.1</span> Debugging</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The master node packs the Python scripts, configuration files and other data
@@ -314,8 +313,8 @@ server and thus contained development configuration.
 </div>
 </div>
 
-<div id="outline-container-org136c25d" class="outline-3">
-<h3 id="org136c25d"><span class="section-number-3">1.2</span> Analysis</h3>
+<div id="outline-container-orgeda4aaf" class="outline-3">
+<h3 id="orgeda4aaf"><span class="section-number-3">1.2</span> Analysis</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 After the file permissions were fixed, it was time for examining what went wrong.
@@ -337,11 +336,12 @@ up of incorrect file permissions.
 </div>
 </div>
 
-<div id="outline-container-orga506c9c" class="outline-2">
-<h2 id="orga506c9c"><span class="section-number-2">2</span> <code>sudo</code></h2>
+<div id="outline-container-orgde2ff8c" class="outline-2">
+<h2 id="orgde2ff8c"><span class="section-number-2">2</span> <code>sudo</code></h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgd3cf050" class="outline-3">
-<h3 id="orgd3cf050"><span class="section-number-3">2.1</span> <code>sudo</code> justExecuteThis</h3>
+</div>
+<div id="outline-container-org67ef08c" class="outline-3">
+<h3 id="org67ef08c"><span class="section-number-3">2.1</span> <code>sudo</code> justExecuteThis</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The main problem is not technical but, like most of the other problems in software
@@ -351,8 +351,8 @@ the engineer would repeat the last command, if it failed, prefixing it with <cod
 without giving it a thought. For most of us, <code>sudo</code> means:
 </p>
 <p class="verse">
-I don't really understand (or want to know) why you failed but I don't want you to fail.
-Here, I give you the power of <code>sudo</code>
+I don't really understand (or want to know) why you failed but I don't want you to fail.<br />
+Here, I give you the power of <code>sudo</code><br />
 </p>
 <p>
 Again, the problem is not technical. Fixing the permission is not very difficult.
@@ -362,8 +362,8 @@ doing it the right way, when one can just <code>sudo</code>.
 </div>
 </div>
 
-<div id="outline-container-org80f21bb" class="outline-3">
-<h3 id="org80f21bb"><span class="section-number-3">2.2</span> <code>sudo</code> mode</h3>
+<div id="outline-container-org552fcf3" class="outline-3">
+<h3 id="org552fcf3"><span class="section-number-3">2.2</span> <code>sudo</code> mode</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 After one has successfully executed couple of commands using <code>sudo</code>, which were
@@ -384,8 +384,8 @@ Most of the code we write is executed by non privileged users.
 </div>
 </div>
 
-<div id="outline-container-org36cc062" class="outline-2">
-<h2 id="org36cc062"><span class="section-number-2">3</span> Unix Permissions 101</h2>
+<div id="outline-container-org24bada8" class="outline-2">
+<h2 id="org24bada8"><span class="section-number-2">3</span> Unix Permissions 101</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 There are just 3 commands one needs to know to avoid 90% of the unnecessary
@@ -401,18 +401,18 @@ This is the usual <code>ls</code> with <code>-l</code> flag which outputs extra 
 the files in the directory.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">-rw-r--r--  1 anuragpeshne  staff  1080 Feb  2 20:52 LICENSE
--rw-r--r--  1 anuragpeshne  staff    51 Feb  2 20:52 README.md
-drwxr-xr-x  7 anuragpeshne  staff   238 May  1 20:57 assets
-drwxr-xr-x  3 anuragpeshne  staff   102 May 21 16:15 css
-drwxr-xr-x  9 anuragpeshne  staff   306 Jun  5 13:45 essays
--rw-r--r--@ 1 anuragpeshne  staff    53 Feb 28 20:41 googleb7e54271b39d6266.html
--rw-r--r--  1 anuragpeshne  staff  8556 Apr  2 00:11 index.html
-drwxr-xr-x  3 anuragpeshne  staff   102 Apr  1 22:32 js
--rw-r--r--  1 anuragpeshne  staff  6565 Feb 20 23:08 now.html
-drwxr-xr-x  8 anuragpeshne  staff   272 Apr  2 00:11 org-files
-drwxr-xr-x  4 anuragpeshne  staff   136 Feb 21 23:02 quotes
-drwxr-xr-x  3 anuragpeshne  staff   102 Feb 16 20:09 todo
+<pre class="src src-bash">-rw-r--r--  <span style="color: #D0372D;">1</span> anuragpeshne  staff  <span style="color: #D0372D;">1080</span> Feb  <span style="color: #D0372D;">2</span> <span style="color: #D0372D;">20:52</span> LICENSE
+-rw-r--r--  <span style="color: #D0372D;">1</span> anuragpeshne  staff    <span style="color: #D0372D;">51</span> Feb  <span style="color: #D0372D;">2</span> <span style="color: #D0372D;">20:52</span> README.md
+drwxr-xr-x  <span style="color: #D0372D;">7</span> anuragpeshne  staff   <span style="color: #D0372D;">238</span> May  <span style="color: #D0372D;">1</span> <span style="color: #D0372D;">20:57</span> assets
+drwxr-xr-x  <span style="color: #D0372D;">3</span> anuragpeshne  staff   <span style="color: #D0372D;">102</span> May <span style="color: #D0372D;">21</span> <span style="color: #D0372D;">16:15</span> css
+drwxr-xr-x  <span style="color: #D0372D;">9</span> anuragpeshne  staff   <span style="color: #D0372D;">306</span> Jun  <span style="color: #D0372D;">5</span> <span style="color: #D0372D;">13:45</span> essays
+-rw-r--r--@ <span style="color: #D0372D;">1</span> anuragpeshne  staff    <span style="color: #D0372D;">53</span> Feb <span style="color: #D0372D;">28</span> <span style="color: #D0372D;">20:41</span> googleb7e54271b39d6266.html
+-rw-r--r--  <span style="color: #D0372D;">1</span> anuragpeshne  staff  <span style="color: #D0372D;">8556</span> Apr  <span style="color: #D0372D;">2</span> <span style="color: #D0372D;">00:11</span> index.html
+drwxr-xr-x  <span style="color: #D0372D;">3</span> anuragpeshne  staff   <span style="color: #D0372D;">102</span> Apr  <span style="color: #D0372D;">1</span> <span style="color: #D0372D;">22:32</span> js
+-rw-r--r--  <span style="color: #D0372D;">1</span> anuragpeshne  staff  <span style="color: #D0372D;">6565</span> Feb <span style="color: #D0372D;">20</span> <span style="color: #D0372D;">23:08</span> now.html
+drwxr-xr-x  <span style="color: #D0372D;">8</span> anuragpeshne  staff   <span style="color: #D0372D;">272</span> Apr  <span style="color: #D0372D;">2</span> <span style="color: #D0372D;">00:11</span> org-files
+drwxr-xr-x  <span style="color: #D0372D;">4</span> anuragpeshne  staff   <span style="color: #D0372D;">136</span> Feb <span style="color: #D0372D;">21</span> <span style="color: #D0372D;">23:02</span> quotes
+drwxr-xr-x  <span style="color: #D0372D;">3</span> anuragpeshne  staff   <span style="color: #D0372D;">102</span> Feb <span style="color: #D0372D;">16</span> <span style="color: #D0372D;">20:09</span> todo
 </pre>
 </div>
 <p>
@@ -520,7 +520,7 @@ ownership to you or add yourself to the owner group.
 
 
 </div>
-</div><div id="disqus_thread"></div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
 this.page.url = "https://anuragpeshne.github.io/essays/permissions101.html";
@@ -539,7 +539,7 @@ this.page.identifier = "/essays/permissions101.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2016-05-19</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.5)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

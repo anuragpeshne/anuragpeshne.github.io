@@ -67,6 +67,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -179,13 +180,12 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -231,15 +231,13 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Vim: Registers</h1>
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-67524931-1', 'auto'); ga('send', 'pageview'); </script>
-
 <p>
 This is part 10 of a series of tutorial to Vim. You can read <a href="./9.html">Part 9 here</a>.
 </p>
 
-<div id="outline-container-org9745cca" class="outline-2">
-<h2 id="org9745cca">Two Buckets</h2>
-<div class="outline-text-2" id="text-org9745cca">
+<div id="outline-container-org448ef9c" class="outline-2">
+<h2 id="org448ef9c">Two Buckets</h2>
+<div class="outline-text-2" id="text-org448ef9c">
 <p>
 I bet you always wanted this. Even if you didn't know it existed, you secretly
 desired something like this.
@@ -267,9 +265,9 @@ at once.
 </p>
 </div>
 
-<div id="outline-container-org2806669" class="outline-3">
-<h3 id="org2806669">Even better: Stack</h3>
-<div class="outline-text-3" id="text-org2806669">
+<div id="outline-container-org7a4b11b" class="outline-3">
+<h3 id="org7a4b11b">Even better: Stack</h3>
+<div class="outline-text-3" id="text-org7a4b11b">
 <p>
 Vim gives you even better facility: it gives you clipboard as a stack, along with
 several other general and special purpose buckets. It remembers last 10 items
@@ -278,9 +276,9 @@ several categories of them, here we'll see some of them.
 </p>
 </div>
 </div>
-<div id="outline-container-org6e67da8" class="outline-3">
-<h3 id="org6e67da8">Lesson 11</h3>
-<div class="outline-text-3" id="text-org6e67da8">
+<div id="outline-container-org4bc6595" class="outline-3">
+<h3 id="org4bc6595">Lesson 11</h3>
+<div class="outline-text-3" id="text-org4bc6595">
 <p class="verse">
 Vim has multiple <i>registers</i> which are used for yanking/deleting/putting stuff into and from.<br />
 </p>
@@ -288,9 +286,9 @@ Vim has multiple <i>registers</i> which are used for yanking/deleting/putting st
 </div>
 </div>
 
-<div id="outline-container-org400fc72" class="outline-2">
-<h2 id="org400fc72">Registers</h2>
-<div class="outline-text-2" id="text-org400fc72">
+<div id="outline-container-org20e57ba" class="outline-2">
+<h2 id="org20e57ba">Registers</h2>
+<div class="outline-text-2" id="text-org20e57ba">
 <p>
 Whenever you yank or delete characters you need to specify a register which you
 want to put into; similarly while pasting (or putting), you need to specify which
@@ -300,9 +298,9 @@ before the command. Thus, to yank into register <code>"a</code>, you'd say <code
 </p>
 </div>
 
-<div id="outline-container-org3f7efcd" class="outline-3">
-<h3 id="org3f7efcd">Named registers <code>"a</code> to <code>"z</code></h3>
-<div class="outline-text-3" id="text-org3f7efcd">
+<div id="outline-container-orgb588f06" class="outline-3">
+<h3 id="orgb588f06">Named registers <code>"a</code> to <code>"z</code></h3>
+<div class="outline-text-3" id="text-orgb588f06">
 <p>
 These are general purpose registers which you can use to store text<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. When
 you use <code>d</code>, <code>x</code>, <code>c</code> or <code>y</code> along with register name, the content of the register is
@@ -312,9 +310,9 @@ same text to be paste multiple times along with some editing.
 </div>
 </div>
 
-<div id="outline-container-org4021af0" class="outline-3">
-<h3 id="org4021af0">The Stack: registers <code>"0</code> to <code>"9</code></h3>
-<div class="outline-text-3" id="text-org4021af0">
+<div id="outline-container-orgd85f153" class="outline-3">
+<h3 id="orgd85f153">The Stack: registers <code>"0</code> to <code>"9</code></h3>
+<div class="outline-text-3" id="text-orgd85f153">
 <p>
 But, if you didn't specify any register, like we did till now, Vim will use the
 stack formed by registers <code>"0</code> to <code>"9</code>. There is a slight difference in stack for
@@ -345,9 +343,9 @@ or <code>:reg</code> for short.
 </div>
 </div>
 
-<div id="outline-container-org7d67910" class="outline-3">
-<h3 id="org7d67910">Default Register</h3>
-<div class="outline-text-3" id="text-org7d67910">
+<div id="outline-container-org2ca13eb" class="outline-3">
+<h3 id="org2ca13eb">Default Register</h3>
+<div class="outline-text-3" id="text-org2ca13eb">
 <p>
 Unnamed register <code>""</code><sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> acts like a pointer to recently used register. Thus if you
 didn't specify a register while yanking, <code>""</code> will point to <code>"0</code> and <code>"1</code> in
@@ -356,9 +354,9 @@ case of delete command.
 </div>
 </div>
 
-<div id="outline-container-org308ebb8" class="outline-3">
-<h3 id="org308ebb8">Black hole Register: <code>"_</code></h3>
-<div class="outline-text-3" id="text-org308ebb8">
+<div id="outline-container-org54737a9" class="outline-3">
+<h3 id="org54737a9">Black hole Register: <code>"_</code></h3>
+<div class="outline-text-3" id="text-org54737a9">
 <p>
 This is analogous to Unix's <code>/dev/null</code>, whatever is written to it is lost.
 This can be helpful when you want to delete/change something without disturbing
@@ -368,9 +366,9 @@ storing it in register.
 </div>
 </div>
 
-<div id="outline-container-org2056f4f" class="outline-3">
-<h3 id="org2056f4f">Other Registers</h3>
-<div class="outline-text-3" id="text-org2056f4f">
+<div id="outline-container-org3cfa3c1" class="outline-3">
+<h3 id="org3cfa3c1">Other Registers</h3>
+<div class="outline-text-3" id="text-org3cfa3c1">
 <p>
 There are several more registers which we haven't looked here. Some of the more
 interesting ones which you might want to look up would be:
@@ -385,9 +383,9 @@ like web browsers and pasting in Vim using put (<code>p</code>) command.</li>
 </div>
 </div>
 
-<div id="outline-container-orgb955520" class="outline-2">
-<h2 id="orgb955520">Editing Macro</h2>
-<div class="outline-text-2" id="text-orgb955520">
+<div id="outline-container-orgec374ba" class="outline-2">
+<h2 id="orgec374ba">Editing Macro</h2>
+<div class="outline-text-2" id="text-orgec374ba">
 <p>
 If you remember, in the <a href="./9.html">previous part</a>, we discussed how we can store sequences of
 keys in a register as a keyboard macro. If you lookup registers used (by executing
@@ -426,9 +424,9 @@ to append 'w' or 'Donald Duck'.</li>
 </div>
 </div>
 
-<div id="outline-container-orgc6160d5" class="outline-2">
-<h2 id="orgc6160d5">Summary</h2>
-<div class="outline-text-2" id="text-orgc6160d5">
+<div id="outline-container-org5bbfece" class="outline-2">
+<h2 id="org5bbfece">Summary</h2>
+<div class="outline-text-2" id="text-org5bbfece">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -523,7 +521,7 @@ this.page.identifier = "/essays/vim/10.html";
 <div id="postamble" class="status">
 <p class="date">Date: 2017-06-26</p>
 <p class="author">Author: Anurag Peshne</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 9.0.8)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.2.2 (<a href="https://orgmode.org">Org</a> mode 9.1.14)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
