@@ -3,10 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2019-03-22 Fri 22:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>~/ Anurag Peshne</title>
+<title>Domain Name Systems</title>
 <meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -192,7 +194,6 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -239,118 +240,231 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<link rel="canonical" href="https://anuragpeshne.github.io/index.html" />
+<link rel="canonical" href="https://anuragpeshne.github.io/notes/dns.html" />
 </head>
 <body>
 <div id="content">
-<h1 class="title">~/ Anurag Peshne</h1>
-
-<div id="outline-container-org0ca2ea0" class="outline-2">
-<h2 id="org0ca2ea0">Hello</h2>
-<div class="outline-text-2" id="text-org0ca2ea0">
-<p>
-My name is Anurag Peshne. I'm interested in Programing Languages, Distributed
-Systems, Text Editors (particularly Vim and Emacs), Lisp and Functional
-Programing.
-</p>
-
-<p>
-I'm a software engineer at Microsoft; I studied Computer Science at <a href="http://www.ufl.edu/">University of Florida</a>
-and <a href="http://vnit.ac.in/">VNIT</a> and have experience working with server teams at multinational corporation
-as well as a startup.
-</p>
-
-<p>
-Besides computer related stuff, I'm interested in cycling and <a href="https://www.flickr.com/photos/anuragpeshne/">photography</a>. Moon and time lapsed
-photography are my favourites.
-</p>
-
-<p>
-Here's my <a href="./now.html">/now</a> page: the things I'm upto these days.
-</p>
+<h1 class="title">Domain Name Systems</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgba73dd5">1. How DNS works:</a>
+<ul>
+<li><a href="#org1ac8e18">1.1. Authoritative DNS vs Recursive DNS Resolver</a></li>
+<li><a href="#orge8ef321">1.2. In Short</a></li>
+</ul>
+</li>
+<li><a href="#org4a1f907">2. <span class="todo TODO">TODO</span> DNS Records</a></li>
+</ul>
 </div>
 </div>
-
-<div id="outline-container-orgb37f0e7" class="outline-2">
-<h2 id="orgb37f0e7">Projects</h2>
-<div class="outline-text-2" id="text-orgb37f0e7">
-<p>
-Here are some of my somewhat working projects:
-</p>
 <ul class="org-ul">
-<li><a href="https://github.com/anuragpeshne/dsplotty">dsplotty</a>
-Grid visualizer originally made for virtualizing <i>gossip protocol</i> using websockets.</li>
-<li><a href="https://github.com/anuragpeshne/portal">Portal</a>
-Peer to Peer file transfer using Browsers - Winner of SwampHacks Hackathon.</li>
-<li><a href="https://github.com/anuragpeshne/vKeyboard">vKeyboard</a>
-Share keyboard accoss computers over the network.</li>
-<li><a href="https://github.com/anuragpeshne/austerity">austerity</a>
-Bunch of shell scripts to restrict access to time <i>wasting</i> websites.</li>
-<li><a href="https://github.com/anuragpeshne/font8x8">font8X8</a>
-Language agnostic monochrome bitmap font for rendering.</li>
-<li><a href="https://github.com/anuragpeshne/airLift">airLift</a>
-Automated file sharing over network.</li>
-<li><a href="https://github.com/anuragpeshne/funJmp">funJmp</a>
-Jump to function definition in Vim using Regex.</li>
-<li><a href="https://github.com/anuragpeshne">github.com/anuragpeshne</a>
-Rest of the projects can be found at my github repo.</li>
+<li>Maps Domain Name -&gt; IP Address</li>
+</ul>
+<div id="outline-container-orgba73dd5" class="outline-2">
+<h2 id="orgba73dd5"><span class="section-number-2">1</span> How DNS works:</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+When a request is made from the browser<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup><sup>, </sup><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup><sup>, </sup><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>:
+</p>
+<ol class="org-ol">
+<li>Browser checks its own cache</li>
+<li>Browser asks OS, OS checks its own cache</li>
+<li>OS asks Resolver (DNS recursive resolver):
+<ul class="org-ul">
+<li>Domain Name Server in network setting</li>
+<li>Usually provided by ISP, or 1.1.1.1 or google's 8.8.8.8</li>
+</ul></li>
+<li>Resolver checks local cache, if not present contacts <i>root</i> nameserver</li>
+<li>root server returns Top Level Domain (TLD) DNS Server to the resolver
+<ul class="org-ul">
+<li>TLD: <code>.com</code>, <code>.org</code></li>
+</ul></li>
+<li>Resolver contacts TLD, TLD returns IP of domain's nameserver
+<ul class="org-ul">
+<li>Example: nameserver of example.com</li>
+<li>Nameservers are also called as authoritative name server because they don't
+need to ask for IP to any other server</li>
+<li>Multiple nameservers for load balancing, fault tolerance</li>
+</ul></li>
+<li>Resolver contacts the Nameserver (NS), NS returns IP of example.com
+<ul class="org-ul">
+<li>If query is for subdomain, then authoritative nameserver will give IP of
+additional authoritative nameserver</li>
+</ul></li>
+<li>Resolver returns IP to the OS, OS to the browser</li>
+<li>Browser contacts the website</li>
+</ol>
+</div>
+
+<div id="outline-container-org1ac8e18" class="outline-3">
+<h3 id="org1ac8e18"><span class="section-number-3">1.1</span> Authoritative DNS vs Recursive DNS Resolver</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Recursive resolver is at the beginning of the DNS query</li>
+<li>Authoritative nameserver is at the end of the DNS query</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd025268" class="outline-2">
-<h2 id="orgd025268">Essays</h2>
-<div class="outline-text-2" id="text-orgd025268">
+<div id="outline-container-orge8ef321" class="outline-3">
+<h3 id="orge8ef321"><span class="section-number-3">1.2</span> In Short</h3>
+<div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li><a href="./essays/understanding-genserver.html">Understanding <code>GenServer</code></a></li>
-<li><a href="./essays/vim/1.html">Vim Tutorials</a></li>
-<li><a href="./essays/tcp2c10k.html">TCP to C10k: HTTP Server Implementation</a></li>
-<li><a href="./essays/gitTutorial.html">Git Tutorial</a></li>
-<li><a href="./essays/permissions101.html">Unix Permissions 101</a></li>
-<li><a href="./essays/keywords.html">Keywords</a></li>
-<li><a href="./essays/emacsSpeed.html">Speeding Up Emacs</a></li>
-<li><a href="./essays/asynchronous.html">Asynchronous</a></li>
-<li><a href="https://github.com/anuragpeshne/Y-Combinator/blob/master/Ycombinator.org">Y Combinator</a></li>
-<li><a href="./essays/index.html">/essays</a> Rest of the essays</li>
+<li><code>-&gt;</code> contacts</li>
+<li><code>&lt;-</code> returns</li>
+<li><p>
+Table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Requester</th>
+<th scope="col" class="org-left">Server</th>
+<th scope="col" class="org-left">Request</th>
+<th scope="col" class="org-left">Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">User</td>
+<td class="org-left">Browser</td>
+<td class="org-left">goto example.com</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Browser</td>
+<td class="org-left">OS</td>
+<td class="org-left">IP of example.com</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">OS</td>
+<td class="org-left">Resolver</td>
+<td class="org-left">IP of example.com</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Resolver</td>
+<td class="org-left">root</td>
+<td class="org-left">IP of .com</td>
+<td class="org-left">IP of .com TLD</td>
+</tr>
+
+<tr>
+<td class="org-left">Resolver</td>
+<td class="org-left">.com TLD</td>
+<td class="org-left">IP of example.com</td>
+<td class="org-left">IP of NS of example.com</td>
+</tr>
+
+<tr>
+<td class="org-left">Resolver</td>
+<td class="org-left">NS</td>
+<td class="org-left">IP of example.com</td>
+<td class="org-left">IP of example.com</td>
+</tr>
+
+<tr>
+<td class="org-left">OS</td>
+<td class="org-left">Resolver</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">IP of example.com</td>
+</tr>
+
+<tr>
+<td class="org-left">Browser</td>
+<td class="org-left">IP</td>
+<td class="org-left">HTTP request</td>
+<td class="org-left">200 OK</td>
+</tr>
+</tbody>
+</table></li>
 </ul>
 </div>
 </div>
+</div>
+<div id="outline-container-org4a1f907" class="outline-2">
+<h2 id="org4a1f907"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> DNS Records<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<div id="outline-container-org0a505b5" class="outline-2">
-<h2 id="org0a505b5">Notes</h2>
-<div class="outline-text-2" id="text-org0a505b5">
-<p>
-Bunch of notes from me, to me.
-</p>
-<ul class="org-ul">
-<li><a href="./notes/dns.html">How DNS work</a></li>
-<li><a href="./notes/elixir.html">Elixir Lang</a></li>
-<li><a href="./notes/data-structures/tree.html">data-structures/tree</a></li>
-<li><a href="./notes/plp.html">Programming Language Principles</a></li>
-<li><a href="./notes/concurrentProg.html">Concurrent Programming</a></li>
-<li><a href="./notes/computerNetwork.html">Computer Networks</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org8a09b20" class="outline-2">
-<h2 id="org8a09b20">Contact</h2>
-<div class="outline-text-2" id="text-org8a09b20">
-<p>
-Feel free to drop me a mail at <a href="mailto:anurag.peshne@gmail.com">anurag.peshne@gmail.com</a>, find me on <a href="https://www.linkedin.com/in/anuragpeshne">Linkedin</a>,
-<a href="https://github.com/anuragpeshne/">Github</a> or browse my <a href="https://www.flickr.com/photos/anuragpeshne/">photostream</a>.
-</p>
 
-<p>
-<a href="./anurag.pub">Here's</a> my public PGP
-</p>
-<div class="org-src-container">
-<pre class="src src-PGP_key_fingerprint">E060 17E9 0ABB B748 2099  C617 78BD 84D1 BA5D E5
-</pre>
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Name</td>
+<td class="org-left">Details</td>
+</tr>
+
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">AAAA</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">CNAME</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">MS</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://howdns.works/">How DNS works</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.cloudflare.com/learning/dns/what-is-dns/">Cloud Flare: what is DNS</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser">SO: What happens when you type a url in browser</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://support.dnsimple.com/articles/common-dns-records/">Common DNS records</a>
+</p></div></div>
+
+
 </div>
-</div>
+</div></div>
 <div id="postamble" class="status">
+<p class="author">Author: Anurag Peshne</p>
+<p class="date">Created: 2019-03-22 Fri 22:13</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.2.1)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

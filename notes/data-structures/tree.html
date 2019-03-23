@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-03-22 Fri 22:26 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tree</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/notes/data-structures/tree.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Tree</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2364eeb">1. Definition</a></li>
+<li><a href="#org0dbfdc8">2. <span class="todo TODO">TODO</span> Binary Tree</a></li>
+<li><a href="#org36ccb82">3. Advanced Trees</a>
+<ul>
+<li><a href="#org3893d44">3.1. Prefix Tree/Trie</a></li>
+<li><a href="#org18e4bcd">3.2. Segment Tree</a>
+<ul>
+<li><a href="#org6ae96e1">3.2.1. Structure</a></li>
+<li><a href="#orgea376ca">3.2.2. <span class="todo TODO">TODO</span> Array View</a></li>
+<li><a href="#org322a6ac">3.2.3. Tree View</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2364eeb" class="outline-2">
+<h2 id="org2364eeb"><span class="section-number-2">1</span> Definition</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>non linear data structure</li>
+<li>A tree can be empty with no nodes or a tree is a structure consisting of one
+node called root and zero or one or more subtrees.
+<ul class="org-ul">
+<li>each node should have only 1 parent</li>
+<li>no unconnected parts in the graph</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0dbfdc8" class="outline-2">
+<h2 id="org0dbfdc8"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Binary Tree</h2>
+</div>
+<div id="outline-container-org36ccb82" class="outline-2">
+<h2 id="org36ccb82"><span class="section-number-2">3</span> Advanced Trees</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org3893d44" class="outline-3">
+<h3 id="org3893d44"><span class="section-number-3">3.1</span> Prefix Tree/Trie</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>need to know range of allowed characters</li>
+<li><p>
+Node Class:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">class</span> <span style="color: #6434A3;">TrieNode</span>:
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">__init__</span><span style="color: #707183;">(</span><span style="color: #0000FF;">self</span><span style="color: #707183;">)</span>:
+    <span style="color: #0000FF;">self</span>.children = <span style="color: #707183;">[</span><span style="color: #D0372D;">None</span><span style="color: #707183;">]</span> * <span style="color: #D0372D;">26</span> <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">assuming lowercase 26 characters</span>
+    <span style="color: #0000FF;">self</span>.endsHere = <span style="color: #D0372D;">False</span>       <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">for search() vs prefix()</span>
+</pre>
+</div></li>
+<li><p>
+Visualizing:
+</p>
+<pre class="example">
+              EndsHere: False
+              | a | b | c | d |
+                    |   |
+                   /     \
+                  /       \
+    --------------         ----------------
+    |                                     |
+EndsHere: True                      EndsHere: True
+| a | b | c | d |                   | a | b | c | d |
+</pre></li>
+<li>While searching make sure to use <code>endsHere</code> boolean to judge is the inserted word ends there</li>
+<li><p>
+Alternate construction from <a href="https://leetcode.com/problems/word-search-ii/discuss/59864/Python-code-use-trie-and-dfs-380ms">LC answer</a>:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #BA36A5;">trie</span>=<span style="color: #707183;">{}</span>
+<span style="color: #0000FF;">for</span> w <span style="color: #0000FF;">in</span> words:
+  <span style="color: #BA36A5;">t</span>=trie
+  <span style="color: #0000FF;">for</span> c <span style="color: #0000FF;">in</span> w:
+    <span style="color: #0000FF;">if</span> c <span style="color: #0000FF;">not</span> <span style="color: #0000FF;">in</span> t:
+      <span style="color: #BA36A5;">t</span><span style="color: #707183;">[</span>c<span style="color: #707183;">]</span>=<span style="color: #707183;">{}</span>
+    <span style="color: #BA36A5;">t</span>=t<span style="color: #707183;">[</span>c<span style="color: #707183;">]</span>
+  <span style="color: #BA36A5;">t</span><span style="color: #707183;">[</span><span style="color: #008000;">'#'</span><span style="color: #707183;">]</span>=<span style="color: #008000;">'#'</span>         <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">used to mark end of word</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org18e4bcd" class="outline-3">
+<h3 id="org18e4bcd"><span class="section-number-3">3.2</span> Segment Tree</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Can be helpful in numerous range query problems such as finding minimum,
+maximum, sum, greatest common divisor, least common denominator in logarithmic time</li>
+<li>Each node contains <b>aggregate</b> information (min, max, sum&#x2026;)</li>
+</ul>
+</div>
+<div id="outline-container-org6ae96e1" class="outline-4">
+<h4 id="org6ae96e1"><span class="section-number-4">3.2.1</span> Structure</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>Example: 2,4,5,7,8,9</li>
+<li><p>
+Tree view:
+</p>
+<pre class="example">
+              35
+              |
+    +---------+--------------+
+    |                        |
+    6                        29
++---+----+          +--------+-------+
+|        |          |                |
+2        4          12               17
+                +---+----+        +--+---+
+                |        |        |      |
+                5        7        8      9
+</pre></li>
+<li>Can be implemented using a tree or an array</li>
+<li><p>
+array view:
+</p>
+<ul class="org-ul">
+<li>child(i) = 2i + 1 and 2i + 2 (0 based index)</li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">35</td>
+<td class="org-right">29</td>
+<td class="org-right">6</td>
+<td class="org-right">12</td>
+<td class="org-right">17</td>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-right">9</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgea376ca" class="outline-4">
+<h4 id="orgea376ca"><span class="section-number-4">3.2.2</span> <span class="todo TODO">TODO</span> Array View</h4>
+<div class="outline-text-4" id="text-3-2-2">
+</div>
+<ol class="org-ol">
+<li><a id="orge4fcc39"></a>Building<br />
+<div class="outline-text-5" id="text-3-2-2-1">
+<ul class="org-ul">
+<li>bottom up approach</li>
+<li><p>
+Example
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #006FE0;">input</span> = <span style="color: #707183;">[</span><span style="color: #D0372D;">2</span>,<span style="color: #D0372D;">4</span>,<span style="color: #D0372D;">5</span>,<span style="color: #D0372D;">7</span>,<span style="color: #D0372D;">8</span>,<span style="color: #D0372D;">9</span><span style="color: #707183;">]</span>
+<span style="color: #BA36A5;">n</span> = <span style="color: #006FE0;">len</span><span style="color: #707183;">(</span><span style="color: #006FE0;">input</span><span style="color: #707183;">)</span>
+<span style="color: #BA36A5;">tree</span> = <span style="color: #707183;">[</span><span style="color: #D0372D;">0</span><span style="color: #707183;">]</span> * <span style="color: #707183;">(</span><span style="color: #D0372D;">2</span> * n<span style="color: #707183;">)</span>
+
+<span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0;">range</span><span style="color: #707183;">(</span>n, <span style="color: #D0372D;">2</span> * n<span style="color: #707183;">)</span>:
+  <span style="color: #BA36A5;">tree</span><span style="color: #707183;">[</span>i<span style="color: #707183;">]</span> = <span style="color: #006FE0;">input</span><span style="color: #707183;">[</span>i - n<span style="color: #707183;">]</span>
+
+<span style="color: #0000FF;">for</span> p <span style="color: #0000FF;">in</span> <span style="color: #006FE0;">range</span><span style="color: #707183;">(</span>n - <span style="color: #D0372D;">1</span>, -<span style="color: #D0372D;">1</span>, -<span style="color: #D0372D;">1</span><span style="color: #707183;">)</span>:
+  <span style="color: #BA36A5;">l</span> = <span style="color: #707183;">(</span><span style="color: #D0372D;">2</span> * p<span style="color: #707183;">)</span>
+  <span style="color: #BA36A5;">r</span> = <span style="color: #707183;">(</span><span style="color: #D0372D;">2</span> * p<span style="color: #707183;">)</span> + <span style="color: #D0372D;">1</span>
+  <span style="color: #BA36A5;">tree</span><span style="color: #707183;">[</span>p<span style="color: #707183;">]</span> = tree<span style="color: #707183;">[</span>l<span style="color: #707183;">]</span> + tree<span style="color: #707183;">[</span>r<span style="color: #707183;">]</span>
+
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>tree<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[35, 35, 29, 6, 12, 17, 2, 4, 5, 7, 8, 9]
+</pre></li>
+</ul>
+</div>
+</li>
+
+<li><a id="org35f333d"></a>Updating Tree<br />
+<div class="outline-text-5" id="text-3-2-2-2">
+<ul class="org-ul">
+<li>When we change the original array at index <code>i</code>, we need to propagate the change up</li>
+<li>update leaf, then its parent&#x2026;up to the root</li>
+<li><p>
+Example:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">35</td>
+<td class="org-right">29</td>
+<td class="org-right">6</td>
+<td class="org-right">12</td>
+<td class="org-right">17</td>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-right">9</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">v</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">9</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">39</td>
+<td class="org-right">33</td>
+<td class="org-right">6</td>
+<td class="org-right">16</td>
+<td class="org-right">17</td>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">9</td>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-right">9</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>
+Code
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">updateTree</span><span style="color: #707183;">(</span>i, val<span style="color: #707183;">)</span>:
+  <span style="color: #BA36A5;">pos</span> = n + i
+  <span style="color: #BA36A5;">tree</span><span style="color: #707183;">[</span>pos<span style="color: #707183;">]</span> = val
+
+  <span style="color: #0000FF;">while</span> pos &gt; <span style="color: #D0372D;">0</span>:
+    <span style="color: #BA36A5;">r</span> = <span style="color: #BA36A5;">l</span> = pos
+    <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">children(i) = 2i and 2i + 1</span>
+    <span style="color: #0000FF;">if</span> pos % <span style="color: #D0372D;">2</span> == <span style="color: #D0372D;">0</span>:
+      <span style="color: #BA36A5;">r</span> += <span style="color: #D0372D;">1</span>
+    <span style="color: #0000FF;">else</span>:
+      <span style="color: #BA36A5;">l</span> -= <span style="color: #D0372D;">1</span>
+
+    <span style="color: #BA36A5;">p</span> = <span style="color: #006FE0;">int</span><span style="color: #707183;">(</span>l / <span style="color: #D0372D;">2</span><span style="color: #707183;">)</span>
+    <span style="color: #BA36A5;">tree</span><span style="color: #707183;">[</span>p<span style="color: #707183;">]</span> = tree<span style="color: #707183;">[</span>l<span style="color: #707183;">]</span> + tree<span style="color: #707183;">[</span>r<span style="color: #707183;">]</span>
+    <span style="color: #BA36A5;">pos</span> = p <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">parent is the new element which has changed</span>
+
+updateTree<span style="color: #707183;">(</span><span style="color: #D0372D;">2</span>, <span style="color: #D0372D;">9</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>tree<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[74, 39, 33, 6, 16, 17, 2, 4, 9, 7, 8, 9]
+</pre>
+
+
+<ul class="org-ul">
+<li>Remember: <code>children(i) = 2i and 2i + 1</code></li>
+</ul></li>
+</ul>
+</div>
+</li>
+<li><a id="org9e272b8"></a><span class="todo TODO">TODO</span> Range Query (Sum, Min, Max&#x2026;)<br /></li>
+</ol>
+</div>
+<div id="outline-container-org322a6ac" class="outline-4">
+<h4 id="org322a6ac"><span class="section-number-4">3.2.3</span> Tree View</h4>
+<div class="outline-text-4" id="text-3-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgd8f6d93"></a>Building<br />
+<div class="outline-text-5" id="text-3-2-3-1">
+<ul class="org-ul">
+<li>similar to building binary search tree from an sorted array</li>
+<li><p>
+Example: 2,4,5,7,8,9
+</p>
+<pre class="example">
+                                |  35   |
+                                | 0 - 5 |
+                                    |
+               +--------------------+-------------------+
+               |                                        |
+           |  11   |                                |  24   |
+           | 0 - 2 |                                | 3 - 5 |
+               |                                        |
+         +-----+------------+                 +---------+------------+
+         |                  |                 |                      |
+     |   6   |          |   5   |         |  15   |               |  9    |
+     | 0 - 1 |          | 2 - 2 |         | 3 - 4 |               | 5 - 5 |
+         |                                    |
+    +----+--------+                    +------+--------+
+    |             |                    |               |
+|   2   |     |   4   |            |   7   |       |   8   |
+| 0 - 0 |     | 1 - 1 |            | 3 - 3 |       | 4 - 4 |
+</pre></li>
+<li><p>
+Code
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #006FE0;">input</span> = <span style="color: #707183;">[</span><span style="color: #D0372D;">2</span>, <span style="color: #D0372D;">4</span>, <span style="color: #D0372D;">5</span>, <span style="color: #D0372D;">7</span>, <span style="color: #D0372D;">8</span>, <span style="color: #D0372D;">9</span><span style="color: #707183;">]</span>
+
+<span style="color: #0000FF;">class</span> <span style="color: #6434A3;">Node</span>:
+  <span style="color: #0000FF;">def</span> <span style="color: #006699;">__init__</span><span style="color: #707183;">(</span><span style="color: #0000FF;">self</span>, val, start, end<span style="color: #707183;">)</span>:
+    <span style="color: #0000FF;">self</span>.val = val
+    <span style="color: #0000FF;">self</span>.start = start
+    <span style="color: #0000FF;">self</span>.end = end
+    <span style="color: #0000FF;">self</span>.left = <span style="color: #D0372D;">None</span>
+    <span style="color: #0000FF;">self</span>.right = <span style="color: #D0372D;">None</span>
+
+<span style="color: #0000FF;">def</span> <span style="color: #006699;">createTree</span><span style="color: #707183;">(</span><span style="color: #006FE0;">input</span>, l, r<span style="color: #707183;">)</span>:
+  <span style="color: #0000FF;">if</span> <span style="color: #0000FF;">not</span> <span style="color: #006FE0;">input</span> <span style="color: #0000FF;">or</span> l &gt; r:
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">None</span>
+
+  <span style="color: #BA36A5;">root</span> = Node<span style="color: #707183;">(</span><span style="color: #D0372D;">0</span>, l, r<span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">if</span> l == r:
+    <span style="color: #BA36A5;">root.val</span> = <span style="color: #006FE0;">input</span><span style="color: #707183;">[</span>l<span style="color: #707183;">]</span>
+    <span style="color: #0000FF;">return</span> root
+  <span style="color: #0000FF;">else</span>:
+    <span style="color: #BA36A5;">m</span> = <span style="color: #707183;">(</span>l + r<span style="color: #707183;">)</span> // <span style="color: #D0372D;">2</span>
+    <span style="color: #BA36A5;">root.left</span> = createTree<span style="color: #707183;">(</span><span style="color: #006FE0;">input</span>, l, m<span style="color: #707183;">)</span>
+    <span style="color: #BA36A5;">root.right</span> = createTree<span style="color: #707183;">(</span><span style="color: #006FE0;">input</span>, m + <span style="color: #D0372D;">1</span>, r<span style="color: #707183;">)</span>
+    <span style="color: #BA36A5;">root.val</span> = root.left.val + root.right.val
+    <span style="color: #0000FF;">return</span> root
+
+<span style="color: #BA36A5;">segtree</span> = createTree<span style="color: #707183;">(</span><span style="color: #006FE0;">input</span>, <span style="color: #D0372D;">0</span>, <span style="color: #006FE0;">len</span><span style="color: #7388D6;">(</span><span style="color: #006FE0;">input</span><span style="color: #7388D6;">)</span> - <span style="color: #D0372D;">1</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>segtree.val<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+35
+</pre></li>
+</ul>
+</div>
+</li>
+<li><a id="org40b6927"></a>Update<br />
+<div class="outline-text-5" id="text-3-2-3-2">
+<ul class="org-ul">
+<li>find appropriate index, update the <code>val</code> and re-calculate the <code>val</code> while <i>bubbling-up</i></li>
+<li><p>
+Code:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">updateTree</span><span style="color: #707183;">(</span>tree, i, val<span style="color: #707183;">)</span>:
+  <span style="color: #0000FF;">if</span> tree.start == tree.end <span style="color: #0000FF;">and</span> tree.start == i:
+    <span style="color: #BA36A5;">tree.val</span> = val
+    <span style="color: #0000FF;">return</span>
+
+  <span style="color: #BA36A5;">m</span> = <span style="color: #707183;">(</span>tree.start + tree.end<span style="color: #707183;">)</span> // <span style="color: #D0372D;">2</span>
+  <span style="color: #0000FF;">if</span> i &lt;= m:
+    updateTree<span style="color: #707183;">(</span>tree.left, i, val<span style="color: #707183;">)</span>
+    <span style="color: #BA36A5;">tree.val</span> = tree.left.val + tree.right.val
+    <span style="color: #0000FF;">return</span>
+  <span style="color: #0000FF;">else</span>:
+    updateTree<span style="color: #707183;">(</span>tree.right, i, val<span style="color: #707183;">)</span>
+    <span style="color: #BA36A5;">tree.val</span> = tree.left.val + tree.right.val
+    <span style="color: #0000FF;">return</span>
+
+updateTree<span style="color: #707183;">(</span>segtree, <span style="color: #D0372D;">2</span>, <span style="color: #D0372D;">9</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>segtree.val<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+39
+</pre></li>
+</ul>
+</div>
+</li>
+<li><a id="orgd90fd8e"></a>Range Query<br />
+<div class="outline-text-5" id="text-3-2-3-3">
+<ul class="org-ul">
+<li>answer queries
+<ul class="org-ul">
+<li>if queried range == node range then return val</li>
+<li>if whole queried range &lt; node range then recursively call left; similar for right</li>
+<li>else split range: query left and right subtree</li>
+</ul></li>
+<li><p>
+Code
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">query</span><span style="color: #707183;">(</span>root, i, j<span style="color: #707183;">)</span>:
+  <span style="color: #0000FF;">if</span> <span style="color: #0000FF;">not</span> root:
+    <span style="color: #0000FF;">return</span> <span style="color: #D0372D;">0</span>
+
+  <span style="color: #0000FF;">if</span> root.start == i <span style="color: #0000FF;">and</span> root.end == j:
+    <span style="color: #0000FF;">return</span> root.val
+
+  <span style="color: #BA36A5;">m</span> = <span style="color: #707183;">(</span>root.start + root.end<span style="color: #707183;">)</span> // <span style="color: #D0372D;">2</span>
+  <span style="color: #0000FF;">if</span> j &lt;= m:
+    <span style="color: #0000FF;">return</span> query<span style="color: #707183;">(</span>root.left, i, j<span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">elif</span> i &gt; m:
+    <span style="color: #0000FF;">return</span> query<span style="color: #707183;">(</span>root.right, i, j<span style="color: #707183;">)</span>
+  <span style="color: #0000FF;">else</span>:
+    <span style="color: #0000FF;">return</span> query<span style="color: #707183;">(</span>root.left, i, m<span style="color: #707183;">)</span> + query<span style="color: #707183;">(</span>root.right, m + <span style="color: #D0372D;">1</span>, j<span style="color: #707183;">)</span>
+
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>query<span style="color: #7388D6;">(</span>segtree, <span style="color: #D0372D;">0</span>, <span style="color: #D0372D;">5</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>query<span style="color: #7388D6;">(</span>segtree, <span style="color: #D0372D;">2</span>, <span style="color: #D0372D;">5</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #0000FF;">print</span><span style="color: #707183;">(</span>query<span style="color: #7388D6;">(</span>segtree, <span style="color: #D0372D;">4</span>, <span style="color: #D0372D;">5</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+39
+33
+17
+</pre></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Anurag Peshne</p>
+<p class="date">Created: 2019-03-22 Fri 22:26</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
