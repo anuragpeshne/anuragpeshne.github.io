@@ -1,3 +1,6 @@
 [submodule "org-files"]
 	path = org-files
 	url = https://github.com/anuragpeshne/homepage-org-files.git
+[submodule "gameoflife"]
+	path = gameoflife
+	url = https://github.com/anuragpeshne/gameoflife
