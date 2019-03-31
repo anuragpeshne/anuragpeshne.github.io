@@ -244,10 +244,25 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">~/ Anurag Peshne</h1>
+<script type="text/javascript">
+window.onload = function() {
+    var contentWidth = document.getElementById("content").offsetWidth;
+    var iframe = document.createElement('iframe');
+    iframe.style.border = "none";
+    iframe.style.width = "100%";
+    iframe.style.height="300px";
+    iframe.src="./gameoflife/embeded.html?width=" + (contentWidth * 9.3 /10) +
+               "&height=" + (Math.min(contentWidth, 300) * 9.3 / 10) +
+               "&speed=2000";
 
-<div id="outline-container-org0ca2ea0" class="outline-2">
-<h2 id="org0ca2ea0">Hello</h2>
-<div class="outline-text-2" id="text-org0ca2ea0">
+    var gol_container = document.getElementById("gameoflife_container");
+    gol_container.appendChild(iframe);
+};
+</script>
+<div id="gameoflife_container"></div>
+<div id="outline-container-org3cb00c0" class="outline-2">
+<h2 id="org3cb00c0">Hello</h2>
+<div class="outline-text-2" id="text-org3cb00c0">
 <p>
 My name is Anurag Peshne. I'm interested in Programing Languages, Distributed
 Systems, Text Editors (particularly Vim and Emacs), Lisp and Functional
@@ -256,24 +271,24 @@ Programing.
 
 <p>
 I'm a software engineer at Microsoft; I studied Computer Science at <a href="http://www.ufl.edu/">University of Florida</a>
-and <a href="http://vnit.ac.in/">VNIT</a> and have experience working with server teams at multinational corporation
+and <a href="http://vnit.ac.in/">VNIT</a> and have experience working with server teams at multinational corporations
 as well as a startup.
 </p>
 
 <p>
 Besides computer related stuff, I'm interested in cycling and <a href="https://www.flickr.com/photos/anuragpeshne/">photography</a>. Moon and time lapsed
-photography are my favourites.
+photography are my favorites. Here's my <a href="./now.html">/now</a> page: the things I'm upto these days.
 </p>
 
 <p>
-Here's my <a href="./now.html">/now</a> page: the things I'm upto these days.
+If you haven't already recognized the animation above, it's <a href="./gameoflife/index.html">Conway's Game of Life</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb37f0e7" class="outline-2">
-<h2 id="orgb37f0e7">Projects</h2>
-<div class="outline-text-2" id="text-orgb37f0e7">
+<div id="outline-container-orgfea6285" class="outline-2">
+<h2 id="orgfea6285">Projects</h2>
+<div class="outline-text-2" id="text-orgfea6285">
 <p>
 Here are some of my somewhat working projects:
 </p>
@@ -298,9 +313,9 @@ Rest of the projects can be found at my github repo.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd025268" class="outline-2">
-<h2 id="orgd025268">Essays</h2>
-<div class="outline-text-2" id="text-orgd025268">
+<div id="outline-container-orgea34362" class="outline-2">
+<h2 id="orgea34362">Essays</h2>
+<div class="outline-text-2" id="text-orgea34362">
 <ul class="org-ul">
 <li><a href="./essays/understanding-genserver.html">Understanding <code>GenServer</code></a></li>
 <li><a href="./essays/vim/1.html">Vim Tutorials</a></li>
@@ -316,9 +331,9 @@ Rest of the projects can be found at my github repo.</li>
 </div>
 </div>
 
-<div id="outline-container-org0a505b5" class="outline-2">
-<h2 id="org0a505b5">Notes</h2>
-<div class="outline-text-2" id="text-org0a505b5">
+<div id="outline-container-org9aa6a10" class="outline-2">
+<h2 id="org9aa6a10">Notes</h2>
+<div class="outline-text-2" id="text-org9aa6a10">
 <p>
 Bunch of notes from me, to me.
 </p>
@@ -332,9 +347,9 @@ Bunch of notes from me, to me.
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a09b20" class="outline-2">
-<h2 id="org8a09b20">Contact</h2>
-<div class="outline-text-2" id="text-org8a09b20">
+<div id="outline-container-orgb4e1ae4" class="outline-2">
+<h2 id="orgb4e1ae4">Contact</h2>
+<div class="outline-text-2" id="text-orgb4e1ae4">
 <p>
 Feel free to drop me a mail at <a href="mailto:anurag.peshne@gmail.com">anurag.peshne@gmail.com</a>, find me on <a href="https://www.linkedin.com/in/anuragpeshne">Linkedin</a>,
 <a href="https://github.com/anuragpeshne/">Github</a> or browse my <a href="https://www.flickr.com/photos/anuragpeshne/">photostream</a>.
