@@ -192,7 +192,9 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="./gameoflife/gol.css">
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="./gameoflife/gol.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -247,22 +249,18 @@ for the JavaScript code in this tag.
 <script type="text/javascript">
 window.onload = function() {
     var contentWidth = document.getElementById("content").offsetWidth;
-    var iframe = document.createElement('iframe');
-    iframe.style.border = "none";
-    iframe.style.width = "100%";
-    iframe.style.height="300px";
-    iframe.src="./gameoflife/embeded.html?width=" + (contentWidth * 9.3 /10) +
-               "&height=" + (Math.min(contentWidth, 300) * 9.3 / 10) +
-               "&speed=2000";
-
     var gol_container = document.getElementById("gameoflife_container");
-    gol_container.appendChild(iframe);
+    gol_container.style.height = "300px";
+    var delay = 2000;
+    var preset = "random";
+    var game = new GameOfLife(gol_container, preset)
+    game.play(delay);
 };
 </script>
-<div id="gameoflife_container"></div>
-<div id="outline-container-org3cb00c0" class="outline-2">
-<h2 id="org3cb00c0">Hello</h2>
-<div class="outline-text-2" id="text-org3cb00c0">
+<a href="./gameoflife/index.html"><div id="gameoflife_container"></div></a>
+<div id="outline-container-org2d22a1e" class="outline-2">
+<h2 id="org2d22a1e">Hello</h2>
+<div class="outline-text-2" id="text-org2d22a1e">
 <p>
 My name is Anurag Peshne. I'm interested in Programing Languages, Distributed
 Systems, Text Editors (particularly Vim and Emacs), Lisp and Functional
@@ -286,9 +284,9 @@ If you haven't already recognized the animation above, it's <a href="./gameoflif
 </div>
 </div>
 
-<div id="outline-container-orgfea6285" class="outline-2">
-<h2 id="orgfea6285">Projects</h2>
-<div class="outline-text-2" id="text-orgfea6285">
+<div id="outline-container-orgb83f284" class="outline-2">
+<h2 id="orgb83f284">Projects</h2>
+<div class="outline-text-2" id="text-orgb83f284">
 <p>
 Here are some of my somewhat working projects:
 </p>
@@ -313,9 +311,9 @@ Rest of the projects can be found at my github repo.</li>
 </div>
 </div>
 
-<div id="outline-container-orgea34362" class="outline-2">
-<h2 id="orgea34362">Essays</h2>
-<div class="outline-text-2" id="text-orgea34362">
+<div id="outline-container-org8ad5e18" class="outline-2">
+<h2 id="org8ad5e18">Essays</h2>
+<div class="outline-text-2" id="text-org8ad5e18">
 <ul class="org-ul">
 <li><a href="./essays/understanding-genserver.html">Understanding <code>GenServer</code></a></li>
 <li><a href="./essays/vim/1.html">Vim Tutorials</a></li>
@@ -331,9 +329,9 @@ Rest of the projects can be found at my github repo.</li>
 </div>
 </div>
 
-<div id="outline-container-org9aa6a10" class="outline-2">
-<h2 id="org9aa6a10">Notes</h2>
-<div class="outline-text-2" id="text-org9aa6a10">
+<div id="outline-container-org95cb1dc" class="outline-2">
+<h2 id="org95cb1dc">Notes</h2>
+<div class="outline-text-2" id="text-org95cb1dc">
 <p>
 Bunch of notes from me, to me.
 </p>
@@ -347,9 +345,9 @@ Bunch of notes from me, to me.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb4e1ae4" class="outline-2">
-<h2 id="orgb4e1ae4">Contact</h2>
-<div class="outline-text-2" id="text-orgb4e1ae4">
+<div id="outline-container-org2f10210" class="outline-2">
+<h2 id="org2f10210">Contact</h2>
+<div class="outline-text-2" id="text-org2f10210">
 <p>
 Feel free to drop me a mail at <a href="mailto:anurag.peshne@gmail.com">anurag.peshne@gmail.com</a>, find me on <a href="https://www.linkedin.com/in/anuragpeshne">Linkedin</a>,
 <a href="https://github.com/anuragpeshne/">Github</a> or browse my <a href="https://www.flickr.com/photos/anuragpeshne/">photostream</a>.
