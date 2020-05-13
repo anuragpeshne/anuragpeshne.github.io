@@ -84,7 +84,7 @@ blockquote p {
 pre, pre.src, code {
     font-family: CascadiaCode, Consolas, Monaco, Courier New, monospace;
     background-color: rgba(0,0,0,0.04);
-    font-size: 0.9em;
+    font-size: 16px;
     border: none;
     border-radius: 3px;
     min-width: 80ex;
