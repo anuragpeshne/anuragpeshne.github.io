@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-05-13 Wed 01:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Binary Search, Firewall and Bed Bugs</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Anurag Peshne" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<link rel="canonical" href="https://anuragpeshne.github.io/essays/bedbugs.html" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Binary Search, Firewall and Bed Bugs</h1>
+
+
+<div id="outline-container-org95503b7" class="outline-2">
+<h2 id="org95503b7"><span class="section-number-2">1</span> Arrival</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+It is mid of 2020 and we are living in extraordinary times due to COVID-19. I
+haven't left the house except for groceries since early March. And just when one
+might think that nothing more remarkable than a pandemic can happen, sometime during
+end of March I started seeing some red bumps on my toes. Yes, bloody soul sucking,
+hope crushing, the almighty Bed Bugs decided to raid me in the middle of a pandemic!
+</p>
+</div>
+
+<div id="outline-container-org86bee24" class="outline-3">
+<h3 id="org86bee24"><span class="section-number-3">1.1</span> Denial</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+My first reaction to bites was of denial. There was no way of getting infected
+during a lockdown. I've experienced bed bugs before while I was a grad student
+and I had bought a piece of used furniture. We had to go through three rounds of
+pest control for complete extermination and we were locked out of the apartment
+for the complete day each of the three times. Since this time there was no exchange
+of furniture, luggage or people in the apartment, there was no way for those
+little demons to infect my apartment. So I decided to go Ostrich - stick my head
+in the sand and pretend there is no problem, until&#x2026;the next morning.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc5c3238" class="outline-3">
+<h3 id="orgc5c3238"><span class="section-number-3">1.2</span> Detection</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The next morning the number of red bumps on my toes increased and had started
+itching. If this was indeed bed bug infestation, I had to react and do it fast since
+just like an exponential graph things could go out of hand in just few steps.
+</p>
+
+<p>
+The first step was to determine if this was really a bite and not an allergic reaction
+or something else. So that night I slept with body fitted full sleeves clothes
+and with socks on, leaving just my face and hands exposed. The next morning
+unsurprisingly and to my disappointment I saw similar red bumps
+in between my fingers. Although I had a sense of doom that next few weeks of my
+life are not going to be easy, I also had some excitement - I could control
+their behavior! I could change a input in the function to change the output!
+I wondered if I slept that night exposing both hands and feet, would the insects
+go back biting the feet or their last successful attack ground - hands.
+</p>
+
+<p>
+So these were insect bites and not allergy or rashes. The bites looked similar
+to bed bug bites but to be sure I had to catch one the insect red handed (no
+pun indented 😢), or detect some other signs such as poop stains.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org672b17e" class="outline-2">
+<h2 id="org672b17e"><span class="section-number-2">2</span> War</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+It's the beginning of April, COVID-19 stay at home order is in effect, I think
+my apartment has got non zero number of bed bug(s), do I invite a stranger at
+home for pest control (and potentially be kicked out of the apartment for 8 hours)
+or live with bed bugs<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> (with no social distancing). I decided to play safe
+with the COVID-19 virus and declared war on the bugs.
+</p>
+
+<p>
+Once you accept the problem it is much easier to fight it. I had a feeling that
+the bugs were not so invincible as I had thought them to be. Maybe I don't need
+to nuke the complete apartment for this early infestation<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+</p>
+</div>
+
+<div id="outline-container-org77ec715" class="outline-3">
+<h3 id="org77ec715"><span class="section-number-3">2.1</span> <span class="todo TODO">TODO</span> Know your Enemy</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Bed bugs are neural network with reward function linked to human blood equipped
+with:
+</p>
+<ol class="org-ol">
+<li>CO₂ sensor - to detect CO₂ released from breathing to locate a human</li>
+<li>Pheromone sensor - to follow a path marked by other bugs</li>
+<li>and maybe a light sensor - to detect darkness</li>
+</ol>
+<p>
+I know this is not a complete and mostly an incorrect description of a bed bug.
+But this is good enough for applying our algorithms.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8e97571" class="outline-3">
+<h3 id="org8e97571"><span class="section-number-3">2.2</span> <span class="todo TODO">TODO</span> Washing with Heat</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>can travel <a href="https://www.epa.gov/bedbugs/how-find-bed-bugs">5-20 feet</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org60d8f36" class="outline-3">
+<h3 id="org60d8f36"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Air Gap, Firewall</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>horizontal scalling</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab46d67" class="outline-3">
+<h3 id="orgab46d67"><span class="section-number-3">2.4</span> <span class="todo TODO">TODO</span> Inner Ring</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+In their defense, bed bugs are not known to carry any pathogens. They might suck your soul, turn you into a sleepless zombie but leave your life pretty safe.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+Maybe it's too early to declare victory - the bed bugs can survive up to a year without food.
+</p></div></div>
+
+
+</div>
+</div><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+this.page.url = "https://anuragpeshne.github.io/essays/bedbugs.html";
+this.page.identifier = "/essays/bedbugs.html";
+};
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//anuragpeshne.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-05-12</p>
+<p class="author">Author: Anurag Peshne</p>
+<p class="date">Created: 2020-05-13 Wed 01:25</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.3.6)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

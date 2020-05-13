@@ -93,3 +93,7 @@ pre, pre.src, code {
 div.org-src-container + pre.example {
     color: #00aa00;
 }
+
+div#disqus_thread {
+    margin-top: 75px;
+}
