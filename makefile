@@ -17,7 +17,6 @@ $(ESSAYS_OUT_DIR):
 $(ORG_ESSAYS_DIR)/%.html: $(ORG_ESSAYS_DIR)/%.org
 	emacs $< \
 		--batch \
-		--load=$(ROOT_DIR)/org-blog/htmlize.el \
 		--load=$(ROOT_DIR)/org-blog/ox-article.el \
 		--funcall=org-blog-export-to-html \
 		--kill

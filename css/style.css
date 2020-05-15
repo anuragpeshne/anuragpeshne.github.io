@@ -81,6 +81,12 @@ blockquote p {
   display: inline;
 }
 
+code[class*="language-"],
+pre[class*="language-"] {
+    font-family: CascadiaCode, Consolas, Monaco, Courier New, monospace !important;
+    font-size: 16px;
+}
+
 pre, pre.src, code {
     font-family: CascadiaCode, Consolas, Monaco, Courier New, monospace;
     background-color: rgba(0,0,0,0.04);
@@ -95,5 +101,5 @@ div.org-src-container + pre.example {
 }
 
 div#disqus_thread {
-    margin-top: 75px;
+    margin-top: 150px;
 }
