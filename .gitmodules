@@ -4,3 +4,6 @@
 [submodule "gameoflife"]
 	path = gameoflife
 	url = https://github.com/anuragpeshne/gameoflife
+[submodule "org-blog"]
+	path = org-blog
+	url = https://github.com/anuragpeshne/org-blog
