@@ -42,6 +42,10 @@ code {
     padding: 2px;
 }
 
+img {
+    max-width: 100%;
+}
+
 #gameoflife_container {
     margin-top: 50px;
 }
