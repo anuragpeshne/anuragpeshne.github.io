@@ -250,17 +250,25 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd535809">Hardware</a></li>
-<li><a href="#org3f5a992">Software</a>
+<li><a href="#org97eec54">Hardware</a></li>
+<li><a href="#org1316596">Software</a>
 <ul>
-<li><a href="#org2171d7c">Polling HS300</a></li>
+<li><a href="#orga7300e1">Polling HS300</a></li>
+<li><a href="#orgd46c140">Grafana Datasource</a></li>
+</ul>
+</li>
+<li><a href="#org2e14a2c">Results</a>
+<ul>
+<li><a href="#org73b39b4">Desktop: Coding vs video games</a></li>
+<li><a href="#orgc925c02">Monitor</a></li>
+<li><a href="#org9752c8d">Phone charging</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <p>
-Recently, I became very interested in measuring the electricity consumption
+Recently, I became interested in measuring the electricity consumption
 of electronic devices at my home and, in particular, my computer. Computer power
 supplies are typically rated from 400W to 800W. I wanted to see how much power is
 actually needed for day to day computing - writing code, browsing internet, playing
@@ -277,15 +285,15 @@ I measure everything and find out if it still makes sense.
 </p>
 
 
-<div id="org061af49" class="figure">
+<div id="org2b6a586" class="figure">
 <p><img src="../../assets/energyMonitoring/desktop.png" alt="desktop.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>Desktop energy consumption on a weekend evening.</p>
 </div>
 
-<div id="outline-container-orgd535809" class="outline-2">
-<h2 id="orgd535809">Hardware</h2>
-<div class="outline-text-2" id="text-orgd535809">
+<div id="outline-container-org97eec54" class="outline-2">
+<h2 id="org97eec54">Hardware</h2>
+<div class="outline-text-2" id="text-org97eec54">
 <p>
 A quick search revealed that <a href="https://en.wikipedia.org/wiki/Kill_A_Watt">Kill A Watt</a> meters are one of the most popular ways
 of measuring energy consumption. I wanted to log the consumption so that I can
@@ -300,20 +308,20 @@ monitoring I needed (and I'm a little scared of messing with AC power).
 </p>
 
 <p>
-I finally settled on TP Link Power Strip: <a href="https://www.kasasmart.com/us/products/smart-plugs/kasa-smart-wi-fi-power-strip-hs300">HS300</a>. This <i>smart</i> power strip has
+I finally settled on TP-Link Power Strip: <a href="https://www.kasasmart.com/us/products/smart-plugs/kasa-smart-wi-fi-power-strip-hs300">HS300</a>. This <i>smart</i> power strip has
 the usual <i>smart</i> plug features like they can be controlled using a mobile app, but
-it also has enery monitoring. And most importantly there are some awesome projects
+it also has energy monitoring. And most importantly there are some awesome projects
 on Github - <a href="https://github.com/python-kasa/python-kasa">python-kasa</a>, <a href="https://github.com/GadgetReactor/pyHS100">pyHS100</a> - that have reverse engineered the communication
 protocol and provide a nice interface to talk to them.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3f5a992" class="outline-2">
-<h2 id="org3f5a992">Software</h2>
-<div class="outline-text-2" id="text-org3f5a992">
+<div id="outline-container-org1316596" class="outline-2">
+<h2 id="org1316596">Software</h2>
+<div class="outline-text-2" id="text-org1316596">
 
-<div id="orgbb36838" class="figure">
+<div id="org7909765" class="figure">
 <p><object type="image/svg+xml" data="../../assets/energyMonitoring/architecture.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -322,13 +330,93 @@ Sorry, your browser does not support SVG.</object>
 
 <p>
 Figure 2<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> shows a highlevel picture of how the energy consumption values
-gets extracted, stored and visualized.
+get extracted, stored and visualized.
 </p>
 </div>
 
-<div id="outline-container-org2171d7c" class="outline-3">
-<h3 id="org2171d7c">Polling HS300</h3>
-<div class="outline-text-3" id="text-org2171d7c">
+<div id="outline-container-orga7300e1" class="outline-3">
+<h3 id="orga7300e1">Polling HS300</h3>
+<div class="outline-text-3" id="text-orga7300e1">
+<p>
+The project <a href="https://github.com/python-kasa/python-kasa">python-kasa</a> provides a nice interface to control TP-Link devices but there's
+an <a href="https://github.com/python-kasa/python-kasa/issues/64">issue</a> with quering energy monitor of child plugs. That's why I used the project <a href="https://github.com/GadgetReactor/pyHS100">pyHS100</a>
+which seems like an older version of the python-kasa project. I added a cronjob to query
+the powerstrip every 5 minutes and dump the data in a text file, using a simple bash script:
+</p>
+<div class="org-src-container">
+<pre><code class="src language-bash">#! /bin/bash
+
+power=$(/home/pi/.local/bin/pyhs100 --strip --host &lt;IP of the powerstrip&gt; emeter | tail -n 1)
+timestamp=$(date +%s)
+
+echo -e "$timestamp, $power"
+</code></pre>
+</div>
+<p>
+This creates a bulky line for each sample it records and there is certainly a
+lot of room to compress it. I'm currently sampling it every 5 minutes, so I don't
+mind it, but if you are planning to sample it every minute or every few seconds,
+you might want to trim it down.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd46c140" class="outline-3">
+<h3 id="orgd46c140">Grafana Datasource</h3>
+<div class="outline-text-3" id="text-orgd46c140">
+<p>
+I'm using Grafana to visualize this data to see trends in usage over time. We
+can dump all of the data into one of the Datasource that is supported by default
+by Grafana but I did not like that extra step for such simple data. So I wrote
+<a href="https://github.com/anuragpeshne/grafana-kasa-power-strip">my own backend datasource</a> that directly serves Grafana, data from the logs we
+collected. This uses the <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource">SimpleJson</a> datasource plugin.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e14a2c" class="outline-2">
+<h2 id="org2e14a2c">Results</h2>
+<div class="outline-text-2" id="text-org2e14a2c">
+<p>
+The results are informative and nothing less than an eye opener. Some devices
+,like computers, charger, consume varying amount energy and some devices, like
+lamps, consume constant energy. I might write a followup post just about consumption
+of my computer running various workloads and applications. Here are a couple that
+I found interesting:
+</p>
+</div>
+<div id="outline-container-org73b39b4" class="outline-3">
+<h3 id="org73b39b4">Desktop: Coding vs video games</h3>
+<div class="outline-text-3" id="text-org73b39b4">
+
+<div id="org3ab9990" class="figure">
+<p><img src="../../assets/energyMonitoring/desktop.png" alt="desktop.png">
+</p>
+<p><span class="figure-number">Figure 3: </span>In the first half the computer was used for coding using a simple text editor with light browsing.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc925c02" class="outline-3">
+<h3 id="orgc925c02">Monitor</h3>
+<div class="outline-text-3" id="text-orgc925c02">
+
+<div id="org8711ba1" class="figure">
+<p><img src="../../assets/energyMonitoring/monitor.png" alt="monitor.png">
+</p>
+<p><span class="figure-number">Figure 4: </span>Energy consumption of my monitor is constant, until I increased the brightness from 15% to 20%</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9752c8d" class="outline-3">
+<h3 id="org9752c8d">Phone charging</h3>
+<div class="outline-text-3" id="text-org9752c8d">
+
+<div id="orgd38b03e" class="figure">
+<p><img src="../../assets/energyMonitoring/iphone_charging.png" alt="iphone_charging.png">
+</p>
+<p><span class="figure-number">Figure 5: </span>IPhone getting charged using the stock charger.</p>
+</div>
 </div>
 </div>
 </div>
