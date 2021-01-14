@@ -250,20 +250,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org97eec54">Hardware</a></li>
-<li><a href="#org1316596">Software</a>
+<li><a href="#org5d3ab01">Hardware</a></li>
+<li><a href="#org8dcdcab">Software</a>
 <ul>
-<li><a href="#orga7300e1">Polling HS300</a></li>
-<li><a href="#orgd46c140">Grafana Datasource</a></li>
+<li><a href="#orga3fb021">Polling HS300</a></li>
+<li><a href="#orgdbc5972">Grafana Datasource</a></li>
 </ul>
 </li>
-<li><a href="#org2e14a2c">Results</a>
+<li><a href="#orgd3d1beb">Results</a>
 <ul>
-<li><a href="#org73b39b4">Desktop: Coding vs video games</a></li>
-<li><a href="#orgc925c02">Monitor</a></li>
-<li><a href="#org9752c8d">Phone charging</a></li>
+<li><a href="#orgd4cd3aa">Desktop: Coding vs video games</a></li>
+<li><a href="#orga27ae05">Monitor</a></li>
+<li><a href="#orgbae96cd">Phone charging</a></li>
 </ul>
 </li>
+<li><a href="#org86c646d">Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -271,57 +272,57 @@ for the JavaScript code in this tag.
 Recently, I became interested in measuring the electricity consumption
 of electronic devices at my home and, in particular, my computer. Computer power
 supplies are typically rated from 400W to 800W. I wanted to see how much power is
-actually needed for day to day computing - writing code, browsing internet, playing
-games, running ML jobs. And how does it compare with laptop and other mobile devices.
+actually needed for day-to-day computing - writing code, browsing the Internet, playing
+games, running ML jobs. And how does it compare with a laptop and other mobile devices.
 </p>
 
 <p>
-As a kid, I was once told by an engineer that the bulk of energy is consumed by
-the monitor, and the desktop itself consumes very little energy. So if I switch off
+As a kid, I was once told by an engineer that the bulk of the energy is consumed by
+the monitor, and the desktop itself consumes lesser energy<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. So if I switch off
 the monitor, I can play music, download things overnight without wasting too much
 energy. This statement stuck with me over time as my bulky CRT monitor was replaced
 with sleek LED monitors and a beefy 250W GPU got added to my desktop. It was time
-I measure everything and find out if it still makes sense.
+I measure everything and find out if the engineer's statement still holds.
 </p>
 
 
-<div id="org2b6a586" class="figure">
+<div id="org6d1c78f" class="figure">
 <p><img src="../../assets/energyMonitoring/desktop.png" alt="desktop.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>Desktop energy consumption on a weekend evening.</p>
 </div>
 
-<div id="outline-container-org97eec54" class="outline-2">
-<h2 id="org97eec54">Hardware</h2>
-<div class="outline-text-2" id="text-org97eec54">
+<div id="outline-container-org5d3ab01" class="outline-2">
+<h2 id="org5d3ab01">Hardware</h2>
+<div class="outline-text-2" id="text-org5d3ab01">
 <p>
 A quick search revealed that <a href="https://en.wikipedia.org/wiki/Kill_A_Watt">Kill A Watt</a> meters are one of the most popular ways
-of measuring energy consumption. I wanted to log the consumption so that I can
+of measuring the energy consumption. I wanted to log the consumption so that I can
 analyze the trends over time. That's why I passed these meters on. But these meters
 have an inbuilt screen and do not require mobile or network access so they can
 be a great solution if someone is looking for a quick way to see the consumption.
 On the other end of the spectrum, there are some devices that can be plugged directly
 into the circuit panel of the house and they can be used to analyze consumption
 of all appliances in the house. For my goal of measuring energy consumption of
-computer, this was simply an overkill and would not have provided the fine grained
-monitoring I needed (and I'm a little scared of messing with AC power).
+my computer, this was simply overkill and would not have provided the fine-grained
+monitoring I needed (and I'm a little scared of messing with the AC power).
 </p>
 
 <p>
 I finally settled on TP-Link Power Strip: <a href="https://www.kasasmart.com/us/products/smart-plugs/kasa-smart-wi-fi-power-strip-hs300">HS300</a>. This <i>smart</i> power strip has
-the usual <i>smart</i> plug features like they can be controlled using a mobile app, but
-it also has energy monitoring. And most importantly there are some awesome projects
+the usual <i>smart</i> plug features, like, it can be controlled using a mobile app, but
+it also has energy monitoring built-in. And most importantly there are some awesome projects
 on Github - <a href="https://github.com/python-kasa/python-kasa">python-kasa</a>, <a href="https://github.com/GadgetReactor/pyHS100">pyHS100</a> - that have reverse engineered the communication
 protocol and provide a nice interface to talk to them.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1316596" class="outline-2">
-<h2 id="org1316596">Software</h2>
-<div class="outline-text-2" id="text-org1316596">
+<div id="outline-container-org8dcdcab" class="outline-2">
+<h2 id="org8dcdcab">Software</h2>
+<div class="outline-text-2" id="text-org8dcdcab">
 
-<div id="org7909765" class="figure">
+<div id="orge0a2e04" class="figure">
 <p><object type="image/svg+xml" data="../../assets/energyMonitoring/architecture.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -329,24 +330,24 @@ Sorry, your browser does not support SVG.</object>
 </div>
 
 <p>
-Figure 2<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> shows a highlevel picture of how the energy consumption values
+Figure 2<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> shows a high-level picture of how the energy consumption values
 get extracted, stored and visualized.
 </p>
 </div>
 
-<div id="outline-container-orga7300e1" class="outline-3">
-<h3 id="orga7300e1">Polling HS300</h3>
-<div class="outline-text-3" id="text-orga7300e1">
+<div id="outline-container-orga3fb021" class="outline-3">
+<h3 id="orga3fb021">Polling HS300</h3>
+<div class="outline-text-3" id="text-orga3fb021">
 <p>
 The project <a href="https://github.com/python-kasa/python-kasa">python-kasa</a> provides a nice interface to control TP-Link devices but there's
-an <a href="https://github.com/python-kasa/python-kasa/issues/64">issue</a> with quering energy monitor of child plugs. That's why I used the project <a href="https://github.com/GadgetReactor/pyHS100">pyHS100</a>
-which seems like an older version of the python-kasa project. I added a cronjob to query
-the powerstrip every 5 minutes and dump the data in a text file, using a simple bash script:
+an <a href="https://github.com/python-kasa/python-kasa/issues/64">issue</a> with querying the energy monitor of child plugs. That's why I used the project <a href="https://github.com/GadgetReactor/pyHS100">pyHS100</a>
+which seems like an older version of the python-kasa project. I added a cron job to query
+the power strip every 5 minutes and dump the data in a text file, using a simple bash script:
 </p>
 <div class="org-src-container">
 <pre><code class="src language-bash">#! /bin/bash
 
-power=$(/home/pi/.local/bin/pyhs100 --strip --host &lt;IP of the powerstrip&gt; emeter | tail -n 1)
+power=$(/home/pi/.local/bin/pyhs100 --strip --host &lt;IP of the power strip&gt; emeter | tail -n 1)
 timestamp=$(date +%s)
 
 echo -e "$timestamp, $power"
@@ -361,9 +362,9 @@ you might want to trim it down.
 </div>
 </div>
 
-<div id="outline-container-orgd46c140" class="outline-3">
-<h3 id="orgd46c140">Grafana Datasource</h3>
-<div class="outline-text-3" id="text-orgd46c140">
+<div id="outline-container-orgdbc5972" class="outline-3">
+<h3 id="orgdbc5972">Grafana Datasource</h3>
+<div class="outline-text-3" id="text-orgdbc5972">
 <p>
 I'm using Grafana to visualize this data to see trends in usage over time. We
 can dump all of the data into one of the Datasource that is supported by default
@@ -375,49 +376,81 @@ collected. This uses the <a href="https://grafana.com/grafana/plugins/grafana-si
 </div>
 </div>
 
-<div id="outline-container-org2e14a2c" class="outline-2">
-<h2 id="org2e14a2c">Results</h2>
-<div class="outline-text-2" id="text-org2e14a2c">
+<div id="outline-container-orgd3d1beb" class="outline-2">
+<h2 id="orgd3d1beb">Results</h2>
+<div class="outline-text-2" id="text-orgd3d1beb">
 <p>
-The results are informative and nothing less than an eye opener. Some devices
-,like computers, charger, consume varying amount energy and some devices, like
-lamps, consume constant energy. I might write a followup post just about consumption
-of my computer running various workloads and applications. Here are a couple that
-I found interesting:
+The results were informative and nothing less than an eye-opener for me. Some devices,
+like computers, chargers, consume varying amounts of energy, and some devices, like
+lamps, monitors, consume constant energy. I might write a follow-up post just
+about the consumption of my computer running various workloads and applications.
+Here are few that I found interesting:
 </p>
 </div>
-<div id="outline-container-org73b39b4" class="outline-3">
-<h3 id="org73b39b4">Desktop: Coding vs video games</h3>
-<div class="outline-text-3" id="text-org73b39b4">
+<div id="outline-container-orgd4cd3aa" class="outline-3">
+<h3 id="orgd4cd3aa">Desktop: Coding vs video games</h3>
+<div class="outline-text-3" id="text-orgd4cd3aa">
 
-<div id="org3ab9990" class="figure">
+<div id="org4f9a1c8" class="figure">
 <p><img src="../../assets/energyMonitoring/desktop.png" alt="desktop.png">
 </p>
-<p><span class="figure-number">Figure 3: </span>In the first half the computer was used for coding using a simple text editor with light browsing.</p>
+<p><span class="figure-number">Figure 3: </span>Desktop energy usage: coding, standby, then, playing video games</p>
+</div>
+<ul class="org-ul">
+<li>In the first half, the computer was used for coding using a simple text editor with light browsing.</li>
+<li>The drop represents the time it was put on sleep.</li>
+<li>The increase during the later part corresponds with playing a low graphics
+demanding game.</li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-orgc925c02" class="outline-3">
-<h3 id="orgc925c02">Monitor</h3>
-<div class="outline-text-3" id="text-orgc925c02">
+<div id="outline-container-orga27ae05" class="outline-3">
+<h3 id="orga27ae05">Monitor</h3>
+<div class="outline-text-3" id="text-orga27ae05">
 
-<div id="org8711ba1" class="figure">
+<div id="orga1d90f3" class="figure">
 <p><img src="../../assets/energyMonitoring/monitor.png" alt="monitor.png">
 </p>
-<p><span class="figure-number">Figure 4: </span>Energy consumption of my monitor is constant, until I increased the brightness from 15% to 20%</p>
+<p><span class="figure-number">Figure 4: </span>Computer Monitor consumption: almost constant</p>
+</div>
+<ul class="org-ul">
+<li>Energy consumption of my monitor is constant until I increased the brightness from 15% to 20%</li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org9752c8d" class="outline-3">
-<h3 id="org9752c8d">Phone charging</h3>
-<div class="outline-text-3" id="text-org9752c8d">
+<div id="outline-container-orgbae96cd" class="outline-3">
+<h3 id="orgbae96cd">Phone charging</h3>
+<div class="outline-text-3" id="text-orgbae96cd">
 
-<div id="orgd38b03e" class="figure">
+<div id="orgab5b0fe" class="figure">
 <p><img src="../../assets/energyMonitoring/iphone_charging.png" alt="iphone_charging.png">
 </p>
-<p><span class="figure-number">Figure 5: </span>IPhone getting charged using the stock charger.</p>
+<p><span class="figure-number">Figure 5: </span>iPhone getting charged using the stock charger.</p>
+</div>
+<ul class="org-ul">
+<li>This curve is interesting - an exponential decay.</li>
+<li>Note the spikes too, maybe those correspond with the times the phone was picked up.</li>
+</ul>
 </div>
 </div>
+</div>
+
+<div id="outline-container-org86c646d" class="outline-2">
+<h2 id="org86c646d">Conclusion</h2>
+<div class="outline-text-2" id="text-org86c646d">
+<p>
+The energy consumption of the monitor is just 10% - 25% of the desktop energy consumption.
+So, although it might be still a good idea to turn off the monitor when things
+are running in the background, monitors are not the major consumers anymore
+(if they were at all earlier). It is interesting to note that the actual
+consumption is much less than the rated wattage of the devices.
+</p>
+
+<p>
+It is also interesting to note the difference in magnitude of the consumption.
+So getting a gold rated PSU will have much more impact than having a more efficient
+iPhone charger. But none of this matters when you are sitting next to a 3KW space heater ;)
+</p>
 </div>
 </div>
 <div id="footnotes">
@@ -425,6 +458,10 @@ I found interesting:
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+I don't remember the exact statement very well but I suspect my teenage mind might have turned the scale from "monitor consumes a little more than desktop, to ,monitor consumes a lot more" to suit its demands.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
 This figure uses Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs">DinosoftLabs</a>, <a href="https://www.flaticon.com/authors/freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/icongeek26">Icongeek26</a> from <a href="https://flaticon.com">www.flaticon.com</a>
 </p></div></div>
 
