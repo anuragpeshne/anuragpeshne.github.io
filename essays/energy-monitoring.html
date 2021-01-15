@@ -250,21 +250,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5d3ab01">Hardware</a></li>
-<li><a href="#org8dcdcab">Software</a>
+<li><a href="#orga6a4ce1">Hardware</a></li>
+<li><a href="#org01d1f27">Software</a>
 <ul>
-<li><a href="#orga3fb021">Polling HS300</a></li>
-<li><a href="#orgdbc5972">Grafana Datasource</a></li>
+<li><a href="#orgd7e2f19">Polling HS300</a></li>
+<li><a href="#orgd23b686">Grafana Datasource</a></li>
 </ul>
 </li>
-<li><a href="#orgd3d1beb">Results</a>
+<li><a href="#orgfc16d58">Results</a>
 <ul>
-<li><a href="#orgd4cd3aa">Desktop: Coding vs video games</a></li>
-<li><a href="#orga27ae05">Monitor</a></li>
-<li><a href="#orgbae96cd">Phone charging</a></li>
+<li><a href="#org12fd4a3">Desktop: Coding vs video games</a></li>
+<li><a href="#orgdec0c27">Monitor</a></li>
+<li><a href="#org928d531">Phone charging</a></li>
 </ul>
 </li>
-<li><a href="#org86c646d">Conclusion</a></li>
+<li><a href="#org82c2bcb">Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -286,15 +286,15 @@ I measure everything and find out if the engineer's statement still holds.
 </p>
 
 
-<div id="org6d1c78f" class="figure">
+<div id="orgc5b562d" class="figure">
 <p><img src="../../assets/energyMonitoring/desktop.png" alt="desktop.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>Desktop energy consumption on a weekend evening.</p>
 </div>
 
-<div id="outline-container-org5d3ab01" class="outline-2">
-<h2 id="org5d3ab01">Hardware</h2>
-<div class="outline-text-2" id="text-org5d3ab01">
+<div id="outline-container-orga6a4ce1" class="outline-2">
+<h2 id="orga6a4ce1">Hardware</h2>
+<div class="outline-text-2" id="text-orga6a4ce1">
 <p>
 A quick search revealed that <a href="https://en.wikipedia.org/wiki/Kill_A_Watt">Kill A Watt</a> meters are one of the most popular ways
 of measuring the energy consumption. I wanted to log the consumption so that I can
@@ -318,11 +318,11 @@ protocol and provide a nice interface to talk to them.
 </div>
 </div>
 
-<div id="outline-container-org8dcdcab" class="outline-2">
-<h2 id="org8dcdcab">Software</h2>
-<div class="outline-text-2" id="text-org8dcdcab">
+<div id="outline-container-org01d1f27" class="outline-2">
+<h2 id="org01d1f27">Software</h2>
+<div class="outline-text-2" id="text-org01d1f27">
 
-<div id="orge0a2e04" class="figure">
+<div id="org4df03bb" class="figure">
 <p><object type="image/svg+xml" data="../../assets/energyMonitoring/architecture.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -335,9 +335,9 @@ get extracted, stored and visualized.
 </p>
 </div>
 
-<div id="outline-container-orga3fb021" class="outline-3">
-<h3 id="orga3fb021">Polling HS300</h3>
-<div class="outline-text-3" id="text-orga3fb021">
+<div id="outline-container-orgd7e2f19" class="outline-3">
+<h3 id="orgd7e2f19">Polling HS300</h3>
+<div class="outline-text-3" id="text-orgd7e2f19">
 <p>
 The project <a href="https://github.com/python-kasa/python-kasa">python-kasa</a> provides a nice interface to control TP-Link devices but there's
 an <a href="https://github.com/python-kasa/python-kasa/issues/64">issue</a> with querying the energy monitor of child plugs. That's why I used the project <a href="https://github.com/GadgetReactor/pyHS100">pyHS100</a>
@@ -362,9 +362,9 @@ you might want to trim it down.
 </div>
 </div>
 
-<div id="outline-container-orgdbc5972" class="outline-3">
-<h3 id="orgdbc5972">Grafana Datasource</h3>
-<div class="outline-text-3" id="text-orgdbc5972">
+<div id="outline-container-orgd23b686" class="outline-3">
+<h3 id="orgd23b686">Grafana Datasource</h3>
+<div class="outline-text-3" id="text-orgd23b686">
 <p>
 I'm using Grafana to visualize this data to see trends in usage over time. We
 can dump all of the data into one of the Datasource that is supported by default
@@ -376,9 +376,9 @@ collected. This uses the <a href="https://grafana.com/grafana/plugins/grafana-si
 </div>
 </div>
 
-<div id="outline-container-orgd3d1beb" class="outline-2">
-<h2 id="orgd3d1beb">Results</h2>
-<div class="outline-text-2" id="text-orgd3d1beb">
+<div id="outline-container-orgfc16d58" class="outline-2">
+<h2 id="orgfc16d58">Results</h2>
+<div class="outline-text-2" id="text-orgfc16d58">
 <p>
 The results were informative and nothing less than an eye-opener for me. Some devices,
 like computers, chargers, consume varying amounts of energy, and some devices, like
@@ -387,11 +387,11 @@ about the consumption of my computer running various workloads and applications.
 Here are few that I found interesting:
 </p>
 </div>
-<div id="outline-container-orgd4cd3aa" class="outline-3">
-<h3 id="orgd4cd3aa">Desktop: Coding vs video games</h3>
-<div class="outline-text-3" id="text-orgd4cd3aa">
+<div id="outline-container-org12fd4a3" class="outline-3">
+<h3 id="org12fd4a3">Desktop: Coding vs video games</h3>
+<div class="outline-text-3" id="text-org12fd4a3">
 
-<div id="org4f9a1c8" class="figure">
+<div id="org9712a5d" class="figure">
 <p><img src="../../assets/energyMonitoring/desktop.png" alt="desktop.png">
 </p>
 <p><span class="figure-number">Figure 3: </span>Desktop energy usage: coding, standby, then, playing video games</p>
@@ -404,11 +404,11 @@ demanding game.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga27ae05" class="outline-3">
-<h3 id="orga27ae05">Monitor</h3>
-<div class="outline-text-3" id="text-orga27ae05">
+<div id="outline-container-orgdec0c27" class="outline-3">
+<h3 id="orgdec0c27">Monitor</h3>
+<div class="outline-text-3" id="text-orgdec0c27">
 
-<div id="orga1d90f3" class="figure">
+<div id="org105d4a8" class="figure">
 <p><img src="../../assets/energyMonitoring/monitor.png" alt="monitor.png">
 </p>
 <p><span class="figure-number">Figure 4: </span>Computer Monitor consumption: almost constant</p>
@@ -418,11 +418,11 @@ demanding game.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbae96cd" class="outline-3">
-<h3 id="orgbae96cd">Phone charging</h3>
-<div class="outline-text-3" id="text-orgbae96cd">
+<div id="outline-container-org928d531" class="outline-3">
+<h3 id="org928d531">Phone charging</h3>
+<div class="outline-text-3" id="text-org928d531">
 
-<div id="orgab5b0fe" class="figure">
+<div id="orga4f7883" class="figure">
 <p><img src="../../assets/energyMonitoring/iphone_charging.png" alt="iphone_charging.png">
 </p>
 <p><span class="figure-number">Figure 5: </span>iPhone getting charged using the stock charger.</p>
@@ -435,9 +435,9 @@ demanding game.</li>
 </div>
 </div>
 
-<div id="outline-container-org86c646d" class="outline-2">
-<h2 id="org86c646d">Conclusion</h2>
-<div class="outline-text-2" id="text-org86c646d">
+<div id="outline-container-org82c2bcb" class="outline-2">
+<h2 id="org82c2bcb">Conclusion</h2>
+<div class="outline-text-2" id="text-org82c2bcb">
 <p>
 The energy consumption of the monitor is just 10% - 25% of the desktop energy consumption.
 So, although it might be still a good idea to turn off the monitor when things
@@ -458,7 +458,7 @@ iPhone charger. But none of this matters when you are sitting next to a 3KW spac
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-I don't remember the exact statement very well but I suspect my teenage mind might have turned the scale from "monitor consumes a little more than desktop, to ,monitor consumes a lot more" to suit its demands.
+I don't remember the exact statement very well but I suspect my teenage mind might have turned the scale from "monitor consumes a little more than desktop, to, monitor consumes a lot more" to suit its demands.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
