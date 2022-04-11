@@ -201,16 +201,16 @@
 </div><div id="content" class="content">
 <h1 class="title">OPNsense on MinnowBoard</h1>
 
-<div id="orga74cd7c" class="figure">
+<div id="orgcb68a50" class="figure">
 <p><img src="../assets/minnowBoardOpnsense/minnowBoardBox.jpg" alt="minnowBoardBox.jpg" width="500px">
 </p>
 <p><span class="figure-number">Figure 1: </span>MinnowBoard Max</p>
 </div>
 
 
-<div id="outline-container-orgb2a5870" class="outline-2">
-<h2 id="orgb2a5870">The Garage and MinnowBoard</h2>
-<div class="outline-text-2" id="text-orgb2a5870">
+<div id="outline-container-orgca63d5e" class="outline-2">
+<h2 id="orgca63d5e">The Garage and MinnowBoard</h2>
+<div class="outline-text-2" id="text-orgca63d5e">
 <p>
 One of the nicest perk of working at Microsoft, that not many people know about,
 is access to the <a href="https://en.wikipedia.org/wiki/Microsoft_Garage">Microsoft Garage</a>.
@@ -227,7 +227,7 @@ an open source Firewall and Routing software.
 </p>
 
 
-<div id="org7a2cdda" class="figure">
+<div id="org9f6cca6" class="figure">
 <p><img src="../assets/minnowBoardOpnsense/minnowBoardSpecs.jpg" alt="minnowBoardSpecs.jpg" width="500px">
 </p>
 <p><span class="figure-number">Figure 2: </span>MinnowBoard Specs</p>
@@ -235,9 +235,9 @@ an open source Firewall and Routing software.
 </div>
 </div>
 
-<div id="outline-container-org3e70d1f" class="outline-2">
-<h2 id="org3e70d1f">Installation</h2>
-<div class="outline-text-2" id="text-org3e70d1f">
+<div id="outline-container-org7cccc3f" class="outline-2">
+<h2 id="org7cccc3f">Installation</h2>
+<div class="outline-text-2" id="text-org7cccc3f">
 <p>
 Creating installation USB drive is pretty straightforward, you can download the latest
 image of OPNsense from the <a href="https://opnsense.org/download/">official webpage</a> and use one of the image flashing utility<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>
@@ -245,9 +245,9 @@ to flash OS images to the USB drive or use the <code>dd</code> command.
 </p>
 </div>
 
-<div id="outline-container-org6f7b8c3" class="outline-3">
-<h3 id="org6f7b8c3">Booting Issues</h3>
-<div class="outline-text-3" id="text-org6f7b8c3">
+<div id="outline-container-orgb892ab5" class="outline-3">
+<h3 id="orgb892ab5">Booting Issues</h3>
+<div class="outline-text-3" id="text-orgb892ab5">
 <p>
 MinnowBoard can boot from various sources including USB drive, PXE server,
 SD card and SATA drive. I got two boards from the event but both of them had distinct
@@ -266,9 +266,9 @@ only from the USB 2.0 port.
 </div>
 </div>
 
-<div id="outline-container-org44e32dc" class="outline-3">
-<h3 id="org44e32dc">Firmware Upgrade</h3>
-<div class="outline-text-3" id="text-org44e32dc">
+<div id="outline-container-org5b062d5" class="outline-3">
+<h3 id="org5b062d5">Firmware Upgrade</h3>
+<div class="outline-text-3" id="text-org5b062d5">
 <p>
 I got a little upset and decided to take a break, I had already spent a little too
 much time in trying different combinations of USB drives, installation media and
@@ -307,9 +307,9 @@ to boot from a USB!
 </div>
 </div>
 
-<div id="outline-container-orgdfbdf43" class="outline-3">
-<h3 id="orgdfbdf43">Installing OPNsense</h3>
-<div class="outline-text-3" id="text-orgdfbdf43">
+<div id="outline-container-org19a8309" class="outline-3">
+<h3 id="org19a8309">Installing OPNsense</h3>
+<div class="outline-text-3" id="text-org19a8309">
 <p>
 The installation went smoothly after that. I was able to choose SD as the destination
 for installation and the board could smoothly boot from the SD card
@@ -318,13 +318,13 @@ for installation and the board could smoothly boot from the SD card
 </div>
 </div>
 
-<div id="outline-container-orgbc1a6fb" class="outline-2">
-<h2 id="orgbc1a6fb">Running OPNsense</h2>
-<div class="outline-text-2" id="text-orgbc1a6fb">
+<div id="outline-container-org50fa764" class="outline-2">
+<h2 id="org50fa764">Running OPNsense</h2>
+<div class="outline-text-2" id="text-org50fa764">
 </div>
-<div id="outline-container-orgea6836e" class="outline-3">
-<h3 id="orgea6836e">Configuration and Services</h3>
-<div class="outline-text-3" id="text-orgea6836e">
+<div id="outline-container-orgf47977e" class="outline-3">
+<h3 id="orgf47977e">Topology</h3>
+<div class="outline-text-3" id="text-orgf47977e">
 <ul class="org-ul">
 <li>Before OPNsense</li>
 </ul>
@@ -362,9 +362,9 @@ for installation and the board could smoothly boot from the SD card
 </div>
 </div>
 </div>
-<div id="outline-container-orgeea6683" class="outline-3">
-<h3 id="orgeea6683">CPU Utilization Issue</h3>
-<div class="outline-text-3" id="text-orgeea6683">
+<div id="outline-container-org4666793" class="outline-3">
+<h3 id="org4666793">CPU Utilization Issue</h3>
+<div class="outline-text-3" id="text-org4666793">
 <p>
 The board was running OPNsense but it was slow. Network requests were taking
 forever to return and in some cases, packets were dropped. After looking at the
@@ -384,50 +384,95 @@ remains below 50%.
 </p>
 </div>
 </div>
-<div id="outline-container-org3eb74ee" class="outline-3">
-<h3 id="org3eb74ee">Performance</h3>
-<div class="outline-text-3" id="text-org3eb74ee">
-</div>
-<div id="outline-container-org420d868" class="outline-4">
-<h4 id="org420d868"><span class="todo TODO">TODO</span> <code>iperf</code> using Gigabit switch</h4>
-</div>
-</div>
-<div id="outline-container-org68f42af" class="outline-3">
-<h3 id="org68f42af">Power Consumption</h3>
-<div class="outline-text-3" id="text-org68f42af">
+<div id="outline-container-org455550f" class="outline-3">
+<h3 id="org455550f">Performance: <code>iperf</code></h3>
+<div class="outline-text-3" id="text-org455550f">
+<pre class="example">
+------------------------------------------------------------
+Client connecting to 192.168.x.xxx, TCP port 5001
+TCP window size:  512 KByte (default)
+------------------------------------------------------------
+[  3] local 192.168.x.xxx port 56283 connected with 192.168.x.xxx port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-10.0 sec   114 MBytes  95.1 Mbits/sec
+</code></pre>
+<p>
+I made sure that the USB dongle is capable of 1 GBits/sec running <code>iperf</code> between
+two computers without MinnowBoard-OPNsense.
+</p>
 
-<div id="org8e0f817" class="figure">
+<p>
+After introducing MinnowBoard-OPNsense, the max bandwidth I could get was 100 MBits/sec.
+</p>
+</div>
+</div>
+<div id="outline-container-org81a96f0" class="outline-3">
+<h3 id="org81a96f0">Power Consumption</h3>
+<div class="outline-text-3" id="text-org81a96f0">
+
+<div id="orgab36001" class="figure">
 <p><img src="../assets/minnowBoardOpnsense/powerUsage.jpg" alt="powerUsage.jpg" width="500px">
 </p>
-<p><span class="figure-number">Figure 3: </span>Power Consumption while running OPNsense.</p>
+<p><span class="figure-number">Figure 3: </span>Power consumption while running OPNsense.</p>
 </div>
-</div>
-</div>
-<div id="outline-container-org9a6550f" class="outline-3">
-<h3 id="org9a6550f">Idle Temperature</h3>
-</div>
-</div>
+<table>
 
-<div id="outline-container-org51f1817" class="outline-2">
-<h2 id="org51f1817">Final Thoughts</h2>
-<div class="outline-text-2" id="text-org51f1817">
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Power Consumption</td>
+<td class="org-left">~ 5 W</td>
+</tr>
+
+<tr>
+<td class="org-left">Energy Consumed / day</td>
+<td class="org-left">~ 0.12 kWh</td>
+</tr>
+
+<tr>
+<td class="org-left">Energy Consumed / year</td>
+<td class="org-left">~ 43.8 kWh</td>
+</tr>
+
+<tr>
+<td class="org-left">Energy Rate</td>
+<td class="org-left">$0.095 / kWh <sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup></td>
+</tr>
+
+<tr>
+<td class="org-left">Yearly cost</td>
+<td class="org-left">&lt; $5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org85d42f8" class="outline-3">
+<h3 id="org85d42f8">Idle Temperature</h3>
+</div>
+</div>
+<div id="outline-container-orgb93016b" class="outline-2">
+<h2 id="orgb93016b">Final Thoughts</h2>
+<div class="outline-text-2" id="text-orgb93016b">
 <ul class="org-ul">
 <li>OPNsense is a secure, FreeBSD based firewall with frequent updates.</li>
 <li>OPNsense gives more control and insights about home network, along with some useful features:
 <ul class="org-ul">
-<li>ability to create VLANs
-<ul class="org-ul">
-<li>one use case could to keep trusted devices such as personal computer on
-one network and other devices, such as <i>smart</i> TVs, voice assistants,
-on a different network.</li>
-</ul></li>
+<li>ability to create VLANs</li>
 <li>network monitoring along with request and bandwidth monitoring</li>
 <li>firewall and adblock</li>
 <li>ability to run VPN server - this is helpful while accessing public <i>open</i> WiFi (example at airports/cafes)
 and to access local resource without exposing them to the public internet</li>
 </ul></li>
+<li>The max bandwidth that I could get the MinnowBoard to pump is ~ 100 MBits / sec.
+This could be a deal breaker for some other users with ISP speed of &gt; 100 MBits/sec.</li>
 <li>MinnowBoard is a capable and low power consuming way of running OPNsense.
-It can run at ~$xx per year.</li>
+It can run at ~$5 per year.</li>
 </ul>
 </div>
 </div>
@@ -445,6 +490,10 @@ It can run at ~$xx per year.</li>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 : I used <a href="https://www.balena.io/etcher/">etcher</a>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+: In March 2022, the <a href="https://www.pse.com/pages/rates">PSE</a> Tier 1 (First 600 kWh Used) energy rate is 0.095631 / kWh
 </p></div></div>
 
 
