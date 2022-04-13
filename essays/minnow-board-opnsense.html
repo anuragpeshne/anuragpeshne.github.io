@@ -201,16 +201,16 @@
 </div><div id="content" class="content">
 <h1 class="title">OPNsense on MinnowBoard</h1>
 
-<div id="org8cb4764" class="figure">
+<div id="org9d417be" class="figure">
 <p><img src="../assets/minnowBoardOpnsense/minnowBoardBox.jpg" alt="minnowBoardBox.jpg" width="500px">
 </p>
 <p><span class="figure-number">Figure 1: </span>MinnowBoard Max</p>
 </div>
 
 
-<div id="outline-container-org4714c09" class="outline-2">
-<h2 id="org4714c09">The Garage and MinnowBoard</h2>
-<div class="outline-text-2" id="text-org4714c09">
+<div id="outline-container-org896cca3" class="outline-2">
+<h2 id="org896cca3">The Garage and MinnowBoard</h2>
+<div class="outline-text-2" id="text-org896cca3">
 <p>
 One of the nicest perk of working at Microsoft, that not many people know about,
 is access to the <a href="https://en.wikipedia.org/wiki/Microsoft_Garage">Microsoft Garage</a>.
@@ -227,7 +227,7 @@ an open source Firewall and Routing software.
 </p>
 
 
-<div id="orgb8ad55c" class="figure">
+<div id="org1e75118" class="figure">
 <p><img src="../assets/minnowBoardOpnsense/minnowBoardSpecs.jpg" alt="minnowBoardSpecs.jpg" width="500px">
 </p>
 <p><span class="figure-number">Figure 2: </span>MinnowBoard Specs</p>
@@ -235,9 +235,9 @@ an open source Firewall and Routing software.
 </div>
 </div>
 
-<div id="outline-container-org13ac477" class="outline-2">
-<h2 id="org13ac477">Installation</h2>
-<div class="outline-text-2" id="text-org13ac477">
+<div id="outline-container-org0287bb8" class="outline-2">
+<h2 id="org0287bb8">Installation</h2>
+<div class="outline-text-2" id="text-org0287bb8">
 <p>
 Creating installation USB drive is pretty straightforward, you can download the latest
 image of OPNsense from the <a href="https://opnsense.org/download/">official webpage</a> and use one of the image flashing utility<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>
@@ -245,9 +245,9 @@ to flash OS images to the USB drive or use the <code>dd</code> command.
 </p>
 </div>
 
-<div id="outline-container-org193fdd9" class="outline-3">
-<h3 id="org193fdd9">Booting Issues</h3>
-<div class="outline-text-3" id="text-org193fdd9">
+<div id="outline-container-org8fba869" class="outline-3">
+<h3 id="org8fba869">Booting Issues</h3>
+<div class="outline-text-3" id="text-org8fba869">
 <p>
 MinnowBoard can boot from various sources including USB drive, PXE server,
 SD card and SATA drive. I got two boards from the event but both of them had distinct
@@ -266,9 +266,9 @@ only from the USB 2.0 port.
 </div>
 </div>
 
-<div id="outline-container-org89d15c3" class="outline-3">
-<h3 id="org89d15c3">Firmware Upgrade</h3>
-<div class="outline-text-3" id="text-org89d15c3">
+<div id="outline-container-org874475c" class="outline-3">
+<h3 id="org874475c">Firmware Upgrade</h3>
+<div class="outline-text-3" id="text-org874475c">
 <p>
 I got a little upset and decided to take a break, I had already spent a little too
 much time in trying different combinations of USB drives, installation media and
@@ -283,8 +283,8 @@ I downloaded the latest firmware release from the <a href="https://www.intel.com
 Followed the <a href="https://www.youtube.com/watch?v=gCmcRPHwlTo">instructions</a>:
 </p>
 <ol class="org-ol">
-<li>copy the <code>.efi</code> files and the upgrade utility to a USB drive</li>
-<li>Determine the current firmware architecture (i32 vs x86)</li>
+<li>copy the <code>.bin</code> files and the upgrade utility (<code>.efi</code>) to a USB drive</li>
+<li>Determine the current firmware architecture (ia32 vs x86)</li>
 <li>Use the appropriate utility and select target firmware version</li>
 <li>Upgrade!</li>
 </ol>
@@ -292,10 +292,19 @@ Followed the <a href="https://www.youtube.com/watch?v=gCmcRPHwlTo">instructions<
 Here are the commands I used for reference:
 </p>
 <div class="org-src-container">
-<pre><code class="src language-bash">fs0:/  # this changes the current working directory to the USB drive root
+<pre><code class="src language-bash">fs0:  # this changes the current working directory to the USB drive root
 cd firmware
-./i32utility ./firmware/x86latestversion.efi # utility arch depends on the arch currently on the system and firmware arch depends on what we want
+# utility arch depends on the arch currently on the system and
+# firmware arch depends on what we want
+./i32utility.efi ./firmware/x86latestversion.bin
 </code></pre>
+</div>
+
+
+<div id="orgbce06f5" class="figure">
+<p><img src="../assets/minnowBoardOpnsense/firmwareUpgrade.jpg" alt="firmwareUpgrade.jpg" width="800px">
+</p>
+<p><span class="figure-number">Figure 3: </span>Firmware Upgrade</p>
 </div>
 
 <p>
@@ -307,9 +316,9 @@ to boot from a USB!
 </div>
 </div>
 
-<div id="outline-container-org76e06a3" class="outline-3">
-<h3 id="org76e06a3">Installing OPNsense</h3>
-<div class="outline-text-3" id="text-org76e06a3">
+<div id="outline-container-org0af5f96" class="outline-3">
+<h3 id="org0af5f96">Installing OPNsense</h3>
+<div class="outline-text-3" id="text-org0af5f96">
 <p>
 The installation went smoothly after that. I was able to choose SD as the destination
 for installation and the board could smoothly boot from the SD card
@@ -318,13 +327,13 @@ for installation and the board could smoothly boot from the SD card
 </div>
 </div>
 
-<div id="outline-container-orgbc460ea" class="outline-2">
-<h2 id="orgbc460ea">Running OPNsense</h2>
-<div class="outline-text-2" id="text-orgbc460ea">
+<div id="outline-container-orgad9a444" class="outline-2">
+<h2 id="orgad9a444">Running OPNsense</h2>
+<div class="outline-text-2" id="text-orgad9a444">
 </div>
-<div id="outline-container-org90d840e" class="outline-3">
-<h3 id="org90d840e">Topology</h3>
-<div class="outline-text-3" id="text-org90d840e">
+<div id="outline-container-org796f21c" class="outline-3">
+<h3 id="org796f21c">Topology</h3>
+<div class="outline-text-3" id="text-org796f21c">
 <ul class="org-ul">
 <li>Before OPNsense</li>
 </ul>
@@ -362,9 +371,9 @@ for installation and the board could smoothly boot from the SD card
 </div>
 </div>
 </div>
-<div id="outline-container-org828c11a" class="outline-3">
-<h3 id="org828c11a">CPU Utilization Issue</h3>
-<div class="outline-text-3" id="text-org828c11a">
+<div id="outline-container-org2d152b7" class="outline-3">
+<h3 id="org2d152b7">CPU Utilization Issue</h3>
+<div class="outline-text-3" id="text-org2d152b7">
 <p>
 The board was now able to run OPNsense but it was slow. Network requests were taking
 forever to return and in some cases, packets were dropped. After looking at the
@@ -379,15 +388,15 @@ The next day, I decided to push one last time by trying to get the utilization
 low by maybe deactivating some of the <i>expensive</i> services such as Intrusion Protection.
 After searching the internet, I found out that by disabling the IPv6 DHCP option,
 the utilization drops. And that worked for me! After disabling the DHCPv6
-(Interfaces -&gt; LAN -&gt; IPv6 Configuration Type = None),
+(<code>Interfaces -&gt; LAN -&gt; IPv6 Configuration Type = None</code>),
 the utilization dropped to 10%. Even after enabling other services, the utilization
 remained below 50%.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbc72323" class="outline-3">
-<h3 id="orgbc72323">Performance: <code>iperf</code></h3>
-<div class="outline-text-3" id="text-orgbc72323">
+<div id="outline-container-orga82e91f" class="outline-3">
+<h3 id="orga82e91f">Performance: <code>iperf</code></h3>
+<div class="outline-text-3" id="text-orga82e91f">
 <pre class="example">
 ------------------------------------------------------------
 Client connecting to 192.168.x.xxx, TCP port 5001
@@ -407,14 +416,14 @@ After introducing MinnowBoard-OPNsense, the max bandwidth I could get was 100 MB
 </p>
 </div>
 </div>
-<div id="outline-container-org778dbb7" class="outline-3">
-<h3 id="org778dbb7">Power Consumption</h3>
-<div class="outline-text-3" id="text-org778dbb7">
+<div id="outline-container-org97de608" class="outline-3">
+<h3 id="org97de608">Power Consumption</h3>
+<div class="outline-text-3" id="text-org97de608">
 
-<div id="orgbb2fdcb" class="figure">
+<div id="org322b887" class="figure">
 <p><img src="../assets/minnowBoardOpnsense/powerUsage.jpg" alt="powerUsage.jpg" width="500px">
 </p>
-<p><span class="figure-number">Figure 3: </span>Power consumption while running OPNsense.</p>
+<p><span class="figure-number">Figure 4: </span>Power consumption while running OPNsense.</p>
 </div>
 <table>
 
@@ -453,13 +462,13 @@ After introducing MinnowBoard-OPNsense, the max bandwidth I could get was 100 MB
 </table>
 </div>
 </div>
-<div id="outline-container-orga48034d" class="outline-3">
-<h3 id="orga48034d">Idle Temperature</h3>
+<div id="outline-container-orgbe3d3b1" class="outline-3">
+<h3 id="orgbe3d3b1">Idle Temperature</h3>
 </div>
 </div>
-<div id="outline-container-org4309225" class="outline-2">
-<h2 id="org4309225">Final Thoughts</h2>
-<div class="outline-text-2" id="text-org4309225">
+<div id="outline-container-org7a965af" class="outline-2">
+<h2 id="org7a965af">Final Thoughts</h2>
+<div class="outline-text-2" id="text-org7a965af">
 <ul class="org-ul">
 <li>OPNsense is a secure, FreeBSD based firewall with frequent updates.</li>
 <li>OPNsense gives more control and insights about home network, along with some useful features:
